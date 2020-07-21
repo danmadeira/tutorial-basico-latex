@@ -18,6 +18,8 @@ Este tutorial tem o propósito de mostrar o mínimo, o básico, para se consegui
 
 - Formatting Information: An introduction to typesetting with LaTeX. Disponível em: <http://latex.silmaril.ie/formattinginformation/index.html>
 
+- LaTeX2e: An unofficial reference manual. Disponível em: <https://latexref.xyz/dev/latex2e.pdf>
+
 - Getting Started with LaTeX. Disponível em: <https://www.maths.tcd.ie/~dwilkins/LaTeXPrimer/GSWLaTeX.pdf>
 
 - Wikibooks LaTeX. Disponível em: <https://en.wikibooks.org/wiki/LaTeX>

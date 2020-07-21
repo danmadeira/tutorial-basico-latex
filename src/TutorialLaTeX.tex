@@ -19,6 +19,7 @@
 \usepackage[ddmmyyyy]{datetime} % https://www.ctan.org/pkg/datetime
 \usepackage{indentfirst} % https://www.ctan.org/pkg/indentfirst
 \usepackage{graphicx} % https://www.ctan.org/pkg/graphicx
+\usepackage{wrapfig} % https://www.ctan.org/pkg/wrapfig
 \usepackage{eso-pic} % https://www.ctan.org/pkg/eso-pic
 \usepackage{sectsty} % https://www.ctan.org/pkg/sectsty
 \usepackage{amsmath} % https://www.ctan.org/pkg/amsmath
@@ -1285,6 +1286,112 @@ Por exemplo, esta é uma ligação para a \hyperref[notarodape]{nota de rodapé}
 
 O pacote hyperref possui uma extensa possibilidade de configuração. Veja o código-fonte deste tutorial para ver o comando \texttt{\textbackslash hypersetup\{\}}, logo no preâmbulo. Este pacote também formata muitas coisas para o PDF exportado.
 
+\section*{Ligações web}
+\addcontentsline{toc}{section}{Ligações web}
+
+As ligações para páginas Web são criadas com os comandos \texttt{\textbackslash href\{\}} ou \texttt{\textbackslash url\{\}}. a diferença entre eles é que \texttt{\textbackslash href} permite uma legenda para o endereço, enquanto o \texttt{\textbackslash url} imprime diretamente o endereço. Segue os exemplos:
+
+\texttt{\textbackslash href\{https://www.ctan.org\}\{Comprehensive TeX Archive Network\}}
+
+\href{https://www.ctan.org}{Comprehensive TeX Archive Network}
+
+\texttt{\textbackslash url\{https://www.ctan.org\}}
+
+\url{https://www.ctan.org}
+
+\chapter*{Gráficos}
+\addcontentsline{toc}{chapter}{Gráficos}
+
+\section*{Imagens externas}
+\addcontentsline{toc}{section}{Imagens externas}
+
+Com o uso do pacote \texttt{\{graphicx\}} é fácil inserir imagens no documento em \LaTeX. Além de inserir, é possível posicionar, redimensionar e rotacionar.
+
+\subsection*{Caminho}
+\addcontentsline{toc}{subsection}{Caminho}
+
+Antes, pode ser útil definir previamente o caminho das imagens que irão compor o documento. O comando \texttt{\textbackslash graphicspath\{\}} pode ser declarado no preâmbulo.
+
+A melhor maneira é especificar o caminho relativo às imagens. Pode ser relativo ao arquivo .tex que carrega a imagem ou pode ser relativo ao arquivo .tex principal, quando há mais de um arquivo .tex no projeto.
+
+Um caminho relativo ao arquivo que carrega a imagem, segue o exemplo:
+
+\texttt{\textbackslash graphicspath\{\{imagens/\}\}}
+
+Um caminho relativo ao arquivo .tex principal, segue o exemplo:
+
+\texttt{\textbackslash graphicspath\{\{./imagens/\}\}}
+
+O caminho pode ser absoluto, quando há o caminho exato ao arquivo. Os exemplos para uma situação no MS Windows e no Linux são, respectivamente:
+
+\texttt{\textbackslash graphicspath\{\{c:/usuario/imagens/\}\}}
+
+\texttt{\textbackslash graphicspath\{\{/home/usuario/imagens/\}\}}
+
+Pode ainda combinar múltiplos caminhos no mesmo comando, se as imagens estão em mais de uma pasta. Por exemplo:
+
+\texttt{\textbackslash graphicspath\{\{./imagens1/\}\{./imagens2/\}\}}
+
+\subsection*{Carregamento}
+\addcontentsline{toc}{subsection}{Carregamento}
+
+O carregamento da imagem é pelo comando \texttt{\textbackslash includegraphics[]\{\}}. Se a imagem estiver no caminho, basta informar o nome do arquivo, por exemplo:
+
+\texttt{\textbackslash includegraphics[scale=0.2]\{plataforma.jpg\}}
+
+\begin{figure}[h!]
+	\centering
+    \includegraphics[scale=0.15]{plataforma.jpg}
+    \caption{A plataforma de pesca.}
+    \label{fig:plataforma}
+\end{figure}
+
+O argumento opcional recebe os parâmetros para escalonamento, dimensão, rotação etc. Veja os exemplos:
+
+\begin{footnotesize}
+\begin{verbatim}
+\includegraphics[width=3cm, height=4cm]{logo.png}
+\includegraphics[width=\textwidth]{lua.jpg}
+\includegraphics[scale=1.2, angle=45]{foto.jpg}
+\end{verbatim}
+\end{footnotesize}
+
+Por recomendação, a extensão do arquivo pode ser omitida, assim o \LaTeX\ irá procurar por todos os formatos suportados de imagens.
+
+\subsection*{Posicionamento}
+\addcontentsline{toc}{subsection}{Posicionamento}
+
+O carregamento da imagem torna-se mais preciso se estiver no ambiente \texttt{\{figure\}}. Com este ambiente podemos especificar o parâmetro do posicionamento:
+\begin{footnotesize}
+\begin{verbatim}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.2]{plataforma.jpg}
+    \caption{A plataforma de pesca.}
+    \label{fig:plataforma}
+\end{figure}
+\end{verbatim}
+\end{footnotesize}
+
+\begin{tabular}{lp{10cm}}
+\textbf{Parâmetro} & \textbf{Posição}\\
+\texttt{h \footnotesize{(here)}} & Posição flutuante aqui mesmo.\\
+\texttt{t \footnotesize{(top)}} & No topo da página.\\
+\texttt{b \footnotesize{(bottom)}} & No pé da página.\\
+\texttt{p \footnotesize{(page)}} & Coloca na página flutuante especial.\\
+\texttt{!\ \footnotesize{(override)}} & Sobrepõe o cálculo do \LaTeX\ para a posição flutuante.\\
+\end{tabular}
+
+\newpage
+Adicionando o pacote \texttt{\{wrapfig\}}, o texto ganha a possibilidade de envolver a imagem carregada. Para isso usa-se o ambiente \texttt{\{wrapfig\}}. Segue uma ilustração:
+
+\begin{wrapfigure}{r}{0.35\textwidth}
+	\centering
+	\includegraphics[width=0.35\textwidth]{copacabana.jpg}
+\end{wrapfigure}
+
+\lipsum[1-2]
+
 \chapter*{Conclusão}
 \addcontentsline{toc}{chapter}{Conclusão}
 
@@ -1301,11 +1408,13 @@ Coloquei alguns pacotes neste arquivo e nem todos estão sendo usados nos comand
 \addcontentsline{toc}{section}{Onde saber mais}
 
 \begin{itemize}
+	\setlength\itemsep{0em}
 	\item \href{http://www.tex.uniyar.ac.ru/doc/latex2e.pdf}{\LaTeXe\ The macro package for \TeX}
 	\item \href{https://www.ctan.org}{Comprehensive TeX Archive Network (CTAN)}
 	\item \href{http://www.tug.org/}{TeX Users Group (TUG)}
 	\item \href{https://tobi.oetiker.ch/lshort/lshort.pdf}{The Not So Short Introduction to \LaTeXe}
 	\item \href{http://latex.silmaril.ie/formattinginformation/index.html}{Formatting Information - An introduction to typesetting with \LaTeX}
+	\item \href{https://latexref.xyz/dev/latex2e.pdf}{\LaTeXe: An unofficial reference manual}
 	\item \href{https://www.maths.tcd.ie/~dwilkins/LaTeXPrimer/GSWLaTeX.pdf}{Getting Started with \LaTeX}
 	\item \href{http://linorg.usp.br/CTAN/info/lshort/portuguese/pt-lshort.pdf}{Uma não tão pequena introdução ao \LaTeXe}
 	\item \href{https://en.wikibooks.org/wiki/LaTeX}{Wikibooks \LaTeX}
