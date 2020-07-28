@@ -28,6 +28,9 @@
 \usepackage[stable]{footmisc} % https://www.ctan.org/pkg/footmisc
 \usepackage{tikz} % https://www.ctan.org/pkg/pgf
     \usetikzlibrary{matrix,shapes.misc,arrows,chains,trees}
+\usepackage{pgfplots} % https://www.ctan.org/pkg/pgfplots
+    \pgfplotsset{width=6cm,compat=1.16}
+\usepackage{pgfplotstable} % https://www.ctan.org/pkg/pgfplotstable
 \usepackage[all]{genealogytree} % https://www.ctan.org/pkg/genealogytree
 \usepackage{pifont} % https://www.ctan.org/pkg/pifont
 \usepackage{dirtytalk} % https://www.ctan.org/pkg/dirtytalk
@@ -1191,7 +1194,7 @@ O \TeX, de onde provém o \LaTeX, foi originalmente desenvolvido para facilitar 
 \section*{Em linha}
 \addcontentsline{toc}{section}{Em linha}
 
-Para imprimir uma expressão matemática no parágrafo, na mesma linha, pode-se usar os delimitadores de ambiente \texttt{\textbackslash (} e \texttt{\textbackslash )} ou \texttt{\textbackslash begin\{math\}} e \texttt{\textbackslash end\{math\}}. Por exemplo, \( ax^2 + bx + c = 0 \)  pode ser impresso digitando \texttt{\textbackslash ( ax\textasciicircum2 + bx + c = 0 \textbackslash )}
+Para imprimir uma expressão matemática no parágrafo, na mesma linha, pode-se usar os delimitadores de ambiente \texttt{\$} e \texttt{\$}, \texttt{\textbackslash (} e \texttt{\textbackslash )} ou \texttt{\textbackslash begin\{math\}} e \texttt{\textbackslash end\{math\}}. Por exemplo, \( ax^2 + bx + c = 0 \)  pode ser impresso digitando \texttt{\textbackslash ( ax\textasciicircum2 + bx + c = 0 \textbackslash )}
 
 \section*{No modo de exibição}
 \addcontentsline{toc}{section}{No modo de exibição}
@@ -1445,9 +1448,9 @@ O argumento opcional recebe os parâmetros para escalonamento, dimensão, rotaç
 
 \begin{footnotesize}
 \begin{verbatim}
-\includegraphics[width=3cm, height=4cm]{logo.png}
-\includegraphics[width=\textwidth]{lua.jpg}
-\includegraphics[scale=1.2, angle=45]{foto.jpg}
+   \includegraphics[width=3cm, height=4cm]{logo.png}
+   \includegraphics[width=\textwidth]{lua.jpg}
+   \includegraphics[scale=1.2, angle=45]{foto.jpg}
 \end{verbatim}
 \end{footnotesize}
 
@@ -1459,12 +1462,12 @@ Por recomendação, a extensão do arquivo pode ser omitida, assim o \LaTeX\ ir�
 O carregamento da imagem torna-se mais preciso se estiver no ambiente \texttt{\{figure\}}. Com este ambiente podemos especificar o parâmetro do posicionamento:
 \begin{footnotesize}
 \begin{verbatim}
-\begin{figure}[h!]
-    \centering
-    \includegraphics[scale=0.2]{plataforma.jpg}
-    \caption{A plataforma de pesca.}
-    \label{fig:plataforma}
-\end{figure}
+   \begin{figure}[h!]
+      \centering
+      \includegraphics[scale=0.2]{plataforma.jpg}
+      \caption{A plataforma de pesca.}
+      \label{fig:plataforma}
+   \end{figure}
 \end{verbatim}
 \end{footnotesize}
 
@@ -1486,10 +1489,10 @@ O carregamento da imagem torna-se mais preciso se estiver no ambiente \texttt{\{
 \newpage
 Adicionando o pacote \texttt{\{wrapfig\}}, o texto ganha a possibilidade de envolver a imagem carregada. Para isso usa-se o ambiente \texttt{\{wrapfig\}}. Segue uma ilustração:
 \begin{verbatim}
-\begin{wrapfigure}{r}{0.35\textwidth}
-    \centering
-    \includegraphics[width=0.35\textwidth]{copacabana.jpg}
-\end{wrapfigure}
+   \begin{wrapfigure}{r}{0.35\textwidth}
+      \centering
+      \includegraphics[width=0.35\textwidth]{copacabana.jpg}
+   \end{wrapfigure}
 \end{verbatim}
 
 \begin{wrapfigure}{r}{0.35\textwidth}
@@ -1498,6 +1501,314 @@ Adicionando o pacote \texttt{\{wrapfig\}}, o texto ganha a possibilidade de envo
 \end{wrapfigure}
 
 \lipsum[1-2]
+
+\section*{Plotagem de dados}
+\addcontentsline{toc}{section}{Plotagem de dados}
+
+Baseado no pacote TikZ/pgf existe o pacote \texttt{\{pgfplots\}}, para construir uma plotagem de dados, de funções etc. Conta com um segundo componente, o pacote \texttt{\{pgfplotstable\}}, que faz a formatação e o processamento de tabelas numéricas. Os ambientes de plotagem do \texttt{\{pgfplots\}} dependem do ambiente \texttt{\{tikzpicture\}}.
+
+Provavelmente, o \texttt{\{pgfplots\}} é o pacote mais complexo do \LaTeX, seu manual tem quase 600 páginas, pois possui recursos tão poderosos quanto aos disponíveis nos melhores softwares matemáticos. Vale a pena a leitura do manual.
+
+\subsection*{Configuração}
+\addcontentsline{toc}{subsection}{Configuração}
+
+Antes de executar as plotagens, é interessante configurar o pgfplots e isto é feito pelo comando \texttt{\textbackslash pgfplotsset}, logo no preâmbulo ou diretamente no ambiente do gráfico.
+
+Um primeiro ponto é quanto a compatibilidade do pacote. O \texttt{\{pgfplots\}} é desenvolvido tendo o cuidado com as versões anteriores, com os comandos que se tornaram obsoletos ou com os comandos que a sua versão instalada ainda não suporta. Por isso, inclua o parâmetro \texttt{compat=} mais o número da versão do pacote \texttt{\{pgfplots\}} que está instalado em seu sistema, ou uma versão anterior, se seu documento utiliza algum comando obsoleto.
+
+O comando \texttt{\textbackslash pgfplotsset} também aceita os parâmetros de formatação do gráfico, como dimensão, estilos, fontes de caracteres etc.:
+
+\texttt{\textbackslash pgfplotsset\{width=8cm, compat=1.16\}}
+
+\subsection*{Ambientes}
+\addcontentsline{toc}{subsection}{Ambientes}
+
+Diversos ambientes irão estruturar uma plotagem, começando pelo ambiente gráfico \texttt{\{tikzpicture\}}, que forma a imagem. Interiormente, tem-se os ambientes específicos da plotagem, em relação aos eixos de escala normal ou escala logarítmica, com os ambientes \texttt{\{axis\}}, \texttt{\{semilogxaxis\}} ou \texttt{\{loglogaxis\}}
+\begin{verbatim}
+   \begin{tikzpicture}
+      \begin{axis}[]
+      ...
+      \end{axis}
+   \end{tikzpicture}
+\end{verbatim}
+
+Os ambientes dos eixos podem receber um argumento com os parâmetros para formatar cada eixo, separados por vírgulas e seguindo a boa prática de digitá-los um por linha, por exemplo:
+\begin{verbatim}
+   \begin{axis}[
+      title = Título,
+      xlabel = {$x$},
+      ylabel = {$y$},
+   ]
+\end{verbatim}
+
+Dica: Externamente ao ambiente \texttt{\{tikzpicture\}} pode-se colocar o ambiente \texttt{\{figure\}}, que permite, por exemplo, adicionar uma legenda à figura e outros tratamentos.
+
+\subsection*{Plotagem}
+\addcontentsline{toc}{subsection}{Plotagem}
+
+Dentro do ambiente do eixo insere-se o comando para adicionar uma plotagem, com \texttt{\textbackslash addplot} ou \texttt{\textbackslash addplot3} para visualização em 3D. Neste comando, especifica-se a origem dos dados, se será por uma função, por coordenadas ou fornecidos por uma tabela em um arquivo externo. Também pode receber um argumento com diversos parâmetros:
+\begin{verbatim}
+   \addplot[
+      blue,
+      domain=-6:4,
+   ]
+   {x^2 + 2*x + 1};
+
+   \addplot[
+      red,
+      mark=square,
+   ]
+   coordinates {(1,35)(2,34)(3,30)(4,26)(5,20)(6,17)};
+
+   \addplot table {dados.txt};
+\end{verbatim}
+
+O comando \texttt{\textbackslash addplot} pode ser usado mais de uma vez no mesmo gráfico, caso tenha outros dados compatíveis ao mesmo domínio.
+
+\subsection*{Exemplos de plotagem}
+\addcontentsline{toc}{subsection}{Exemplos de plotagem}
+
+\subsubsection*{Função matemática:}
+
+\noindent
+\begin{minipage}[t]{0.5\linewidth}
+\begin{small}
+\begin{verbatim}
+\begin{tikzpicture}
+    \begin{axis}[
+        axis lines = left,
+        title = {Equação do 2º grau},
+        xlabel = {$x$},
+        ylabel = {$f(x)$},
+    ]
+        \addplot[domain = -6:4,
+                 samples = 20,
+                 color = blue,]
+        {x^2 + 2*x + 1};
+        \addlegendentry{$x^2 + 2x + 1$}
+    \end{axis}
+\end{tikzpicture}
+\end{verbatim}
+\end{small}
+\end{minipage}\hspace{\fill}
+\begin{minipage}[t]{0.4\linewidth}
+\strut\vspace*{-\baselineskip}\newline
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = left,
+    title = {Equação do 2º grau},
+    xlabel = {$x$},
+    ylabel = {$f(x)$},
+]
+\addplot[
+    domain = -6:4,
+    samples = 20,
+    color = blue,
+]
+{x^2 + 2*x + 1};
+\addlegendentry{$x^2 + 2x + 1$}
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+
+\subsubsection*{Coordenadas logarítmicas:}
+
+\noindent
+\begin{minipage}[t]{0.5\linewidth}
+\begin{small}
+\begin{verbatim}
+\begin{tikzpicture}
+    \begin{loglogaxis}[
+        xlabel = {Graus de liberdade},
+        ylabel = {$L_2$ Erro},]
+
+    \addplot coordinates {
+        (5,8.312e-02) (49,7.407e-03)
+        (321,5.874e-04) (1793,4.442e-05)
+        (9217,3.261e-06) };
+
+    \addplot coordinates {
+        (7,8.472e-02) (111,1.022e-02)
+        (1023,1.039e-03) (7423,9.658e-05)
+        (47103,8.437e-06) };
+
+    \legend{$d=2$,$d=3$}
+    \end{loglogaxis}
+\end{tikzpicture}
+\end{verbatim}
+\end{small}
+\end{minipage}\hspace{\fill}
+\begin{minipage}[t]{0.4\linewidth}
+\strut\vspace*{-\baselineskip}\newline
+\begin{tikzpicture}
+\begin{loglogaxis}[
+    xlabel = {Graus de liberdade},
+    ylabel = {$L_2$ Erro},]
+                   
+\addplot coordinates {
+	(5,8.312e-02) (49,7.407e-03)
+	(321,5.874e-04) (1793,4.442e-05)
+	(9217,3.261e-06)
+};
+
+\addplot coordinates {
+	(7,8.472e-02) (111,1.022e-02)
+	(1023,1.039e-03) (7423,9.658e-05)
+	(47103,8.437e-06)
+};
+
+\legend{$d=2$,$d=3$}
+\end{loglogaxis}
+\end{tikzpicture}
+\end{minipage}
+
+\subsubsection*{Coordenadas em escala normal:}
+
+\noindent
+\begin{minipage}[t]{0.5\linewidth}
+\begin{small}
+\begin{verbatim}
+\begin{tikzpicture}
+\begin{axis}[
+    title = {Temperaturas},
+    xlabel = {Meses},
+    ylabel = {°C},
+    xmin = 1, xmax = 12,
+    ymin = 15, ymax = 40,
+    xtick = {1,2,3,4,5,6,7,8,9,10,11,12},
+    ytick = {0,15,20,25,30,35,40},
+    ymajorgrids = true,
+    grid style = dashed,]
+\addplot[blue,
+         mark = square]
+coordinates {
+    (1,35)(2,34)(3,30)(4,26)(5,20)(6,17)
+    (7,15)(8,16)(9,20)(10,26)(11,30)(12,32)};
+\end{axis}
+\end{tikzpicture}
+\end{verbatim}
+\end{small}
+\end{minipage}\hspace{\fill}
+\begin{minipage}[t]{0.4\linewidth}
+\strut\vspace*{-\baselineskip}\newline
+\begin{tikzpicture}
+\begin{axis}[
+    title = {Temperaturas},
+    xlabel = {Meses},
+    ylabel = {°C},
+    xmin = 1, xmax = 12,
+    ymin = 15, ymax = 40,
+    xtick = {1,2,3,4,5,6,7,8,9,10,11,12},
+    ytick = {0,15,20,25,30,35,40},
+    ymajorgrids = true,
+    grid style = dashed,]
+\addplot[blue,
+         mark = square]
+coordinates {
+	(1,35)(2,34)(3,30)(4,26)(5,20)(6,17)
+	(7,15)(8,16)(9,20)(10,26)(11,30)(12,32)};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+
+\subsubsection*{Plotagem em barra:}
+
+\noindent
+\begin{minipage}[t]{0.5\linewidth}
+\begin{small}
+\begin{verbatim}
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    enlargelimits = 0.3,
+    legend style = {at={(0.5,-0.2)},
+        anchor = north,legend columns = -1},
+    ylabel = {passageiros},
+    symbolic x coords={2017,2018,2019},
+    xtick = data,
+    nodes near coords,
+    nodes near coords align={vertical},]
+\addplot coordinates {(2017,7) (2018,9) (2019,5)};
+\addplot coordinates {(2017,4) (2018,6) (2019,4)};
+\addplot coordinates {(2017,2) (2018,2) (2019,1)};
+\legend{homens,mulheres,crianças}
+\end{axis}
+\end{tikzpicture}
+\end{verbatim}
+\end{small}
+\end{minipage}\hspace{\fill}
+\begin{minipage}[t]{0.4\linewidth}
+\strut\vspace*{-\baselineskip}\newline
+\begin{tikzpicture}
+\begin{axis}[
+	ybar,
+	enlargelimits = 0.3,
+	legend style = {at={(0.5,-0.2)},
+		anchor = north,legend columns = -1},
+	ylabel = {passageiros},
+	symbolic x coords={2017,2018,2019},
+	xtick = data,
+	nodes near coords,
+	nodes near coords align={vertical},
+]
+\addplot coordinates {(2017,7) (2018,9) (2019,5)};
+\addplot coordinates {(2017,4) (2018,6) (2019,4)};
+\addplot coordinates {(2017,2) (2018,2) (2019,1)};
+\legend{homens,mulheres,crianças}
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+
+\subsubsection*{Plotagem 3D:}
+
+A plotagem em 3 dimensões é com o comando \texttt{\textbackslash addplot3}. Veja dois interessantes exemplos com os parâmetros surf e mesh, que criam uma superfície e uma malha, respectivamente:
+
+\noindent
+\begin{minipage}[t]{0.5\linewidth}
+\begin{small}
+\begin{verbatim}
+\begin{tikzpicture}
+\begin{axis}[title = {Superfície},]
+\addplot3[surf, domain = 0:360,
+          samples = 40,]
+{sin(x)*sin(y)};
+\end{axis}
+\end{tikzpicture}
+\end{verbatim}
+\end{small}
+\begin{tikzpicture}
+\begin{axis}[title={Superfície},]
+\addplot3[surf,
+          domain=0:360,
+          samples=40,]
+{sin(x)*sin(y)};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}\hspace{\fill}
+\begin{minipage}[t]{0.5\linewidth}
+\begin{small}
+\begin{verbatim}
+\begin{tikzpicture}
+\begin{axis}[title = Malha, hide axis,
+             colormap/cool,]
+\addplot3[mesh, samples = 50,
+          domain = -8:8,]
+{sin(deg(sqrt(x^2+y^2)))/sqrt(x^2+y^2)};
+\end{axis}
+\end{tikzpicture}
+\end{verbatim}
+\end{small}
+\begin{tikzpicture}
+\begin{axis}[title=Malha,
+             hide axis,
+             colormap/cool,]
+\addplot3[mesh,
+          samples=50,
+          domain=-8:8,]
+{sin(deg(sqrt(x^2+y^2)))/sqrt(x^2+y^2)};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
 
 \chapter*{Conclusão}
 \addcontentsline{toc}{chapter}{Conclusão}
