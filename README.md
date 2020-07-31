@@ -22,6 +22,8 @@ Este tutorial tem o propósito de mostrar o mínimo, o básico, para se consegui
 
 - Getting Started with LaTeX. Disponível em: <https://www.maths.tcd.ie/~dwilkins/LaTeXPrimer/GSWLaTeX.pdf>
 
+- LaTeX for Complete Novices. Disponível em: <https://dickimaw-books.com/latex/novices/novices-report.pdf>
+
 - Wikibooks LaTeX. Disponível em: <https://en.wikibooks.org/wiki/LaTeX>
 
 - The Comprehensive LaTeX Symbol List. Disponível em: <http://linorg.usp.br/CTAN/info/symbols/comprehensive/symbols-a4.pdf>

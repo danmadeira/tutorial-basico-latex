@@ -10,6 +10,8 @@
 %\usepackage[applemac]{inputenc} % (usar no Macintosh)
 \usepackage[12pt]{moresize} % https://ctan.org/pkg/moresize
 \usepackage{textcomp} % https://www.ctan.org/pkg/textcomp
+\usepackage{textgreek} % https://www.ctan.org/pkg/textgreek
+\usepackage{fontawesome} % https://www.ctan.org/pkg/fontawesome
 \usepackage{fixltx2e} % https://www.ctan.org/pkg/fixltx2e
 %\usepackage{arev} % https://www.tug.org/FontCatalogue/arev/
 %\usepackage{lmodern} % https://www.tug.org/FontCatalogue/latinmodernsans/
@@ -48,8 +50,9 @@
 %\usepackage{blindtext} % https://ctan.org/pkg/blindtext
 \usepackage[htt]{hyphenat} % https://ctan.org/pkg/hyphenat
 \usepackage{tabularx} % https://www.ctan.org/pkg/tabularx
-
-\usepackage[hidelinks]{hyperref} % https://www.ctan.org/pkg/hyperref
+\usepackage{arydshln} % https://www.ctan.org/pkg/arydshln
+\usepackage{nameref} % https://ctan.org/pkg/nameref
+\usepackage[hidelinks,unicode]{hyperref} % https://www.ctan.org/pkg/hyperref
     \hypersetup{
     	colorlinks=false,
     	linkcolor=black,
@@ -138,7 +141,7 @@ O \LaTeX\ é um sistema de preparação de documento com alta qualidade para com
 
 O sistema \LaTeX\ possui código aberto e é gratuito. Está disponível para qualquer sistema operacional, produzindo o mesmo resultado em qualquer sistema. Cria arquivos pequenos e com resultados de alta qualidade. É capaz de exportar o documento para os formatos Post Script e PDF.
 
-Este tutorial tem o propósito de mostrar o mínimo, o básico, para se conseguir produzir um documento, de uma forma prática. O próprio arquivo .tex deste tutorial é um exemplo básico da linguagem em \LaTeX.
+Este tutorial tem o propósito de mostrar o mínimo, o básico, para se conseguir produzir um documento, de uma forma prática. O próprio arquivo .tex deste tutorial é um exemplo básico da linguagem em \LaTeX. Consulte o código-fonte deste tutorial em paralelo à versão em PDF.
 
 \chapter*{Linguagem \LaTeX}
 \addcontentsline{toc}{chapter}{Linguagem \LaTeX}
@@ -176,12 +179,14 @@ A área entre \texttt{\textbackslash begin\{document\}} e \texttt{\textbackslash
 \subsection*{Ambiente}
 \addcontentsline{toc}{subsection}{Ambiente}
 
-Na linguagem \LaTeX, um bloco é definido entre os comandos \texttt{\textbackslash begin\{\}} e \texttt{\textbackslash end\{\}}. Estes comandos formam o bloco de ambiente. Os comandos inseridos dentro deste ambiente tem seu efeito restrito ao interior do bloco.
+Na linguagem \LaTeX, um bloco é definido entre os caracteres \texttt{\{} e \texttt{\}} ou entre os comandos \texttt{\textbackslash begin\{\}} e \texttt{\textbackslash end\{\}}. Estes comandos podem formar um bloco de ambiente. Os comandos inseridos dentro de um bloco ou de um ambiente tem seu efeito restrito ao interior do bloco e ambiente.
+
+No ambiente geral do documento, o processamento dos comandos do sistema \LaTeX\ está em modo texto. Como verá no capítulo sobre matemática, existe o modo matemático, onde o sistema \LaTeX\ perfaz um processamento específico.
 
 \subsection*{Caracteres especiais}
 \addcontentsline{toc}{subsection}{Caracteres especiais}
 
-Quase tudo pode ser digitado livremente no documento, que fará parte da impressão final, salvo alguns caracteres que são considerados especiais. Estes caracteres simbólicos são reservados pela linguagem \LaTeX\ porque são para introduzir comandos e possuem um significado especial: \texttt{\# \$ \% \textasciicircum\ \& \_ \{ \} \textasciitilde\ \textbackslash}
+Quase tudo pode ser digitado livremente no documento, que fará parte da impressão final, salvo alguns caracteres que são considerados especiais. Estes caracteres simbólicos são reservados pela linguagem \LaTeX\ porque são para introduzir comandos e possuem um significado especial: \texttt{\# \$ \% \textasciicircum\ \& \_ \{ \} \textasciitilde\ \textbackslash}. Para usar (imprimir) algum destes caracteres no seu texto, digite com o caractere \texttt{\textbackslash} ou use o comando de impressão.
 
 Saiba a função de cada um deles:
 
@@ -192,23 +197,22 @@ Saiba a função de cada um deles:
 	\#    & parâmetro de macro  & \texttt{\textbackslash\#}\\
 	\$    & modo matemático & \texttt{\textbackslash \$}\\
 	\%    & linha de comentário & \texttt{\textbackslash \%}\\
-	\^{}  & sobrescrito (no modo matemático) & \texttt{\textbackslash\^{}\{\}} or \texttt{\textbackslash textasciicircum}\\
+	\^{}  & sobrescrito (no modo matemático) & \texttt{\textbackslash\^{}\{\}} ou \texttt{\textbackslash textasciicircum}\\
 	\&    & separador de colunas & \texttt{\textbackslash \&}\\
 	\_    & subscrito (no modo matemático) & \texttt{\textbackslash\_}\\
 	\{ \} & bloco de processamento & \texttt{\textbackslash\{ \textbackslash\}}\\
-	\~{}  & espaço inquebrável & \texttt{\textbackslash textasciitilde} or \texttt{\textbackslash\~{}\{\}}\\
-	\textbackslash & início de comando & \texttt{\textbackslash textbackslash} or \texttt{\textbackslash}\\
+	\~{}  & espaço inquebrável & \texttt{\textbackslash textasciitilde} ou \texttt{\textbackslash\~{}\{\}}\\
+	\textbackslash & início de comando & \texttt{\textbackslash textbackslash} ou \texttt{\textbackslash}\\
 \end{tabular}
 \end{small}
-
-Para usar (imprimir) algum destes caracteres no seu texto, digite com o caractere \texttt{\textbackslash} ou use o comando de impressão.
 
 \subsection*{Comentário}
 \addcontentsline{toc}{subsection}{Comentário}
 
 \begin{multicols}{2}
-É possível inserir comentários no código-fonte do documento em \LaTeX. Os comentários de uma linha ficam após o caractere \%. Os comentários com mais de uma linha ficam em um bloco de ambiente \texttt{\{comment\}}:
+É possível inserir comentários no código-fonte do documento em \LaTeX. Os comentários de uma linha ficam após o caractere \texttt{\%}. Os comentários com mais de uma linha ficam em um bloco de ambiente \texttt{\{comment\}}:
 \columnbreak
+\begin{small}
 \begin{verbatim}
 \% comentário de uma linha.
 
@@ -217,12 +221,13 @@ Para usar (imprimir) algum destes caracteres no seu texto, digite com o caracter
     com mais de uma linha.
 \end{comment}
 \end{verbatim}
+\end{small}
 \end{multicols}
 
 \section*{Pacotes}
 \addcontentsline{toc}{section}{Pacotes}
 
-O \LaTeX\ inclui alguns comandos básicos porém existem muitos outros comandos úteis que são implementados com o uso de pacotes no código-fonte. Alguns pacotes podem receber parâmetros:
+O \LaTeX\ inclui alguns comandos básicos porém existem muitos outros comandos úteis que são implementados com o uso de pacotes no código-fonte. Você poderá usar um pacote no seu documento em \LaTeX\ desde que tenha o respectivo pacote instalado em seu sistema \LaTeX. Para usar e ativar um pacote, inclua o comando \texttt{\textbackslash usepackage}. Alguns pacotes podem receber parâmetros, por exemplo:
 \begin{verbatim}
    \usepackage[ddmmyyyy]{datetime}
 \end{verbatim}
@@ -232,30 +237,33 @@ O \LaTeX\ inclui alguns comandos básicos porém existem muitos outros comandos 
 
 O \LaTeX\ é uma linguagem movida por comandos (ou macros) no entorno do texto. Os comando são discriminados pelo caractere \texttt{\textbackslash}, escrito em uma sintaxe como \texttt{\textbackslash comando}.
 
+Alguns comandos possuem duas versões de funcionamento, que são especificadas com a omissão ou o acréscimo do caractere \texttt{*} (asterisco) no final do nome do comando. Você verá, no decorrer deste tutorial, estas duas versões.
+
 O primeiro comando no código-fonte em \LaTeX\ é o comando \texttt{\textbackslash documentclass}. Nele se define a classe do documento (ex. article, report, book, letter, slides, ltnews, beamer ou memoir) e os parâmetros para tamanho do papel, tamanho da fonte, lados de impressão etc.:
+\begin{small}
 \begin{verbatim}
    \documentclass[a4paper,12pt,oneside]{book}
 \end{verbatim}
-
+\end{small}
 
 \subsection*{Definição e redefinição}
 \addcontentsline{toc}{subsection}{Definição e redefinição}
 
 A linguagem \LaTeX\ permite criar novos comandos, através do comando \texttt{\textbackslash newcommand}. O novo comando recebe um nome e uma definição. Isto possibilita, por exemplo, um modo de criar uma constante:
-\begin{footnotesize}
+\begin{small}
 \begin{verbatim}
    \newcommand{\nomeConstante}{valor}
    \newcommand{\agua}{H$_2$O}
 \end{verbatim}
-\end{footnotesize}
+\end{small}
 
 Os comandos existentes podem ser redefinidos com o comando \texttt{\textbackslash renewcommand}, por exemplo:
-\begin{footnotesize}
+\begin{small}
 \begin{verbatim}
    \renewcommand*\contentsname{Sumário} % refaz o termo para TOC.
    \renewcommand*{\thepage}{capa} % string capa no número da página
 \end{verbatim}
-\end{footnotesize}
+\end{small}
 
 Criar e recriar comandos no \LaTeX\ vai muito além, não limitando-se somente a um valor para a definição. É possível criar combinações de comandos para compôr a definição do novo comando, inclusive a possibilidade de inserção de argumentos. A sintaxe básica é:
 \begin{verbatim}
@@ -263,7 +271,7 @@ Criar e recriar comandos no \LaTeX\ vai muito além, não limitando-se somente a
 \end{verbatim}
 
 Sendo n indicando o número de argumentos para uso pelo novo comando. Por exemplo, este novo comando que define um novo modo de inserir os capítulos:
-\begin{footnotesize}
+\begin{small}
 \begin{verbatim}
    \newcommand{\meucapitulo}[2]{
       \setcounter{chapter}{#1}
@@ -272,10 +280,10 @@ Sendo n indicando o número de argumentos para uso pelo novo comando. Por exempl
       \addcontentsline{toc}{chapter}{#2}
    }
 \end{verbatim}
-\end{footnotesize}
+\end{small}
 
 Ou este, por exemplo, que cria um comando para justificar um texto com fonte teletipo (texttt):
-\begin{footnotesize}
+\begin{small}
 \begin{verbatim}
    \newcommand*{\justifytt}{%
       \fontdimen2\font=0.4em%
@@ -285,28 +293,23 @@ Ou este, por exemplo, que cria um comando para justificar um texto com fonte tel
       \hyphenchar\font=`\-%
    }
 \end{verbatim}
-\end{footnotesize}
+\end{small}
 
 Duas observações:
 
 Primeiro, perceba o caractere de asterisco em \texttt{\textbackslash newcommand} e \texttt{\textbackslash renewcommand}. Na origem da linguagem \TeX\ os comandos não podiam ter um \texttt{\textbackslash par} na definição. A linguagem \LaTeX\ controla a possibilidade disso com a ausência ou presença do asterisco na chamada do comando. Com o asterisco, o comando não aceita parágrafos dentro da definição do comando.
 
-Segundo, perceba o caractere \% no fim das linhas. Alguns comandos que lidam precisamente com espaços entre os caracteres, se comportam melhor quando é inserido o \% no final da linha.
+Segundo, perceba o caractere \texttt{\%} no fim das linhas. Alguns comandos que lidam precisamente com espaços entre os caracteres, se comportam melhor quando é inserido o \texttt{\%} no final da linha.
 
 \subsection*{Uso}
 \addcontentsline{toc}{subsection}{Uso}
 
 A sintaxe geral de uso de um comando é:
-\begin{footnotesize}
+\begin{small}
 \begin{verbatim}
    \comando[argumento opcional]{argumento compulsório}
 \end{verbatim}
-
-ou
-\begin{verbatim}
-   \comando{argumento compulsório}[argumento opcional]
-\end{verbatim}
-\end{footnotesize}
+\end{small}
 
 O nome do comando é sensível a letras maiúsculas e minúsculas e compõe somente de caracteres alfa-numéricos. Os argumentos podem ser mais de um, se houver.
 
@@ -316,7 +319,7 @@ O nome do comando é sensível a letras maiúsculas e minúsculas e compõe some
 As unidades de medidas aceitas nos comandos do LaTeX são:
 
 \begin{tabular}{>{\ttfamily}ll}
-pt & pontos\\
+pt & pontos (1/72 polegadas)\\
 mm & milímetros\\
 cm & centímetros\\
 in & polegadas\\
@@ -754,11 +757,15 @@ Para o fundo do texto, usa-se o comando \texttt{\textbackslash colorbox\{\textit
 \subsection*{Tabela}
 \addcontentsline{toc}{subsection}{Tabela}
 
-Uma tabela pode ser construída com o ambiente \texttt{\{tabular\}}. Este comando requer um argumento que indica quantas colunas terá e qual o alinhamento de cada coluna.
+Uma tabela pode ser construída com o ambiente \texttt{\{tabular\}} ou com o ambiente \texttt{\{tabbing\}}. O ambiente \texttt{\{tabular\}} requer um argumento que indica quantas colunas terá e qual o alinhamento de cada coluna. Já no ambiente \texttt{\{tabbing\}}, as colunas assim como suas larguras são definidas diretamente pelos separadores.
 
-Para indicar a quantidade de colunas e o respectivo alinhamento, use a quantidade de letras \texttt{l} (alinhamento à esquerda), \texttt{c} (alinhamento ao centro) e \texttt{r} (alinhamento à direita). No conteúdo, as colunas são delimitadas pelo caractere \texttt{\&}. E ao final de cada linha use uma quebra.
+No ambiente \texttt{\{tabular\}}, para indicar a quantidade de colunas e o respectivo alinhamento, use a quantidade de letras \texttt{l} (alinhamento à esquerda), \texttt{c} (alinhamento ao centro) e \texttt{r} (alinhamento à direita). No conteúdo, as colunas são delimitadas pelo caractere \texttt{\&}. Já no ambiente \texttt{\{tabbing\}}, os separadores das colunas serão os comandos \texttt{\textbackslash =} ou \texttt{\textbackslash >} etc. (veja lista). Em ambos os ambientes, ao final de cada linha, use uma quebra.
 
 Estrutura básica de construção de tabela:
+
+\noindent
+\begin{minipage}[t]{0.5\linewidth}
+\begin{small}
 \begin{verbatim}
    \begin{tabular}{lccr}
    11 & 12 & 13 & 14 \\
@@ -766,13 +773,54 @@ Estrutura básica de construção de tabela:
    31 & 32 & 33 & 34 \\
    41 & 42 & 43 & 44 \\
    51 & 52 & 53 & 54 \\
-   61 & 62 & 63 & 64 \\
    \end{tabular}
 \end{verbatim}
+\end{small}
+\end{minipage}\hspace{\fill}
+\begin{minipage}[t]{0.5\linewidth}
+\begin{small}
+\begin{verbatim}
+   \begin{tabbing}
+   11 \= 12 \= 13 \= 14 \\
+   21 \= 22 \= 23 \= 24 \\
+   31 \= 32 \= 33 \= 34 \\
+   41 \= 42 \= 43 \= 44 \\
+   51 \= 52 \= 53 \= 54 \\
+   \end{tabbing}
+\end{verbatim}
+\end{small}
+\end{minipage}
 
 Além do \texttt{\{l c r\}} no argumento, ainda há \texttt{p\{largura\}}, \texttt{m\{largura\}} e \texttt{b\{largura\}}, para indicar um parágrafo na coluna com alinhamento vertical no topo, meio e embaixo respectivamente. Estes argumentos definem a largura fixa da coluna.
 
-Veja alguns exemplos de construção de tabelas (veja também pelo código-fonte). É possível traçar linhas verticais e horizontais, perfazendo um contorno. As linhas verticais são definidas com o caractere \texttt{|} entre as letras das colunas. As linhas horizontais são feitas pelo comando \texttt{\textbackslash hline} ou \texttt{\textbackslash cline\{\}}.
+\noindent
+\begin{minipage}[t]{0.1\linewidth}
+Separadores do\\ \texttt{\{tabbing\}}:
+\end{minipage}\hspace{1.5cm}
+\noindent
+\begin{minipage}[t]{0.3\linewidth}
+\begin{small}
+\begin{verbatim}
+\= (tabulação normal)
+\> (avança tabulação)
+\< (à esquerda da margim)
+\+ (move margem pra direita)
+\end{verbatim}
+\end{small}
+\end{minipage}\hspace{1.5cm}
+\noindent
+\begin{minipage}[t]{0.3\linewidth}
+\begin{small}
+\begin{verbatim}
+\- (move margem pra esquerda)
+\' (move pra coluna anterior)
+\` (move para margem direita)
+\kill (ignora linha)
+\end{verbatim}
+\end{small}
+\end{minipage}
+
+Veja alguns exemplos de construção de tabelas com o ambiente \texttt{\{tabular\}} (veja também pelo código-fonte deste tutorial). É possível traçar linhas verticais e horizontais, perfazendo um contorno. As linhas verticais são definidas com o caractere \texttt{|} entre as letras das colunas. As linhas horizontais são feitas pelo comando \texttt{\textbackslash hline} ou \texttt{\textbackslash cline\{\}}.
 
 Uso do comando \texttt{\textbackslash cline\{i-f\}}:
 
@@ -1053,6 +1101,8 @@ Que foi produzida usando este comando:
    \end{inparaenum}
 \end{verbatim}
 
+Um item pode ter também um rótulo individual, com seu comando e o argumento para o rótulo: \texttt{\textbackslash item[rótulo]}.
+
 \newpage
 \subsection*{Verso}
 \addcontentsline{toc}{subsection}{Verso}
@@ -1077,7 +1127,7 @@ A formatação do texto para compor a estrutura de um verso é com o bloco de am
 \subsection*{Nota de rodapé}
 \addcontentsline{toc}{subsection}{Nota de rodapé}
 
-Para inserir uma nota de rodapé\footnote{Uma anotação colocada ao pé de uma página.}\label{notarodape}, use o comando \texttt{\textbackslash footnote\{\textit{nota}\}} logo após a palavra que será comentada.
+Para inserir uma nota de rodapé\footnote{Uma anotação colocada ao pé de uma página.\label{notarodape}}, use o comando \texttt{\textbackslash footnote\{\textit{nota}\}} logo após a palavra que será comentada.
 
 \subsection*{Colunas}
 \addcontentsline{toc}{subsection}{Colunas}
@@ -1263,7 +1313,7 @@ y &= 30
 \begin{aligned}[c]
 \mathrm{Se:}\hspace{0.5cm} x + y &= 90\\
 \\
-\mathrm{então:}\hspace{0.5cm} x + 30 &= 90\\
+\mathrm{ent\tilde{a}o:}\hspace{0.5cm} x + 30 &= 90\\
 x &= 60
 \end{aligned}
 \end{equation*}
@@ -1294,7 +1344,7 @@ Veja alguns exemplos de notação de elementos matemáticos e a sintaxe dos coma
 \end{tabular}
 \end{center}
 
-Algumas fórmulas gigantes:
+Alguns exemplos de expressões enormes:
 
 \[
 \sum_{j \in \mathbf{N}} b_{ij} \hat{y}_{j} =\sum_{j \in \mathbf{N}} b^{(\lambda)}_{ij} \hat{y}_{j} +(b_{ii} - \lambda_{i}) \hat{y}_{i} \hat{y}
@@ -1810,6 +1860,475 @@ A plotagem em 3 dimensões é com o comando \texttt{\textbackslash addplot3}. Ve
 \end{tikzpicture}
 \end{minipage}
 
+\chapter*{Caracteres e símbolos}
+\addcontentsline{toc}{chapter}{Caracteres e símbolos}
+
+Alguns caracteres acentuados e os caracteres de símbolos pedem um comando específico e, normalmente, o uso de um pacote.
+
+\section*{Acentuação}
+\addcontentsline{toc}{section}{Acentuação}
+
+Os caracteres acentuados podem ser digitados diretamente no documento mas, em algumas situações, é necessário usar o comando equivalente para impressão.
+
+\subsection*{Modo texto}
+\addcontentsline{toc}{subsection}{Modo texto}
+
+Os seguintes comandos devem ser utilizados nos parágrafos ou no modo esquerda-direita (LR) e, se omitida a letra, apenas o acento é impresso:
+
+\noindent
+\begin{minipage}[t]{0.5\linewidth}
+\begin{itemize}
+\setlength\itemsep{-0.5em}
+\item \texttt{\textbackslash `\{a\}} grave: \`{a}
+\item \texttt{\textbackslash '\{e\}} agudo: \'{e}
+\item \texttt{\textbackslash \^{}\{o\}} circunflexo: \^{o}
+\item \texttt{\textbackslash "\{u\}} trema: \"{u}
+\item \texttt{\textbackslash H\{o\}} trema húngaro longo: \H{o}
+\item \texttt{\textbackslash \~{}\{a\}} til: \~{a}
+\item \texttt{\textbackslash c\{c\}} cedilha: \c{c}
+\end{itemize}
+\end{minipage}\hspace{\fill}
+\begin{minipage}[t]{0.5\linewidth}
+\begin{itemize}
+\setlength\itemsep{-0.5em}
+\item \texttt{\textbackslash =\{a\}} mácron (barra em cima): \={a}
+\item \texttt{\textbackslash b\{o\}} barra embaixo: \b{o}
+\item \texttt{\textbackslash .\{z\}} ponto em cima: \.{z}
+\item \texttt{\textbackslash d\{o\}} ponto embaixo: \d{o}
+\item \texttt{\textbackslash u\{e\}} braquia (breve): \u{e}
+\item \texttt{\textbackslash v\{c\}} caron: \v{c}
+\item \texttt{\textbackslash t\{oo\}} braquia invertida: \t{oo}
+\end{itemize}
+\end{minipage}
+
+\subsection*{Modo matemático}
+\addcontentsline{toc}{subsection}{Modo matemático}
+
+Estes somente são aceitos no modo matemático:
+
+\noindent
+\begin{minipage}[t]{0.5\linewidth}
+\begin{itemize}
+\setlength\itemsep{-0.5em}
+\item \texttt{\textbackslash grave\{a\}} grave: $\grave{a}$
+\item \texttt{\textbackslash acute\{e\}} agudo:$\acute{e}$
+\item \texttt{\textbackslash hat\{o\}} circunflexo: $\hat{o}$
+\item \texttt{\textbackslash widehat\{oo\}} circunflexo largo: $\widehat{oo}$
+\item \texttt{\textbackslash tilde\{a\}} til:$\tilde{a}$
+\item \texttt{\textbackslash widetilde\{aa\}} til largo: $\widetilde{aa}$
+\end{itemize}
+\end{minipage}\hspace{\fill}
+\begin{minipage}[t]{0.5\linewidth}
+\begin{itemize}
+\setlength\itemsep{-0.5em}
+\item \texttt{\textbackslash bar\{a\}} mácron (barra em cima):$\bar{a}$
+\item \texttt{\textbackslash dot\{z\}} ponto em cima:$\dot{z}$
+\item \texttt{\textbackslash ddot\{u\}} trema:$\ddot{u}$
+\item \texttt{\textbackslash breve\{e\}} braquia (breve):$\breve{e}$
+\item \texttt{\textbackslash check\{c\}} caron:$\check{c}$
+\item \texttt{\textbackslash vec\{v\}} vetor:$\vec{v}$
+\end{itemize}
+\end{minipage}
+
+\section*{Caracteres}
+\addcontentsline{toc}{section}{Caracteres}
+
+Além dos caracteres especiais, existem os caracteres simbólicos que, alguns por não existirem no teclado, dependem de comandos específicos para serem impressos no documento.
+
+\subsection*{Alfabeto grego}
+\addcontentsline{toc}{subsection}{Alfabeto grego}
+
+Estes comandos do alfabeto grego funcionam somente no modo matemático.
+
+\noindent
+\begin{tabular}{l>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}l}
+$\alpha$& \textbackslash alpha & 
+$\beta$& \textbackslash beta &
+$\gamma$& \textbackslash gamma & 
+$\delta$& \textbackslash delta &
+$\epsilon$ & \textbackslash epsilon \\
+$\varepsilon$ & \textbackslash varepsilon &
+$\zeta$& \textbackslash zeta &
+$\eta$& \textbackslash eta &
+$\theta$& \textbackslash theta &
+$\vartheta$ & \textbackslash vartheta \\
+$\iota$& \textbackslash iota &
+$\kappa$& \textbackslash kappa &
+$\lambda$& \textbackslash lambda &
+$\mu$& \textbackslash mu &
+$\nu$& \textbackslash nu \\
+$\xi$& \textbackslash xi &
+$\pi$& \textbackslash pi &
+$\varpi$ & \textbackslash varpi &
+$\rho$& \textbackslash rho &
+$\varrho$ & \textbackslash varrho \\
+$\sigma$& \textbackslash sigma &
+$\varsigma$ & \textbackslash varsigma &
+$\tau$& \textbackslash tau &
+$\upsilon$& \textbackslash upsilon &
+$\phi$& \textbackslash phi \\
+$\varphi$ & \textbackslash varphi &
+$\chi$& \textbackslash chi &
+$\psi$& \textbackslash psi &
+$\omega$& \textbackslash omega &
+$\Gamma$& \textbackslash Gamma \\
+$\Delta$& \textbackslash Delta &
+$\Theta$& \textbackslash Theta &
+$\Lambda$& \textbackslash Lambda &
+$\Xi$& \textbackslash Xi &
+$\Pi$& \textbackslash Pi \\
+$\Sigma$& \textbackslash Sigma &
+$\Upsilon$& \textbackslash Upsilon &
+$\Phi$& \textbackslash Phi &
+$\Psi$& \textbackslash Psi &
+$\Omega$& \textbackslash Omega \\
+\end{tabular}
+
+\subsection*{Entre parênteses, colchetes e chaves}
+\addcontentsline{toc}{subsection}{Entre parênteses, colchetes e chaves}
+
+Caracteres de agrupamento em diversos tamanhos, além dos tamanhos normais \{|[()]|\}. Estes comandos também só funcionam no modo matemático.
+
+\begin{tabular}{r>{\ttfamily\footnotesize}lccr>{\ttfamily\footnotesize}lccr>{\ttfamily\footnotesize}lccr>{\ttfamily\footnotesize}l}
+$\Biggl($ & \textbackslash Biggl( & & &
+$\biggl($ & \textbackslash biggl( & & &
+$\Bigl($ & \textbackslash Bigl( & & &
+$\bigl($ & \textbackslash bigl( \\
+$\bigr)$ & \textbackslash bigr) & & &
+$\Bigr)$ & \textbackslash Bigr) & & &
+$\biggr)$ & \textbackslash biggr) & & &
+$\Biggr)$ & \textbackslash Biggr) \\
+\arrayrulecolor{blue!50}\hdashline
+$\Biggl[$ & \textbackslash Biggl[ & & &
+$\biggl[$ & \textbackslash biggl[ & & &
+$\Bigl[$ & \textbackslash Bigl[ & & &
+$\bigl[$ & \textbackslash bigl[ \\
+$\bigr]$ & \textbackslash bigr] & & &
+$\Bigr]$ & \textbackslash Bigr] & & &
+$\biggr]$ & \textbackslash biggr] & & &
+$\Biggr]$ & \textbackslash Biggr] \\
+\arrayrulecolor{blue!50}\hdashline
+$\Biggl|$ & \textbackslash Biggl| & & &
+$\biggl|$ & \textbackslash biggl| & & &
+$\Bigl|$ & \textbackslash Bigl| & & &
+$\bigl|$ & \textbackslash bigl| \\
+$\bigr|$ & \textbackslash bigr| & & &
+$\Bigr|$ & \textbackslash Bigr| & & &
+$\biggr|$ & \textbackslash biggr| & & &
+$\Biggr|$ & \textbackslash Biggr| \\
+\arrayrulecolor{blue!50}\hdashline
+$\Biggl\{$ & \textbackslash Biggl\textbackslash \{ & & &
+$\biggl\{$ & \textbackslash biggl\textbackslash \{ & & &
+$\Bigl\{$ & \textbackslash Bigl\textbackslash \{ & & &
+$\bigl\{$ & \textbackslash bigl\textbackslash \{ \\
+$\bigr\}$ & \textbackslash bigr\textbackslash \} & & &
+$\Bigr\}$ & \textbackslash Bigr\textbackslash \} & & &
+$\biggr\}$ & \textbackslash biggr\textbackslash \} & & &
+$\Biggr\}$ & \textbackslash Biggr\textbackslash \} \\
+\end{tabular}
+
+\newpage
+\section*{Símbolos}
+\addcontentsline{toc}{section}{Símbolos}
+
+Existem dezenas de pacotes exclusivos ao fornecimento de símbolos e ícones. Alguns serão apresentados resumidamente aqui.
+
+\subsection*{Símbolos diversos}
+\addcontentsline{toc}{subsection}{Símbolos diversos}
+
+Estes comandos funcionam somente no modo matemático.
+
+\noindent
+\begin{tabular}{l>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}l}
+$\pm$ & \textbackslash pm &
+$\mp$ & \textbackslash mp &
+$\times$ & \textbackslash times &
+$\div$ & \textbackslash div \\
+$\ast$ & \textbackslash ast &
+$\star$ & \textbackslash star &
+$\bullet$ & \textbackslash bullet &
+$\circ$ & \textbackslash circ \\
+$\cdot$ & \textbackslash cdot &
+$\leq$ & \textbackslash leq &
+$\ll$ & \textbackslash ll &
+$\subset$ & \textbackslash subset \\
+$\geq$ & \textbackslash geq &
+$\gg$ & \textbackslash gg &
+$\equiv$ & \textbackslash equiv &
+$\sim$ & \textbackslash sim \\
+$\simeq$ & \textbackslash simeq &
+$\approx$ & \textbackslash approx &
+$\neq$ & \textbackslash neq &
+$\perp$ & \textbackslash perp \\
+$\propto$ & \textbackslash propto &
+$\aleph$ & \textbackslash aleph &
+$\hbar$ & \textbackslash hbar &
+$\imath$ & \textbackslash imath \\
+$\jmath$ & \textbackslash jmath &
+$\ell$ & \textbackslash ell &
+$\wp$ & \textbackslash wp &
+$\Re$ & \textbackslash Re \\
+$\Im$ & \textbackslash Im &
+$\prime$ & \textbackslash prime &
+$\nabla$ & \textbackslash nabla &
+$\surd$ & \textbackslash surd \\
+$\angle$ & \textbackslash angle &
+$\forall$ & \textbackslash forall &
+$\exists$ & \textbackslash exists &
+$\backslash$ & \textbackslash backslash \\
+$\partial$ & \textbackslash partial &
+$\infty$ & \textbackslash infty &
+$\triangle$ & \textbackslash triangle &
+$\Box$ & \textbackslash Box \\
+$\Diamond$ & \textbackslash Diamond &
+$\flat$ & \textbackslash flat &
+$\natural$ & \textbackslash natural &
+$\sharp$ & \textbackslash sharp \\
+$\clubsuit$ & \textbackslash clubsuit &
+$\diamondsuit$ & \textbackslash diamondsuit &
+$\heartsuit$ & \textbackslash heartsuit &
+$\spadesuit$ & \textbackslash spadesuit \\
+$\prec$ & \textbackslash prec &
+$\preceq$ & \textbackslash preceq &
+$\succ$ & \textbackslash succ &
+$\succeq$ & \textbackslash succeq \\
+$\not\exists$ & \textbackslash not\textbackslash exists &
+$\iff$ & \textbackslash iff &
+$\equiv$ & \textbackslash equiv &
+$\parallel$ & \textbackslash parallel \\
+$\not\perp$ & \textbackslash not\textbackslash perp &
+$\wedge$ & \textbackslash wedge &
+$\vee$ & \textbackslash vee &
+$\mid$ & \textbackslash mid \\
+$\bigwedge$ & \textbackslash bigwedge &
+$\bigvee$ & \textbackslash bigvee &
+$\oplus$ & \textbackslash oplus &
+$\ominus$ & \textbackslash ominus \\
+$\oslash$ & \textbackslash oslash &
+$\odot$ & \textbackslash odot &
+$\otimes$ & \textbackslash otimes &
+$\bigoplus$ & \textbackslash bigoplus \\
+$\bigotimes$ & \textbackslash bigotimes &
+$\bigodot$ & \textbackslash bigodot &
+$\triangleleft$ & \textbackslash triangleleft &
+$\triangleright$ & \textbackslash triangleright \\
+$\square$ & \textbackslash square &
+$\bigtriangleup$ & \textbackslash bigtriangleup &
+$\bigtriangledown$ & \textbackslash bigtriangledown &
+$\bigcirc$ & \textbackslash bigcirc \\
+$\in$ & \textbackslash in &
+$\ni$ & \textbackslash ni &
+$\setminus$ & \textbackslash setminus &
+$\subset$ & \textbackslash subset \\
+$\supset$ & \textbackslash supset &
+$\subseteq$ & \textbackslash subseteq &
+$\supseteq$ & \textbackslash supseteq &
+$\cup$ & \textbackslash cup \\
+$\cap$ & \textbackslash cap &
+$\bigcup$ & \textbackslash bigcup &
+$\bigcap$ & \textbackslash bigcap &
+$\sqcup$ & \textbackslash sqcup \\
+$\sqcap$ & \textbackslash sqcap &
+$\bigsqcup$ & \textbackslash bigsqcup \\
+\end{tabular}
+
+\subsection*{Text Companion}
+\addcontentsline{toc}{subsection}{Text Companion}
+
+Pacote \texttt{\{textcomp\}}.
+
+\noindent
+\begin{tabular}{l>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}l}
+\textdownarrow & \textbackslash textdownarrow &
+\textrightarrow & \textbackslash textrightarrow &
+\textleftarrow & \textbackslash textleftarrow &
+\textuparrow & \textbackslash textuparrow \\
+\textdollar & \textbackslash textdollar &
+\textsterling & \textbackslash textsterling &
+\texteuro & \textbackslash texteuro &
+\textcent & \textbackslash textcent \\
+\textcopyright & \textbackslash textcopyright &
+\textregistered & \textbackslash textregistered &
+\textservicemark & \textbackslash textservicemark &
+\texttrademark & \textbackslash texttrademark \\
+\textcelsius & \textbackslash textcelsius &
+\textmho & \textbackslash textmho &
+\textmu & \textbackslash textmu &
+\textohm & \textbackslash textohm \\
+\textacutedbl & \textbackslash textacutedbl &
+\textasciicaron & \textbackslash textasciicaron &
+\textasciimacron & \textbackslash textasciimacron &
+\textasciiacute & \textbackslash textasciiacute \\
+\textasciidieresis & \textbackslash textasciidieresis &
+\textgravedbl & \textbackslash textgravedbl &
+\textasciibreve & \textbackslash textasciibreve &
+\textasciigrave & \textbackslash textasciigrave \\
+\end{tabular}
+
+\subsection*{American Mathematical Society}
+\addcontentsline{toc}{subsection}{American Mathematical Society}
+
+Pacotes \texttt{\{amsmath\}} e \texttt{\{amssymb\}}.
+
+\noindent
+\begin{tabular}{l>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}l}
+$\therefore$ & \textbackslash therefore &
+$\because$ & \textbackslash because &
+$\implies$ & \textbackslash implies \\
+$\nless$ & \textbackslash nless &
+$\ngtr$ & \textbackslash ngtr &
+$\nleq$ & \textbackslash nleq \\
+$\ngeq$ & \textbackslash ngeq &
+$\nsubseteq$ & \textbackslash nsubseteq &
+$\nsupseteq$ & \textbackslash nsupseteq \\
+$\subsetneq$ & \textbackslash subsetneq &
+$\supsetneq$ & \textbackslash supsetneq &
+$\nmid$ & \textbackslash nmid \\
+$\nparallel$ & \textbackslash nparallel &
+$\nsim$ & \textbackslash nsim &
+$\ncong$ & \textbackslash ncong \\
+$\checkmark$ & \textbackslash checkmark &
+$\circledR$ & \textbackslash circledR &
+%$\maltese$ & \textbackslash maltese \\
+$\leftleftarrows$ & \textbackslash leftleftarrows \\
+$\rightrightarrows$ & \textbackslash rightrightarrows &
+$\leftrightarrows$ & \textbackslash leftrightarrows &
+$\rightleftarrows$ & \textbackslash rightleftarrows \\
+$\downdownarrows$ & \textbackslash downdownarrows &
+$\upuparrows$ & \textbackslash upuparrows &
+$\leftarrowtail$ & \textbackslash leftarrowtail \\
+$\rightarrowtail$ & \textbackslash rightarrowtail &
+$\circlearrowleft$ & \textbackslash circlearrowleft &
+$\circlearrowright$ & \textbackslash circlearrowright \\
+$\curvearrowleft$ & \textbackslash curvearrowleft &
+$\curvearrowright$ & \textbackslash curvearrowright &
+$\leftrightharpoons$ & \textbackslash leftrightharpoons \\
+$\rightleftharpoons$ & \textbackslash rightleftharpoons &
+$\Rsh$ & \textbackslash Rsh &
+$\Lsh$ & \textbackslash Lsh \\
+\end{tabular}
+
+\subsection*{Font Awesome}
+\addcontentsline{toc}{subsection}{Font Awesome}
+
+Pacote \texttt{\{fontawesome\}}.
+
+\noindent
+\begin{tabular}{l>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}l}
+\faFacebook & \textbackslash faFacebook &
+\faInstagram & \textbackslash faInstagram &
+\faTwitter & \textbackslash faTwitter \\
+\faLinkedin & \textbackslash faLinkedin &
+\faPinterest & \textbackslash faPinterest &
+\faReddit & \textbackslash faReddit \\
+\faFoursquare & \textbackslash faFoursquare &
+\faTumblr & \textbackslash faTumblr &
+\faAmazon & \textbackslash faAmazon \\
+\faVimeo & \textbackslash faVimeo &
+\faYoutube & \textbackslash faYoutube &
+\faYelp & \textbackslash faYelp \\
+\faDropbox & \textbackslash faDropbox &
+\faGithub & \textbackslash faGithub &
+\faGoogle & \textbackslash faGoogle \\
+\faSkype & \textbackslash faSkype &
+\faLinux & \textbackslash faLinux &
+\faAndroid & \textbackslash faAndroid \\
+\faWindows & \textbackslash faWindows &
+\faApple & \textbackslash faApple &
+\faFirefox & \textbackslash faFirefox \\
+\faChrome & \textbackslash faChrome &
+\faOpera & \textbackslash faOpera &
+\faInternetExplorer & \textbackslash faInternetExplorer \\
+\faSpotify & \textbackslash faSpotify &
+\faSoundcloud & \textbackslash faSoundcloud &
+\faHeadphones & \textbackslash faHeadphones \\
+\faMicrophone & \textbackslash faMicrophone &
+\faThumbsOUp & \textbackslash faThumbsOUp &
+\faThumbsODown & \textbackslash faThumbsODown \\
+\faHandORight & \textbackslash faHandORight &
+\faHandOLeft & \textbackslash faHandOLeft &
+\faArrowDown & \textbackslash faArrowDown \\
+\faArrowUp & \textbackslash faArrowUp &
+\faArrowLeft & \textbackslash faArrowLeft &
+\faArrowRight & \textbackslash faArrowRight \\
+\faChevronCircleDown & \textbackslash faChevronCircleDown &
+\faChevronCircleUp & \textbackslash faChevronCircleUp &
+\faChevronCircleLeft & \textbackslash faChevronCircleLeft \\
+\faChevronCircleRight & \textbackslash faChevronCircleRight &
+\faStar & \textbackslash faStar &
+\faStarHalf & \textbackslash faStarHalf \\
+\faStarHalfO & \textbackslash faStarHalfO &
+\faStarO & \textbackslash faStarO &
+\faCircle & \textbackslash faCircle \\
+\faCircleO & \textbackslash faCircleO &
+\faSquare & \textbackslash faSquare &
+\faSquareO & \textbackslash faSquareO \\
+\faMale & \textbackslash faMale &
+\faFemale & \textbackslash faFemale &
+\faCheck & \textbackslash faCheck \\
+\faClose & \textbackslash faClose &
+\faRecycle & \textbackslash faRecycle &
+\faPowerOff & \textbackslash faPowerOff \\
+\faSignal & \textbackslash faSignal &
+\faWifi & \textbackslash faWifi &
+\faBatteryEmpty & \textbackslash faBatteryEmpty \\
+\faBatteryFull & \textbackslash faBatteryFull &
+\faBatteryHalf & \textbackslash faBatteryHalf &
+\faBatteryQuarter & \textbackslash faBatteryQuarter \\
+\faSortAlphaAsc & \textbackslash faSortAlphaAsc &
+\faSortAlphaDesc & \textbackslash faSortAlphaDesc &
+\faSortNumericAsc & \textbackslash faSortNumericAsc \\
+\faSortNumericDesc & \textbackslash faSortNumericDesc &
+\faCcVisa & \textbackslash faCcVisa &
+\faCcMastercard & \textbackslash faCcMastercard \\
+\faCcAmex & \textbackslash faCcAmex &
+\faCcDinersClub & \textbackslash faCcDinersClub &
+\faFutbolO & \textbackslash faFutbolO \\
+\faScissors & \textbackslash faScissors &
+\faPhone & \textbackslash faPhone &
+\faShoppingCart & \textbackslash faShoppingCart \\
+\end{tabular}
+
+\subsection*{Pi fonts}
+\addcontentsline{toc}{subsection}{Pi fonts}
+
+Pacote \texttt{\{pifont\}}.
+
+\noindent
+\begin{tabular}{l>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}l}
+\ding{34} & \textbackslash ding\{34\} &
+\ding{36} & \textbackslash ding\{36\} &
+\ding{42} & \textbackslash ding\{42\} &
+\ding{43} & \textbackslash ding\{43\} &
+\ding{44} & \textbackslash ding\{44\} \\
+\ding{45} & \textbackslash ding\{45\} &
+\ding{46} & \textbackslash ding\{46\} &
+\ding{47} & \textbackslash ding\{47\} &
+\ding{48} & \textbackslash ding\{48\} &
+\ding{51} & \textbackslash ding\{51\} \\
+\ding{52} & \textbackslash ding\{52\} &
+\ding{53} & \textbackslash ding\{53\} &
+\ding{54} & \textbackslash ding\{54\} &
+\ding{55} & \textbackslash ding\{55\} &
+\ding{56} & \textbackslash ding\{56\} \\
+\ding{70} & \textbackslash ding\{70\} &
+\ding{71} & \textbackslash ding\{71\} &
+\ding{72} & \textbackslash ding\{72\} &
+\ding{73} & \textbackslash ding\{73\} &
+\ding{123} & \textbackslash ding\{123\} \\
+\ding{124} & \textbackslash ding\{124\} &
+\ding{125} & \textbackslash ding\{125\} &
+\ding{126} & \textbackslash ding\{126\} &
+\ding{226} & \textbackslash ding\{226\} &
+\ding{227} & \textbackslash ding\{227\} \\
+\ding{228} & \textbackslash ding\{228\} &
+\ding{229} & \textbackslash ding\{229\} &
+\ding{233} & \textbackslash ding\{233\} &
+\ding{234} & \textbackslash ding\{234\} &
+\ding{235} & \textbackslash ding\{235\} \\
+\ding{236} & \textbackslash ding\{236\} \\
+\end{tabular}
+
 \chapter*{Conclusão}
 \addcontentsline{toc}{chapter}{Conclusão}
 
@@ -1834,6 +2353,7 @@ Quanto aos pacotes, é muito comum ter pacotes que são aprimoramentos ou reescr
 	\item \href{http://latex.silmaril.ie/formattinginformation/index.html}{Formatting Information - An introduction to typesetting with \LaTeX}
 	\item \href{https://latexref.xyz/dev/latex2e.pdf}{\LaTeXe: An unofficial reference manual}
 	\item \href{https://www.maths.tcd.ie/~dwilkins/LaTeXPrimer/GSWLaTeX.pdf}{Getting Started with \LaTeX}
+	\item\href{https://dickimaw-books.com/latex/novices/novices-report.pdf}{\LaTeX\ for Complete Novices}
 	\item \href{http://linorg.usp.br/CTAN/info/lshort/portuguese/pt-lshort.pdf}{Uma não tão pequena introdução ao \LaTeXe}
 	\item \href{https://en.wikibooks.org/wiki/LaTeX}{Wikibooks \LaTeX}
 	\item \href{http://linorg.usp.br/CTAN/info/symbols/comprehensive/symbols-a4.pdf}{The Comprehensive \LaTeX\ Symbol List}
