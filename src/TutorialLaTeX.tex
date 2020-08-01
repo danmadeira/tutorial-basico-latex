@@ -9,6 +9,7 @@
 %\usepackage[latin1]{inputenc} % (usar no MS Windows ou Mac OS X)
 %\usepackage[applemac]{inputenc} % (usar no Macintosh)
 \usepackage[12pt]{moresize} % https://ctan.org/pkg/moresize
+\usepackage{latexsym} % https://www.ctan.org/pkg/latex-base
 \usepackage{textcomp} % https://www.ctan.org/pkg/textcomp
 \usepackage{textgreek} % https://www.ctan.org/pkg/textgreek
 \usepackage{fontawesome} % https://www.ctan.org/pkg/fontawesome
@@ -1911,22 +1912,31 @@ Estes somente são aceitos no modo matemático:
 \begin{itemize}
 \setlength\itemsep{-0.5em}
 \item \texttt{\textbackslash grave\{a\}} grave: $\grave{a}$
-\item \texttt{\textbackslash acute\{e\}} agudo:$\acute{e}$
+\item \texttt{\textbackslash acute\{e\}} agudo:
+$\acute{e}$
 \item \texttt{\textbackslash hat\{o\}} circunflexo: $\hat{o}$
 \item \texttt{\textbackslash widehat\{oo\}} circunflexo largo: $\widehat{oo}$
-\item \texttt{\textbackslash tilde\{a\}} til:$\tilde{a}$
+\item \texttt{\textbackslash tilde\{a\}} til:
+$\tilde{a}$
 \item \texttt{\textbackslash widetilde\{aa\}} til largo: $\widetilde{aa}$
+\item \texttt{\textbackslash mathring\{a\}} anel: $\mathring{a}$
 \end{itemize}
 \end{minipage}\hspace{\fill}
 \begin{minipage}[t]{0.5\linewidth}
 \begin{itemize}
 \setlength\itemsep{-0.5em}
-\item \texttt{\textbackslash bar\{a\}} mácron (barra em cima):$\bar{a}$
-\item \texttt{\textbackslash dot\{z\}} ponto em cima:$\dot{z}$
-\item \texttt{\textbackslash ddot\{u\}} trema:$\ddot{u}$
-\item \texttt{\textbackslash breve\{e\}} braquia (breve):$\breve{e}$
-\item \texttt{\textbackslash check\{c\}} caron:$\check{c}$
-\item \texttt{\textbackslash vec\{v\}} vetor:$\vec{v}$
+\item \texttt{\textbackslash bar\{a\}} mácron (barra em cima):
+$\bar{a}$
+\item \texttt{\textbackslash dot\{z\}} ponto em cima:
+$\dot{z}$
+\item \texttt{\textbackslash ddot\{u\}} trema:
+$\ddot{u}$
+\item \texttt{\textbackslash breve\{e\}} braquia (breve):
+$\breve{e}$
+\item \texttt{\textbackslash check\{c\}} caron:
+$\check{c}$
+\item \texttt{\textbackslash vec\{v\}} vetor:
+$\vec{v}$
 \end{itemize}
 \end{minipage}
 
@@ -1938,54 +1948,87 @@ Além dos caracteres especiais, existem os caracteres simbólicos que, alguns po
 \subsection*{Alfabeto grego}
 \addcontentsline{toc}{subsection}{Alfabeto grego}
 
-Estes comandos do alfabeto grego funcionam somente no modo matemático.
+Estes comandos nativos do \LaTeX\ funcionam somente no modo matemático.
 
 \noindent
 \begin{tabular}{l>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}l}
-$\alpha$& \textbackslash alpha & 
-$\beta$& \textbackslash beta &
-$\gamma$& \textbackslash gamma & 
-$\delta$& \textbackslash delta &
+$\alpha$
+& \textbackslash alpha & 
+$\beta$
+& \textbackslash beta &
+$\gamma$
+& \textbackslash gamma & 
+$\delta$
+& \textbackslash delta &
 $\epsilon$ & \textbackslash epsilon \\
 $\varepsilon$ & \textbackslash varepsilon &
-$\zeta$& \textbackslash zeta &
-$\eta$& \textbackslash eta &
-$\theta$& \textbackslash theta &
+$\zeta$
+& \textbackslash zeta &
+$\eta$
+& \textbackslash eta &
+$\theta$
+& \textbackslash theta &
 $\vartheta$ & \textbackslash vartheta \\
-$\iota$& \textbackslash iota &
-$\kappa$& \textbackslash kappa &
-$\lambda$& \textbackslash lambda &
-$\mu$& \textbackslash mu &
-$\nu$& \textbackslash nu \\
-$\xi$& \textbackslash xi &
-$\pi$& \textbackslash pi &
+$\iota$
+& \textbackslash iota &
+$\kappa$
+& \textbackslash kappa &
+$\lambda$
+& \textbackslash lambda &
+$\mu$
+& \textbackslash mu &
+$\nu$
+& \textbackslash nu \\
+$\xi$
+& \textbackslash xi &
+$\pi$
+& \textbackslash pi &
 $\varpi$ & \textbackslash varpi &
-$\rho$& \textbackslash rho &
+$\rho$
+& \textbackslash rho &
 $\varrho$ & \textbackslash varrho \\
-$\sigma$& \textbackslash sigma &
+$\sigma$
+& \textbackslash sigma &
 $\varsigma$ & \textbackslash varsigma &
-$\tau$& \textbackslash tau &
-$\upsilon$& \textbackslash upsilon &
-$\phi$& \textbackslash phi \\
+$\tau$
+& \textbackslash tau &
+$\upsilon$
+& \textbackslash upsilon &
+$\phi$
+& \textbackslash phi \\
 $\varphi$ & \textbackslash varphi &
-$\chi$& \textbackslash chi &
-$\psi$& \textbackslash psi &
-$\omega$& \textbackslash omega &
-$\Gamma$& \textbackslash Gamma \\
-$\Delta$& \textbackslash Delta &
-$\Theta$& \textbackslash Theta &
-$\Lambda$& \textbackslash Lambda &
-$\Xi$& \textbackslash Xi &
-$\Pi$& \textbackslash Pi \\
-$\Sigma$& \textbackslash Sigma &
-$\Upsilon$& \textbackslash Upsilon &
-$\Phi$& \textbackslash Phi &
-$\Psi$& \textbackslash Psi &
-$\Omega$& \textbackslash Omega \\
+$\chi$
+& \textbackslash chi &
+$\psi$
+& \textbackslash psi &
+$\omega$
+& \textbackslash omega &
+$\Gamma$
+& \textbackslash Gamma \\
+$\Delta$
+& \textbackslash Delta &
+$\Theta$
+& \textbackslash Theta &
+$\Lambda$
+& \textbackslash Lambda &
+$\Xi$
+& \textbackslash Xi &
+$\Pi$
+& \textbackslash Pi \\
+$\Sigma$
+& \textbackslash Sigma &
+$\Upsilon$
+& \textbackslash Upsilon &
+$\Phi$
+& \textbackslash Phi &
+$\Psi$
+& \textbackslash Psi &
+$\Omega$
+& \textbackslash Omega \\
 \end{tabular}
 
-\subsection*{Entre parênteses, colchetes e chaves}
-\addcontentsline{toc}{subsection}{Entre parênteses, colchetes e chaves}
+\subsection*{Delimitadores de tamanho variável}
+\addcontentsline{toc}{subsection}{Delimitadores de tamanho variável}
 
 Caracteres de agrupamento em diversos tamanhos, além dos tamanhos normais \{|[()]|\}. Estes comandos também só funcionam no modo matemático.
 
@@ -2033,185 +2076,489 @@ $\Biggr\}$ & \textbackslash Biggr\textbackslash \} \\
 
 Existem dezenas de pacotes exclusivos ao fornecimento de símbolos e ícones. Alguns serão apresentados resumidamente aqui.
 
-\subsection*{Símbolos diversos}
-\addcontentsline{toc}{subsection}{Símbolos diversos}
+\subsection*{Nativos do \LaTeX\ \footnotesize{(mas alguns requerem pacote \texttt{latexsym})}}
+\addcontentsline{toc}{subsection}{Nativos do \LaTeX}
 
-Estes comandos funcionam somente no modo matemático.
-
-\noindent
-\begin{tabular}{l>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}l}
-$\pm$ & \textbackslash pm &
-$\mp$ & \textbackslash mp &
-$\times$ & \textbackslash times &
-$\div$ & \textbackslash div \\
-$\ast$ & \textbackslash ast &
-$\star$ & \textbackslash star &
-$\bullet$ & \textbackslash bullet &
-$\circ$ & \textbackslash circ \\
-$\cdot$ & \textbackslash cdot &
-$\leq$ & \textbackslash leq &
-$\ll$ & \textbackslash ll &
-$\subset$ & \textbackslash subset \\
-$\geq$ & \textbackslash geq &
-$\gg$ & \textbackslash gg &
-$\equiv$ & \textbackslash equiv &
-$\sim$ & \textbackslash sim \\
-$\simeq$ & \textbackslash simeq &
-$\approx$ & \textbackslash approx &
-$\neq$ & \textbackslash neq &
-$\perp$ & \textbackslash perp \\
-$\propto$ & \textbackslash propto &
-$\aleph$ & \textbackslash aleph &
-$\hbar$ & \textbackslash hbar &
-$\imath$ & \textbackslash imath \\
-$\jmath$ & \textbackslash jmath &
-$\ell$ & \textbackslash ell &
-$\wp$ & \textbackslash wp &
-$\Re$ & \textbackslash Re \\
-$\Im$ & \textbackslash Im &
-$\prime$ & \textbackslash prime &
-$\nabla$ & \textbackslash nabla &
-$\surd$ & \textbackslash surd \\
-$\angle$ & \textbackslash angle &
-$\forall$ & \textbackslash forall &
-$\exists$ & \textbackslash exists &
-$\backslash$ & \textbackslash backslash \\
-$\partial$ & \textbackslash partial &
-$\infty$ & \textbackslash infty &
-$\triangle$ & \textbackslash triangle &
-$\Box$ & \textbackslash Box \\
-$\Diamond$ & \textbackslash Diamond &
-$\flat$ & \textbackslash flat &
-$\natural$ & \textbackslash natural &
-$\sharp$ & \textbackslash sharp \\
-$\clubsuit$ & \textbackslash clubsuit &
-$\diamondsuit$ & \textbackslash diamondsuit &
-$\heartsuit$ & \textbackslash heartsuit &
-$\spadesuit$ & \textbackslash spadesuit \\
-$\prec$ & \textbackslash prec &
-$\preceq$ & \textbackslash preceq &
-$\succ$ & \textbackslash succ &
-$\succeq$ & \textbackslash succeq \\
-$\not\exists$ & \textbackslash not\textbackslash exists &
-$\iff$ & \textbackslash iff &
-$\equiv$ & \textbackslash equiv &
-$\parallel$ & \textbackslash parallel \\
-$\not\perp$ & \textbackslash not\textbackslash perp &
-$\wedge$ & \textbackslash wedge &
-$\vee$ & \textbackslash vee &
-$\mid$ & \textbackslash mid \\
-$\bigwedge$ & \textbackslash bigwedge &
-$\bigvee$ & \textbackslash bigvee &
-$\oplus$ & \textbackslash oplus &
-$\ominus$ & \textbackslash ominus \\
-$\oslash$ & \textbackslash oslash &
-$\odot$ & \textbackslash odot &
-$\otimes$ & \textbackslash otimes &
-$\bigoplus$ & \textbackslash bigoplus \\
-$\bigotimes$ & \textbackslash bigotimes &
-$\bigodot$ & \textbackslash bigodot &
-$\triangleleft$ & \textbackslash triangleleft &
-$\triangleright$ & \textbackslash triangleright \\
-$\square$ & \textbackslash square &
-$\bigtriangleup$ & \textbackslash bigtriangleup &
-$\bigtriangledown$ & \textbackslash bigtriangledown &
-$\bigcirc$ & \textbackslash bigcirc \\
-$\in$ & \textbackslash in &
-$\ni$ & \textbackslash ni &
-$\setminus$ & \textbackslash setminus &
-$\subset$ & \textbackslash subset \\
-$\supset$ & \textbackslash supset &
-$\subseteq$ & \textbackslash subseteq &
-$\supseteq$ & \textbackslash supseteq &
-$\cup$ & \textbackslash cup \\
-$\cap$ & \textbackslash cap &
-$\bigcup$ & \textbackslash bigcup &
-$\bigcap$ & \textbackslash bigcap &
-$\sqcup$ & \textbackslash sqcup \\
-$\sqcap$ & \textbackslash sqcap &
-$\bigsqcup$ & \textbackslash bigsqcup \\
-\end{tabular}
-
-\subsection*{Text Companion}
-\addcontentsline{toc}{subsection}{Text Companion}
-
-Pacote \texttt{\{textcomp\}}.
+\subsubsection{Operadores \footnotesize{(modo matemático)}}
 
 \noindent
 \begin{tabular}{l>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}l}
+$\amalg$ & \textbackslash amalg &
+$\ast$ & \textbackslash ast &
+$\bigcirc$ & \textbackslash bigcirc &
+$\bigtriangledown$ & \textbackslash bigtriangledown \\
+$\bigtriangleup$ & \textbackslash bigtriangleup &
+$\bullet$ & \textbackslash bullet &
+$\cdot$ & \textbackslash cdot &
+$\circ$ & \textbackslash circ \\
+$\dagger$ & \textbackslash dagger &
+$\ddagger$ & \textbackslash ddagger &
+$\diamond$ &\textbackslash diamond &
+$\div$ & \textbackslash div \\
+$\lhd$ & \textbackslash lhd &
+$\mp$ & \textbackslash mp &
+$\odot$ & \textbackslash odot &
+$\ominus$ & \textbackslash ominus \\
+$\oplus$ & \textbackslash oplus &
+$\oslash$ & \textbackslash oslash &
+$\otimes$ & \textbackslash otimes &
+$\pm$ & \textbackslash pm \\
+$\rhd$ & \textbackslash rhd &
+$\setminus$ & \textbackslash setminus &
+$\sqcap$ & \textbackslash sqcap &
+$\sqcup$ & \textbackslash sqcup \\
+$\star$ & \textbackslash star &
+$\times$ & \textbackslash times &
+$\triangleleft$ & \textbackslash triangleleft &
+$\triangleright$ & \textbackslash triangleright \\
+$\unlhd$ & \textbackslash unlhd &
+$\unrhd$ & \textbackslash unrhd &
+$\uplus$ & \textbackslash uplus &
+$\vee$ & \textbackslash vee \\
+$\wedge$ & \textbackslash wedge &
+$\wr$ & \textbackslash wr \\
+\end{tabular}
+
+\subsubsection{Operadores de tamanho variável \footnotesize{(modo matemático)}}
+
+\noindent
+\begin{tabular}{l>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}l}
+$\bigcap$ & \textbackslash bigcap &
+$\bigcup$ & \textbackslash bigcup &
+$\bigodot$ & \textbackslash bigodot &
+$\bigoplus$ & \textbackslash bigoplus &
+$\bigotimes$ & \textbackslash bigotimes \\
+$\bigsqcup$ & \textbackslash bigsqcup &
+$\biguplus$ & \textbackslash biguplus &
+$\bigvee$ & \textbackslash bigvee &
+$\bigwedge$ & \textbackslash bigwedge &
+$\coprod$ & \textbackslash coprod \\
+$\int$ & \textbackslash int &
+$\oint$ & \textbackslash oint &
+$\prod$ & \textbackslash prod &
+$\sum$ & \textbackslash sum \\
+\end{tabular}
+
+\subsubsection{Setas \footnotesize{(modo matemático)}}
+
+\noindent
+\begin{tabular}{l>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}l}
+$\Downarrow$ & \textbackslash Downarrow &
+$\downarrow$ & \textbackslash downarrow &
+$\hookleftarrow$ & \textbackslash hookleftarrow \\
+$\hookrightarrow$ & \textbackslash hookrightarrow &
+$\leadsto$ & \textbackslash leadsto &
+$\leftarrow$ & \textbackslash leftarrow \\
+$\Leftarrow$ & \textbackslash Leftarrow &
+$\Leftrightarrow$ & \textbackslash Leftrightarrow &
+$\leftrightarrow$ & \textbackslash leftrightarrow \\
+$\longleftarrow$ & \textbackslash longleftarrow &
+$\Longleftarrow$ & \textbackslash Longleftarrow &
+$\longleftrightarrow$ & \textbackslash longleftrightarrow \\
+$\Longleftrightarrow$ & \textbackslash Longleftrightarrow &
+$\longmapsto$ & \textbackslash longmapsto &
+$\Longrightarrow$ & \textbackslash Longrightarrow \\
+$\longrightarrow$ & \textbackslash longrightarrow &
+$\mapsto$ & \textbackslash mapsto &
+$\nearrow$ & \textbackslash nearrow \\
+$\nwarrow$ & \textbackslash nwarrow &
+$\Rightarrow$ & \textbackslash Rightarrow &
+$\rightarrow$ & \textbackslash rightarrow \\
+$\searrow$ & \textbackslash searrow &
+$\swarrow$ & \textbackslash swarrow &
+$\uparrow$ & \textbackslash uparrow \\
+$\Uparrow$ & \textbackslash Uparrow &
+$\updownarrow$ & \textbackslash updownarrow &
+$\Updownarrow$ & \textbackslash Updownarrow \\
+\end{tabular}
+
+\subsubsection{Desigualdades \footnotesize{(modo matemático)}}
+
+\noindent
+\begin{tabular}{l>{\ttfamily\footnotesize}lcl>{\ttfamily\footnotesize}lcl>{\ttfamily\footnotesize}lcl>{\ttfamily\footnotesize}lcl>{\ttfamily\footnotesize}l}
+$\geq$ & \textbackslash geq & &
+$\gg$ & \textbackslash gg & &
+$\leq$ & \textbackslash leq & &
+$\ll$ & \textbackslash ll & &
+$\neq$ & \textbackslash neq \\
+\end{tabular}
+
+\subsubsection{Relações binárias \footnotesize{(modo matemático)}}
+
+\noindent
+\begin{tabular}{l>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}l}
+$\approx$ & \textbackslash approx &
+$\asymp$ & \textbackslash asymp &
+$\bowtie$ & \textbackslash bowtie &
+$\cong$ & \textbackslash cong &
+$\dashv$ & \textbackslash dashv &
+$\doteq$ & \textbackslash doteq \\
+$\equiv$ & \textbackslash equiv &
+$\frown$ & \textbackslash frown &
+$\Join$ & \textbackslash Join &
+$\mid$ & \textbackslash mid &
+$\models$ & \textbackslash models &
+$\parallel$ & \textbackslash parallel \\
+$\perp$ & \textbackslash perp &
+$\prec$ & \textbackslash prec &
+$\preceq$ & \textbackslash preceq &
+$\propto$ & \textbackslash propto &
+$\sim$ & \textbackslash sim &
+$\simeq$ & \textbackslash simeq \\
+$\smile$ & \textbackslash smile &
+$\succ$ & \textbackslash succ &
+$\succeq$ & \textbackslash succeq &
+$\vdash$ & \textbackslash vdash \\
+\end{tabular}
+
+\subsubsection{Funções matemáticas \footnotesize{(modo matemático)}}
+
+\noindent
+\begin{tabular}{l>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}l}
+$\arccos$ & \textbackslash arccos &
+$\cos$ & \textbackslash cos &
+$\csc$ & \textbackslash csc &
+$\exp$ & \textbackslash exp &
+$\ker$ & \textbackslash ker \\
+$\limsup$ & \textbackslash limsup &
+$\min$ & \textbackslash min &
+$\sinh$ & \textbackslash sinh &
+$\arcsin$ & \textbackslash arcsin &
+$\cosh$ & \textbackslash cosh \\
+$\deg$ & \textbackslash deg &
+$\gcd$ & \textbackslash gcd &
+$\lg$ & \textbackslash lg &
+$\ln$ & \textbackslash ln &
+$\Pr$ & \textbackslash Pr \\
+$\sup$ & \textbackslash sup &
+$\arctan$ & \textbackslash arctan &
+$\cot$ & \textbackslash cot &
+$\det$ & \textbackslash det &
+$\hom$ & \textbackslash hom \\
+$\lim$ & \textbackslash lim &
+$\log$ & \textbackslash log &
+$\sec$ & \textbackslash sec &
+$\tan$ & \textbackslash tan &
+$\arg$ & \textbackslash arg \\
+$\coth$ & \textbackslash coth &
+$\dim$ & \textbackslash dim &
+$\inf$ & \textbackslash inf &
+$\liminf$ & \textbackslash liminf &
+$\max$ & \textbackslash max \\
+$\sin$ & \textbackslash sin &
+$\tanh$ & \textbackslash tanh \\
+\end{tabular}
+
+\subsubsection{Acentos extensíveis \footnotesize{(modo matemático)}}
+
+\noindent
+\begin{tabular}{l>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}l}
+$\widetilde{abc}$ & \textbackslash widetilde\{abc\} &
+$\widehat{abc}$ & \textbackslash widehat\{abc\} &
+$\overleftarrow{abc}$ & \textbackslash overleftarrow\{abc\} \\
+$\overrightarrow{abc}$ & \textbackslash overrightarrow\{abc\} &
+$\overline{abc}$ & \textbackslash overline\{abc\} &
+$\underline{abc}$ & \textbackslash underline\{abc\} \\
+$\overbrace{abc}$ & \textbackslash overbrace\{abc\} &
+$\underbrace{abc}$ & \textbackslash underbrace\{abc\} &
+$\sqrt{abc}$ & \textbackslash sqrt\{abc\} \\
+\end{tabular}
+
+\subsubsection{Relações de conjuntos \footnotesize{(modo matemático)}}
+
+\noindent
+\begin{tabular}{l>{\ttfamily\footnotesize}lcl>{\ttfamily\footnotesize}lcl>{\ttfamily\footnotesize}lcl>{\ttfamily\footnotesize}l}
+$\in$ & \textbackslash in & &
+$\ni$ & \textbackslash ni & &
+$\cap$ & \textbackslash cap & &
+$\cup$ & \textbackslash cup \\
+$\subset$ & \textbackslash subset & &
+$\supset$ & \textbackslash supset & &
+$\subseteq$ & \textbackslash subseteq & &
+$\supseteq$ & \textbackslash supseteq \\
+$\sqsubset$ & \textbackslash sqsubset & &
+$\sqsupset$ & \textbackslash sqsupset & &
+$\sqsubseteq$ & \textbackslash sqsubseteq & &
+$\sqsupseteq$ & \textbackslash sqsupseteq \\
+$\exists$ & \textbackslash exists & &
+$\forall$ & \textbackslash forall \\
+\end{tabular}
+
+\subsubsection{Símbolos diversos \footnotesize{(modo matemático)}}
+
+\noindent
+\begin{tabular}{l>{\ttfamily\footnotesize}lcl>{\ttfamily\footnotesize}lcl>{\ttfamily\footnotesize}lcl>{\ttfamily\footnotesize}l}
+$\bot$ & \textbackslash bot & &
+$\ell$ & \textbackslash ell & &
+$\hbar$ & \textbackslash hbar & &
+$\Im$ & \textbackslash Im \\
+$\imath$ & \textbackslash imath & &
+$\jmath$ & \textbackslash jmath & &
+$\partial$ & \textbackslash partial & &
+$\Re$ & \textbackslash Re \\
+$\top$ & \textbackslash top & &
+$\wp$ & \textbackslash wp & &
+$\aleph$ & \textbackslash aleph & &
+$\emptyset$ & \textbackslash emptyset \\
+$\angle$ & \textbackslash angle & &
+$\backslash$ & \textbackslash backslash & &
+$\Box$ & \textbackslash Box & &
+$\Diamond$ & \textbackslash Diamond \\
+$\infty$ & \textbackslash infty & &
+$\mho$ & \textbackslash mho & &
+$\nabla$ & \textbackslash nabla & &
+$\neg$ & \textbackslash neg \\
+$\prime$ & \textbackslash prime & &
+$\surd$ & \textbackslash surd & &
+$\triangle$ & \textbackslash triangle & &
+$\flat$ & \textbackslash flat \\
+$\natural$ & \textbackslash natural & &
+$\sharp$ & \textbackslash sharp & &
+$\clubsuit$ & \textbackslash clubsuit & &
+$\diamondsuit$ & \textbackslash diamondsuit \\
+$\heartsuit$ & \textbackslash heartsuit & &
+$\spadesuit$ & \textbackslash spadesuit \\
+\end{tabular}
+
+\subsubsection{Modo texto}
+
+\noindent
+\begin{tabular}{l>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}l}
+\textbackslash & \textbackslash textbackslash &
+\textbar & \textbackslash textbar &
+\textbardbl & \textbackslash textbardbl \\
+\textbigcircle & \textbackslash textbigcircle &
+\textbullet & \textbackslash textbullet &
+\textdagger & \textbackslash textdagger \\
+\textdaggerdbl & \textbackslash textdaggerdbl &
+\textellipsis & \textbackslash textellipsis &
+\textemdash & \textbackslash textemdash \\
+\textendash & \textbackslash textendash &
+\textexclamdown & \textbackslash textexclamdown &
+\textgreater & \textbackslash textgreater \\
+\textless & \textbackslash textless &
+\textordfeminine & \textbackslash textordfeminine &
+\textordmasculine & textbackslash \textordmasculine \\
+\textparagraph & \textbackslash textparagraph &
+\textperiodcentered & \textbackslash textperiodcentered &
+\textpertenthousand & \textbackslash textpertenthousand \\
+\textperthousand & \textbackslash textperthousand &
+\textquestiondown & \textbackslash textquestiondown &
+\textquotedblleft & \textbackslash textquotedblleft \\
+\textquotedblright & \textbackslash textquotedblright &
+\textquoteleft & \textbackslash textquoteleft &
+\textquoteright & \textbackslash textquoteright \\
+\textsection & \textbackslash textsection &
+\textunderscore & \textbackslash textunderscore &
+\textvisiblespace & \textbackslash textvisiblespace \\
+\end{tabular}
+
+\subsection*{Text Companion \footnotesize{(pacote \texttt{textcomp})}}
+\addcontentsline{toc}{subsection}{Text Companion}
+
+Obs.: Estes comandos funcionam no modo texto.
+
+\noindent
+\begin{tabular}{l>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}l}
 \textdownarrow & \textbackslash textdownarrow &
 \textrightarrow & \textbackslash textrightarrow &
-\textleftarrow & \textbackslash textleftarrow &
-\textuparrow & \textbackslash textuparrow \\
+\textleftarrow & \textbackslash textleftarrow \\
+\textuparrow & \textbackslash textuparrow &
 \textdollar & \textbackslash textdollar &
-\textsterling & \textbackslash textsterling &
+\textsterling & \textbackslash textsterling \\
 \texteuro & \textbackslash texteuro &
-\textcent & \textbackslash textcent \\
+\textcent & \textbackslash textcent &
+\textwon & \textbackslash textwon \\
+\textyen & \textbackslash textyen &
+\textpeso & \textbackslash textpeso &
+\textcurrency & \textbackslash textcurrency \\
+\textcircledP & \textbackslash textcircledP &
 \textcopyright & \textbackslash textcopyright &
-\textregistered & \textbackslash textregistered &
+\textregistered & \textbackslash textregistered \\
 \textservicemark & \textbackslash textservicemark &
-\texttrademark & \textbackslash texttrademark \\
-\textcelsius & \textbackslash textcelsius &
+\texttrademark & \textbackslash texttrademark &
+\textcelsius & \textbackslash textcelsius \\
 \textmho & \textbackslash textmho &
 \textmu & \textbackslash textmu &
 \textohm & \textbackslash textohm \\
 \textacutedbl & \textbackslash textacutedbl &
 \textasciicaron & \textbackslash textasciicaron &
-\textasciimacron & \textbackslash textasciimacron &
-\textasciiacute & \textbackslash textasciiacute \\
+\textasciimacron & \textbackslash textasciimacron \\
+\textasciiacute & \textbackslash textasciiacute &
 \textasciidieresis & \textbackslash textasciidieresis &
-\textgravedbl & \textbackslash textgravedbl &
+\textgravedbl & \textbackslash textgravedbl \\
 \textasciibreve & \textbackslash textasciibreve &
-\textasciigrave & \textbackslash textasciigrave \\
+\textasciigrave & \textbackslash textasciigrave &
+\textbrokenbar & \textbackslash textbrokenbar \\
+\textdiscount & \textbackslash textdiscount &
+\textestimated & \textbackslash textestimated &
+\textnumero & \textbackslash textnumero \\
+\textopenbullet & \textbackslash textopenbullet &
+\textquotesingle & \textbackslash textquotesingle &
+\textquotestraightbase & \textbackslash textquotestraightbase \\
+\textquotestraightdblbase & \textbackslash textquotestraightdblbase &
+\textrecipe & \textbackslash textrecipe &
+\textreferencemark & \textbackslash textreferencemark \\
+\texttildelow & \textbackslash texttildelow &
+\textblank & \textbackslash textblank &
+\textpilcrow & \textbackslash textpilcrow \\
+\textlangle & \textbackslash textlangle &
+\textrangle & \textbackslash textrangle &
+\textlbrackdbl & \textbackslash textlbrackdbl \\
+\textrbrackdbl & \textbackslash textrbrackdbl &
+\textlquill & \textbackslash textlquill &
+\textrquill & \textbackslash textrquill \\
+\textdegree & \textbackslash textdegree &
+\textlnot & \textbackslash textlnot &
+\textminus & \textbackslash textminus \\
+\texttimes & \textbackslash texttimes &
+\textdiv & \textbackslash textdiv &
+\textpm & \textbackslash textpm \\
+\textonesuperior & \textbackslash textonesuperior &
+\texttwosuperior & \textbackslash texttwosuperior &
+\textthreesuperior & \textbackslash textthreesuperior \\
+\textsurd & \textbackslash textsurd &
+\textmusicalnote & \textbackslash textmusicalnote &
+\textborn & \textbackslash textborn \\
+\textdied & \textbackslash textdied &
+\textmarried & \textbackslash textmarried &
+\textdivorced & \textbackslash textdivorced \\
 \end{tabular}
 
-\subsection*{American Mathematical Society}
+\newpage
+\subsection*{American Mathematical Society \footnotesize{(pacotes \texttt{amsmath} e \texttt{amssymb})}}
 \addcontentsline{toc}{subsection}{American Mathematical Society}
 
-Pacotes \texttt{\{amsmath\}} e \texttt{\{amssymb\}}.
+Obs.: Estes comandos funcionam no modo matemático.
 
 \noindent
 \begin{tabular}{l>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}l}
+$\leftarrowtail$ & \textbackslash leftarrowtail &
+$\rightarrowtail$ & \textbackslash rightarrowtail &
+$\looparrowleft$ & \textbackslash looparrowleft \\
+$\looparrowright$ & \textbackslash looparrowright &
+$\Rsh$ & \textbackslash Rsh &
+$\Lsh$ & \textbackslash Lsh \\
+$\curvearrowleft$ & \textbackslash curvearrowleft &
+$\curvearrowright$ & \textbackslash curvearrowright &
+$\circlearrowleft$ & \textbackslash circlearrowleft \\
+$\circlearrowright$ & \textbackslash circlearrowright &
+$\upharpoonright$ & \textbackslash upharpoonright &
+$\upharpoonleft$ & \textbackslash upharpoonleft \\
+$\downharpoonright$ & \textbackslash downharpoonright &
+$\downharpoonleft$ & \textbackslash downharpoonleft &
+$\rightleftarrows$ & \textbackslash rightleftarrows \\
+$\leftrightarrows$ & \textbackslash leftrightarrows &
+$\leftleftarrows$ & \textbackslash leftleftarrows &
+$\upuparrows$ & \textbackslash upuparrows \\
+$\rightrightarrows$ & \textbackslash rightrightarrows &
+$\downdownarrows$ & \textbackslash downdownarrows &
+$\leftrightharpoons$ & \textbackslash leftrightharpoons \\
+$\rightleftharpoons$ & \textbackslash rightleftharpoons &
+$\Lleftarrow$ & \textbackslash Lleftarrow &
+$\Rrightarrow$ & \textbackslash Rrightarrow \\
+$\nexists$ & \textbackslash nexists &
+$\varnothing$ & \textbackslash varnothing &
+$\measuredangle$ & \textbackslash measuredangle \\
+$\sphericalangle$ & \textbackslash sphericalangle &
+$\nmid$ & \textbackslash nmid &
+$\nparallel$ & \textbackslash nparallel \\
+$\wedge$ & \textbackslash wedge &
 $\therefore$ & \textbackslash therefore &
-$\because$ & \textbackslash because &
-$\implies$ & \textbackslash implies \\
-$\nless$ & \textbackslash nless &
+$\because$ & \textbackslash because \\
+$\backsim$ & \textbackslash backsim &
+$\wr$ & \textbackslash wr &
+$\nsim$ & \textbackslash nsim \\
+$\eqsim$ & \textbackslash eqsim &
+$\ncong$ & \textbackslash ncong &
+$\approxeq$ & \textbackslash approxeq \\
+$\leqq$ & \textbackslash leqq &
+$\geqq$ & \textbackslash geqq &
+$\lneqq$ & \textbackslash lneqq \\
+$\gneqq$ & \textbackslash gneqq &
+$\between$ & \textbackslash between &
+$\nless$ & \textbackslash nless \\
 $\ngtr$ & \textbackslash ngtr &
-$\nleq$ & \textbackslash nleq \\
-$\ngeq$ & \textbackslash ngeq &
+$\nleq$ & \textbackslash nleq &
+$\ngeq$ & \textbackslash ngeq \\
+$\lesssim$ & \textbackslash lesssim &
+$\gtrsim$ & \textbackslash gtrsim &
+$\lessgtr$ & \textbackslash lessgtr \\
+$\gtrless$ & \textbackslash gtrless &
 $\nsubseteq$ & \textbackslash nsubseteq &
 $\nsupseteq$ & \textbackslash nsupseteq \\
 $\subsetneq$ & \textbackslash subsetneq &
 $\supsetneq$ & \textbackslash supsetneq &
-$\nmid$ & \textbackslash nmid \\
-$\nparallel$ & \textbackslash nparallel &
-$\nsim$ & \textbackslash nsim &
-$\ncong$ & \textbackslash ncong \\
+$\circledcirc$ & \textbackslash circledcirc \\
+$\boxplus$ & \textbackslash boxplus &
+$\boxminus$ & \textbackslash boxminus &
+$\boxtimes$ & \textbackslash boxtimes \\
+$\boxdot$ & \textbackslash boxdot &
+$\dashv$ & \textbackslash dashv &
+$\vDash$ & \textbackslash vDash \\
+$\Vdash$ & \textbackslash Vdash &
+$\Vvdash$ & \textbackslash Vvdash &
+$\nvdash$ & \textbackslash nvdash \\
+$\nvDash$ & \textbackslash nvDash &
+$\nVdash$ & \textbackslash nVdash &
+$\nVDash$ & \textbackslash nVDash \\
+$\vartriangleleft$ & \textbackslash vartriangleleft &
+$\vartriangleright$ & \textbackslash vartriangleright &
+$\multimap$ & \textbackslash multimap \\
+$\intercal$ & \textbackslash intercal &
+$\ltimes$ & \textbackslash ltimes &
+$\rtimes$ & \textbackslash rtimes \\
+$\leftthreetimes$ & \textbackslash leftthreetimes &
+$\rightthreetimes$ & \textbackslash rightthreetimes &
+$\backsimeq$ & \textbackslash backsimeq \\
+$\curlyvee$ & \textbackslash curlyvee &
+$\curlywedge$ & \textbackslash curlywedge &
+$\lessdot$ & \textbackslash lessdot \\
+$\gtrdot$ & \textbackslash gtrdot &
+$\lll$ & \textbackslash lll &
+$\ggg$ & \textbackslash ggg \\
+$\lesseqgtr$ & \textbackslash lesseqgtr &
+$\gtreqless$ & \textbackslash gtreqless &
+%$\Diamond$ & \textbackslash Diamond \\
+%$\lozenge$ & \textbackslash lozenge &
+%$\square$ & \textbackslash square &
+%$\blacksquare$ & \textbackslash blacksquare \\
+%$\bigstar$ & \textbackslash bigstar &
+$\Join$ & \textbackslash Join \\
+$\leqslant$ & \textbackslash leqslant &
+$\geqslant$ & \textbackslash geqslant &
+$\lessapprox$ & \textbackslash lessapprox \\
+$\gtrapprox$ & \textbackslash gtrapprox &
+$\lneq$ & \textbackslash lneq &
+$\gneq$ & \textbackslash gneq \\
+$\lnapprox$ & \textbackslash lnapprox &
+$\gnapprox$ & \textbackslash gnapprox &
+$\lesseqqgtr$ & \textbackslash lesseqqgtr \\
+$\gtreqqless$ & \textbackslash gtreqqless &
+$\subseteqq$ & \textbackslash subseteqq &
+$\supseteqq$ & \textbackslash supseteqq \\
+$\subsetneqq$ & \textbackslash subsetneqq &
+$\supsetneqq$ & \textbackslash supsetneqq &
+$\varkappa$ & \textbackslash varkappa \\
+$\implies$ & \textbackslash implies &
 $\checkmark$ & \textbackslash checkmark &
-$\circledR$ & \textbackslash circledR &
-%$\maltese$ & \textbackslash maltese \\
-$\leftleftarrows$ & \textbackslash leftleftarrows \\
-$\rightrightarrows$ & \textbackslash rightrightarrows &
-$\leftrightarrows$ & \textbackslash leftrightarrows &
-$\rightleftarrows$ & \textbackslash rightleftarrows \\
-$\downdownarrows$ & \textbackslash downdownarrows &
-$\upuparrows$ & \textbackslash upuparrows &
-$\leftarrowtail$ & \textbackslash leftarrowtail \\
-$\rightarrowtail$ & \textbackslash rightarrowtail &
-$\circlearrowleft$ & \textbackslash circlearrowleft &
-$\circlearrowright$ & \textbackslash circlearrowright \\
-$\curvearrowleft$ & \textbackslash curvearrowleft &
-$\curvearrowright$ & \textbackslash curvearrowright &
-$\leftrightharpoons$ & \textbackslash leftrightharpoons \\
-$\rightleftharpoons$ & \textbackslash rightleftharpoons &
-$\Rsh$ & \textbackslash Rsh &
-$\Lsh$ & \textbackslash Lsh \\
+%$\circledR$ & \textbackslash circledR &
+$\maltese$ & \textbackslash maltese \\
+$\ulcorner$ & \textbackslash ulcorner &
+$\urcorner$ & \textbackslash urcorner &
+$\llcorner$ & \textbackslash llcorner \\
+$\lrcorner$ & \textbackslash lrcorner &
+$\mathbb{N}$ & \textbackslash mathbb\{N\} &
+$\mathbb{Z}$ & \textbackslash mathbb\{Z\} \\
+$\mathbb{Q}$ & \textbackslash mathbb\{Q\} &
+$\mathbb{R}$ & \textbackslash mathbb\{R\} &
+$\mathbb{C}$ & \textbackslash mathbb\{C\} \\
 \end{tabular}
 
-\subsection*{Font Awesome}
-\addcontentsline{toc}{subsection}{Font Awesome}
+Dica: O pacote \texttt{\{amsmath\}} tem comandos para formatação do texto dentro do modo matemático. O comando \texttt{\textbackslash text\{\}} aplica a formatação do ambiente externo ao modo matemático. E os comandos \texttt{\textbackslash mathrm\{\}}, \texttt{\textbackslash mathsf\{\}}, \texttt{\textbackslash mathbf\{\}}, \texttt{\textbackslash mathtt\{\}} e \texttt{\textbackslash mathit\{\}} especificam o estilo e família.
 
-Pacote \texttt{\{fontawesome\}}.
+\subsection*{Font Awesome \footnotesize{(pacote \texttt{fontawesome})}}
+\addcontentsline{toc}{subsection}{Font Awesome}
 
 \noindent
 \begin{tabular}{l>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}l}
@@ -2239,6 +2586,9 @@ Pacote \texttt{\{fontawesome\}}.
 \faChrome & \textbackslash faChrome &
 \faOpera & \textbackslash faOpera &
 \faInternetExplorer & \textbackslash faInternetExplorer \\
+\faFloppyO & \textbackslash faFloppyO &
+\faHddO & \textbackslash faHddO &
+\faMousePointer & \textbackslash faMousePointer \\
 \faSpotify & \textbackslash faSpotify &
 \faSoundcloud & \textbackslash faSoundcloud &
 \faHeadphones & \textbackslash faHeadphones \\
@@ -2287,12 +2637,72 @@ Pacote \texttt{\{fontawesome\}}.
 \faScissors & \textbackslash faScissors &
 \faPhone & \textbackslash faPhone &
 \faShoppingCart & \textbackslash faShoppingCart \\
+\faAngleDown & \textbackslash faAngleDown &
+\faAngleLeft & \textbackslash faAngleLeft &
+\faAngleRight & \textbackslash faAngleRight \\
+\faAngleUp & \textbackslash faAngleUp &
+\faAngleDoubleDown & \textbackslash faAngleDoubleDown &
+\faAngleDoubleLeft & \textbackslash faAngleDoubleLeft \\
+\faAngleDoubleRight & \textbackslash faAngleDoubleRight &
+\faAngleDoubleUp & \textbackslash faAngleDoubleUp &
+\faRefresh & \textbackslash faRefresh \\
+\faBan & \textbackslash faBan &
+\faRocket & \textbackslash faRocket &
+\faRss & \textbackslash faRss \\
+\faSearch & \textbackslash faSearch &
+\faSearchMinus & \textbackslash faSearchMinus &
+\faSearchPlus & \textbackslash faSearchPlus \\
+\faShare & \textbackslash faShare &
+\faShareAlt & \textbackslash faShareAlt &
+\faBell & \textbackslash faBell \\
+\faBellO & \textbackslash faBellO &
+\faShield & \textbackslash faShield &
+\faBinoculars & \textbackslash faBinoculars \\
+\faBolt & \textbackslash faBolt &
+\faBook & \textbackslash faBook &
+\faSliders & \textbackslash faSliders \\
+\faHeart & \textbackslash faHeart &
+\faHeartbeat & \textbackslash faHeartbeat &
+\faHeartO & \textbackslash faHeartO \\
+\faHistory & \textbackslash faHistory &
+\faHome & \textbackslash faHome &
+\faCalendar & \textbackslash faCalendar \\
+\faCalculator & \textbackslash faCalculator &
+\faHourglassEnd & \textbackslash faHourglassEnd &
+\faHourglassHalf & \textbackslash faHourglassHalf \\
+\faHourglassStart & \textbackslash faHourglassStart &
+\faCamera & \textbackslash faCamera &
+\faCar & \textbackslash faCar \\
+\faBicycle & \textbackslash faBicycle &
+\faMotorcycle & \textbackslash faMotorcycle &
+\faBus & \textbackslash faBus \\
+\faTrain & \textbackslash faTrain &
+\faAmbulance & \textbackslash faAmbulance &
+\faPlane & \textbackslash faPlane \\
+\faTree & \textbackslash faTree &
+\faUmbrella & \textbackslash faUmbrella &
+\faDiamond & \textbackslash faDiamond \\
+\faDatabase & \textbackslash faDatabase &
+\faCube & \textbackslash faCube &
+\faDownload & \textbackslash faDownload \\
+\faEnvelope & \textbackslash faEnvelope &
+\faEnvelopeO & \textbackslash faEnvelopeO &
+\faPaperclip & \textbackslash faPaperclip \\
+\faPaperPlane & \textbackslash faPaperPlane &
+\faPaperPlaneO & \textbackslash faPaperPlaneO &
+\faPaw & \textbackslash faPaw \\
+\faPlay & \textbackslash faPlay &
+\faStop & \textbackslash faStop &
+\faBackward & \textbackslash faBackward \\
+\faForward & \textbackslash faForward &
+\faFastBackward & \textbackslash faFastBackward &
+\faFastForward & \textbackslash faFastForward \\
 \end{tabular}
 
-\subsection*{Pi fonts}
-\addcontentsline{toc}{subsection}{Pi fonts}
+\subsection*{Zapf Dingbats \footnotesize{(pacote \texttt{pifont})}}
+\addcontentsline{toc}{subsection}{Zapf Dingbats}
 
-Pacote \texttt{\{pifont\}}.
+Obs.: Estes comandos funcionam no modo texto.
 
 \noindent
 \begin{tabular}{l>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}l}
@@ -2311,14 +2721,64 @@ Pacote \texttt{\{pifont\}}.
 \ding{54} & \textbackslash ding\{54\} &
 \ding{55} & \textbackslash ding\{55\} &
 \ding{56} & \textbackslash ding\{56\} \\
+\ding{58} & \textbackslash ding\{58\} &
+\ding{61} & \textbackslash ding\{61\} &
+\ding{62} & \textbackslash ding\{62\} &
+\ding{63} & \textbackslash ding\{63\} &
+\ding{64} & \textbackslash ding\{64\} \\
+\ding{65} & \textbackslash ding\{65\} &
 \ding{70} & \textbackslash ding\{70\} &
 \ding{71} & \textbackslash ding\{71\} &
 \ding{72} & \textbackslash ding\{72\} &
-\ding{73} & \textbackslash ding\{73\} &
-\ding{123} & \textbackslash ding\{123\} \\
+\ding{73} & \textbackslash ding\{73\} \\
+\ding{86} & \textbackslash ding\{86\} &
+\ding{87} & \textbackslash ding\{87\} &
+\ding{88} & \textbackslash ding\{88\} &
+\ding{89} & \textbackslash ding\{89\} &
+\ding{108} & \textbackslash ding\{108\} \\
+\ding{109} & \textbackslash ding\{109\} &
+\ding{110} & \textbackslash ding\{110\} &
+\ding{111} & \textbackslash ding\{111\} &
+\ding{112} & \textbackslash ding\{112\} &
+\ding{113} & \textbackslash ding\{113\} \\
+\ding{114} & \textbackslash ding\{114\} &
+\ding{123} & \textbackslash ding\{123\} &
 \ding{124} & \textbackslash ding\{124\} &
 \ding{125} & \textbackslash ding\{125\} &
-\ding{126} & \textbackslash ding\{126\} &
+\ding{126} & \textbackslash ding\{126\} \\
+\ding{168} & \textbackslash ding\{168\} &
+\ding{169} & \textbackslash ding\{169\} &
+\ding{170} & \textbackslash ding\{170\} &
+\ding{171} & \textbackslash ding\{171\} &
+\ding{192} & \textbackslash ding\{192\} \\
+\ding{193} & \textbackslash ding\{193\} &
+\ding{194} & \textbackslash ding\{194\} &
+\ding{195} & \textbackslash ding\{195\} &
+\ding{196} & \textbackslash ding\{196\} &
+\ding{197} & \textbackslash ding\{197\} \\
+\ding{198} & \textbackslash ding\{198\} &
+\ding{199} & \textbackslash ding\{199\} &
+\ding{200} & \textbackslash ding\{200\} &
+\ding{201} & \textbackslash ding\{201\} &
+\ding{202} & \textbackslash ding\{202\} \\
+\ding{203} & \textbackslash ding\{203\} &
+\ding{204} & \textbackslash ding\{204\} &
+\ding{205} & \textbackslash ding\{205\} &
+\ding{206} & \textbackslash ding\{206\} &
+\ding{207} & \textbackslash ding\{207\} \\
+\ding{208} & \textbackslash ding\{208\} &
+\ding{209} & \textbackslash ding\{209\} &
+\ding{210} & \textbackslash ding\{210\} &
+\ding{211} & \textbackslash ding\{211\} &
+\ding{212} & \textbackslash ding\{212\} \\
+\ding{213} & \textbackslash ding\{213\} &
+\ding{214} & \textbackslash ding\{214\} &
+\ding{215} & \textbackslash ding\{215\} &
+\ding{220} & \textbackslash ding\{220\} &
+\ding{221} & \textbackslash ding\{221\} \\
+\ding{222} & \textbackslash ding\{222\} &
+\ding{223} & \textbackslash ding\{223\} &
+\ding{224} & \textbackslash ding\{224\} &
 \ding{226} & \textbackslash ding\{226\} &
 \ding{227} & \textbackslash ding\{227\} \\
 \ding{228} & \textbackslash ding\{228\} &
@@ -2326,8 +2786,59 @@ Pacote \texttt{\{pifont\}}.
 \ding{233} & \textbackslash ding\{233\} &
 \ding{234} & \textbackslash ding\{234\} &
 \ding{235} & \textbackslash ding\{235\} \\
-\ding{236} & \textbackslash ding\{236\} \\
+\ding{236} & \textbackslash ding\{236\} &
+\ding{237} & \textbackslash ding\{237\} &
+\ding{238} & \textbackslash ding\{238\} &
+\ding{239} & \textbackslash ding\{239\} &
+\ding{241} & \textbackslash ding\{241\} \\
+\ding{247} & \textbackslash ding\{247\} &
+\ding{248} & \textbackslash ding\{248\} &
+\ding{249} & \textbackslash ding\{249\} &
+\ding{252} & \textbackslash ding\{252\} &
+\ding{254} & \textbackslash ding\{254\} \\
 \end{tabular}
+
+Dica: Este pacote \texttt{\{pifont\}} traz comandos interessantes. Dois comandos de ambiente \texttt{\{dinglist\}} e \texttt{\{dingautolist\}} que constrõem listas rotuladas com os próprios caracteres da fonte. E dois comandos para preenchimento linear \texttt{\textbackslash dingfill} e \texttt{\textbackslash dingline}. Veja exemplos:
+
+\begin{multicols}{2}
+\begin{small}
+\begin{verbatim}
+   \begin{dinglist}{43}
+      \item Livros
+      \item Revistas
+      \item Jornais
+   \end{dinglist}
+\end{verbatim}
+\end{small}
+
+\begin{dinglist}{43}
+	\item Livros
+	\item Revistas
+	\item Jornais
+\end{dinglist}
+\columnbreak
+\begin{small}
+\begin{verbatim}
+   \begin{dingautolist}{192}
+      \item Livros
+      \item Revistas
+      \item Jornais
+   \end{dingautolist}
+\end{verbatim}
+\end{small}
+
+\begin{dingautolist}{192}
+	\item Livros
+	\item Revistas
+	\item Jornais
+\end{dingautolist}
+\end{multicols}
+
+O \texttt{\textbackslash dingfill\{n\}} preenche a linha \dingfill{226} com o símbolo.
+
+O \texttt{\textbackslash dingline\{n\}} cria uma nova linha com o símbolo escolhido:
+
+\dingline{34}
 
 \chapter*{Conclusão}
 \addcontentsline{toc}{chapter}{Conclusão}
@@ -2344,23 +2855,21 @@ Quanto aos pacotes, é muito comum ter pacotes que são aprimoramentos ou reescr
 \section*{Onde saber mais} \label{sec:outrossites}
 \addcontentsline{toc}{section}{Onde saber mais}
 
-\begin{itemize}
-	\setlength\itemsep{0em}
-	\item \href{http://www.tex.uniyar.ac.ru/doc/latex2e.pdf}{\LaTeXe\ The macro package for \TeX}
-	\item \href{https://www.ctan.org}{Comprehensive TeX Archive Network (CTAN)}
-	\item \href{http://www.tug.org/}{TeX Users Group (TUG)}
-	\item \href{https://tobi.oetiker.ch/lshort/lshort.pdf}{The Not So Short Introduction to \LaTeXe}
-	\item \href{http://latex.silmaril.ie/formattinginformation/index.html}{Formatting Information - An introduction to typesetting with \LaTeX}
-	\item \href{https://latexref.xyz/dev/latex2e.pdf}{\LaTeXe: An unofficial reference manual}
-	\item \href{https://www.maths.tcd.ie/~dwilkins/LaTeXPrimer/GSWLaTeX.pdf}{Getting Started with \LaTeX}
-	\item\href{https://dickimaw-books.com/latex/novices/novices-report.pdf}{\LaTeX\ for Complete Novices}
-	\item \href{http://linorg.usp.br/CTAN/info/lshort/portuguese/pt-lshort.pdf}{Uma não tão pequena introdução ao \LaTeXe}
-	\item \href{https://en.wikibooks.org/wiki/LaTeX}{Wikibooks \LaTeX}
-	\item \href{http://linorg.usp.br/CTAN/info/symbols/comprehensive/symbols-a4.pdf}{The Comprehensive \LaTeX\ Symbol List}
-\end{itemize}
-
-
-
+%\begin{itemize}
+\begin{dingautolist}{192}
+\setlength\itemsep{0em}
+\item \href{http://www.tex.uniyar.ac.ru/doc/latex2e.pdf}{\LaTeXe\ The macro package for \TeX}
+\item \href{https://www.ctan.org}{Comprehensive TeX Archive Network (CTAN)}
+\item \href{http://www.tug.org/}{TeX Users Group (TUG)}
+\item \href{https://tobi.oetiker.ch/lshort/lshort.pdf}{The Not So Short Introduction to \LaTeXe}
+\item \href{http://latex.silmaril.ie/formattinginformation/index.html}{Formatting Information - An introduction to typesetting with \LaTeX}
+\item \href{https://latexref.xyz/dev/latex2e.pdf}{\LaTeXe: An unofficial reference manual}
+\item \href{https://www.maths.tcd.ie/~dwilkins/LaTeXPrimer/GSWLaTeX.pdf}{Getting Started with \LaTeX}
+\item\href{https://dickimaw-books.com/latex/novices/novices-report.pdf}{\LaTeX\ for Complete Novices}
+\item \href{http://linorg.usp.br/CTAN/info/lshort/portuguese/pt-lshort.pdf}{Uma não tão pequena introdução ao \LaTeXe}
+\item \href{http://linorg.usp.br/CTAN/info/symbols/comprehensive/symbols-a4.pdf}{The Comprehensive \LaTeX\ Symbol List}
+\end{dingautolist}
+%\end{itemize}
 
 \begin{comment}
 
