@@ -69,8 +69,8 @@
 		pdfsubject={latex},
 		pdfkeywords={tutorial;latex},
 		pdfauthor={Daniel Madeira},
-		pdfcreator={LaTeX no TeXstudio}, % software que editou o código LaTeX
-		pdfproducer={TeX Live com pdfTeX}, % software que converteu para PDF
+		pdfcreator={LaTeX no TeXstudio}, % software que editou o código LaTeX.
+		pdfproducer={TeX Live com pdfTeX}, % software que converteu para PDF.
 		pdfdisplaydoctitle=true
 	}
 
@@ -80,10 +80,10 @@
     \cfoot{\thepage}
     \pagestyle{fancy}
 
-\renewcommand{\familydefault}{\sfdefault} % estabelece o uso da fonte sem serifa como padrão.
+%\renewcommand{\familydefault}{\sfdefault} % estabelece o uso da fonte sem serifa como padrão.
 \renewcommand{\familydefault}{\rmdefault} % estabelece o uso da fonte roman como padrão.
 
-\newcommand*{\justifytt}{%
+\newcommand*{\justificatt}{%
 	\fontdimen2\font=0.4em% interword space
 	\fontdimen3\font=0.2em% interword stretch
 	\fontdimen4\font=0.1em% interword shrink
@@ -91,6 +91,7 @@
 	\hyphenchar\font=`\-% allowing hyphenation
 }
 
+% definição de um novo ambiente, que será usado para montar a folha de rosto.
 \newenvironment{folharosto}[1]
 	{\begin{center}
 		\vspace*{\fill}
@@ -104,6 +105,17 @@
     \end{center}
     }
 
+\newenvironment{moldura}
+    {\begin{center}
+        \begin{tabular}{|c|}
+        \hline\\\hfil
+    }
+    {
+        \\\\\hline
+        \end{tabular}
+    \end{center}
+    }
+
 \title{Tutorial básico de \LaTeX} % define o título do documento.
 \author{Daniel Madeira} % define o autor do documento.
 \date{\today} % define a data do documento.
@@ -114,35 +126,35 @@
 
 \begin{titlepage}
     \AddToShipoutPictureBG*{\includegraphics[width=\paperwidth,height=\paperheight]{clouds.jpg}}
-    \maketitle
+    \maketitle % insere o título, autor e data.
     \thispagestyle{fancy}
-    \renewcommand{\thepage}{capa}
+    \renewcommand{\thepage}{capa} % troca o número da página pela string capa.
 \end{titlepage}
 
-\pagecolor{gray!5!yellow!5}
+\pagecolor{gray!5!yellow!5} % cor de fundo desta página em diante.
 
 \begin{folharosto}{Tutorial básico de \LaTeX}
-	Um tutorial prático no formato .tex.
+	Um tutorial prático com o .tex.
 \end{folharosto}
 
 \frontmatter
 
-\tableofcontents
+\tableofcontents % para montar a página do sumário.
 
 \mainmatter
 
-%\counterwithout{section}{chapter} % conta as seções sem incluir o número do capítulo
+%\counterwithout{section}{chapter} % para quando precisar contar as seções sem incluir o número do capítulo.
 
-\setlength{\parskip}{1em}
+\setlength{\parskip}{1em} % define o espaçamento entre os parágrafos.
 
 \chapter*{Prefácio}
 \addcontentsline{toc}{chapter}{Prefácio}
 
-O \LaTeX\ é um sistema de preparação de documento com alta qualidade para composição tipográfica. É utilizado para criar documentos dos mais variados tipos de publicação, como artigos, teses, dissertações, livros, cartas, relatórios ou qualquer outro tipo de documento. Possui um alto grau de exatidão e precisão na diagramação do conteúdo do documento e alta qualidade na formatação automática do documento. O \LaTeX\ é uma ampliação do original sistema de tipografia \TeX. Tornou-se um padrão para produção de documentos científicos.
+O \LaTeX\ é um sistema de preparação de documentos com alta qualidade para composição tipográfica. É utilizado para criar documentos dos mais variados tipos de publicação, como artigos, teses, dissertações, livros, cartas, relatórios ou qualquer outro tipo de documento. Possui um alto grau de exatidão e precisão na diagramação do conteúdo do documento e alta qualidade na formatação automática do documento. O \LaTeX\ é uma ampliação do original sistema de tipografia \TeX. Tornou-se um padrão para produção de documentos científicos.
 
-O sistema \LaTeX\ possui código aberto e é gratuito. Está disponível para qualquer sistema operacional, produzindo o mesmo resultado em qualquer sistema. Cria arquivos pequenos e com resultados de alta qualidade. É capaz de exportar o documento para os formatos Post Script e PDF.
+O sistema \LaTeX\ possui código aberto e é gratuito. Está disponível para qualquer sistema operacional, produzindo o mesmo resultado em qualquer sistema. Cria arquivos pequenos e com resultados de alta qualidade. Ainda, incluem-se ferramentas de exportação do documento para outros formatos, como PostScript e PDF.
 
-Este tutorial tem o propósito de mostrar o mínimo, o básico, para se conseguir produzir um documento, de uma forma prática. O próprio arquivo .tex deste tutorial é um exemplo básico da linguagem em \LaTeX. Consulte o código-fonte deste tutorial em paralelo à versão em PDF.
+Este tutorial tem o propósito de mostrar o mínimo, o básico, para se conseguir produzir um documento, de uma forma prática. O próprio arquivo .tex deste tutorial é um exemplo básico da codificação em \LaTeX. Assim, consulte o código-fonte deste tutorial, em paralelo à sua versão em PDF. Inclusive, alguns recursos de diagramação, que ainda não estão explanados neste tutorial, foram utilizados na montagem deste documento.
 
 \chapter*{Linguagem \LaTeX}
 \addcontentsline{toc}{chapter}{Linguagem \LaTeX}
@@ -150,11 +162,11 @@ Este tutorial tem o propósito de mostrar o mínimo, o básico, para se consegui
 \section*{Arquivo}
 \addcontentsline{toc}{section}{Arquivo}
 
-O arquivo do código-fonte em \LaTeX\ deve conter apenas bytes que representem caracteres, sem nenhuma informação adicional. Trata-se do denominado arquivo de texto plano (txt). Este arquivo recebe a extensão .tex. A codificação recomendada para este arquivo é a codificação UTF-8 ou Latin1, dependendo do sistema operacional que está processando o \LaTeX.
+O arquivo do código-fonte em \LaTeX\ deve conter apenas bytes que representem caracteres, sem nenhuma informação adicional. Trata-se do denominado arquivo de texto plano (txt). No sistema \LaTeX, este arquivo recebe a extensão .tex. A codificação recomendada para este arquivo é a codificação UTF-8 ou Latin1, dependendo do sistema operacional que está processando o \LaTeX.
 
-Pode-se utilizar qualquer editor de texto puro para produzir o arquivo .tex, entretanto, é recomendável utilizar um editor \LaTeX\ para obter uma melhor produtividade. Basicamente, precisa estar instalado no computador: uma distribuição \TeX, por exemplo TeX Live ou MikTex; e um editor \LaTeX, por exemplo TeXstudio, Texmaker ou TeXworks.
+Pode-se utilizar qualquer editor de texto puro para produzir o arquivo .tex, entretanto, é recomendável utilizar um editor \LaTeX\ para obter uma melhor produtividade. Basicamente, precisa estar instalado no seu computador: uma distribuição \TeX, por exemplo, TeX Live ou MikTex; e um editor \LaTeX, por exemplo, TeXstudio, Texmaker ou TeXworks.
 
-Atente-se: Editar um documento em \LaTeX\ não será WYSIWYG ("What You See Is What You Get"). Será literalmente editar o código-fonte do documento, inserindo os comandos de formatação do texto.
+Mas, atente-se, editar um documento em \LaTeX\ não será WYSIWYG (\textit{What You See Is What You Get}). Será, literalmente, editar o código-fonte do documento, inserindo os comandos de formatação do texto, entre seu conteúdo.
 
 \section*{Estrutura do código}
 \addcontentsline{toc}{section}{Estrutura do código}
@@ -163,7 +175,7 @@ Atente-se: Editar um documento em \LaTeX\ não será WYSIWYG ("What You See Is W
 \addcontentsline{toc}{subsection}{Partes}
 
 \begin{multicols}{2}
-A estrutura global do código-fonte\\ em \LaTeX\ é basicamente:
+A estrutura global do código-fonte\\ em \LaTeX\ é, basicamente:
 \columnbreak
 \begin{verbatim}
 	\documentclass{...}
@@ -173,21 +185,19 @@ A estrutura global do código-fonte\\ em \LaTeX\ é basicamente:
 \end{verbatim}
 \end{multicols}
 
-A área entre \texttt{\textbackslash documentclass\{...\}} e \texttt{\textbackslash begin\{document\}} é denominada preâmbulo. Neste preâmbulo ficam os comando que afetam todo o documento. Como as chamadas do uso de pacotes, definições de parâmetros de comandos, criação de novos comandos, recriação de comandos existentes etc.
+A área entre \texttt{\textbackslash documentclass\{...\}} e \texttt{\textbackslash begin\{document\}} é denominada preâmbulo. Neste preâmbulo, ficam os comando que afetam todo o documento. Como as chamadas do uso de pacotes, as definições de parâmetros de comandos, criação de novos comandos etc. A área entre \texttt{\textbackslash begin\{document\}} e \texttt{\textbackslash end\{document\}}, após o preâmbulo, forma o bloco principal, o ambiente do documento, onde fica todo o conteúdo do documento.
 
-A área entre \texttt{\textbackslash begin\{document\}} e \texttt{\textbackslash end\{document\}}, após o preâmbulo, forma o bloco principal, o ambiente do documento, é onde fica todo o conteúdo do documento.
+\subsection*{Ambientes}
+\addcontentsline{toc}{subsection}{Ambientes}
 
-\subsection*{Ambiente}
-\addcontentsline{toc}{subsection}{Ambiente}
+Na linguagem \LaTeX, um bloco é definido entre os caracteres \texttt{\{} e \texttt{\}} ou entre os comandos \texttt{\textbackslash begin\{\}} e \texttt{\textbackslash end\{\}}. Estes comandos formam um bloco de ambiente. Os demais comandos inseridos dentro de um bloco, ou de um ambiente, tem seu efeito restrito ao interior deste bloco, ou ambiente.
 
-Na linguagem \LaTeX, um bloco é definido entre os caracteres \texttt{\{} e \texttt{\}} ou entre os comandos \texttt{\textbackslash begin\{\}} e \texttt{\textbackslash end\{\}}. Estes comandos podem formar um bloco de ambiente. Os comandos inseridos dentro de um bloco ou de um ambiente tem seu efeito restrito ao interior do bloco e ambiente.
-
-No ambiente geral do documento, o processamento dos comandos do sistema \LaTeX\ está em modo texto. Como verá no capítulo sobre matemática, existe o modo matemático, onde o sistema \LaTeX\ perfaz um processamento específico.
+No ambiente geral do documento, o processamento dos comandos do sistema \LaTeX\ está em modo texto. Mas, como será visto no capítulo sobre matemática, existe o modo matemático, dentro de um ambiente matemático, onde o sistema \LaTeX\ perfaz um processamento específico.
 
 \subsection*{Caracteres especiais}
 \addcontentsline{toc}{subsection}{Caracteres especiais}
 
-Quase tudo pode ser digitado livremente no documento, que fará parte da impressão final, salvo alguns caracteres que são considerados especiais. Estes caracteres simbólicos são reservados pela linguagem \LaTeX\ porque são para introduzir comandos e possuem um significado especial: \texttt{\# \$ \% \textasciicircum\ \& \_ \{ \} \textasciitilde\ \textbackslash}. Para usar (imprimir) algum destes caracteres no seu texto, digite com o caractere \texttt{\textbackslash} ou use o comando de impressão.
+Quase tudo pode ser digitado livremente no documento, que fará parte da impressão final, salvo alguns caracteres, que são considerados especiais. Estes caracteres simbólicos são reservados pela linguagem \LaTeX\ porque são para introduzir comandos e possuem um significado especial: \texttt{\# \$ \% \textasciicircum\ \& \_ \{ \} \textasciitilde\ \textbackslash}. Para usar (imprimir) algum destes caracteres no seu texto, digite com o caractere \texttt{\textbackslash} ou use o comando de impressão.
 
 Saiba a função de cada um deles:
 
@@ -211,7 +221,7 @@ Saiba a função de cada um deles:
 \addcontentsline{toc}{subsection}{Comentário}
 
 \begin{multicols}{2}
-É possível inserir comentários no código-fonte do documento em \LaTeX. Os comentários de uma linha ficam após o caractere \texttt{\%}. Os comentários com mais de uma linha ficam em um bloco de ambiente \texttt{\{comment\}}:
+É possível inserir comentários no código-fonte do arquivo \LaTeX. São informações que não serão processadas ou impressas. Os comentários de uma linha ficam após o caractere \texttt{\%}. Os comentários com mais de uma linha ficam em um bloco de ambiente \texttt{\{comment\}}:
 \columnbreak
 \begin{small}
 \begin{verbatim}
@@ -228,17 +238,19 @@ Saiba a função de cada um deles:
 \section*{Pacotes}
 \addcontentsline{toc}{section}{Pacotes}
 
-O \LaTeX\ inclui alguns comandos básicos porém existem muitos outros comandos úteis que são implementados com o uso de pacotes no código-fonte. Você poderá usar um pacote no seu documento em \LaTeX\ desde que tenha o respectivo pacote instalado em seu sistema \LaTeX. Para usar e ativar um pacote, inclua o comando \texttt{\textbackslash usepackage}. Alguns pacotes podem receber parâmetros, por exemplo:
+O \LaTeX\ inclui alguns comandos básicos, porém existem muitos outros comandos úteis que são implementados com o uso de pacotes, ativados pelo código-fonte do seu documento. Você poderá usar um pacote no seu documento em \LaTeX\ desde que tenha o respectivo pacote instalado em seu sistema \LaTeX. Assim, para usar e ativar um pacote, inclua o comando \texttt{\textbackslash usepackage\{nomedopacote\}}. Além do mais, alguns pacotes podem receber parâmetros, por exemplo:
+\begin{small}
 \begin{verbatim}
    \usepackage[ddmmyyyy]{datetime}
 \end{verbatim}
+\end{small}
 
 \section*{Comandos}
 \addcontentsline{toc}{section}{Comandos}
 
-O \LaTeX\ é uma linguagem movida por comandos (ou macros) no entorno do texto. Os comando são discriminados pelo caractere \texttt{\textbackslash}, escrito em uma sintaxe como \texttt{\textbackslash comando}.
+O \LaTeX\ é uma linguagem movida por comandos (ou macros) no entorno do texto. Os comandos são discriminados pelo caractere \texttt{\textbackslash} e escritos em uma sintaxe como \texttt{\textbackslash comando}.
 
-Alguns comandos possuem duas versões de funcionamento, que são especificadas com a omissão ou o acréscimo do caractere \texttt{*} (asterisco) no final do nome do comando. Você verá, no decorrer deste tutorial, estas duas versões.
+Alguns comandos possuem duas versões de funcionamento, que são especificadas com a omissão ou o acréscimo do caractere \texttt{*} (asterisco), no final do nome do comando. Você verá\footnote{Sempre acompanhe, em paralelo, o arquivo .tex deste tutorial.}, no decorrer deste tutorial, estas duas versões.
 
 O primeiro comando no código-fonte em \LaTeX\ é o comando \texttt{\textbackslash documentclass}. Nele se define a classe do documento (ex. article, report, book, letter, slides, ltnews, beamer ou memoir) e os parâmetros para tamanho do papel, tamanho da fonte, lados de impressão etc.:
 \begin{small}
@@ -250,10 +262,10 @@ O primeiro comando no código-fonte em \LaTeX\ é o comando \texttt{\textbacksla
 \subsection*{Definição e redefinição}
 \addcontentsline{toc}{subsection}{Definição e redefinição}
 
-A linguagem \LaTeX\ permite criar novos comandos, através do comando \texttt{\textbackslash newcommand}. O novo comando recebe um nome e uma definição. Isto possibilita, por exemplo, um modo de criar uma constante:
+A linguagem \LaTeX\ permite criar novos comandos, através do comando \texttt{\textbackslash newcommand}. O novo comando recebe um nome e uma definição. Isto possibilita, por exemplo, criar um comando que retorne um valor, um texto qualquer:
 \begin{small}
 \begin{verbatim}
-   \newcommand{\nomeConstante}{valor}
+   \newcommand{\nome}{valor}
    \newcommand{\agua}{H$_2$O}
 \end{verbatim}
 \end{small}
@@ -267,11 +279,15 @@ Os comandos existentes podem ser redefinidos com o comando \texttt{\textbackslas
 \end{small}
 
 Criar e recriar comandos no \LaTeX\ vai muito além, não limitando-se somente a um valor para a definição. É possível criar combinações de comandos para compôr a definição do novo comando, inclusive a possibilidade de inserção de argumentos. A sintaxe básica é:
+\begin{small}
 \begin{verbatim}
    \newcommand{\nome}[n]{definição}
 \end{verbatim}
+\end{small}
 
-Sendo n indicando o número de argumentos para uso pelo novo comando. Por exemplo, este novo comando que define um novo modo de inserir os capítulos:
+O parâmetro \texttt{n} indica o número de argumentos para uso pelo novo comando. Estes argumentos, que em número no máximo podem ser 9, serão invocados por \texttt{\#1}, \texttt{\#2}, \texttt{\#3} etc.
+
+Por exemplo, este novo comando que define um novo modo de inserir os capítulos:
 \begin{small}
 \begin{verbatim}
    \newcommand{\meucapitulo}[2]{
@@ -286,7 +302,7 @@ Sendo n indicando o número de argumentos para uso pelo novo comando. Por exempl
 Ou este, por exemplo, que cria um comando para justificar um texto com fonte teletipo (texttt):
 \begin{small}
 \begin{verbatim}
-   \newcommand*{\justifytt}{%
+   \newcommand*{\justificatt}{%
       \fontdimen2\font=0.4em%
       \fontdimen3\font=0.2em%
       \fontdimen4\font=0.1em%
@@ -298,9 +314,43 @@ Ou este, por exemplo, que cria um comando para justificar um texto com fonte tel
 
 Duas observações:
 
-Primeiro, perceba o caractere de asterisco em \texttt{\textbackslash newcommand} e \texttt{\textbackslash renewcommand}. Na origem da linguagem \TeX\ os comandos não podiam ter um \texttt{\textbackslash par} na definição. A linguagem \LaTeX\ controla a possibilidade disso com a ausência ou presença do asterisco na chamada do comando. Com o asterisco, o comando não aceita parágrafos dentro da definição do comando.
+1º) Perceba o caractere de asterisco em \texttt{\textbackslash newcommand*\{\}} e \texttt{\textbackslash renewcommand*\{\}}. Na origem da linguagem \TeX\ os comandos não podiam ter um \texttt{\textbackslash par} na definição. A linguagem \LaTeX\ controla a possibilidade disso com a ausência ou presença do asterisco na chamada do comando. Com o asterisco, o comando \texttt{\textbackslash newcommand} não aceita parágrafos dentro da definição do comando. São as duas versões destes comandos.
 
-Segundo, perceba o caractere \texttt{\%} no fim das linhas. Alguns comandos que lidam precisamente com espaços entre os caracteres, se comportam melhor quando é inserido o \texttt{\%} no final da linha.
+2º) Perceba o caractere \texttt{\%} no fim das linhas. Alguns comandos que lidam precisamente com espaços entre os caracteres, se comportam melhor quando é inserido o \texttt{\%} no final da linha. Provavelmente, uma proteção nos caracteres CR (\textit{carriage return}) e LF (\textit{line feed}).
+
+\subsection*{Definição e redefinição de ambiente}
+\addcontentsline{toc}{subsection}{Definição e redefinição de ambiente}
+
+Ambientes também podem ser criados ou redefinidos, com os comandos \texttt{\textbackslash newenvironment} e \texttt{\textbackslash renewenvironment}, da mesma forma dos novos comandos. A sintaxe é semelhante, veja um exemplo:
+\begin{multicols}{2}
+\begin{small}
+\begin{verbatim}
+\newenvironment{moldura}
+   {\begin{center}
+      \begin{tabular}{|c|}
+      \hline\\\hfil
+   }
+   {
+      \\\\\hline
+      \end{tabular}
+      \end{center}
+   }
+\end{verbatim}
+\end{small}
+\columnbreak
+Usando desta forma:
+\begin{small}
+\begin{verbatim}
+\begin{moldura}
+   texto emoldurado
+\end{moldura}
+\end{verbatim}
+\end{small}
+Imprime isto:
+\begin{moldura}
+texto emoldurado
+\end{moldura}
+\end{multicols}
 
 \subsection*{Uso}
 \addcontentsline{toc}{subsection}{Uso}
@@ -329,18 +379,18 @@ em & largura de um M maiúsculo na fonte corrente\\
 mu & unidade matemática igual à 1/18em\\
 \end{tabular}
 
-Muitos comandos aceitam valores negativos, por exemplo \texttt{\textbackslash hspace\{-1.5em\}}.
+Obs: Muitos comandos aceitam valores negativos, por exemplo \texttt{\textbackslash hspace\{-1.5em\}}.
 
 \subsection*{Cores}
 \addcontentsline{toc}{subsection}{Cores}
 
 Com o uso do pacote xcolor é possível definir cores para o texto, fundo do texto, fundo da página, linhas e colunas de tabelas, gráficos etc. Pode-se usar as cores pré-definidas ou definir novas cores usando valores em RGB, Hex ou CMYK. Inicialmente, com o uso do pacote xcolor, existem algumas cores pré-definidas, que são:
 
-\texttt{\small\justifytt\color{blue} black, blue, brown, cyan, darkgray, gray, green, lightgray, lime, magenta, olive, orange, pink, purple, red, teal, violet, white, yellow.}
+\texttt{\small\justificatt\color{blue} black, blue, brown, cyan, darkgray, gray, green, lightgray, lime, magenta, olive, orange, pink, purple, red, teal, violet, white, yellow.}
 
 Se o pacote foi carregado com a opção \texttt{[dvipsnames]}, então um total de 68 cores estarão pré-definidas:
 
-\texttt{\small\justifytt\color{OliveGreen} Apricot, Aquamarine, Bittersweet, Black, Blue, BlueGreen, BlueViolet, BrickRed, Brown, BurntOrange, CadetBlue, CarnationPink, Cerulean, CornflowerBlue, Cyan, Dandelion, DarkOrchid, Emerald, ForestGreen, Fuchsia, Goldenrod, Gray, Green, GreenYellow, JungleGreen, Lavender,
+\texttt{\small\justificatt\color{OliveGreen} Apricot, Aquamarine, Bittersweet, Black, Blue, BlueGreen, BlueViolet, BrickRed, Brown, BurntOrange, CadetBlue, CarnationPink, Cerulean, CornflowerBlue, Cyan, Dandelion, DarkOrchid, Emerald, ForestGreen, Fuchsia, Goldenrod, Gray, Green, GreenYellow, JungleGreen, Lavender,
 LimeGreen, Magenta, Mahogany, Maroon, Melon, MidnightBlue, Mulberry, NavyBlue, OliveGreen, Orange, OrangeRed, Orchid, Peach, Periwinkle, PineGreen, Plum, ProcessBlue, Purple, RawSienna, Red, RedOrange, RedViolet, Rhodamine, RoyalBlue, RoyalPurple, RubineRed, Salmon, SeaGreen, Sepia, SkyBlue, SpringGreen, Tan, TealBlue, Thistle, Turquoise, Violet, VioletRed, White, WildStrawberry, Yellow, YellowGreen, YellowOrange.}
 
 Para definir novas cores, insira os comandos no preâmbulo, seguindo estes exemplos:
@@ -354,19 +404,21 @@ Para definir novas cores, insira os comandos no preâmbulo, seguindo estes exemp
 \end{footnotesize}
 
 Ou ainda, crie uma mistura de cores, por exemplo:
+\begin{small}
 \begin{verbatim}
    \colorlet{azurelo}{blue!50!yellow}
 \end{verbatim}
+\end{small}
 
-Para cada lugar de uso das cores, um comando específico será utilizado. Por exemplo, o texto é colorizado com \texttt{\textbackslash textcolor\{\textit{cor}\}}, uma linha de tabela com \texttt{\textbackslash rowcolor\{\textit{cor}\}} e por aí vai. Em todos estes comandos, a cor é referenciada pelo seu nome no argumento do comando.
+Para cada lugar de uso das cores, um comando específico será utilizado, mas a referência à cor será a mesma. Por exemplo, o texto é colorizado com \texttt{\textbackslash textcolor\{\textit{cor}\}}, uma linha de tabela com \texttt{\textbackslash rowcolor\{\textit{cor}\}} e por aí vai. Em todos estes comandos, a cor é referenciada pelo seu nome no argumento do comando.
 
-A cor pode ser implementada integralmente, com 100\% de sua intensidade, ou reduzida em sua intensidade ou até misturada com outras cores. Para a redução de intensidade usa-se a sintaxe com seu nome + exclamação + valor, por exemplo: \texttt{blue!60}. A mistura de cores funciona acrescentando mais uma exclamação e o nome da segunda cor, que também pode ter sua intensidade reduzida, por exemplo: \texttt{blue!60!yellow}. 
+A cor pode ser implementada integralmente, com 100\% de sua intensidade, ou reduzida em sua intensidade ou até misturada com outras cores. Para a redução de intensidade usa-se a sintaxe com seu \texttt{nome + exclamação + valor}, por exemplo: \texttt{blue!60}. A mistura de cores funciona acrescentando mais uma exclamação e o nome da segunda cor, que também pode ter sua intensidade reduzida, por exemplo: \texttt{blue!60!yellow}. 
 
-Um exemplo de comando completo:
+Um exemplo de comando que usa uma cor:
 
-\texttt{\textcolor{red!50!violet!90}{ \textbackslash textcolor\{red!50!violet!90\}\{seu texto\} }}
+\texttt{\small\textbackslash textcolor\{red!50!violet!90\}\{\textcolor{red!50!violet!90}{seu texto}\}}
 
-\newgeometry{margin=4.5cm,nohead} % nova disposição desta página em diante
+\newgeometry{margin=4.5cm,nohead} % nova disposição desta página em diante.
 
 \chapter*{Formatação da página}
 \addcontentsline{toc}{chapter}{Formatação da página}
@@ -375,20 +427,20 @@ Um exemplo de comando completo:
 \addcontentsline{toc}{section}{Margens}
 
 O pacote \texttt{\{geometry\}} proporciona um meio de configurar a disposição da página. Por exemplo, esta página está com a margem de 4,5cm e sem o espaço do cabeçalho (veja o código-fonte deste tutorial).
-\begin{footnotesize}
+\begin{small}
 \begin{verbatim}
    \newgeometry{margin=4.5cm,nohead}
 \end{verbatim}
-\end{footnotesize}
+\end{small}
 
 Basicamente usa-se dois comandos, um para definir e outro para restaurar o que foi definido no preâmbulo:
-\begin{footnotesize}
+\begin{small}
 \begin{verbatim}
    \newgeometry{top=1.5cm,bottom=1.5cm,right=1cm,left=1cm}
 
    \restoregeometry
 \end{verbatim}
-\end{footnotesize}
+\end{small}
 
 Ambos os comandos implicam em uma quebra de página, para fazer valer a alteração na dimensão.
 
@@ -398,49 +450,59 @@ Ambos os comandos implicam em uma quebra de página, para fazer valer a alteraç
 \addcontentsline{toc}{section}{Quebras de página}
 
 Além dos comandos de geometria de página, há outros específicos para impor uma quebra na página. Basicamente são os comandos:
+\begin{small}
 \begin{verbatim}
    \pagebreak
    \newpage
    \clearpage
 \end{verbatim}
+\end{small}
 
-O comando \texttt{\textbackslash pagebreak} faz com que os parágrafos se desloquem para preencher toda página, para não deixar espaço vazio no fim. Diferentemente, o comando \texttt{\textbackslash newpage} não estica os espaços entre os parágrafos, deixando um grande espaço vazio no fim da página. O comando \texttt{\textbackslash clearpage} é similar ao \texttt{\textbackslash newpage}, apenas agindo também nas figuras (mas ainda não testei).
+O comando \texttt{\textbackslash pagebreak} faz com que os parágrafos se desloquem para preencher toda página, para não deixar espaço vazio no fim. Diferentemente, o comando \texttt{\textbackslash newpage} não estica os espaços entre os parágrafos, deixando um grande espaço vazio no fim da página. O comando \texttt{\textbackslash clearpage} é similar ao \texttt{\textbackslash newpage}, apenas agindo também nas figuras.
 
 \subsection*{Mesma página}
 \addcontentsline{toc}{subsection}{Mesma página}
 
 Caso tenha um conteúdo que queira manter-se em uma mesma página, sem quebra pelo meio, use o ambiente \texttt{\{samepage\}}.
+\begin{small}
 \begin{verbatim}
    \begin{samepage}
    ...
    \end{samepage}
 \end{verbatim}
+\end{small}
 
 \section*{Espaço vazio}
 \addcontentsline{toc}{section}{Espaço vazio}
 
-É possível adicionar espaços vazios entre os conteúdos na página. Basicamente existe os comandos para espaço horizontal, que empurra o próximo conteúdo horizontalmente, e para espaço vertical, que empurra o próximo conteúdo verticalmente (valores negativos realizam o inverso, contraem o espaço). Os comandos são:
+É possível adicionar espaços vazios entre os conteúdos na página. Basicamente, existe os comandos para espaço horizontal, que empurra o próximo conteúdo horizontalmente, e para espaço vertical, que empurra o próximo conteúdo verticalmente (valores negativos realizam o inverso, contraem o espaço). Os comandos são:
+\begin{small}
 \begin{verbatim}
    \hspace{medida}
    \vspace{medida}
 \end{verbatim}
+\end{small}
 
 Exemplos:
+\begin{small}
 \begin{verbatim}
    \hspace{1.5em}
    \vspace{4cm}
 \end{verbatim}
+\end{small}
 
-Quando for lidar com letras e palavras, use a unidade de medida em, pois esta unidade é proporcional ao tamanho e família da fonte do texto.
+Quando for lidar com letras e palavras, use a unidade de medida \texttt{em}, pois esta unidade é proporcional ao tamanho e família da fonte do texto.
 
 Uma interessante utilidade, caso queira posicionar os primeiros parágrafos no topo da página e os últimos parágrafos no fim da página, use um destes dois comandos equivalentes para esticar o espaço vazio entre eles:
+\begin{small}
 \begin{verbatim}
    \vspace{\fill}
 
    \vfill
 \end{verbatim}
+\end{small}
 
-\vspace{3cm} % insere um espaço vazio
+\vspace{3cm} % insere um espaço vertical vazio.
 
 Por exemplo, este parágrafo foi para baixo com \texttt{\textbackslash vspace\{3cm\}}. Obs.: Usando \texttt{\textbackslash vspace*} (com asterisco) o \LaTeX\ não remove o espaço vertical do fim da página (a documentação oficial também é confusa nesta explicação).
 
@@ -448,11 +510,13 @@ Por exemplo, este parágrafo foi para baixo com \texttt{\textbackslash vspace\{3
 \addcontentsline{toc}{section}{Estilo}
 
 Para limpar o estilo aplicado, na página atual ou nas próximas páginas, use um destes comandos com o estilo desejado:
+\begin{small}
 \begin{verbatim}
    \thispagestyle{empty}
 
    \pagestyle{plain}
 \end{verbatim}
+\end{small}
 
 O estilo empty limpa tanto o cabeçalho quanto o rodapé. No estilo plain, que é o padrão, o cabeçalho fica vazio e o rodapé contém o número da página no centro.
 
@@ -460,14 +524,18 @@ O estilo empty limpa tanto o cabeçalho quanto o rodapé. No estilo plain, que �
 \addcontentsline{toc}{section}{Colorindo}
 
 Uma ou mais páginas podem ser coloridas com o comando \texttt{\textbackslash pagecolor\{\}}. Este comando terá efeito da página atual em diante. Por exemplo:
+\begin{small}
 \begin{verbatim}
    \pagecolor{gray!10!yellow!10}
 \end{verbatim}
+\end{small}
 
 Para cancelar a definição da cor na página atual em diante, use o comando:
+\begin{small}
 \begin{verbatim}
    \nopagecolor
 \end{verbatim}
+\end{small}
 
 \chapter*{Seções no documento}
 \addcontentsline{toc}{chapter}{Seções no documento}
@@ -513,7 +581,7 @@ Basta usar o comando do nível desejado e o que vier depois será desta divisão
 \end{small}
 
 \newpage
-Os comandos destes níveis podem ser escritos na sintaxe sem o caractere *, desta forma, são numerados, prefixados com o número e adicionados automaticamente no sumário do documento. Com a utilização do *, logo após o nome do comando, nada disso acontece, então, para incluí-los no sumário adicione mais um comando. Exemplos para algumas divisões:
+Os comandos destes níveis podem ser escritos na sintaxe sem o caractere \texttt{*}, desta forma, são numerados, prefixados com o número e adicionados automaticamente no sumário do documento. Com a utilização do \texttt{*}, logo após o nome do comando, nada disso acontece, então, para incluí-los no sumário, adicione mais um comando. Exemplos para algumas divisões:
 \begin{small}
 \begin{verbatim}
    \chapter*{Nome do Capítulo}
@@ -530,17 +598,19 @@ Os comandos destes níveis podem ser escritos na sintaxe sem o caractere *, dest
 \section*{Livro}
 \addcontentsline{toc}{section}{Livro}
 
-Em documentos da classe book, opcionalmente pode-se seccionar o conteúdo em quatro partes: frontal, principal, apêndice e traseira.
+Em documentos da classe \texttt{book}, opcionalmente pode-se seccionar o conteúdo em quatro partes: frontal, principal, apêndice e traseira.
 
 Tradicionalmente, a parte frontal contém a página do título, folha de rosto, resumo, sumário, prefácio, lista de figuras e lista de tabelas. A parte principal contém o conteúdo propriamente dito. Logo após existe o apêndice e a parte traseira contém o glossário, notas, bibliografia e índice.
 
 São quatro comandos que definem estas partes:
+\begin{small}
 \begin{verbatim}
    \frontmatter
    \mainmatter
    \appendix
    \backmatter
 \end{verbatim}
+\end{small}
 
 A parte em \texttt{\textbackslash frontmatter} terá a numeração romana nas páginas e não terá os capítulos numerados. A parte em \texttt{\textbackslash mainmatter} terá o comportamento padrão do documento e a sequencia numérica das páginas é reiniciada. A parte \texttt{\textbackslash appendix} reinicia a numeração de capítulos, usa letras na numeração de capítulos e continua seguindo a numeração das páginas principais. A parte \texttt{\textbackslash backmatter} continua seguindo a numeração das páginas principais mas volta a desativar a numeração dos capítulos.
 
@@ -553,7 +623,7 @@ A parte em \texttt{\textbackslash frontmatter} terá a numeração romana nas p�
 \subsection*{Quebras de parágrafo e linha}
 \addcontentsline{toc}{subsection}{Quebras de parágrafo e linha}
 
-Isto é um texto em um parágrafo. O alinhamento justificado é aplicado por padrão. A linha se estica horizontalmente para ocupar todo o espaço entre as margens.
+Isto é um texto em um parágrafo. O alinhamento justificado é aplicado por padrão. A linha se estica horizontalmente para ocupar todo o espaço entre as margens. Se for preciso, o \LaTeX\ aplica a hifenização das palavras. A regra da língua portuguesa vem com o uso do pacote \texttt{\{babel\}}.
 
 Para iniciar um novo parágrafo basta pular uma linha no código-fonte do \LaTeX.
 
@@ -564,22 +634,24 @@ Isto é um texto em uma linha, \newline o comando \texttt{\textbackslash newline
 \subsection*{Espaçamento entre parágrafos}
 \addcontentsline{toc}{subsection}{Espaçamento entre parágrafos}
 
-Os parágrafos, por padrão, não possuem um espaçamento entre eles diferente da separação simples entre linhas. Use esta combinação de comandos para definir um espaçamento dos próximos parágrafos:
+Os parágrafos, por padrão, não possuem um espaçamento entre eles distinto da separação simples entre as linhas. Use esta combinação de comandos para definir um espaçamento dos próximos parágrafos:
+\begin{small}
 \begin{verbatim}
    \setlength{\parskip}{1em}
 \end{verbatim}
+\end{small}
 
 \setlength{\parskip}{1em} % define um espaçamento entre os parágrafos (padrão é 0).
 
-Perceba que este parágrafo já possui 1em de distância do parágrafo anterior e também do próximo parágrafo abaixo.
+Perceba que este parágrafo já possui \texttt{1em} de distância do parágrafo anterior e também do próximo parágrafo abaixo.
 
-De agora em diante, todos os parágrafos terão este espaçamento entre eles.
+De agora em diante, todos os parágrafos terão este espaçamento entre eles. Obs.: Os espaços entre os blocos de ambiente costumam ter outro tamanho, geralmente maior.
 
 \subsection*{Espaçamento entre linhas}
 \addcontentsline{toc}{subsection}{Espaçamento entre linhas}
 
-Por padrão, ocorre o espaçamento simples entre as linhas. Alguns comandos modificam isso, do pacote setspace:
-
+Por padrão, ocorre o espaçamento simples entre as linhas. Alguns comandos modificam isso, do pacote \texttt{\{setspace\}}:
+\begin{small}
 \begin{verbatim}
    \onehalfspacing
    \doublespacing
@@ -588,6 +660,7 @@ Por padrão, ocorre o espaçamento simples entre as linhas. Alguns comandos modi
    \renewcommand{\baselinestretch}{0.80}\normalsize
    \renewcommand{\baselinestretch}{1}\normalsize
 \end{verbatim}
+\end{small}
 
 Seguem os quatro exemplos para espaçamento entre as linhas de 0,80, simples(1), 1,5 e duplo:
 
@@ -610,7 +683,7 @@ Seguem os quatro exemplos para espaçamento entre as linhas de 0,80, simples(1),
 \subsection*{Espaçamento entre palavras}
 \addcontentsline{toc}{subsection}{Espaçamento entre palavras}
 
-Além do espaço comum (proveniente da tecla de espaço) entre as palavras, existem alguns comandos que alteram o espaço para mais ou menos e também servem para forçar a colocação de espaço onde a formatação automática do \LaTeX\ suprime.
+Além do espaço comum (proveniente da tecla de espaço) entre as palavras, existem alguns comandos que alteram o espaço para mais ou menos e também servem para forçar a colocação de espaço onde a formatação automática do \LaTeX\ suprime\footnote{Aqui mesmo ocorreu isso, veja no código-fonte.}.
 
 \begin{tabular}{lll}
 \multicolumn{2}{l}{\textbf{Comando curto e longo}} & \textbf{Tamanho}\\
@@ -634,9 +707,11 @@ Obs.: É comum em alguns comandos em linha, se houver uma continuação de texto
 Os parágrafos costumam indentar-se automaticamente. Mas, em uma instalação padrão do \LaTeX, o primeiro não se indenta, somente do segundo em diante. Neste documento, se não tivesse instalado o pacote \texttt{\{indentfirst\}}, este primeiro parágrafo não estaria indentado.
 
 Para definir um tamanho de indentação, usa-se, antes dos parágrafos:
+\begin{small}
 \begin{verbatim}
    \setlength{\parindent}{3em}
 \end{verbatim}
+\end{small}
 
 \setlength{\parindent}{3em} % define a largura da indentação (1.5em é o padrão).
 Por exemplo, este parágrafo está com 3em de tamanho na indentação.
@@ -695,11 +770,13 @@ Existem alguns tamanhos para os caracteres da fonte (e incrementado pelo pacote 
 A forma da sintaxe inline também pode ser assim: \texttt{\{\textbackslash small ... \}}.
 
 \begin{normalsize}
-A outra maneira, de definir o tamanho do texto, é em um ambiente com bloco de parágrafo. Exemplo:
+Outra maneira, de definir o tamanho do texto, é em um ambiente com bloco de parágrafo. Exemplo:
 
+\begin{small}
 \texttt{\textbackslash begin\{large\}\\
 \indent...\\
 \indent\textbackslash end\{large\}}.
+\end{small}
 \end{normalsize}
 
 \subsection*{Estilo}
@@ -733,24 +810,24 @@ As famílias de caracteres na fonte em uso basicamente são:
 	\textsf{Texto sem serifa.} & \textbackslash textsf\{\} & \textbackslash sffamily\\
 \end{tabular}
 
-Mas nem todas as fontes suportam esta variação de família. Por exemplo, a fonte Arev é exclusivamente do tipo sem serifa.
+Porém, nem todas as fontes suportam esta variação de família. Por exemplo, a fonte Arev é exclusivamente do tipo sem serifa.
 
 \subsection*{Colorindo}
 \addcontentsline{toc}{subsection}{Colorindo}
 
-Para colorir um texto, usa-se o comando \texttt{\textbackslash textcolor\{\textit{cor}\}\{...\}} ou \texttt{\{\textbackslash color\{\textit{cor}\} ...\}}. Ou pode-se definir uma cor diretamente no comando, por exemplo:
+Para colorir um texto, usa-se o comando \texttt{\textbackslash textcolor\{\textit{cor}\}\{...\}} ou \texttt{\{\textbackslash color\{\textit{cor}\} ...\}}. Ou, pode-se definir uma cor diretamente no comando. Exemplos:
 
-\texttt{\textcolor{brown!70!black}{ \textbackslash textcolor\{brown!70!black\}\{seu texto\} }}
+\texttt{\small\textbackslash textcolor\{brown!70!black\}\{\textcolor{brown!70!black}{seu texto}\}}
 
-{\color{brown!70!black} \texttt{\{\textbackslash color\{brown!70!black\} seu texto\}}}
+\texttt{\{\small\textbackslash color\{brown!70!black\} {\color{brown!70!black} seu texto}\}}
 
-\textcolor[RGB]{190,85,0}{ \texttt{\textbackslash textcolor[RGB]\{190,85,0\}\{ seu texto \}} }
+\texttt{\small\textbackslash textcolor[RGB]\{190,85,0\}\{\textcolor[RGB]{190,85,0}{seu texto}\}}
 
-{\color[RGB]{190,85,0} \texttt{\{\textbackslash color[RGB]\{190,85,0\} seu texto \}} }
+\texttt{\{\small\textbackslash color[RGB]\{190,85,0\} {\color[RGB]{190,85,0} seu texto}\}}
 
 Para o fundo do texto, usa-se o comando \texttt{\textbackslash colorbox\{\textit{cor}\}\{...\}}:
 
-\texttt{\colorbox{Sepia!10}{ \textbackslash colorbox\{Sepia!10\}\{seu texto\} }}
+\texttt{\small\textbackslash colorbox\{Sepia!10\}\{\colorbox{Sepia!10}{seu texto}\}}
 
 \section*{Estrutura de texto}
 \addcontentsline{toc}{section}{Estrutura de texto}
@@ -1135,16 +1212,16 @@ Para inserir uma nota de rodapé\footnote{Uma anotação colocada ao pé de uma 
 
 Existem diversas soluções para formatar o texto em colunas. Pode-se usar os comandos de ambiente:
 
-\texttt{\textbackslash begin\{multicols\} ... \textbackslash end\{multicols\}}\\
-\indent\texttt{\textbackslash begin\{vwcol\} ... \textbackslash end\{vwcol\}}\\
-\indent\texttt{\textbackslash begin\{minipage\} ... \textbackslash end\{minipage\}}\\
-\indent\texttt{\textbackslash begin\{tabular\} ... \textbackslash end\{tabular\}}\\
+\texttt{\small\textbackslash begin\{multicols\} ... \textbackslash end\{multicols\}}\\
+\indent\texttt{\small\textbackslash begin\{vwcol\} ... \textbackslash end\{vwcol\}}\\
+\indent\texttt{\small\textbackslash begin\{minipage\} ... \textbackslash end\{minipage\}}\\
+\indent\texttt{\small\textbackslash begin\{tabular\} ... \textbackslash end\{tabular\}}\\
 
 Os ambientes \texttt{\{multicols\}} e \texttt{\{vwcol\}} permitem uma certa fluidez do texto entre as colunas, uma mudança automática dos parágrafos entre as colunas. Sobre o ambiente \texttt{\{multicols\}}, o padrão é acontecer um equilíbrio na quantidade de texto em cada lado. Este balanço automático pode ser desligado usando o ambiente  \texttt{\{multicols*\}}.
 
 Veja alguns exemplos. Nos ambientes de texto fluido foi usado o comando \texttt{\textbackslash columnbreak} ou o comando \texttt{\textbackslash newpage} para forçar a quebra de coluna:
 
-\begin{footnotesize}
+\begin{small}
 \begin{verbatim}
    \begin{multicols}{2}
       \lipsum[66]\par
@@ -1152,7 +1229,7 @@ Veja alguns exemplos. Nos ambientes de texto fluido foi usado o comando \texttt{
       \lipsum[75]
    \end{multicols}
 \end{verbatim}
-\end{footnotesize}
+\end{small}
 
 \begin{multicols}{2}
     \lipsum[66]\par
@@ -1160,7 +1237,7 @@ Veja alguns exemplos. Nos ambientes de texto fluido foi usado o comando \texttt{
     \lipsum[75]
 \end{multicols}
 
-\begin{footnotesize}
+\begin{small}
 \begin{verbatim}
    \begin{minipage}[t]{0.55\linewidth}
       \setlength{\parindent}{1.5em}
@@ -1171,7 +1248,7 @@ Veja alguns exemplos. Nos ambientes de texto fluido foi usado o comando \texttt{
       \lipsum[75]
    \end{minipage}
 \end{verbatim}
-\end{footnotesize}
+\end{small}
 
 \noindent
 \begin{minipage}[t]{0.55\linewidth}
@@ -1184,7 +1261,7 @@ Veja alguns exemplos. Nos ambientes de texto fluido foi usado o comando \texttt{
 \end{minipage}
 
 \newpage
-\begin{footnotesize}
+\begin{small}
 \begin{verbatim}
    \begin{tabular}{p{0.6\linewidth}p{0.4\linewidth}}
       \parbox{0.6\textwidth}{
@@ -1198,7 +1275,7 @@ Veja alguns exemplos. Nos ambientes de texto fluido foi usado o comando \texttt{
       }
    \end{tabular}
 \end{verbatim}
-\end{footnotesize}
+\end{small}
 
 \noindent
 \begin{tabular}{p{0.6\linewidth}p{0.4\linewidth}}
@@ -1213,7 +1290,7 @@ Veja alguns exemplos. Nos ambientes de texto fluido foi usado o comando \texttt{
 	}
 \end{tabular}
 
-\begin{footnotesize}
+\begin{small}
 \begin{verbatim}
    \begin{vwcol}[widths={0.6,0.4},sep=1.5em,justify=flush,rule=0pt,indent=1.5em]
       \indent\lipsum[66]
@@ -1221,7 +1298,7 @@ Veja alguns exemplos. Nos ambientes de texto fluido foi usado o comando \texttt{
       \lipsum[75]
    \end{vwcol}
 \end{verbatim}
-\end{footnotesize}
+\end{small}
 
 \noindent
 \begin{vwcol}[widths={0.6,0.4},
@@ -1256,18 +1333,17 @@ Para imprimir uma expressão em uma nova linha, chamado modo de exibição, usa-
 
 \[\frac{9}{12} + \frac{5}{34} + \frac{7}{68} = 1\]
 
-Uma outra forma de imprimir uma expressão matemática no modo de exibição, inclusive alinhá-la, numerá-la e indexá-la no documento, é com os ambientes \texttt{\{equation\}} ou \texttt{\{align\}}:
+Uma outra forma de imprimir uma expressão matemática no modo de exibição, inclusive alinhá-la, numerá-la e indexá-la no documento, é com os ambientes \texttt{\{equation\}} ou \texttt{\{align\}}. Exemplos:
 \begin{small}
 \begin{verbatim}
    \begin{align}
       (2x \times 100 + x \times 10) - (x \times 100 + 2x \times 10) &= 270\\
-      200x + 10x - 100x - 20x &= 270\\
-      90x &= 270\\
-      x &= 270/90\\
-      x &= 3
+      200x + 10x - 100x - 20x &= 270\\ 90x &= 270\\ x &= 270/90\\ x &= 3
    \end{align}
 \end{verbatim}
 \end{small}
+
+Produz as equações numeradas:
 
 \begin{align}
 (2x \times 100 + x \times 10) - (x \times 100 + 2x \times 10) &= 270\\
@@ -1293,12 +1369,14 @@ x &= 3
       \begin{aligned}[c]
          \mathrm{Se:}\hspace{0.5cm} x + y &= 90\\
          \\
-         \mathrm{então:}\hspace{0.5cm} x + 30 &= 90\\
+         \mathrm{ent\tilde{a}o:}\hspace{0.5cm} x + 30 &= 90\\
          x &= 60
       \end{aligned}
    \end{equation*}
 \end{verbatim}
 \end{small}
+
+Produz todo este sistema de equações:
 
 \begin{equation*}
 \begin{aligned}[c]
@@ -1319,7 +1397,7 @@ x &= 60
 \end{aligned}
 \end{equation*}
 
-O caractere \texttt{\&} marca a posição de alinhamento. Nestas sequencias de equações, foi adotada a posição no sinal de igual. O asterisco no comando cancela a numeração da equação no documento.
+Obs.: O caractere \texttt{\&} marca a posição de alinhamento. Nestas sequencias de equações, foi adotada a posição no sinal de igual. O asterisco no comando cancela a numeração da equação no documento.
 
 \newpage
 \section*{Notações}
@@ -1388,65 +1466,61 @@ Alguns exemplos de expressões enormes:
 \section*{Referências}
 \addcontentsline{toc}{section}{Referências}
 
-No \LaTeX\ quase tudo que está numerado pode ser referenciado e o \LaTeX\ automaticamente atualiza as referências, se houver alguma mudança. Os objetos que podem ser referenciados são os capítulos, seções, subseções, equações, teoremas, notas de rodapé, figuras e tabelas. Os comandos para tudo isso são:
+No \LaTeX, quase tudo que está numerado pode ser referenciado e o \LaTeX\ automaticamente atualiza as referências, se houver alguma mudança posterior. Os objetos que podem ser referenciados são os capítulos, seções, subseções, equações, teoremas, notas de rodapé, figuras e tabelas. Os comandos, para tudo isso, são:
 
 \begin{tabular}{lp{10cm}}
-\texttt{\textbackslash label\{marcador\}}
+\texttt{\small\textbackslash label\{marcador\}}
 & Usado para marcar um objeto, um identificador que será usado depois, na referência.\\
-\texttt{\textbackslash ref\{marcador\}}
+\texttt{\small\textbackslash ref\{marcador\}}
 & Usado para referenciar um objeto com a respectiva marcação.\\
-\texttt{\textbackslash pageref\{marcador\}}
+\texttt{\small\textbackslash pageref\{marcador\}}
 & Usado para imprimir o número da página onde está o objeto com a respectiva marcação.\\
 \end{tabular}
 
-Há uma convenção em adotar prefixos nas marcações:
+Saiba que, há uma convenção em adotar prefixos nas marcações:
 
-\begin{tabular}{ll}
-ch: 	& capítulo
-\\
-sec: 	& seção
-\\
-subsec: & subseção
-\\
-fig: 	& figura
-\\
-tab: 	& tabela
-\\
-eq: 	& equação
-\\
-lst: 	& lista de código
-\\
-itm: 	& item numerado em lista
-\\
+\begin{tabular}{>{\ttfamily\small}ll}
+ch: 	& capítulo \\
+sec: 	& seção \\
+subsec: & subseção \\
+fig: 	& figura \\
+tab: 	& tabela \\
+eq: 	& equação \\
+lst: 	& lista de código \\
+itm: 	& item numerado em lista \\
 \end{tabular}
 
-Por exemplo, aqui é uma referência à nota de rodapé \ref{notarodape} do capítulo sobre formatação de texto, na página \pageref{notarodape}.
+Por exemplo: \texttt{\textbackslash label\{ch:introducao\}}.
+
+O que depois, será referenciado com: \texttt{\textbackslash ref\{ch:introducao\}}.
+
+E aqui tem uma referência à nota de rodapé \ref{notarodape} do capítulo sobre formatação de texto, na página \pageref{notarodape} (veja esta parte no código-fonte).
 
 \section*{Ligações internas}
 \addcontentsline{toc}{section}{Ligações internas}
 
 Semelhante à uma página em HTML, o \LaTeX\ também permite \textit{hyperlinks} dentro do documento. Podem ser ligações internas, para elementos do mesmo documento, como também ligações para arquivos externos ou endereços da Internet.
 
-O uso do pacote hyperref transforma automaticamente todas as referências internas em ligações. Mas é possível adicionar trechos de textos que serão ligações para as marcações existentes, independente das referências.
+O uso do pacote \texttt{\{hyperref\}} transforma automaticamente todas as referências internas em ligações. Mas é possível adicionar trechos de textos que serão ligações para as marcações existentes, independente das referências.
 
 Aproveitando o rótulo da marcação (\texttt{\textbackslash label\{marcador\}}), para criar uma ligação interna, usa-se o comando \texttt{\textbackslash hyperref[marcador]\{texto\}}.
 
-Por exemplo, esta é uma ligação para a \hyperref[notarodape]{nota de rodapé} do capítulo sobre formatação de texto.
+Por exemplo, esta é uma ligação para a \hyperref[notarodape]{nota de rodapé} do capítulo sobre formatação de texto (veja esta parte no código-fonte).
 
-O pacote hyperref possui uma extensa possibilidade de configuração. Veja o código-fonte deste tutorial para ver o comando \texttt{\textbackslash hypersetup\{\}}, logo no preâmbulo. Este pacote também formata muitas coisas para o PDF exportado.
+O pacote \texttt{\{hyperref\}} possui uma extensa possibilidade de configuração. Veja o código-fonte deste tutorial para ver o comando \texttt{\textbackslash hypersetup\{\}}, logo no preâmbulo. Este pacote também formata muitas coisas para o PDF exportado.
 
 \section*{Ligações web}
 \addcontentsline{toc}{section}{Ligações web}
 
 As ligações para páginas Web são criadas com os comandos \texttt{\textbackslash href\{\}} ou \texttt{\textbackslash url\{\}}. a diferença entre eles é que \texttt{\textbackslash href} permite uma legenda para o endereço, enquanto o \texttt{\textbackslash url} imprime diretamente o endereço. Segue os exemplos:
 
-\texttt{\textbackslash href\{https://www.ctan.org\}\{Comprehensive TeX Archive Network\}}
+\texttt{\small\textbackslash href\{https://www.ctan.org\}\{Comprehensive TeX Archive Network\}}
 
-\href{https://www.ctan.org}{Comprehensive TeX Archive Network}
+Resulta em toda esta expressão \href{https://www.ctan.org}{Comprehensive TeX Archive Network} com a ligação para a Web.
 
-\texttt{\textbackslash url\{https://www.ctan.org\}}
+\texttt{\small\textbackslash url\{https://www.ctan.org\}}
 
-\url{https://www.ctan.org}
+Resulta em o próprio endereço \url{https://www.ctan.org} impresso e com a ligação para a Web.
 
 \chapter*{Gráficos}
 \addcontentsline{toc}{chapter}{Gráficos}
@@ -1465,28 +1539,28 @@ A melhor maneira é especificar o caminho relativo às imagens. Pode ser relativ
 
 Um caminho relativo ao arquivo que carrega a imagem, segue o exemplo:
 
-\texttt{\textbackslash graphicspath\{\{imagens/\}\}}
+\texttt{\small\textbackslash graphicspath\{\{imagens/\}\}}
 
 Um caminho relativo ao arquivo .tex principal, segue o exemplo:
 
-\texttt{\textbackslash graphicspath\{\{./imagens/\}\}}
+\texttt{\small\textbackslash graphicspath\{\{./imagens/\}\}}
 
 O caminho pode ser absoluto, quando há o caminho exato ao arquivo. Os exemplos para uma situação no MS Windows e no Linux são, respectivamente:
 
-\texttt{\textbackslash graphicspath\{\{c:/usuario/imagens/\}\}}
+\texttt{\small\textbackslash graphicspath\{\{c:/usuario/imagens/\}\}}
 
-\texttt{\textbackslash graphicspath\{\{/home/usuario/imagens/\}\}}
+\texttt{\small\textbackslash graphicspath\{\{/home/usuario/imagens/\}\}}
 
 Pode ainda combinar múltiplos caminhos no mesmo comando, se as imagens estão em mais de uma pasta. Por exemplo:
 
-\texttt{\textbackslash graphicspath\{\{./imagens1/\}\{./imagens2/\}\}}
+\texttt{\small\textbackslash graphicspath\{\{./imagens1/\}\{./imagens2/\}\}}
 
 \subsection*{Carregamento}
 \addcontentsline{toc}{subsection}{Carregamento}
 
 O carregamento da imagem é pelo comando \texttt{\textbackslash includegraphics[]\{\}}. Se a imagem estiver no caminho, basta informar o nome do arquivo, por exemplo:
 
-\texttt{\textbackslash includegraphics[scale=0.2]\{plataforma.jpg\}}
+\texttt{\small\textbackslash includegraphics[scale=0.2]\{plataforma.jpg\}}
 
 \begin{figure}[h!]
 	\centering
@@ -1497,13 +1571,13 @@ O carregamento da imagem é pelo comando \texttt{\textbackslash includegraphics[
 
 O argumento opcional recebe os parâmetros para escalonamento, dimensão, rotação etc. Veja os exemplos:
 
-\begin{footnotesize}
+\begin{small}
 \begin{verbatim}
    \includegraphics[width=3cm, height=4cm]{logo.png}
    \includegraphics[width=\textwidth]{lua.jpg}
    \includegraphics[scale=1.2, angle=45]{foto.jpg}
 \end{verbatim}
-\end{footnotesize}
+\end{small}
 
 Por recomendação, a extensão do arquivo pode ser omitida, assim o \LaTeX\ irá procurar por todos os formatos suportados de imagens.
 
@@ -1511,7 +1585,7 @@ Por recomendação, a extensão do arquivo pode ser omitida, assim o \LaTeX\ ir�
 \addcontentsline{toc}{subsection}{Posicionamento}
 
 O carregamento da imagem torna-se mais preciso se estiver no ambiente \texttt{\{figure\}}. Com este ambiente podemos especificar o parâmetro do posicionamento:
-\begin{footnotesize}
+\begin{small}
 \begin{verbatim}
    \begin{figure}[h!]
       \centering
@@ -1520,31 +1594,29 @@ O carregamento da imagem torna-se mais preciso se estiver no ambiente \texttt{\{
       \label{fig:plataforma}
    \end{figure}
 \end{verbatim}
-\end{footnotesize}
+\end{small}
 
 \begin{tabular}{lp{10cm}}
-\textbf{Parâmetro} & \textbf{Posição}
-\\
-\texttt{h \footnotesize{(here)}} & Posição flutuante aqui mesmo.
-\\
-\texttt{t \footnotesize{(top)}} & No topo da página.
-\\
-\texttt{b \footnotesize{(bottom)}} & No pé da página.
-\\
-\texttt{p \footnotesize{(page)}} & Coloca na página flutuante especial.
-\\
-\texttt{!\ \footnotesize{(override)}} & Sobrepõe o cálculo do \LaTeX\ para a posição flutuante.
-\\
+\textbf{Parâmetro} & \textbf{Posição} \\
+\texttt{h \footnotesize{(here)}} & Posição flutuante aqui mesmo. \\
+\texttt{t \footnotesize{(top)}} & No topo da página. \\
+\texttt{b \footnotesize{(bottom)}} & No pé da página. \\
+\texttt{p \footnotesize{(page)}} & Coloca na página flutuante especial. \\
+\texttt{!\ \footnotesize{(override)}} & Sobrepõe o cálculo do \LaTeX\ para a posição flutuante. \\
 \end{tabular}
 
 \newpage
 Adicionando o pacote \texttt{\{wrapfig\}}, o texto ganha a possibilidade de envolver a imagem carregada. Para isso usa-se o ambiente \texttt{\{wrapfig\}}. Segue uma ilustração:
+\begin{small}
 \begin{verbatim}
    \begin{wrapfigure}{r}{0.35\textwidth}
       \centering
       \includegraphics[width=0.35\textwidth]{copacabana.jpg}
    \end{wrapfigure}
 \end{verbatim}
+\end{small}
+
+Em um exemplo de envolvimento:
 
 \begin{wrapfigure}{r}{0.35\textwidth}
 	\centering
@@ -1556,7 +1628,7 @@ Adicionando o pacote \texttt{\{wrapfig\}}, o texto ganha a possibilidade de envo
 \section*{Plotagem de dados}
 \addcontentsline{toc}{section}{Plotagem de dados}
 
-Baseado no pacote TikZ/pgf existe o pacote \texttt{\{pgfplots\}}, para construir uma plotagem de dados, de funções etc. Conta com um segundo componente, o pacote \texttt{\{pgfplotstable\}}, que faz a formatação e o processamento de tabelas numéricas. Os ambientes de plotagem do \texttt{\{pgfplots\}} dependem do ambiente \texttt{\{tikzpicture\}}.
+Baseado no pacote PGF/TikZ existe o pacote \texttt{\{pgfplots\}}, para construir uma plotagem de dados, de funções etc. Conta com um segundo componente, o pacote \texttt{\{pgfplotstable\}}, que faz a formatação e o processamento de tabelas numéricas. Os ambientes de plotagem do \texttt{\{pgfplots\}} dependem do ambiente \texttt{\{tikzpicture\}}.
 
 Provavelmente, o \texttt{\{pgfplots\}} é o pacote mais complexo do \LaTeX, seu manual tem quase 600 páginas, pois possui recursos tão poderosos quanto aos disponíveis nos melhores softwares matemáticos. Vale a pena a leitura do manual.
 
@@ -1569,21 +1641,24 @@ Um primeiro ponto é quanto a compatibilidade do pacote. O \texttt{\{pgfplots\}}
 
 O comando \texttt{\textbackslash pgfplotsset} também aceita os parâmetros de formatação do gráfico, como dimensão, estilos, fontes de caracteres etc.:
 
-\texttt{\textbackslash pgfplotsset\{width=8cm, compat=1.16\}}
+\texttt{\small\textbackslash pgfplotsset\{width=8cm, compat=1.16\}}
 
 \subsection*{Ambientes}
 \addcontentsline{toc}{subsection}{Ambientes}
 
-Diversos ambientes irão estruturar uma plotagem, começando pelo ambiente gráfico \texttt{\{tikzpicture\}}, que forma a imagem. Interiormente, tem-se os ambientes específicos da plotagem, em relação aos eixos de escala normal ou escala logarítmica, com os ambientes \texttt{\{axis\}}, \texttt{\{semilogxaxis\}} ou \texttt{\{loglogaxis\}}
+Diversos ambientes irão estruturar uma plotagem, começando pelo ambiente gráfico \texttt{\{tikzpicture\}}, que forma a imagem. Interiormente, tem-se os ambientes específicos da plotagem, em relação aos eixos de escala normal ou escala logarítmica, com os ambientes \texttt{\{axis\}}, \texttt{\{semilogxaxis\}} ou \texttt{\{loglogaxis\}}. Sintaxe básica:
+\begin{small}
 \begin{verbatim}
    \begin{tikzpicture}
-      \begin{axis}[]
+      \begin{axis}[ ]
       ...
       \end{axis}
    \end{tikzpicture}
 \end{verbatim}
+\end{small}
 
 Os ambientes dos eixos podem receber um argumento com os parâmetros para formatar cada eixo, separados por vírgulas e seguindo a boa prática de digitá-los um por linha, por exemplo:
+\begin{small}
 \begin{verbatim}
    \begin{axis}[
       title = Título,
@@ -1591,13 +1666,15 @@ Os ambientes dos eixos podem receber um argumento com os parâmetros para format
       ylabel = {$y$},
    ]
 \end{verbatim}
+\end{small}
 
 Dica: Externamente ao ambiente \texttt{\{tikzpicture\}} pode-se colocar o ambiente \texttt{\{figure\}}, que permite, por exemplo, adicionar uma legenda à figura e outros tratamentos.
 
 \subsection*{Plotagem}
 \addcontentsline{toc}{subsection}{Plotagem}
 
-Dentro do ambiente do eixo insere-se o comando para adicionar uma plotagem, com \texttt{\textbackslash addplot} ou \texttt{\textbackslash addplot3} para visualização em 3D. Neste comando, especifica-se a origem dos dados, se será por uma função, por coordenadas ou fornecidos por uma tabela em um arquivo externo. Também pode receber um argumento com diversos parâmetros:
+Dentro do ambiente do eixo insere-se o comando para adicionar uma plotagem, com \texttt{\textbackslash addplot}, ou \texttt{\textbackslash addplot3} para visualização em 3D. Neste comando, especifica-se a origem dos dados, se será por uma função, por coordenadas ou fornecidos por uma tabela em um arquivo externo. Também pode receber um argumento com diversos parâmetros:
+\begin{small}
 \begin{verbatim}
    \addplot[
       blue,
@@ -1613,6 +1690,7 @@ Dentro do ambiente do eixo insere-se o comando para adicionar uma plotagem, com 
 
    \addplot table {dados.txt};
 \end{verbatim}
+\end{small}
 
 O comando \texttt{\textbackslash addplot} pode ser usado mais de uma vez no mesmo gráfico, caso tenha outros dados compatíveis ao mesmo domínio.
 
@@ -1878,7 +1956,7 @@ Os seguintes comandos devem ser utilizados nos parágrafos ou no modo esquerda-d
 
 \noindent
 \begin{minipage}[t]{0.5\linewidth}
-\begin{itemize}
+\begin{itemize}[label={}]
 \setlength\itemsep{-0.5em}
 \item \texttt{\textbackslash `\{a\}} grave: \`{a}
 \item \texttt{\textbackslash '\{e\}} agudo: \'{e}
@@ -1890,7 +1968,7 @@ Os seguintes comandos devem ser utilizados nos parágrafos ou no modo esquerda-d
 \end{itemize}
 \end{minipage}\hspace{\fill}
 \begin{minipage}[t]{0.5\linewidth}
-\begin{itemize}
+\begin{itemize}[label={}]
 \setlength\itemsep{-0.5em}
 \item \texttt{\textbackslash =\{a\}} mácron (barra em cima): \={a}
 \item \texttt{\textbackslash b\{o\}} barra embaixo: \b{o}
@@ -1905,11 +1983,11 @@ Os seguintes comandos devem ser utilizados nos parágrafos ou no modo esquerda-d
 \subsection*{Modo matemático}
 \addcontentsline{toc}{subsection}{Modo matemático}
 
-Estes somente são aceitos no modo matemático:
+Estes, somente são aceitos no modo matemático:
 
 \noindent
 \begin{minipage}[t]{0.5\linewidth}
-\begin{itemize}
+\begin{itemize}[label={}]
 \setlength\itemsep{-0.5em}
 \item \texttt{\textbackslash grave\{a\}} grave: $\grave{a}$
 \item \texttt{\textbackslash acute\{e\}} agudo:
@@ -1923,7 +2001,7 @@ $\tilde{a}$
 \end{itemize}
 \end{minipage}\hspace{\fill}
 \begin{minipage}[t]{0.5\linewidth}
-\begin{itemize}
+\begin{itemize}[label={}]
 \setlength\itemsep{-0.5em}
 \item \texttt{\textbackslash bar\{a\}} mácron (barra em cima):
 $\bar{a}$
@@ -2074,7 +2152,7 @@ $\Biggr\}$ & \textbackslash Biggr\textbackslash \} \\
 \section*{Símbolos}
 \addcontentsline{toc}{section}{Símbolos}
 
-Existem dezenas de pacotes exclusivos ao fornecimento de símbolos e ícones. Alguns serão apresentados resumidamente aqui.
+Existem dezenas de pacotes exclusivos ao fornecimento de símbolos e ícones. Alguns serão aqui apresentados resumidamente.
 
 \subsection*{Nativos do \LaTeX\ \footnotesize{(mas alguns requerem pacote \texttt{latexsym})}}
 \addcontentsline{toc}{subsection}{Nativos do \LaTeX}
@@ -2848,9 +2926,9 @@ O \texttt{\textbackslash dingline\{n\}} cria uma nova linha com o símbolo escol
 
 O \LaTeX\ possui zilhões de comandos e quase sempre há mais de uma solução possível para formatar um conteúdo. Entretanto, o \LaTeX padrão não possui todos os comandos instalados, trazendo apenas o básico, sendo assim, existe a necessidade desta adição de pacotes. Os pacotes implementam novos comandos ao \LaTeX.
 
-Coloquei alguns pacotes neste arquivo e nem todos estão sendo usados nos comandos. Estão aqui somente para você saber que eles existem, pois são relativamente famosos. Porém, muitos exemplos de tipografia não estão aqui, o \LaTeX\ é capaz de muito mais!
+Coloquei alguns pacotes neste arquivo e nem todos estão sendo usados nos comandos. Estão aqui somente para você saber que eles existem, pois são relativamente famosos. Porém, muitos exemplos de tipografia e diagramação não estão aqui, o \LaTeX\ é capaz de muito mais!
 
-Quanto aos pacotes, é muito comum ter pacotes que são aprimoramentos ou reescrita de outros. Alguns pacotes pedem até uma certa ordem no carregamento. O manual de cada um deles esclarece estes detalhes. Consulte o manual de cada pacote para conhecer mais possibilidades de formatação.
+Quanto aos pacotes, é muito comum ter pacotes que são aprimoramentos ou reescrita de outros. Alguns pacotes pedem até uma certa ordem no carregamento. O manual de cada um deles esclarece estes detalhes. Consulte o manual de cada pacote, para conhecer mais possibilidades de edição em \LaTeX.
 
 \section*{Onde saber mais} \label{sec:outrossites}
 \addcontentsline{toc}{section}{Onde saber mais}
