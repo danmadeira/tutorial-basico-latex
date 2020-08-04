@@ -52,6 +52,8 @@
 \usepackage{tabularx} % https://www.ctan.org/pkg/tabularx
 \usepackage{arydshln} % https://www.ctan.org/pkg/arydshln
 \usepackage{imakeidx} % https://www.ctan.org/pkg/imakeidx
+\indexsetup{othercode=\ttfamily\small} % comando executado em cada item do índice.
+\makeindex[columns=3,title=Índice,intoc,options={-s index_style.ist}] % constrói o índice.
 \usepackage{nameref} % https://ctan.org/pkg/nameref
 \usepackage[hidelinks,unicode]{hyperref} % https://www.ctan.org/pkg/hyperref
     \hypersetup{
@@ -120,8 +122,6 @@
     \end{center}
     }
 
-\makeindex[columns=3, title=Índice, intoc] % constrói o índice.
-
 \title{Tutorial básico de \LaTeX} % define o título do documento.
 \author{\nomeautor} % define o autor do documento.
 \date{\mesano} % define a data do documento.
@@ -167,11 +167,11 @@ Este tutorial tem o propósito de mostrar o mínimo, o básico, para se consegui
 \section*{Arquivo}
 \addcontentsline{toc}{section}{Arquivo}
 
-O arquivo do código-fonte em \LaTeX\ deve conter apenas bytes que representem caracteres, sem nenhuma informação adicional. Trata-se do denominado arquivo de texto plano (txt). No sistema \LaTeX, este arquivo recebe a extensão .tex\index{tex@\texttt{\small{.tex}}}. A codificação recomendada para este arquivo é a codificação UTF-8 ou Latin1, dependendo do sistema operacional que está processando o \LaTeX.\index{latex@\texttt{\small{LaTeX}}}
+O arquivo do código-fonte em \LaTeX\ deve conter apenas bytes que representem caracteres, sem nenhuma informação adicional. Trata-se do denominado arquivo de texto plano (txt). No sistema \LaTeX, este arquivo recebe a extensão .tex\index{tex@.tex}. A codificação recomendada para este arquivo é a codificação UTF-8 ou Latin1, dependendo do sistema operacional que está processando o \LaTeX.\index{latex@LaTeX}
 
-Pode-se utilizar qualquer editor de texto puro para produzir o arquivo .tex, entretanto, é recomendável utilizar um editor \LaTeX\ para obter uma melhor produtividade. Basicamente, precisa estar instalado no seu computador: uma distribuição \TeX, por exemplo, TeX Live\index{tex live@\texttt{\small{Tex Live}}} ou MikTex\index{miktex@\texttt{\small{MikTex}}}; e um editor \LaTeX, por exemplo, TeXstudio\index{texstudio@\texttt{\small{TeXstudio}}}, Texmaker\index{texmaker@\texttt{\small{Texmaker}}} ou TeXworks\index{texworks@\texttt{\small{TeXworks}}}.
+Pode-se utilizar qualquer editor de texto puro para produzir o arquivo .tex, entretanto, é recomendável utilizar um editor \LaTeX\ para obter uma melhor produtividade. Basicamente, precisa estar instalado no seu computador: uma distribuição \TeX, por exemplo, TeX Live\index{tex live@Tex Live} ou MikTex\index{miktex@MikTex}; e um editor \LaTeX, por exemplo, TeXstudio\index{texstudio@TeXstudio}, Texmaker\index{texmaker@Texmaker} ou TeXworks\index{texworks@TeXworks}.
 
-Mas, atente-se, editar um documento em \LaTeX\ não será WYSIWYG (\textit{What You See Is What You Get})\index{wysiwyg@\texttt{\small{WYSIWYG}}}. Será, literalmente, editar o código-fonte do documento, inserindo os comandos de formatação do texto, entre seu conteúdo.
+Mas, atente-se, editar um documento em \LaTeX\ não será WYSIWYG (\textit{What You See Is What You Get})\index{wysiwyg@WYSIWYG}. Será, literalmente, editar o código-fonte do documento, inserindo os comandos de formatação do texto, entre seu conteúdo.
 
 \section*{Estrutura do código}
 \addcontentsline{toc}{section}{Estrutura do código}
@@ -190,12 +190,12 @@ A estrutura global do código-fonte\\ em \LaTeX\ é, basicamente:
 \end{verbatim}
 \end{multicols}
 
-A área entre \texttt{\textbackslash documentclass\{...\}} e \texttt{\textbackslash begin\{document\}} é denominada preâmbulo.\index{preambulo@\texttt{\small{preâmbulo}}} Neste preâmbulo, ficam os comando que afetam todo o documento. Como as chamadas do uso de pacotes, as definições de parâmetros de comandos, criação de novos comandos etc. A área entre \texttt{\textbackslash begin\{document\}} e \texttt{\textbackslash end\{document\}}\index{document@\texttt{\small{document}}}, após o preâmbulo, forma o bloco principal, o ambiente do documento, onde fica todo o conteúdo do documento.
+A área entre \texttt{\textbackslash documentclass\{...\}} e \texttt{\textbackslash begin\{document\}} é denominada preâmbulo.\index{preambulo@preâmbulo} Neste preâmbulo, ficam os comando que afetam todo o documento. Como as chamadas do uso de pacotes, as definições de parâmetros de comandos, criação de novos comandos etc. A área entre \texttt{\textbackslash begin\{document\}} e \texttt{\textbackslash end\{document\}}\index{document}, após o preâmbulo, forma o bloco principal, o ambiente do documento, onde fica todo o conteúdo do documento.
 
 \subsection*{Ambientes}
 \addcontentsline{toc}{subsection}{Ambientes}
 
-Na linguagem \LaTeX, um bloco é definido entre os caracteres \texttt{\{} e \texttt{\}} ou entre os comandos \texttt{\textbackslash begin\{\}}\index{begin@\texttt{\small\textbackslash begin}} e \texttt{\textbackslash end\{\}}\index{end@\texttt{\small\textbackslash end}}. Estes comandos formam um bloco de ambiente. Os demais comandos inseridos dentro de um bloco, ou de um ambiente, tem seu efeito restrito ao interior deste bloco, ou ambiente.
+Na linguagem \LaTeX, um bloco é definido entre os caracteres \texttt{\{} e \texttt{\}} ou entre os comandos \texttt{\textbackslash begin\{\}}\index{begin@\textbackslash begin} e \texttt{\textbackslash end\{\}}\index{end@\textbackslash end}. Estes comandos formam um bloco de ambiente. Os demais comandos inseridos dentro de um bloco, ou de um ambiente, tem seu efeito restrito ao interior deste bloco, ou ambiente.
 
 No ambiente geral do documento, o processamento dos comandos do sistema \LaTeX\ está em modo texto. Mas, como será visto no capítulo sobre matemática, existe o modo matemático, dentro de um ambiente matemático, onde o sistema \LaTeX\ perfaz um processamento específico.
 
@@ -206,17 +206,17 @@ Quase tudo pode ser digitado livremente no documento, que fará parte da impress
 
 Saiba a função de cada um deles:
 
-\index{\texttt{\small\textbackslash \#}}
-\index{\texttt{\small\textbackslash \$}}
-\index{\texttt{\small\textbackslash \%}}
-\index{textasciicircum@\texttt{\small\textbackslash \textasciicircum}}
-\index{\texttt{\small\textbackslash \&}}
-\index{\texttt{\small\textbackslash \_}}
-\index{\texttt{\small\textbackslash \{}}
-\index{\texttt{\small\textbackslash \}}}
-\index{\texttt{\small\textbackslash \~{}}}
-\index{textasciitilde@\texttt{\small\textbackslash textasciitilde}}
-\index{textbackslash@\texttt{\small\textbackslash textbackslash}}
+\index{\textbackslash \#}
+\index{\textbackslash \$}
+\index{\textbackslash \%}
+\index{textasciicircum@\textbackslash \textasciicircum}
+\index{\textbackslash \&}
+\index{\textbackslash \_}
+\index{\textbackslash \{}
+\index{\textbackslash \}}
+\index{\textbackslash \~{}}
+\index{textasciitilde@\textbackslash textasciitilde}
+\index{textbackslash@\textbackslash textbackslash}
 
 \begin{small}
 \begin{tabular}{lll}
@@ -238,7 +238,7 @@ Saiba a função de cada um deles:
 \addcontentsline{toc}{subsection}{Comentário}
 
 \begin{multicols}{2}
-É possível inserir comentários no código-fonte do arquivo \LaTeX. São informações que não serão processadas ou impressas. Os comentários de uma linha ficam após o caractere \texttt{\%}\index{\texttt{\small{\%}}}. Os comentários com mais de uma linha ficam em um bloco de ambiente \texttt{\{comment\}}\index{comment@\texttt{\small{comment}}}:
+É possível inserir comentários no código-fonte do arquivo \LaTeX. São informações que não serão processadas ou impressas. Os comentários de uma linha ficam após o caractere \texttt{\%}\index{\%}. Os comentários com mais de uma linha ficam em um bloco de ambiente \texttt{\{comment\}}\index{comment}:
 \columnbreak
 \begin{small}
 \begin{verbatim}
@@ -255,7 +255,7 @@ Saiba a função de cada um deles:
 \section*{Pacotes}
 \addcontentsline{toc}{section}{Pacotes}
 
-O \LaTeX\ inclui alguns comandos básicos, nativos, porém existem muitos outros comandos úteis que são implementados com o uso de pacotes, ativados pelo código-fonte do seu documento. Você poderá usar um pacote no seu documento em \LaTeX\ desde que tenha o respectivo pacote instalado em seu sistema \LaTeX. Assim, para usar e ativar um pacote, inclua o comando \texttt{\textbackslash usepackage\{nomedopacote\}}\index{usepackage@\texttt{\small\textbackslash usepackage}}. Além do mais, alguns pacotes podem receber parâmetros, por exemplo:
+O \LaTeX\ inclui alguns comandos básicos, nativos, porém existem muitos outros comandos úteis que são implementados com o uso de pacotes, ativados pelo código-fonte do seu documento. Você poderá usar um pacote no seu documento em \LaTeX\ desde que tenha o respectivo pacote instalado em seu sistema \LaTeX. Assim, para usar e ativar um pacote, inclua o comando \texttt{\textbackslash usepackage\{nomedopacote\}}\index{usepackage@\textbackslash usepackage}. Além do mais, alguns pacotes podem receber parâmetros, por exemplo:
 \begin{small}
 \begin{verbatim}
    \usepackage[ddmmyyyy]{datetime}
@@ -267,10 +267,10 @@ O \LaTeX\ inclui alguns comandos básicos, nativos, porém existem muitos outros
 
 O \LaTeX\ é uma linguagem movida por comandos (ou macros) no entorno do texto. Os comandos são discriminados pelo caractere \texttt{\textbackslash} e escritos em uma sintaxe como \texttt{\textbackslash comando}.
 
-Alguns comandos possuem duas versões, que são especificadas com a omissão ou o acréscimo do caractere \texttt{*}\index{\texttt{\small{*}}} (asterisco). Você verá\footnote{Sempre acompanhe, em paralelo, o arquivo .tex deste tutorial.}, no decorrer deste tutorial, estas duas versões. Nota: Muitos comandos nativos são originais do \TeX\ e, para simplificar, este tutorial generaliza com o nome \LaTeX.
+Alguns comandos possuem duas versões, que são especificadas com a omissão ou o acréscimo do caractere \texttt{*}\index{*} (asterisco). Você verá\footnote{Sempre acompanhe, em paralelo, o arquivo .tex deste tutorial.}, no decorrer deste tutorial, estas duas versões. Nota: Muitos comandos nativos são originais do \TeX\ e, para simplificar, este tutorial generaliza com o nome \LaTeX.
 
-O primeiro comando no código-fonte em \LaTeX\ é o comando \texttt{\textbackslash documentclass}\index{documentclass@\texttt{\small\textbackslash documentclass}}. Nele se define a classe do documento (ex. article\index{article@\texttt{\small{article}}}, report\index{report@\texttt{\small{report}}}, book\index{book@\texttt{\small{book}}}, letter\index{letter@\texttt{\small{letter}}}, beamer\index{beamer@\texttt{\small{beamer}}} ou memoir\index{memoir@\texttt{\small{memoir}}}) e os parâmetros para tamanho do papel e da fonte, lados de impressão etc.:
-\begin{small}\index{a4paper@\texttt{\small{a4paper}}}
+O primeiro comando no código-fonte em \LaTeX\ é o comando \texttt{\textbackslash documentclass}\index{documentclass@\textbackslash documentclass}. Nele se define a classe do documento (ex. article\index{article}, report\index{report}, book\index{book} letter\index{letter}, beamer\index{beamer} ou memoir\index{memoir}) e os parâmetros para tamanho do papel e da fonte, lados de impressão etc.:
+\begin{small}\index{a4paper}
 \begin{verbatim}
    \documentclass[a4paper,12pt,oneside]{book}
 \end{verbatim}
@@ -279,7 +279,7 @@ O primeiro comando no código-fonte em \LaTeX\ é o comando \texttt{\textbacksla
 \subsection*{Definição e redefinição}
 \addcontentsline{toc}{subsection}{Definição e redefinição}
 
-A linguagem \LaTeX\ permite criar novos comandos, através do comando \texttt{\textbackslash newcommand}\index{newcommand@\texttt{\small\textbackslash newcommand}}. O novo comando recebe um nome e uma definição. Isto possibilita, por exemplo, criar um comando que retorne um valor, um texto qualquer:
+A linguagem \LaTeX\ permite criar novos comandos, através do comando \texttt{\textbackslash newcommand}\index{newcommand@\textbackslash newcommand}. O novo comando recebe um nome e uma definição. Isto possibilita, por exemplo, criar um comando que retorne um valor, um texto qualquer:
 \begin{small}
 \begin{verbatim}
    \newcommand{\nome}{valor}
@@ -287,8 +287,8 @@ A linguagem \LaTeX\ permite criar novos comandos, através do comando \texttt{\t
 \end{verbatim}
 \end{small}
 
-Os comandos existentes são redefinidos com o comando \texttt{\textbackslash renewcommand}\index{renewcommand@\texttt{\small\textbackslash renewcommand}}, exemplo:
-\begin{small}\index{contentsname@\texttt{\small\textbackslash contentsname}}\index{thepage@\texttt{\small\textbackslash thepage}}
+Os comandos existentes são redefinidos com o comando \texttt{\textbackslash renewcommand}\index{renewcommand@\textbackslash renewcommand}, exemplo:
+\begin{small}\index{contentsname@\textbackslash contentsname}\index{thepage@\textbackslash thepage}
 \begin{verbatim}
    \renewcommand*\contentsname{Sumário} % refaz o termo para TOC.
    \renewcommand*{\thepage}{capa} % string capa no número da página
@@ -338,7 +338,7 @@ Duas observações:
 \subsection*{Definição e redefinição de ambiente}
 \addcontentsline{toc}{subsection}{Definição e redefinição de ambiente}
 
-Ambientes também podem ser criados ou redefinidos, com os comandos \texttt{\textbackslash newenvironment}\index{newenvironment@\texttt{\small\textbackslash newenvironment}} e \texttt{\textbackslash renewenvironment}\index{renewenvironment@\texttt{\small\textbackslash renewenvironment}}, da mesma forma dos novos comandos. A sintaxe é semelhante, veja um exemplo:
+Ambientes também podem ser criados ou redefinidos, com os comandos \texttt{\textbackslash newenvironment}\index{newenvironment@\textbackslash newenvironment} e \texttt{\textbackslash renewenvironment}\index{renewenvironment@\textbackslash renewenvironment}, da mesma forma dos novos comandos. A sintaxe é semelhante, veja um exemplo:
 \begin{multicols}{2}
 \begin{small}
 \begin{verbatim}
@@ -387,13 +387,13 @@ O nome do comando é sensível a letras maiúsculas e minúsculas e compõe some
 As unidades de medidas aceitas nos comandos do LaTeX são:
 
 \begin{tabular}{>{\ttfamily}ll}
-pt\index{pt@\texttt{\small{pt}}} & pontos (1/72 polegadas)\\
-mm\index{mm@\texttt{\small{mm}}} & milímetros\\
-cm\index{cm@\texttt{\small{cm}}} & centímetros\\
-in\index{in@\texttt{\small{in}}} & polegadas\\
-ex\index{ex@\texttt{\small{ex}}} & altura de um x minúsculo na fonte corrente\\
-em\index{em@\texttt{\small{em}}} & largura de um M maiúsculo na fonte corrente\\
-mu\index{mu@\texttt{\small{mu}}} & unidade matemática igual à 1/18em\\
+pt\index{pt} & pontos (1/72 polegadas)\\
+mm\index{mm} & milímetros\\
+cm\index{cm} & centímetros\\
+in\index{in} & polegadas\\
+ex\index{ex} & altura de um x minúsculo na fonte corrente\\
+em\index{em} & largura de um M maiúsculo na fonte corrente\\
+mu\index{mu} & unidade matemática igual à 1/18em\\
 \end{tabular}
 
 Obs: Muitos comandos aceitam valores negativos, por exemplo \texttt{\textbackslash hspace\{-1.5em\}}.
@@ -401,16 +401,16 @@ Obs: Muitos comandos aceitam valores negativos, por exemplo \texttt{\textbacksla
 \subsection*{Cores}
 \addcontentsline{toc}{subsection}{Cores}
 
-Com o uso do pacote \texttt{\{xcolor\}}\index{xcolor@\texttt{\small{xcolor}}} é possível definir cores para o texto, fundo do texto, fundo da página, linhas e colunas de tabelas, gráficos etc. Pode-se usar as cores pré-definidas ou definir novas cores usando valores em RGB, Hex ou CMYK. Inicialmente, com o uso do pacote \texttt{\{xcolor\}}, existem algumas cores pré-definidas, que são:
+Com o uso do pacote \texttt{\{xcolor\}}\index{xcolor} é possível definir cores para o texto, fundo do texto, fundo da página, linhas e colunas de tabelas, gráficos etc. Pode-se usar as cores pré-definidas ou definir novas cores usando valores em RGB, Hex ou CMYK. Inicialmente, com o uso do pacote \texttt{\{xcolor\}}, existem algumas cores pré-definidas, que são:
 
 \texttt{\small\justificatt\color{blue} black, blue, brown, cyan, darkgray, gray, green, lightgray, lime, magenta, olive, orange, pink, purple, red, teal, violet, white, yellow.}
 
-Se o pacote foi carregado com a opção \texttt{[dvipsnames]}\index{dvipsnames@\texttt{\small{dvipsnames}}}, então um total de 68 cores estarão pré-definidas:
+Se o pacote foi carregado com a opção \texttt{[dvipsnames]}\index{dvipsnames}, então um total de 68 cores estarão pré-definidas:
 
 \texttt{\small\justificatt\color{OliveGreen} Apricot, Aquamarine, Bittersweet, Black, Blue, BlueGreen, BlueViolet, BrickRed, Brown, BurntOrange, CadetBlue, CarnationPink, Cerulean, CornflowerBlue, Cyan, Dandelion, DarkOrchid, Emerald, ForestGreen, Fuchsia, Goldenrod, Gray, Green, GreenYellow, JungleGreen, Lavender,
 LimeGreen, Magenta, Mahogany, Maroon, Melon, MidnightBlue, Mulberry, NavyBlue, OliveGreen, Orange, OrangeRed, Orchid, Peach, Periwinkle, PineGreen, Plum, ProcessBlue, Purple, RawSienna, Red, RedOrange, RedViolet, Rhodamine, RoyalBlue, RoyalPurple, RubineRed, Salmon, SeaGreen, Sepia, SkyBlue, SpringGreen, Tan, TealBlue, Thistle, Turquoise, Violet, VioletRed, White, WildStrawberry, Yellow, YellowGreen, YellowOrange.}
 
-Para definir novas cores, insira os comandos no preâmbulo, seguindo estes exemplos:\index{definecolor@\texttt{\small\textbackslash definecolor}}
+Para definir novas cores, insira os comandos no preâmbulo, seguindo estes exemplos:\index{definecolor@\textbackslash definecolor}
 \begin{footnotesize}
 \begin{verbatim}
    \definecolor{cinza}{gray}{0.95}
@@ -421,7 +421,7 @@ Para definir novas cores, insira os comandos no preâmbulo, seguindo estes exemp
 \end{footnotesize}
 
 Ou ainda, crie uma mistura de cores, por exemplo:
-\index{colorlet@\texttt{\small\textbackslash colorlet}}
+\index{colorlet@\textbackslash colorlet}
 \begin{small}
 \begin{verbatim}
    \colorlet{azurelo}{blue!50!yellow}
@@ -444,7 +444,7 @@ Um exemplo de comando que usa uma cor:
 \section*{Margens}
 \addcontentsline{toc}{section}{Margens}
 
-O pacote \texttt{\{geometry\}}\index{geometry@\texttt{\small{geometry}}} proporciona um meio de configurar a disposição da página. Por exemplo, esta página está com a margem de 4,5cm e sem o espaço do cabeçalho (veja o código-fonte deste tutorial).
+O pacote \texttt{\{geometry\}}\index{geometry} proporciona um meio de configurar a disposição da página. Por exemplo, esta página está com a margem de 4,5cm e sem o espaço do cabeçalho (veja o código-fonte deste tutorial).
 \begin{small}
 \begin{verbatim}
    \newgeometry{margin=4.5cm,nohead}
@@ -452,8 +452,8 @@ O pacote \texttt{\{geometry\}}\index{geometry@\texttt{\small{geometry}}} proporc
 \end{small}
 
 Basicamente usa-se dois comandos, um para definir e outro para restaurar o que foi definido no preâmbulo:
-\index{newgeometry@\texttt{\small\textbackslash newgeometry}}
-\index{restoregeometry@\texttt{\small\textbackslash restoregeometry}}
+\index{newgeometry@\textbackslash newgeometry}
+\index{restoregeometry@\textbackslash restoregeometry}
 \begin{small}
 \begin{verbatim}
    \newgeometry{top=1.5cm,bottom=1.5cm,right=1cm,left=1cm}
@@ -478,12 +478,12 @@ Além dos comandos de geometria de página, há outros específicos para impor u
 \end{verbatim}
 \end{small}
 
-O comando \texttt{\textbackslash pagebreak}\index{pagebreak@\texttt{\small\textbackslash pagebreak}} faz com que os parágrafos se desloquem para preencher toda página, para não deixar espaço vazio no fim. Diferentemente, o comando \texttt{\textbackslash newpage}\index{newpage@\texttt{\small\textbackslash newpage}} não estica os espaços entre os parágrafos, deixando um grande espaço vazio no fim da página. O comando \texttt{\textbackslash clearpage}\index{clearpage@\texttt{\small\textbackslash clearpage}} é similar ao \texttt{\textbackslash newpage}, apenas agindo também nas figuras.
+O comando \texttt{\textbackslash pagebreak}\index{pagebreak@\textbackslash pagebreak} faz com que os parágrafos se desloquem para preencher toda página, para não deixar espaço vazio no fim. Diferentemente, o comando \texttt{\textbackslash newpage}\index{newpage@\textbackslash newpage} não estica os espaços entre os parágrafos, deixando um grande espaço vazio no fim da página. O comando \texttt{\textbackslash clearpage}\index{clearpage@\textbackslash clearpage} é similar ao \texttt{\textbackslash newpage}, apenas agindo também nas figuras.
 
 \subsection*{Mesma página}
 \addcontentsline{toc}{subsection}{Mesma página}
 
-Caso tenha um conteúdo que queira manter-se em uma mesma página, sem quebra pelo meio, use o ambiente \texttt{\{samepage\}}\index{samepage@\texttt{\small{samepage}}}.
+Caso tenha um conteúdo que queira manter-se em uma mesma página, sem quebra pelo meio, use o ambiente \texttt{\{samepage\}}\index{samepage}.
 \begin{small}
 \begin{verbatim}
    \begin{samepage}
@@ -496,8 +496,8 @@ Caso tenha um conteúdo que queira manter-se em uma mesma página, sem quebra pe
 \addcontentsline{toc}{section}{Espaço vazio}
 
 É possível adicionar espaços vazios entre os conteúdos na página. Basicamente, existe os comandos para espaço horizontal, que empurra o próximo conteúdo horizontalmente, e para espaço vertical, que empurra o próximo conteúdo verticalmente (valores negativos realizam o inverso, contraem o espaço). Os comandos são:
-\index{hspace@\texttt{\small\textbackslash hspace}}
-\index{vspace@\texttt{\small\textbackslash vspace}}
+\index{hspace@\textbackslash hspace}
+\index{vspace@\textbackslash vspace}
 \begin{small}
 \begin{verbatim}
    \hspace{medida}
@@ -515,7 +515,7 @@ Exemplos:
 
 Quando for lidar com letras e palavras, use a unidade de medida \texttt{em}, pois esta unidade é proporcional ao tamanho e família da fonte do texto.
 
-Uma interessante utilidade, caso queira posicionar os primeiros parágrafos no topo da página e os últimos parágrafos no fim da página, use um destes dois comandos equivalentes para esticar o espaço vazio entre eles:\index{vfill@\texttt{\small\textbackslash vfill}}
+Uma interessante utilidade, caso queira posicionar os primeiros parágrafos no topo da página e os últimos parágrafos no fim da página, use um destes dois comandos equivalentes para esticar o espaço vazio entre eles:\index{vfill@\textbackslash vfill}
 \begin{small}
 \begin{verbatim}
    \vspace{\fill}
@@ -532,8 +532,8 @@ Por exemplo, este parágrafo foi para baixo com \texttt{\textbackslash vspace\{3
 \addcontentsline{toc}{section}{Estilo}
 
 Para limpar o estilo aplicado, na página atual ou nas próximas páginas, use um destes comandos com o estilo desejado:
-\index{thispagestyle@\texttt{\small\textbackslash thispagestyle}}
-\index{pagestyle@\texttt{\small\textbackslash pagestyle}}
+\index{thispagestyle@\textbackslash thispagestyle}
+\index{pagestyle@\textbackslash pagestyle}
 \begin{small}
 \begin{verbatim}
    \thispagestyle{empty}
@@ -542,12 +542,12 @@ Para limpar o estilo aplicado, na página atual ou nas próximas páginas, use u
 \end{verbatim}
 \end{small}
 
-O estilo empty\index{empty@\texttt{\small{empty}}} limpa tanto o cabeçalho quanto o rodapé. No estilo plain\index{plain@\texttt{\small{plain}}}, que é o padrão, o cabeçalho fica vazio e o rodapé contém o número da página no centro.
+O estilo empty\index{empty} limpa tanto o cabeçalho quanto o rodapé. No estilo plain\index{@plain}, que é o padrão, o cabeçalho fica vazio e o rodapé contém o número da página no centro.
 
 \section*{Colorindo}
 \addcontentsline{toc}{section}{Colorindo}
 
-Uma ou mais páginas podem ser coloridas com o comando \texttt{\textbackslash pagecolor\{\}}\index{pagecolor@\texttt{\small\textbackslash pagecolor}}. Este comando terá efeito da página atual em diante. Por exemplo:
+Uma ou mais páginas podem ser coloridas com o comando \texttt{\textbackslash pagecolor\{\}}\index{pagecolor@\textbackslash pagecolor}. Este comando terá efeito da página atual em diante. Por exemplo:
 \begin{small}
 \begin{verbatim}
    \pagecolor{gray!10!yellow!10}
@@ -555,7 +555,7 @@ Uma ou mais páginas podem ser coloridas com o comando \texttt{\textbackslash pa
 \end{small}
 
 Para cancelar a definição da cor na página atual em diante, use o comando:
-\index{nopagecolor@\texttt{\small\textbackslash nopagecolor}}
+\index{nopagecolor@\textbackslash nopagecolor}
 \begin{small}
 \begin{verbatim}
    \nopagecolor
@@ -570,13 +570,13 @@ Para cancelar a definição da cor na página atual em diante, use o comando:
 
 O documento em \LaTeX\ pode ser seccionado em até 7 níveis, dependendo da classe declarada. As divisões de conteúdo no documento podem ser:
 
-\index{part@\texttt{\small\textbackslash part}}
-\index{chapter@\texttt{\small\textbackslash chapter}}
-\index{section@\texttt{\small\textbackslash section}}
-\index{subsection@\texttt{\small\textbackslash subsection}}
-\index{subsubsection@\texttt{\small\textbackslash subsubsection}}
-\index{paragraph@\texttt{\small\textbackslash paragraph}}
-\index{subparagraph@\texttt{\small\textbackslash subparagraph}}
+\index{part@\textbackslash part}
+\index{chapter@\textbackslash chapter}
+\index{section@\textbackslash section}
+\index{subsection@\textbackslash subsection}
+\index{subsubsection@\textbackslash subsubsection}
+\index{paragraph@\textbackslash paragraph}
+\index{subparagraph@\textbackslash subparagraph}
 
 \begin{tabular}{lrcl}
 	\textbf{Divisão} & \textbf{Nível} & & \textbf{Comando}\\
@@ -619,7 +619,7 @@ Os comandos destes níveis podem ser escritos na sintaxe sem o caractere \texttt
 \section*{Livro}
 \addcontentsline{toc}{section}{Livro}
 
-Em documentos da classe \texttt{book}\index{book@\texttt{\small{book}}}, opcionalmente pode-se seccionar o conteúdo em quatro partes: frontal, principal, apêndice e traseira.
+Em documentos da classe \texttt{book}\index{book}, opcionalmente pode-se seccionar o conteúdo em quatro partes: frontal, principal, apêndice e traseira.
 
 Tradicionalmente, a parte frontal contém a página do título, folha de rosto, resumo, sumário, prefácio, lista de figuras e lista de tabelas. A parte principal contém o conteúdo propriamente dito. Logo após existe o apêndice e a parte traseira contém o glossário, notas, bibliografia e índice.
 
@@ -633,7 +633,7 @@ São quatro comandos que definem estas partes:
 \end{verbatim}
 \end{small}
 
-A parte em \texttt{\textbackslash frontmatter}\index{frontmatter@\texttt{\small\textbackslash frontmatter}} terá a numeração romana nas páginas e não terá os capítulos numerados. A parte em \texttt{\textbackslash mainmatter}\index{mainmatter@\texttt{\small\textbackslash mainmatter}} terá o comportamento padrão do documento e a sequencia numérica das páginas é reiniciada. A parte \texttt{\textbackslash appendix}\index{appendix@\texttt{\small\textbackslash appendix}} reinicia a numeração de capítulos, usa letras na numeração de capítulos e continua seguindo a numeração das páginas principais. A parte \texttt{\textbackslash backmatter}\index{backmatter@\texttt{\small\textbackslash backmatter}} continua seguindo a numeração das páginas principais mas volta a desativar a numeração dos capítulos.
+A parte em \texttt{\textbackslash frontmatter}\index{frontmatter@\textbackslash frontmatter} terá a numeração romana nas páginas e não terá os capítulos numerados. A parte em \texttt{\textbackslash mainmatter}\index{mainmatter@\textbackslash mainmatter} terá o comportamento padrão do documento e a sequencia numérica das páginas é reiniciada. A parte \texttt{\textbackslash appendix}\index{appendix@\textbackslash appendix} reinicia a numeração de capítulos, usa letras na numeração de capítulos e continua seguindo a numeração das páginas principais. A parte \texttt{\textbackslash backmatter}\index{backmatter@\textbackslash backmatter} continua seguindo a numeração das páginas principais mas volta a desativar a numeração dos capítulos.
 
 \chapter*{Formatação de texto}
 \addcontentsline{toc}{chapter}{Formatação de texto}
@@ -648,17 +648,17 @@ Isto é um texto em um parágrafo. O alinhamento justificado é aplicado por pad
 
 Para iniciar um novo parágrafo basta pular uma linha no código-fonte do \LaTeX.
 
-Ou usar o comando \texttt{\textbackslash par}\index{par@\texttt{\small\textbackslash par}} no final da linha; \par Para quebrá-la em um novo parágrafo.
+Ou usar o comando \texttt{\textbackslash par}\index{par@\textbackslash par} no final da linha; \par Para quebrá-la em um novo parágrafo.
 
-Isto é um texto em uma linha, \newline o comando \texttt{\textbackslash newline}\index{newline@\texttt{\small\textbackslash newline}} ou \texttt{\textbackslash\textbackslash}\index{\texttt{\small{\textbackslash \textbackslash}}} (duas barras invertidas) faz uma quebra de linha, sem criar um novo parágrafo.
+Isto é um texto em uma linha, \newline o comando \texttt{\textbackslash newline}\index{newline@\textbackslash newline} ou \texttt{\textbackslash\textbackslash}\index{\textbackslash \textbackslash} (duas barras invertidas) faz uma quebra de linha, sem criar um novo parágrafo.
 
 \subsection*{Espaçamento entre parágrafos}
 \addcontentsline{toc}{subsection}{Espaçamento entre parágrafos}
 
 Os parágrafos, por padrão, não possuem um espaçamento entre eles distinto da separação simples entre as linhas. Use esta combinação de comandos para definir um espaçamento dos próximos parágrafos:
 
-\index{setlength@\texttt{\small\textbackslash setlength}}
-\index{parskip@\texttt{\small\textbackslash parskip}}
+\index{setlength@\textbackslash setlength}
+\index{parskip@\textbackslash parskip}
 \begin{small}
 \begin{verbatim}
    \setlength{\parskip}{1em}
@@ -676,11 +676,11 @@ De agora em diante, todos os parágrafos terão este espaçamento entre eles. Ob
 
 Por padrão, ocorre o espaçamento simples entre as linhas. Alguns comandos modificam isso, do pacote \texttt{\{setspace\}}:
 
-\index{onehalfspacing@\texttt{\small\textbackslash onehalfspacing}}
-\index{doublespacing@\texttt{\small\textbackslash doublespacing}}
-\index{singlespacing@\texttt{\small\textbackslash singlespacing}}
-\index{baselinestretch@\texttt{\small\textbackslash baselinestretch}}
-\index{normalsize@\texttt{\small\textbackslash normalsize}}
+\index{onehalfspacing@\textbackslash onehalfspacing}
+\index{doublespacing@\textbackslash doublespacing}
+\index{singlespacing@\textbackslash singlespacing}
+\index{baselinestretch@\textbackslash baselinestretch}
+\index{normalsize@\textbackslash normalsize}
 \begin{small}
 \begin{verbatim}
    \onehalfspacing
@@ -715,18 +715,18 @@ Seguem os quatro exemplos para espaçamento entre as linhas de 0,80, simples(1),
 
 Além do espaço comum, digitado pela tecla de espaço do teclado, entre as palavras, existem alguns comandos que alteram o espaço para mais ou menos, em uma largura fixa. Estes comandos também servem para forçar a colocação de espaço onde a formatação automática do \LaTeX\ suprime\footnote{Aqui mesmo ocorreu isso, veja no código-fonte.}.
 
-\index{\texttt{\small\textbackslash ,}}
-\index{\texttt{\small\textbackslash :}}
-\index{\texttt{\small\textbackslash ;}}
-\index{\texttt{\small{\textbackslash "!}}}
-\index{thinspace@\texttt{\small\textbackslash thinspace}}
-\index{medspace@\texttt{\small\textbackslash medspace}}
-\index{thickspace@\texttt{\small\textbackslash thickspace}}
-\index{negthinspace@\texttt{\small\textbackslash negthinspace}}
-\index{negmedspace@\texttt{\small\textbackslash negmedspace}}
-\index{negthickspace@\texttt{\small\textbackslash negthickspace}}
-\index{quad@\texttt{\small\textbackslash quad}}
-\index{qquad@\texttt{\small\textbackslash qquad}}
+\index{\textbackslash ,}
+\index{\textbackslash :}
+\index{\textbackslash ;}
+\index{\textbackslash "!}
+\index{thinspace@\textbackslash thinspace}
+\index{medspace@\textbackslash medspace}
+\index{thickspace@\textbackslash thickspace}
+\index{negthinspace@\textbackslash negthinspace}
+\index{negmedspace@\textbackslash negmedspace}
+\index{negthickspace@\textbackslash negthickspace}
+\index{quad@\textbackslash quad}
+\index{qquad@\textbackslash qquad}
 
 \begin{tabular}{lll}
 \multicolumn{2}{l}{\textbf{Comando curto e longo}} & \textbf{Tamanho}\\
@@ -742,25 +742,25 @@ Além do espaço comum, digitado pela tecla de espaço do teclado, entre as pala
  & \texttt{\textbackslash qquad} & dobro de \texttt{\textbackslash quad} (36 mu)\\
 \end{tabular}
 
-Obs.: O espaço comum é um espaço expansível, isto é, sua largura é flexível para esticar ou contrair, quando o parágrafo possui o alinhamento justificado. Os comandos acima produzem um espaço não expansível, com largura fixa. Como alternativa, o comando \texttt{\textbackslash space}\index{space@\texttt{\small\textbackslash space}} produz um espaço que é expansível.
+Obs.: O espaço comum é um espaço expansível, isto é, sua largura é flexível para esticar ou contrair, quando o parágrafo possui o alinhamento justificado. Os comandos acima produzem um espaço não expansível, com largura fixa. Como alternativa, o comando \texttt{\textbackslash space}\index{space@\textbackslash space} produz um espaço que é expansível.
 
 \subsection*{Indentação}
 \addcontentsline{toc}{subsection}{Indentação}
 
-Os parágrafos costumam indentar-se automaticamente. Mas, em uma instalação padrão do \LaTeX, o primeiro não se indenta, somente do segundo em diante. Neste documento, se não tivesse instalado o pacote \texttt{\{indentfirst\}}\index{indentfirst@\texttt{\small{indentfirst}}}, este primeiro parágrafo não estaria indentado.
+Os parágrafos costumam indentar-se automaticamente. Mas, em uma instalação padrão do \LaTeX, o primeiro não se indenta, somente do segundo em diante. Neste documento, se não tivesse instalado o pacote \texttt{\{indentfirst\}}\index{indentfirst}, este primeiro parágrafo não estaria indentado.
 
-Para definir um tamanho de indentação, usa-se: \texttt{\textbackslash setlength\{\textbackslash parindent\}\{3em\}}\index{setlength@\texttt{\small\textbackslash setlength}}\index{parindent@\texttt{\small\textbackslash parindent}}
+Para definir um tamanho de indentação, usa-se: \texttt{\textbackslash setlength\{\textbackslash parindent\}\{3em\}}\index{setlength@\textbackslash setlength}\index{parindent@\textbackslash parindent}
 
 \setlength{\parindent}{3em} % define a largura da indentação (1.5em é o padrão).
 Por exemplo, este parágrafo está com 3em de tamanho na indentação.
 
 \noindent
-Já este parágrafo não está indentado, pois antes dele há o comando \texttt{\textbackslash noindent}\index{noindent@\texttt{\small\textbackslash noindent}}
+Já este parágrafo não está indentado, pois antes dele há o comando \texttt{\textbackslash noindent}\index{noindent@\textbackslash noindent}
 
 \setlength{\parindent}{1.5em}
 Voltando à indentação normal, com: \texttt{\textbackslash setlength\{\textbackslash parindent\}\{1.5em\}}
 
-\indent O comando \texttt{\textbackslash indent}\index{indent@\texttt{\small\textbackslash indent}} força uma indentação, caso não ocorra, mas só se \texttt{\textbackslash parindent} estiver diferente de zero.
+\indent O comando \texttt{\textbackslash indent}\index{indent@\textbackslash indent} força uma indentação, caso não ocorra, mas só se \texttt{\textbackslash parindent} estiver diferente de zero.
 
 Obs.: O comando \texttt{\textbackslash hspace\{1.5em\}} colocado no início de um parágrafo simula o mesmo efeito da indentação, já o valor negativo, \texttt{\textbackslash hspace\{-1.5em\}}, anula a indentação existente.
 
@@ -770,9 +770,9 @@ Obs.: O comando \texttt{\textbackslash hspace\{1.5em\}} colocado no início de u
 
 Além do alinhamento justificado, que é o padrão, outros alinhamentos podem ser aplicados com os comandos \texttt{\textbackslash begin ... \textbackslash end}. Como já visto, estes comandos criam um ambiente de formatação de bloco de texto.
 
-\index{center@\texttt{\small{center}}}
-\index{flushleft@\texttt{\small{flushleft}}}
-\index{flushright@\texttt{\small{flushright}}}
+\index{center}
+\index{flushleft}
+\index{flushright}
 
 \begin{center}
 	Conteúdo centralizado na página,\\ definido com \texttt{\textbackslash begin\{center\} ...  \textbackslash end\{center\}}. 
@@ -792,20 +792,20 @@ Além do alinhamento justificado, que é o padrão, outros alinhamentos podem se
 \subsection*{Tamanho}
 \addcontentsline{toc}{subsection}{Tamanho}
 
-Existem alguns tamanhos para os caracteres da fonte (e incrementado pelo pacote \texttt{\{moresize\}})\index{moresize@\texttt{\small{moresize}}}, a partir do normal definido entre 10pt, 11pt ou 12pt, os quais são ativados por comandos com sintaxe inline ou para bloco de ambiente:
+Existem alguns tamanhos para os caracteres da fonte (e incrementado pelo pacote \texttt{\{moresize\}})\index{moresize}, a partir do normal definido entre 10pt, 11pt ou 12pt, os quais são ativados por comandos com sintaxe inline ou para bloco de ambiente:
 
-\index{tiny@\texttt{\small\textbackslash tiny}}
-\index{ssmall@\texttt{\small\textbackslash ssmall}}
-\index{scriptsize@\texttt{\small\textbackslash scriptsize}}
-\index{footnotesize@\texttt{\small\textbackslash footnotesize}}
-\index{small@\texttt{\small\textbackslash small}}
-\index{normalsize@\texttt{\small\textbackslash normalsize}}
-\index{large@\texttt{\small\textbackslash large}}
-\index{Large@\texttt{\small\textbackslash Large}}
-\index{LARGE@\texttt{\small\textbackslash LARGE}}
-\index{huge@\texttt{\small\textbackslash huge}}
-\index{Huge@\texttt{\small\textbackslash Huge}}
-\index{HUGE@\texttt{\small\textbackslash HUGE}}
+\index{tiny@\textbackslash tiny}
+\index{ssmall@\textbackslash ssmall}
+\index{scriptsize@\textbackslash scriptsize}
+\index{footnotesize@\textbackslash footnotesize}
+\index{small@\textbackslash small}
+\index{normalsize@\textbackslash normalsize}
+\index{large@\textbackslash large}
+\index{Large@\textbackslash Large}
+\index{LARGE@\textbackslash LARGE}
+\index{huge@\textbackslash huge}
+\index{Huge@\textbackslash Huge}
+\index{HUGE@\textbackslash HUGE}
 
 \begin{tabular}{l>{\ttfamily}r}
 	\tiny{Texto miúdo} & \textbackslash tiny\{\}\\
@@ -839,23 +839,23 @@ Outra maneira, de definir o tamanho do texto, é em um ambiente com bloco de par
 
 Os diversos estilos para os caracteres são:
 
-\index{textbf@\texttt{\small\textbackslash textbf}}
-\index{textmd@\texttt{\small\textbackslash textmd}}
-\index{textit@\texttt{\small\textbackslash textit}}
-\index{textsl@\texttt{\small\textbackslash textsl}}
-\index{underline@\texttt{\small\textbackslash underline}}
-\index{textsuperscript@\texttt{\small\textbackslash textsuperscript}}
-\index{textsubscript@\texttt{\small\textbackslash textsubscript}}
-\index{text@\texttt{\small\textbackslash text}}
-\index{textnormal@\texttt{\small\textbackslash textnormal}}
-\index{textup@\texttt{\small\textbackslash textup}}
-\index{textsc@\texttt{\small\textbackslash textsc}}
-\index{bfseries@\texttt{\small\textbackslash bfseries}}
-\index{mdseries@\texttt{\small\textbackslash mdseries}}
-\index{itshape@\texttt{\small\textbackslash itshape}}
-\index{normalfont@\texttt{\small\textbackslash normalfont}}
-\index{upshape@\texttt{\small\textbackslash upshape}}
-\index{scshape@\texttt{\small\textbackslash scshape}}
+\index{textbf@\textbackslash textbf}
+\index{textmd@\textbackslash textmd}
+\index{textit@\textbackslash textit}
+\index{textsl@\textbackslash textsl}
+\index{underline@\textbackslash underline}
+\index{textsuperscript@\textbackslash textsuperscript}
+\index{textsubscript@\textbackslash textsubscript}
+\index{text@\textbackslash text}
+\index{textnormal@\textbackslash textnormal}
+\index{textup@\textbackslash textup}
+\index{textsc@\textbackslash textsc}
+\index{bfseries@\textbackslash bfseries}
+\index{mdseries@\textbackslash mdseries}
+\index{itshape@\textbackslash itshape}
+\index{normalfont@\textbackslash normalfont}
+\index{upshape@\textbackslash upshape}
+\index{scshape@\textbackslash scshape}
 
 \begin{tabular}{l>{\ttfamily}r>{\ttfamily}l}
     \textbf{Texto em negrito} & \textbackslash textbf\{\} & \textbackslash bfseries\\
@@ -877,12 +877,12 @@ Os diversos estilos para os caracteres são:
 
 As famílias de caracteres na fonte em uso basicamente são:
 
-\index{textrm@\texttt{\small\textbackslash textrm}}
-\index{texttt@\texttt{\small\textbackslash texttt}}
-\index{textsf@\texttt{\small\textbackslash textsf}}
-\index{rmfamily@\texttt{\small\textbackslash rmfamily}}
-\index{ttfamily@\texttt{\small\textbackslash ttfamily}}
-\index{sffamily@\texttt{\small\textbackslash sffamily}}
+\index{textrm@\textbackslash textrm}
+\index{texttt@\textbackslash texttt}
+\index{textsf@\textbackslash textsf}
+\index{rmfamily@\textbackslash rmfamily}
+\index{ttfamily@\textbackslash ttfamily}
+\index{sffamily@\textbackslash sffamily}
 
 \begin{tabular}{l>{\ttfamily}r>{\ttfamily}l}
 	\textrm{Texto romano (serifado).} & \textbackslash textrm\{\} & \textbackslash rmfamily\\
@@ -895,7 +895,7 @@ Porém, nem todas as fontes suportam esta variação de família. Por exemplo, a
 \subsection*{Colorindo}
 \addcontentsline{toc}{subsection}{Colorindo}
 
-Para colorir um texto, usa-se o comando \texttt{\textbackslash textcolor\{\textit{cor}\}\{...\}}\index{textcolor@\texttt{\small\textbackslash textcolor}} ou \texttt{\{\textbackslash color\{\textit{cor}\} ...\}}\index{color@\texttt{\small\textbackslash color}}. Ou, pode-se definir uma cor diretamente no comando. Exemplos:
+Para colorir um texto, usa-se o comando \texttt{\textbackslash textcolor\{\textit{cor}\}\{...\}}\index{textcolor@\textbackslash textcolor} ou \texttt{\{\textbackslash color\{\textit{cor}\} ...\}}\index{color@\textbackslash color}. Ou, pode-se definir uma cor diretamente no comando. Exemplos:
 
 \texttt{\small\textbackslash textcolor\{brown!70!black\}\{\textcolor{brown!70!black}{seu texto}\}}
 
@@ -905,7 +905,7 @@ Para colorir um texto, usa-se o comando \texttt{\textbackslash textcolor\{\texti
 
 \texttt{\{\small\textbackslash color[RGB]\{190,85,0\} {\color[RGB]{190,85,0} seu texto}\}}
 
-Para o fundo do texto, usa-se o comando \texttt{\textbackslash colorbox\{\textit{cor}\}\{...\}}\index{colorbox@\texttt{\small\textbackslash colorbox}}:
+Para o fundo do texto, usa-se o comando \texttt{\textbackslash colorbox\{\textit{cor}\}\{...\}}\index{colorbox@\textbackslash colorbox}:
 
 \texttt{\small\textbackslash colorbox\{Sepia!10\}\{\colorbox{Sepia!10}{seu texto}\}}
 
@@ -915,9 +915,9 @@ Para o fundo do texto, usa-se o comando \texttt{\textbackslash colorbox\{\textit
 \subsection*{Tabela}
 \addcontentsline{toc}{subsection}{Tabela}
 
-Uma tabela pode ser construída com o ambiente \texttt{\{tabular\}}\index{tabular@\texttt{\small{tabular}}} ou com o ambiente \texttt{\{tabbing\}}\index{tabbing@\texttt{\small{tabbing}}}. O ambiente \texttt{\{tabular\}} requer um argumento que indica quantas colunas terá e qual o alinhamento de cada coluna. Já no ambiente \texttt{\{tabbing\}}, as colunas assim como suas larguras são definidas diretamente pelos separadores.
+Uma tabela pode ser construída com o ambiente \texttt{\{tabular\}}\index{tabular} ou com o ambiente \texttt{\{tabbing\}}\index{tabbing}. O ambiente \texttt{\{tabular\}} requer um argumento que indica quantas colunas terá e qual o alinhamento de cada coluna. Já no ambiente \texttt{\{tabbing\}}, as colunas assim como suas larguras são definidas diretamente pelos separadores.
 
-No ambiente \texttt{\{tabular\}}, para indicar a quantidade de colunas e o respectivo alinhamento, use a quantidade de letras \texttt{l} (alinhamento à esquerda), \texttt{c} (alinhamento ao centro) e \texttt{r} (alinhamento à direita). No conteúdo, as colunas são delimitadas pelo caractere \texttt{\&}. Já no ambiente \texttt{\{tabbing\}}, os separadores das colunas serão os comandos \texttt{\textbackslash =}\index{\texttt{\small\textbackslash =}} ou \texttt{\textbackslash >}\index{\texttt{\small\textbackslash >}} etc. (veja lista). Em ambos os ambientes, ao final de cada linha, use uma quebra.
+No ambiente \texttt{\{tabular\}}, para indicar a quantidade de colunas e o respectivo alinhamento, use a quantidade de letras \texttt{l} (alinhamento à esquerda), \texttt{c} (alinhamento ao centro) e \texttt{r} (alinhamento à direita). No conteúdo, as colunas são delimitadas pelo caractere \texttt{\&}. Já no ambiente \texttt{\{tabbing\}}, os separadores das colunas serão os comandos \texttt{\textbackslash =}\index{\textbackslash =} ou \texttt{\textbackslash >}\index{\textbackslash >} etc. (veja lista). Em ambos os ambientes, ao final de cada linha, use uma quebra.
 
 Estrutura básica de construção de tabela:
 
@@ -950,7 +950,7 @@ Estrutura básica de construção de tabela:
 \end{minipage}
 
 Além do \texttt{\{l c r\}} no argumento, ainda há \texttt{p\{largura\}}, \texttt{m\{largura\}} e \texttt{b\{largura\}}, para indicar um parágrafo na coluna com alinhamento vertical no topo, meio e embaixo respectivamente. Estes argumentos definem a largura fixa da coluna.
-\index{kill@\texttt{\small\textbackslash kill}}
+\index{kill@\textbackslash kill}
 
 \noindent
 \begin{minipage}[t]{0.1\linewidth}
@@ -979,10 +979,10 @@ Separadores do\\ \texttt{\{tabbing\}}:
 \end{small}
 \end{minipage}
 
-Veja alguns exemplos de construção de tabelas com o ambiente \texttt{\{tabular\}} (veja também pelo código-fonte deste tutorial). É possível traçar linhas verticais e horizontais, perfazendo um contorno. As linhas verticais são definidas com o caractere \texttt{|}\index{\texttt{\small{"|}}} entre as letras das colunas. As linhas horizontais são feitas pelo comando \texttt{\textbackslash hline} ou \texttt{\textbackslash cline\{\}}.
+Veja alguns exemplos de construção de tabelas com o ambiente \texttt{\{tabular\}} (veja também pelo código-fonte deste tutorial). É possível traçar linhas verticais e horizontais, perfazendo um contorno. As linhas verticais são definidas com o caractere \texttt{|}\index{\textbar} entre as letras das colunas. As linhas horizontais são feitas pelo comando \texttt{\textbackslash hline} ou \texttt{\textbackslash cline\{\}}.
 
 Uso do comando \texttt{\textbackslash cline\{i-f\}}:
-\index{cline@\texttt{\small\textbackslash cline}}
+\index{cline@\textbackslash cline}
 
 \begin{center}
 	\scalebox{0.90} {
@@ -1001,7 +1001,7 @@ Uso do comando \texttt{\textbackslash cline\{i-f\}}:
 
 \newpage
 Apenas com o uso do caractere \texttt{|}:
-\index{\texttt{\small{"|}}}
+\index{\textbar}
 
 \begin{center}
 	\begin{tabular}{|l|c|c|c|}
@@ -1016,13 +1016,13 @@ Apenas com o uso do caractere \texttt{|}:
 \end{center}
 
 Outro recurso é esticar uma célula por mais de uma coluna, com o comando \texttt{\textbackslash multicolumn\,\{ncolunas\}\,\{alinhamento\}\,\{\textit{conteúdo}\}}:
-\index{multicolumn@\texttt{\small\textbackslash multicolumn}}
+\index{multicolumn@\textbackslash multicolumn}
 
 \begin{samepage}
 	\begin{center}
 		\begin{tabular}{|ccc|ccc|}
 			\hline
-			\multicolumn{3}{|c|}{\cellcolor{blue!20}\textbf{Combinações dos bonés}} & \multicolumn{3}{|c|}{\cellcolor{green!20}\textbf{Saberia a cor}} \\
+			\multicolumn{3}{|c|}{\cellcolor{blue!20}\textbf{Combinações dos bonés}} & \multicolumn{3}{c|}{\cellcolor{green!20}\textbf{Saberia a cor}} \\
 			\cellcolor{blue!20}\textbf{Frente}   & \cellcolor{blue!20}\textbf{Meio}     & \cellcolor{blue!20}\textbf{Último}     & \cellcolor{green!20}\textbf{Frente} & \cellcolor{green!20}\textbf{Meio}   & \cellcolor{green!20}\textbf{Último} \\
 			\hline
 			Azul     & Azul     & Azul       & Sim    & Não    & Não \\
@@ -1038,7 +1038,7 @@ Outro recurso é esticar uma célula por mais de uma coluna, com o comando \text
 \end{samepage}
 
 Ou esticar uma célula por mais de uma linha, com o comando \texttt{\textbackslash multirow\,\{nlinhas\} \{largura\}\,\{\textit{conteúdo}\}}:
-\index{multirow@\texttt{\small\textbackslash multirow}}
+\index{multirow@\textbackslash multirow}
 
 \begin{center}
 \begin{tabular}{|l|r|l|}
@@ -1063,7 +1063,7 @@ Ou esticar uma célula por mais de uma linha, com o comando \texttt{\textbacksla
 \end{center}
 
 \newpage
-Também é possível colorir as tabelas, colorindo linhas com o comando \texttt{\textbackslash rowcolor\{\}}, colorindo colunas com o comando \texttt{\textbackslash columncolor\{\}}\index{columncolor@\texttt{\small\textbackslash columncolor}} e colorindo células com o comando \texttt{\textbackslash cellcolor\{\}}:\index{cellcolor@\texttt{\small\textbackslash cellcolor}}
+Também é possível colorir as tabelas, colorindo linhas com o comando \texttt{\textbackslash rowcolor\{\}}, colorindo colunas com o comando \texttt{\textbackslash columncolor\{\}}\index{columncolor@\textbackslash columncolor} e colorindo células com o comando \texttt{\textbackslash cellcolor\{\}}:\index{cellcolor@\textbackslash cellcolor}
 
 %\noindent
 \begin{minipage}[t]{0.4\linewidth}
@@ -1124,13 +1124,13 @@ Também é possível colorir as tabelas, colorindo linhas com o comando \texttt{
 \end{tabular}
 \end{minipage}
 
-Uma especificação por toda coluna pode ser aplicada no argumento do ambiente \texttt{\{tabular\}}, usando \texttt{>\{\textbackslash comando\}}\index{\texttt{\small{<\{\}}}} para comandos executados antes de cada elemento da coluna e \texttt{<\{\textbackslash comando\}}\index{\texttt{\small{>\{\}}}} para comandos que serão executados após cada elemento da coluna, como foi usado acima com o comando \texttt{\textbackslash columncolor\{\}}.
+Uma especificação por toda coluna pode ser aplicada no argumento do ambiente \texttt{\{tabular\}}, usando \texttt{>\{\textbackslash comando\}}\index{<\{\}} para comandos executados antes de cada elemento da coluna e \texttt{<\{\textbackslash comando\}}\index{>\{\}} para comandos que serão executados após cada elemento da coluna, como foi usado acima com o comando \texttt{\textbackslash columncolor\{\}}.
 
 \subsection*{Lista}
 \addcontentsline{toc}{subsection}{Lista}
 
-As listas são construídas com o ambiente \texttt{\{itemize\}}\index{itemize@\texttt{\small{itemize}}}, para listas não-ordenadas, ou com o ambiente \texttt{\{enumerate\}}\index{enumerate@\texttt{\small{enumerate}}}, para listas ordenadas:
-\index{item@\texttt{\small\textbackslash item}}
+As listas são construídas com o ambiente \texttt{\{itemize\}}\index{itemize}, para listas não-ordenadas, ou com o ambiente \texttt{\{enumerate\}}\index{enumerate}, para listas ordenadas:
+\index{item@\textbackslash item}
 \begin{multicols}{2}
 \begin{verbatim}
 \begin{itemize}
@@ -1165,7 +1165,7 @@ As listas são construídas com o ambiente \texttt{\{itemize\}}\index{itemize@\t
 
 \newpage
 O comando do ambiente \texttt{\{itemize\}} aceita especificar um caractere para indicar os itens da lista e com o ambiente \texttt{\{enumerate\}} também podemos definir um outro caractere de ordenação:
-\index{label@\texttt{\small{label}}}
+\index{label}
 \begin{multicols}{2}
 \begin{small}
 \begin{verbatim}
@@ -1257,7 +1257,7 @@ Outro recurso é a lista dentro de um parágrafo, na mesma linha, por exemplo:
 \end{inparaenum}
 
 Que foi produzida usando este comando:
-\index{inparaenum@\texttt{\small{inparaenum}}}
+\index{inparaenum}
 
 \begin{verbatim}
    \begin{inparaenum}[a)]
@@ -1268,14 +1268,14 @@ Que foi produzida usando este comando:
 \end{verbatim}
 
 Um item pode ter também um rótulo individual, com seu comando e o argumento para o rótulo: \texttt{\textbackslash item[rótulo]}.
-\index{item@\texttt{\small\textbackslash item}}
+\index{item@\textbackslash item}
 
 \newpage
 \subsection*{Verso}
 \addcontentsline{toc}{subsection}{Verso}
 
-A formatação do texto para compor a estrutura de um verso é com o bloco de ambiente \texttt{\{verse\}}\index{verse@\texttt{\small{verse}}}. Usa-se também a quebra de linha tradicional (\texttt{\textbackslash\textbackslash}) para uma simples mudança de linha, contudo, existem alguns comandos para lidar com mais eficiência em relação as quebras, por exemplo \texttt{\textbackslash\textbackslash>[\textbackslash versewidth]}.
-\index{versewidth@\texttt{\small\textbackslash versewidth}}
+A formatação do texto para compor a estrutura de um verso é com o bloco de ambiente \texttt{\{verse\}}\index{verse}. Usa-se também a quebra de linha tradicional (\texttt{\textbackslash\textbackslash}) para uma simples mudança de linha, contudo, existem alguns comandos para lidar com mais eficiência em relação as quebras, por exemplo \texttt{\textbackslash\textbackslash>[\textbackslash versewidth]}.
+\index{versewidth@\textbackslash versewidth}
 
 \begin{verse}
 	\onehalfspacing
@@ -1295,17 +1295,17 @@ A formatação do texto para compor a estrutura de um verso é com o bloco de am
 \subsection*{Nota de rodapé}
 \addcontentsline{toc}{subsection}{Nota de rodapé}
 
-Para inserir uma nota de rodapé\footnote{Uma anotação colocada ao pé de uma página.\label{notarodape}}, use o comando \texttt{\textbackslash footnote\{\textit{nota}\}}\index{footnote@\texttt{\small\textbackslash footnote}} logo após a palavra que será comentada.
+Para inserir uma nota de rodapé\footnote{Uma anotação colocada ao pé de uma página.\label{notarodape}}, use o comando \texttt{\textbackslash footnote\{\textit{nota}\}}\index{footnote@\textbackslash footnote} logo após a palavra que será comentada.
 
 \subsection*{Colunas}
 \addcontentsline{toc}{subsection}{Colunas}
 
 Existem diversas soluções para formatar o texto em colunas. Pode-se usar os comandos de ambiente:
 
-\index{multicols@\texttt{\small\textbackslash multicols}}
-\index{vwcol@\texttt{\small\textbackslash vwcol}}
-\index{minipage@\texttt{\small\textbackslash minipage}}
-\index{tabular@\texttt{\small\textbackslash tabular}}
+\index{multicols@\textbackslash multicols}
+\index{vwcol@\textbackslash vwcol}
+\index{minipage@\textbackslash minipage}
+\index{tabular@\textbackslash tabular}
 
 \texttt{\small\textbackslash begin\{multicols\} ... \textbackslash end\{multicols\}}\\
 \indent\texttt{\small\textbackslash begin\{vwcol\} ... \textbackslash end\{vwcol\}}\\
@@ -1314,9 +1314,9 @@ Existem diversas soluções para formatar o texto em colunas. Pode-se usar os co
 
 Os ambientes \texttt{\{multicols\}} e \texttt{\{vwcol\}} permitem uma certa fluidez do texto entre as colunas, uma mudança automática dos parágrafos entre as colunas. Sobre o ambiente \texttt{\{multicols\}}, o padrão é acontecer um equilíbrio na quantidade de texto em cada lado. Este balanço automático pode ser desligado usando o ambiente  \texttt{\{multicols*\}}.
 
-Veja alguns exemplos. Nos ambientes de texto fluido foi usado o comando \texttt{\textbackslash columnbreak}\index{columnbreak@\texttt{\small\textbackslash columnbreak}} ou o comando \texttt{\textbackslash newpage}\index{newpage@\texttt{\small\textbackslash newpage}} para forçar a quebra de coluna:
+Veja alguns exemplos. Nos ambientes de texto fluido foi usado o comando \texttt{\textbackslash columnbreak}\index{columnbreak@\textbackslash columnbreak} ou o comando \texttt{\textbackslash newpage}\index{newpage@\textbackslash newpage} para forçar a quebra de coluna:
 
-\begin{small}\index{multicols@\texttt{\small\textbackslash multicols}}
+\begin{small}\index{multicols@\textbackslash multicols}
 \begin{verbatim}
    \begin{multicols}{2}
       \lipsum[66]\par
@@ -1332,7 +1332,7 @@ Veja alguns exemplos. Nos ambientes de texto fluido foi usado o comando \texttt{
     \lipsum[75]
 \end{multicols}
 
-\begin{small}\index{minipage@\texttt{\small\textbackslash minipage}}
+\begin{small}\index{minipage@\textbackslash minipage}
 \begin{verbatim}
    \begin{minipage}[t]{0.55\linewidth}
       \setlength{\parindent}{1.5em}
@@ -1356,7 +1356,7 @@ Veja alguns exemplos. Nos ambientes de texto fluido foi usado o comando \texttt{
 \end{minipage}
 
 \newpage
-\begin{small}\index{tabular@\texttt{\small\textbackslash tabular}}\index{parbox@\texttt{\small\textbackslash parbox}}
+\begin{small}\index{tabular@\textbackslash tabular}\index{parbox@\textbackslash parbox}
 \begin{verbatim}
    \begin{tabular}{p{0.6\linewidth}p{0.4\linewidth}}
       \parbox{0.6\textwidth}{
@@ -1385,7 +1385,7 @@ Veja alguns exemplos. Nos ambientes de texto fluido foi usado o comando \texttt{
 	}
 \end{tabular}
 
-\begin{small}\index{vwcol@\texttt{\small\textbackslash vwcol}}
+\begin{small}\index{vwcol@\textbackslash vwcol}
 \begin{verbatim}
    \begin{vwcol}[widths={0.6,0.4},sep=1.5em,justify=flush,rule=0pt,indent=1.5em]
       \indent\lipsum[66]
@@ -1417,15 +1417,15 @@ Veja alguns exemplos. Nos ambientes de texto fluido foi usado o comando \texttt{
 
 O sumário é a enumeração das principais divisões, capítulos, seções etc., seguindo a mesma ordem em que aparecem numa obra ou documento, geralmente com a indicação do número da página em que estas divisões se encontram. É também chamado de tabela de conteúdo e fica na parte frontal do livro.
 
-No \LaTeX, a página do sumário é simplesmente criada automaticamente pelo comando \texttt{\textbackslash tableofcontents}\index{tableofcontents@\texttt{\small\textbackslash tableofcontents}}, colocado no início do ambiente \texttt{\{document\}}, logo após a página do título e da folha de rosto, se houver, e dentro parte marcada com \texttt{\textbackslash frontmatter}, se também houver este comando.
+No \LaTeX, a página do sumário é simplesmente criada automaticamente pelo comando \texttt{\textbackslash tableofcontents}\index{tableofcontents@\textbackslash tableofcontents}, colocado no início do ambiente \texttt{\{document\}}, logo após a página do título e da folha de rosto, se houver, e dentro parte marcada com \texttt{\textbackslash frontmatter}, se também houver este comando.
 
-Caso não esteja usando um pacote de localização, é possível alterar o nome do sumário redefinindo o comando \texttt{\textbackslash contentsname}\index{contentsname@\texttt{\small\textbackslash contentsname}}, assim:
+Caso não esteja usando um pacote de localização, é possível alterar o nome do sumário redefinindo o comando \texttt{\textbackslash contentsname}\index{contentsname@\textbackslash contentsname}, assim:
 
 \texttt{\small\textbackslash renewcommand*\textbackslash contentsname\{Sumário\}}
 
 Todo capítulo, seção e subseção, assim como os novos que vierem à ser adicionados no documento, serão incluídos automaticamente no sumário. Simples assim.
 
-Caso não queira adicionar os capítulos, seções e subseções automaticamente, adicione o caractere \texttt{*} nos respectivos comandos. E para incluir manualmente estes capítulos, seções e subseções no sumário, use, após os comandos deles, o comando \texttt{\textbackslash addcontentsline}\index{addcontentsline@\texttt{\small\textbackslash addcontentsline}}. Exemplos para algumas divisões:
+Caso não queira adicionar os capítulos, seções e subseções automaticamente, adicione o caractere \texttt{*} nos respectivos comandos. E para incluir manualmente estes capítulos, seções e subseções no sumário, use, após os comandos deles, o comando \texttt{\textbackslash addcontentsline}\index{addcontentsline@\textbackslash addcontentsline}. Exemplos para algumas divisões:
 \begin{small}
 \begin{verbatim}
     \chapter*{Nome do Capítulo}
@@ -1444,24 +1444,24 @@ Caso não queira adicionar os capítulos, seções e subseções automaticamente
 
 O índice, também chamado de índice analítico ou índice remissivo, é uma lista dos nomes ou termos mais importantes, em ordem alfabética, no fim de uma obra, com indicação da respectiva página em cada item.
 
-No \LaTeX, o índice pode ser criado com os comandos do pacote \texttt{\{imakeidx\}}\index{imakeidx@\texttt{\small{imakeidx}}}, então, coloque no preâmbulo o comando: \texttt{\small\textbackslash usepackage\{imakeidx\}}
+No \LaTeX, o índice pode ser criado com os comandos do pacote \texttt{\{imakeidx\}}\index{imakeidx}, então, coloque no preâmbulo o comando: \texttt{\small\textbackslash usepackage\{imakeidx\}}
 
-Ainda no preâmbulo, coloque o comando abaixo para disparar a criação do índice. Estes parâmetros são autoexplicativos:\index{makeindex@\texttt{\small\textbackslash makeindex}}
+Ainda no preâmbulo, coloque o comando abaixo para disparar a criação do índice. Estes parâmetros são autoexplicativos:\index{makeindex@\textbackslash makeindex}
 
 \texttt{\small\textbackslash makeindex[columns=3, title=Índice, intoc]}
 
-Para cada termo no documento, que desejar incluir no índice, use próximo ao termo o comando \texttt{\textbackslash index\{termo\}}\index{index@\texttt{\small\textbackslash index}}. É possível incluir um apelido alternativo, específico para o critério de ordenação, usando a sintaxe \texttt{\{apelido@termo\}}.
+Para cada termo no documento, que desejar incluir no índice, use próximo ao termo o comando \texttt{\textbackslash index\{termo\}}\index{index@\textbackslash index}. É possível incluir um apelido alternativo, específico para o critério de ordenação, usando a sintaxe \texttt{\{apelido@termo\}}.
 
-Por fim, para criar a página do índice, coloque na parte traseira do documento o comando \texttt{\small\textbackslash printindex}\index{printindex@\texttt{\small\textbackslash printindex}}.
+Por fim, para criar a página do índice, coloque na parte traseira do documento o comando \texttt{\small\textbackslash printindex}\index{printindex@\textbackslash printindex}.
 
 \section*{Referências}
 \addcontentsline{toc}{section}{Referências}
 
 No \LaTeX, quase tudo que está numerado pode ser referenciado e o \LaTeX\ automaticamente atualiza as referências, se houver alguma mudança posterior. Os objetos que podem ser referenciados são os capítulos, seções, subseções, equações, teoremas, notas de rodapé, figuras e tabelas. Os comandos, para tudo isso, são:
 
-\index{label@\texttt{\small\textbackslash label}}
-\index{ref@\texttt{\small\textbackslash ref}}
-\index{pageref@\texttt{\small\textbackslash pageref}}
+\index{label@\textbackslash label}
+\index{ref@\textbackslash ref}
+\index{pageref@\textbackslash pageref}
 
 \begin{tabular}{lp{10cm}}
 	\texttt{\small\textbackslash label\{marcador\}}
@@ -1489,18 +1489,18 @@ E aqui tem uma referência à nota de rodapé \ref{notarodape} do capítulo sobr
 
 Semelhante à uma página em HTML, o \LaTeX\ também permite \textit{hyperlinks} dentro do documento. Podem ser ligações internas, para elementos do mesmo documento, como também ligações para arquivos externos ou endereços da Internet.
 
-O uso do pacote \texttt{\{hyperref\}}\index{hyperref@\texttt{\small{hyperref}}} transforma automaticamente todas as referências internas em ligações. Mas é possível adicionar trechos de textos que serão ligações para as marcações existentes, independente das referências.
+O uso do pacote \texttt{\{hyperref\}}\index{hyperref} transforma automaticamente todas as referências internas em ligações. Mas é possível adicionar trechos de textos que serão ligações para as marcações existentes, independente das referências.
 
-Aproveitando o rótulo da marcação (\texttt{\textbackslash label\{marcador\}})\index{label@\texttt{\small\textbackslash label}}, para criar uma ligação interna, usa-se o comando \texttt{\textbackslash hyperref[marcador]\{texto\}}.\index{hyperref@\texttt{\small\textbackslash hyperref}}
+Aproveitando o rótulo da marcação (\texttt{\textbackslash label\{marcador\}})\index{label@\textbackslash label}, para criar uma ligação interna, usa-se o comando \texttt{\textbackslash hyperref[marcador]\{texto\}}.\index{hyperref@\textbackslash hyperref}
 
 Por exemplo, esta é uma ligação para a \hyperref[notarodape]{nota de rodapé} do capítulo sobre formatação de texto (veja esta parte no código-fonte).
 
-O pacote \texttt{\{hyperref\}} possui uma extensa possibilidade de configuração. Veja o código-fonte deste tutorial para ver o comando \texttt{\textbackslash hypersetup\{\}}\index{hypersetup@\texttt{\small\textbackslash hypersetup}}, logo no preâmbulo. Este pacote também formata muitas coisas para o PDF exportado.
+O pacote \texttt{\{hyperref\}} possui uma extensa possibilidade de configuração. Veja o código-fonte deste tutorial para ver o comando \texttt{\textbackslash hypersetup\{\}}\index{hypersetup@\textbackslash hypersetup}, logo no preâmbulo. Este pacote também formata muitas coisas para o PDF exportado.
 
 \section*{Ligações web}
 \addcontentsline{toc}{section}{Ligações web}
 
-As ligações para páginas Web são criadas com os comandos \texttt{\textbackslash href\{\}}\index{href@\texttt{\small\textbackslash href}} ou \texttt{\textbackslash url\{\}}\index{url@\texttt{\small\textbackslash url}}. a diferença entre eles é que \texttt{\textbackslash href} permite uma legenda para o endereço, enquanto o \texttt{\textbackslash url} imprime diretamente o endereço. Segue os exemplos:
+As ligações para páginas Web são criadas com os comandos \texttt{\textbackslash href\{\}}\index{href@\textbackslash href} ou \texttt{\textbackslash url\{\}}\index{url@\textbackslash url}. a diferença entre eles é que \texttt{\textbackslash href} permite uma legenda para o endereço, enquanto o \texttt{\textbackslash url} imprime diretamente o endereço. Segue os exemplos:
 
 \texttt{\small\textbackslash href\{https://www.ctan.org\}\{Comprehensive TeX Archive Network\}}
 
@@ -1516,7 +1516,7 @@ Resulta em o próprio endereço \url{https://www.ctan.org} impresso e com a liga
 \section*{Comandos nativos}
 \addcontentsline{toc}{section}{Comandos nativos}
 
-Com os comandos nativos, provenientes desde o \TeX, pode-se obter os registros do ano, mês, dia e hora atual, usando \texttt{\textbackslash year}\index{year@\texttt{\small\textbackslash year}}, \texttt{\textbackslash month}\index{month@\texttt{\small\textbackslash month}}, \texttt{\textbackslash day}\index{day@\texttt{\small\textbackslash day}} e \texttt{\textbackslash time}\index{time@\texttt{\small\textbackslash time}} (este retorna os minutos desde a zero hora). Estes registros contém os valores coletados no momento do processamento do código-fonte .tex. Contudo, estes valores não são acessíveis com o uso direto destes comandos, sendo necessário utilizar em conjunto com outro comando nativo, que pode ser \texttt{\textbackslash the}\index{the@\texttt{\small\textbackslash the}} ou \texttt{\textbackslash number}.\index{number@\texttt{\small\textbackslash number}} 
+Com os comandos nativos, provenientes desde o \TeX, pode-se obter os registros do ano, mês, dia e hora atual, usando \texttt{\textbackslash year}\index{year@\textbackslash year}, \texttt{\textbackslash month}\index{month@\textbackslash month}, \texttt{\textbackslash day}\index{day@\textbackslash day} e \texttt{\textbackslash time}\index{time@\textbackslash time} (este retorna os minutos desde a zero hora). Estes registros contém os valores coletados no momento do processamento do código-fonte .tex. Contudo, estes valores não são acessíveis com o uso direto destes comandos, sendo necessário utilizar em conjunto com outro comando nativo, que pode ser \texttt{\textbackslash the}\index{the@\textbackslash the} ou \texttt{\textbackslash number}.\index{number@\textbackslash number} 
 
 Apenas esclarecendo, o comando \texttt{\textbackslash the} faz a conversão do valor do registro em uma string. Já o comando \texttt{\textbackslash number}, semelhante ao \texttt{\textbackslash the}, converte o valor do registro em um número. Para números inteiros, ambos podem ser usados.
 
@@ -1535,7 +1535,7 @@ Por exemplo, os comandos \texttt{\textbackslash number\textbackslash day/\textba
 \section*{Pacote datetime2}
 \addcontentsline{toc}{section}{Pacote datetime2}
 
-Na intenção de uma impressão da data e hora em um formato mais sofisticado, é necessário o uso de um pacote específico. O pacote \texttt{\{datetime2\}}\index{datetime2@\texttt{\small{datetime2}}} é capaz de formatar a data por extenso, exibir o dia da semana e o mês pelo nome ao invés de números, formatar de acordo com a localização e idioma etc. Para usar este pacote, na língua portuguesa, inclua no preâmbulo:
+Na intenção de uma impressão da data e hora em um formato mais sofisticado, é necessário o uso de um pacote específico. O pacote \texttt{\{datetime2\}}\index{datetime2} é capaz de formatar a data por extenso, exibir o dia da semana e o mês pelo nome ao invés de números, formatar de acordo com a localização e idioma etc. Para usar este pacote, na língua portuguesa, inclua no preâmbulo:
 \begin{small}
 \begin{verbatim}
    \usepackage[portuges]{datetime2}
@@ -1556,8 +1556,8 @@ Mas, atenção com os pacotes de internacionalização e localização, como o p
 
 Uma data específica pode ser exibida com os comandos:
 
-\index{DTMdisplaydate@\texttt{\small\textbackslash DTMdisplaydate}}
-\index{DTMdate@\texttt{\small\textbackslash DTMdate}}
+\index{DTMdisplaydate@\textbackslash DTMdisplaydate}
+\index{DTMdate@\textbackslash DTMdate}
 
 \texttt{\small\textbackslash DTMdisplaydate\{AAAA\}\{MM\}\{DD\}\{DiaSemana\}} ou \texttt{\small\textbackslash DTMdate\{AAAA-MM-DD\}}
 
@@ -1566,16 +1566,16 @@ Obs.: O dia da semana precisa ser de -1(desativa), 0 (domingo) a 6 (sábado).
 Desta forma, o comando \texttt{\textbackslash DTMdisplaydate\{1988\}\{10\}\{05\}\{-1\}} produz: \DTMdisplaydate{1988}{10}{05}{-1}. E o comando \texttt{\textbackslash DTMdate\{1988-10-05\}} produz: \DTMdate{1988-10-05}
 
 Para imprimir a data atual, use o seguinte comando:
-\index{DTMtoday@\texttt{\small\textbackslash DTMtoday}}
+\index{DTMtoday@\textbackslash DTMtoday}
 
 \texttt{\small\textbackslash DTMtoday}
 
 Que produz algo como: \DTMtoday
 
-Obs.: Existe o comando \texttt{\textbackslash today}\index{today@\texttt{\small\textbackslash today}}, suportado pelo pacote \texttt{\{datetime2\}}, porém é usado também por outros pacotes e então, para evitar imprevistos, prefira usar o \texttt{\textbackslash DTMtoday}, que é exclusivo.
+Obs.: Existe o comando \texttt{\textbackslash today}\index{today@\textbackslash today}, suportado pelo pacote \texttt{\{datetime2\}}, porém é usado também por outros pacotes e então, para evitar imprevistos, prefira usar o \texttt{\textbackslash DTMtoday}, que é exclusivo.
 
 Para imprimir o nome de um mês, na língua portuguesa, use o comando:
-\index{DTMportugesmonthname@\texttt{\small\textbackslash DTMportugesmonthname}}
+\index{DTMportugesmonthname@\textbackslash DTMportugesmonthname}
 
 \texttt{\small\textbackslash DTMportugesmonthname\{n\}}
 
@@ -1583,8 +1583,8 @@ Assim, o comando \texttt{\textbackslash DTMportugesmonthname\{\textbackslash the
 
 Para imprimir o nome de um dia da semana, na língua portuguesa, com letra minúscula ou maiúscula, use um dos comandos:
 
-\index{DTMportugesweekdayname@\texttt{\small\textbackslash DTMportugesweekdayname}}
-\index{DTMportugesWeekdayname@\texttt{\small\textbackslash DTMportugesWeekdayname}}
+\index{DTMportugesweekdayname@\textbackslash DTMportugesweekdayname}
+\index{DTMportugesWeekdayname@\textbackslash DTMportugesWeekdayname}
 
 \texttt{\small\textbackslash DTMportugesweekdayname\{n\}} ou \texttt{\small\textbackslash DTMportugesWeekdayname\{n\}}
 
@@ -1595,8 +1595,8 @@ Por exemplo, cada um deles com o número 2 no argumento, produz: \DTMportugeswee
 
 Uma hora específica pode ser exibida com os comandos:
 
-\index{DTMdisplaytime@\texttt{\small\textbackslash DTMdisplaytime}}
-\index{DTMtime@\texttt{\small\textbackslash DTMtime}}
+\index{DTMdisplaytime@\textbackslash DTMdisplaytime}
+\index{DTMtime@\textbackslash DTMtime}
 
 \texttt{\small\textbackslash DTMdisplaytime\{HH\}\{MM\}\{SS\}} ou \texttt{\small\textbackslash DTMtime\{HH:MM:SS\}}
 
@@ -1604,7 +1604,7 @@ Desta forma, o comando \texttt{\textbackslash DTMdisplaytime\{23\}\{18\}\{34\}} 
 
 Para imprimir a hora atual, use o seguinte comando:
 
-\index{DTMcurrenttime@\texttt{\small\textbackslash DTMcurrenttime}}
+\index{DTMcurrenttime@\textbackslash DTMcurrenttime}
 
 \texttt{\small\textbackslash DTMcurrenttime}
 
@@ -1617,7 +1617,7 @@ Que produz: \DTMcurrenttime
 
 Uma data e hora específica pode ser exibida com o comando:
 
-\index{DTMdisplay@\texttt{\small\textbackslash DTMdisplay}}
+\index{DTMdisplay@\textbackslash DTMdisplay}
 
 \texttt{\small\textbackslash DTMdisplay\{AAAA\}\{MM\}\{DD\}\{DiaSemana\}\{HH\}\{MM\}\{SS\}\{HoraFuso\}\{MinutoFuso\}}
 
@@ -1627,7 +1627,7 @@ produz: \DTMdisplay{2019}{09}{25}{-1}{18}{55}{37}{-03}{0}
 
 A data e a hora atual pode ser exibida com o comando:
 
-\index{DTMnow@\texttt{\small\textbackslash DTMnow}}
+\index{DTMnow@\textbackslash DTMnow}
 
 \texttt{\small\textbackslash DTMnow}
 
@@ -1636,18 +1636,18 @@ O qual produz: \DTMnow
 \subsection*{Armazenando a data e hora}
 \addcontentsline{toc}{subsection}{Armazenando a data e hora}
 
-Ainda, existem comandos para armazenar uma data ou uma hora, com um nome escolhido e assim tornar possível o uso posterior no documento. Por exemplo, o comando \texttt{\textbackslash DTMsavedate\{minhadata\}\{2016-02-10\}}\index{DTMsavedate@\texttt{\small\textbackslash DTMsavedate}} armazena a data especificada em \texttt{minhadata} e o comando \texttt{\textbackslash DTMusedate\{minhadata\}}\index{DTMusedate@\texttt{\small\textbackslash DTMusedate}} imprime a data armazenada em \texttt{minhadata}.
+Ainda, existem comandos para armazenar uma data ou uma hora, com um nome escolhido e assim tornar possível o uso posterior no documento. Por exemplo, o comando \texttt{\textbackslash DTMsavedate\{minhadata\}\{2016-02-10\}}\index{DTMsavedate@\textbackslash DTMsavedate} armazena a data especificada em \texttt{minhadata} e o comando \texttt{\textbackslash DTMusedate\{minhadata\}}\index{DTMusedate@\textbackslash DTMusedate} imprime a data armazenada em \texttt{minhadata}.
 
-A mesma coisa para a hora. Por exemplo, o comando \texttt{\textbackslash DTMsavetime\{minhahora\} \{10:00:00\}}\index{DTMsavetime@\texttt{\small\textbackslash DTMsavetime}} armazena a hora especificada em \texttt{minhahora} e o comando \texttt{\textbackslash DTMusetime \{minhahora\}}\index{DTMusetime@\texttt{\small\textbackslash DTMusetime}} imprime a hora armazenada em \texttt{minhahora}.
+A mesma coisa para a hora. Por exemplo, o comando \texttt{\textbackslash DTMsavetime\{minhahora\} \{10:00:00\}}\index{DTMsavetime@\textbackslash DTMsavetime} armazena a hora especificada em \texttt{minhahora} e o comando \texttt{\textbackslash DTMusetime \{minhahora\}}\index{DTMusetime@\textbackslash DTMusetime} imprime a hora armazenada em \texttt{minhahora}.
 
-Para extrair os valores isoladamente, de uma data ou hora armazenada, existem os comandos: \texttt{\textbackslash DTMfetchyear\{nome\}}\index{DTMfetchyear@\texttt{\small\textbackslash DTMfetchyear}}, \texttt{\textbackslash DTMfetchmonth\{nome\}}\index{DTMfetchmonth@\texttt{\small\textbackslash DTMfetchmonth}}, \texttt{\textbackslash DTMfetchday\{nome\}}\index{DTMfetchday@\texttt{\small\textbackslash DTMfetchday}}, \texttt{\textbackslash DTMfetchhour\{nome\}}\index{DTMfetchhour@\texttt{\small\textbackslash DTMfetchhour}}, \texttt{\textbackslash DTMfetchminute\{nome\}}\index{DTMfetchminute@\texttt{\small\textbackslash DTMfetchminute}} e \texttt{\textbackslash DTMfetchsecond\{nome\}}\index{DTMfetchsecond@\texttt{\small\textbackslash DTMfetchsecond}}.
+Para extrair os valores isoladamente, de uma data ou hora armazenada, existem os comandos: \texttt{\textbackslash DTMfetchyear\{nome\}}\index{DTMfetchyear@\textbackslash DTMfetchyear}, \texttt{\textbackslash DTMfetchmonth\{nome\}}\index{DTMfetchmonth@\textbackslash DTMfetchmonth}, \texttt{\textbackslash DTMfetchday\{nome\}}\index{DTMfetchday@\textbackslash DTMfetchday}, \texttt{\textbackslash DTMfetchhour\{nome\}}\index{DTMfetchhour@\textbackslash DTMfetchhour}, \texttt{\textbackslash DTMfetchminute\{nome\}}\index{DTMfetchminute@\textbackslash DTMfetchminute} e \texttt{\textbackslash DTMfetchsecond\{nome\}}\index{DTMfetchsecond@\textbackslash DTMfetchsecond}.
 
 \subsection*{Estilos}
 \addcontentsline{toc}{subsection}{Estilos}
 
 Se preferir mudar o formato da data para valores numéricos, ao invés do formato por extenso, use o seguinte comando para especificar o formato preferido:
 
-\index{DTMsetdatestyle@\texttt{\small\textbackslash DTMsetdatestyle}}
+\index{DTMsetdatestyle@\textbackslash DTMsetdatestyle}
 
 \texttt{\small\textbackslash DTMsetdatestyle\{nome\}}
 
@@ -1659,8 +1659,8 @@ Por exemplo, com o estilo \texttt{ddmmyyyy}, o comando \texttt{\textbackslash DT
 
 Se ainda, quiser uma data numérica mais regional, no português brasileiro, use os comandos abaixo:
 
-\index{DTMsetup@\texttt{\small\textbackslash DTMsetup}}
-\index{DTMtryregional@\texttt{\small\textbackslash DTMtryregional}}
+\index{DTMsetup@\textbackslash DTMsetup}
+\index{DTMtryregional@\textbackslash DTMtryregional}
 \begin{small}
 \begin{verbatim}
     \DTMsetup{useregional=numeric}
@@ -1675,9 +1675,9 @@ Assim, o comando \texttt{\textbackslash DTMtoday} irá imprimir: \DTMtoday
 
 \DTMsettimestyle{hmmss}
 
-O formato da hora possui um estilo disponível, com o comando \texttt{\textbackslash DTMsettimestyle \{hmmss\}}\index{DTMsettimestyle@\texttt{\small\textbackslash DTMsettimestyle}} a hora impressa será no formato: \DTMtime{5:7:20}
+O formato da hora possui um estilo disponível, com o comando \texttt{\textbackslash DTMsettimestyle \{hmmss\}}\index{DTMsettimestyle@\textbackslash DTMsettimestyle} a hora impressa será no formato: \DTMtime{5:7:20}
 
-%\DTMsetstyle{〈name〉}
+%\DTMsetstyle{nome}
 
 \chapter*{Matemática}
 \addcontentsline{toc}{chapter}{Matemática}
@@ -1687,18 +1687,18 @@ O \TeX, de onde provém o \LaTeX, foi originalmente desenvolvido para facilitar 
 \section*{Em linha}
 \addcontentsline{toc}{section}{Em linha}
 
-Para imprimir uma expressão matemática no parágrafo, na mesma linha, pode-se usar os delimitadores de ambiente \texttt{\$} e \texttt{\$}\index{\texttt{\small\$}}, \texttt{\textbackslash (}\index{\texttt{\small\textbackslash (}} e \texttt{\textbackslash )}\index{\texttt{\small\textbackslash )}} ou \texttt{\textbackslash begin\{math\}} e \texttt{\textbackslash end\{math\}}\index{math@\texttt{\small{math}}}. Por exemplo, \( ax^2 + bx + c = 0 \)  pode ser impresso digitando \texttt{\textbackslash ( ax\textasciicircum2 + bx + c = 0 \textbackslash )}
+Para imprimir uma expressão matemática no parágrafo, na mesma linha, pode-se usar os delimitadores de ambiente \texttt{\$} e \texttt{\$}\index{\$}, \texttt{\textbackslash (}\index{\textbackslash (} e \texttt{\textbackslash )}\index{\textbackslash )} ou \texttt{\textbackslash begin\{math\}} e \texttt{\textbackslash end\{math\}}\index{math}. Por exemplo, \( ax^2 + bx + c = 0 \)  pode ser impresso digitando \texttt{\textbackslash ( ax\textasciicircum2 + bx + c = 0 \textbackslash )}
 
 \section*{No modo de exibição}
 \addcontentsline{toc}{section}{No modo de exibição}
 
 \[x_{1,2}=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\]
 
-Para imprimir uma expressão em uma nova linha, chamado modo de exibição, usa-se os delimitadores \texttt{\textbackslash [}\index{\texttt{\small\textbackslash [}} e \texttt{\textbackslash ]}\index{\texttt{\small\textbackslash ]}} ou \texttt{\textbackslash begin\{displaymath\}} e \texttt{\textbackslash end\{displaymath\}}\index{displaymath@\texttt{\small{displaymath}}}. Por exemplo, \texttt{\textbackslash [ \textbackslash frac\{9\}\{12\} + \textbackslash frac\{5\}\{34\} + \textbackslash frac\{7\}\{68\} = 1 \textbackslash ]} produz:
+Para imprimir uma expressão em uma nova linha, chamado modo de exibição, usa-se os delimitadores \texttt{\textbackslash [}\index{\textbackslash [} e \texttt{\textbackslash ]}\index{\textbackslash ]} ou \texttt{\textbackslash begin\{displaymath\}} e \texttt{\textbackslash end\{displaymath\}}\index{displaymath}. Por exemplo, \texttt{\textbackslash [ \textbackslash frac\{9\}\{12\} + \textbackslash frac\{5\}\{34\} + \textbackslash frac\{7\}\{68\} = 1 \textbackslash ]} produz:
 
 \[\frac{9}{12} + \frac{5}{34} + \frac{7}{68} = 1\]
 
-Uma outra forma de imprimir uma expressão matemática no modo de exibição, inclusive alinhá-la, numerá-la e indexá-la no documento, é com os ambientes \texttt{\{equation\}}\index{equation@\texttt{\small{equation}}} ou \texttt{\{align\}}\index{align@\texttt{\small{align}}}. Exemplos:
+Uma outra forma de imprimir uma expressão matemática no modo de exibição, inclusive alinhá-la, numerá-la e indexá-la no documento, é com os ambientes \texttt{\{equation\}}\index{equation} ou \texttt{\{align\}}\index{align}. Exemplos:
 \begin{small}
 \begin{verbatim}
    \begin{align}
@@ -1718,7 +1718,7 @@ x &= 270/90\\
 x &= 3
 \end{align}
 
-\begin{small}\index{aligned@\texttt{\small{aligned}}}
+\begin{small}\index{aligned}
 \begin{verbatim}
    \begin{equation*}
       \begin{aligned}[c]
@@ -1762,7 +1762,7 @@ x &= 60
 \end{aligned}
 \end{equation*}
 
-Obs.: O caractere \texttt{\&}\index{\texttt{\small\&}} marca a posição de alinhamento. Nestas sequencias de equações, foi adotada a posição no sinal de igual. O asterisco no comando cancela a numeração da equação no documento.
+Obs.: O caractere \texttt{\&}\index{\&} marca a posição de alinhamento. Nestas sequencias de equações, foi adotada a posição no sinal de igual. O asterisco no comando cancela a numeração da equação no documento.
 
 \newpage
 \section*{Notações}
@@ -1770,14 +1770,14 @@ Obs.: O caractere \texttt{\&}\index{\texttt{\small\&}} marca a posição de alin
 
 Veja alguns exemplos de notação de elementos matemáticos e a sintaxe dos comandos para cada um deles:
 
-\index{\texttt{\small\textbackslash \_}}
-\index{textasciicircum@\texttt{\small\textbackslash textasciicircum}}
-\index{sqrt@\texttt{\small\textbackslash sqrt}}
-\index{frac@\texttt{\small\textbackslash frac}}
-\index{sum@\texttt{\small\textbackslash sum}}
-\index{limits@\texttt{\small\textbackslash limits}}
-\index{infty@\texttt{\small\textbackslash infty}}
-\index{int@\texttt{\small\textbackslash int}}
+\index{\textbackslash \_}
+\index{textasciicircum@\textbackslash textasciicircum}
+\index{sqrt@\textbackslash sqrt}
+\index{frac@\textbackslash frac}
+\index{sum@\textbackslash sum}
+\index{limits@\textbackslash limits}
+\index{infty@\textbackslash infty}
+\index{int@\textbackslash int}
 \begin{center}
 \rowcolors{1}{green!5}{pink!10}
 \renewcommand{\arraystretch}{2} % define o espaço entre as linhas
@@ -1840,12 +1840,12 @@ Alguns exemplos de expressões enormes:
 \section*{Imagens externas}
 \addcontentsline{toc}{section}{Imagens externas}
 
-Com o uso do pacote \texttt{\{graphicx\}}\index{graphicx@\texttt{\small{graphicx}}} é fácil inserir imagens no documento em \LaTeX. Além de inserir, é possível posicionar, redimensionar e rotacionar.
+Com o uso do pacote \texttt{\{graphicx\}}\index{graphicx} é fácil inserir imagens no documento em \LaTeX. Além de inserir, é possível posicionar, redimensionar e rotacionar.
 
 \subsection*{Caminho}
 \addcontentsline{toc}{subsection}{Caminho}
 
-Antes, pode ser útil definir previamente o caminho das imagens que irão compor o documento. O comando \texttt{\textbackslash graphicspath\{\}} pode ser declarado no preâmbulo.\index{graphicspath@\texttt{\small\textbackslash graphicspath}}
+Antes, pode ser útil definir previamente o caminho das imagens que irão compor o documento. O comando \texttt{\textbackslash graphicspath\{\}} pode ser declarado no preâmbulo.\index{graphicspath@\textbackslash graphicspath}
 
 A melhor maneira é especificar o caminho relativo às imagens. Pode ser relativo ao arquivo .tex que carrega a imagem ou pode ser relativo ao arquivo .tex principal, quando há mais de um arquivo .tex no projeto.
 
@@ -1870,7 +1870,7 @@ Pode ainda combinar múltiplos caminhos no mesmo comando, se as imagens estão e
 \subsection*{Carregamento}
 \addcontentsline{toc}{subsection}{Carregamento}
 
-O carregamento da imagem é pelo comando \texttt{\textbackslash includegraphics[]\{\}}\index{includegraphics@\texttt{\small\textbackslash includegraphics}}. Se a imagem estiver no caminho, basta informar o nome do arquivo, por exemplo:
+O carregamento da imagem é pelo comando \texttt{\textbackslash includegraphics[]\{\}}\index{includegraphics@\textbackslash includegraphics}. Se a imagem estiver no caminho, basta informar o nome do arquivo, por exemplo:
 
 \texttt{\small\textbackslash includegraphics[scale=0.2]\{plataforma.jpg\}}
 
@@ -1896,7 +1896,7 @@ Por recomendação, a extensão do arquivo pode ser omitida, assim o \LaTeX\ ir�
 \subsection*{Posicionamento}
 \addcontentsline{toc}{subsection}{Posicionamento}
 
-O carregamento da imagem torna-se mais preciso se estiver no ambiente \texttt{\{figure\}}\index{figure@\texttt{\small{figure}}}. Com este ambiente podemos especificar o parâmetro do posicionamento:
+O carregamento da imagem torna-se mais preciso se estiver no ambiente \texttt{\{figure\}}\index{figure}. Com este ambiente podemos especificar o parâmetro do posicionamento:
 \begin{small}
 \begin{verbatim}
    \begin{figure}[h!]
@@ -1918,7 +1918,7 @@ O carregamento da imagem torna-se mais preciso se estiver no ambiente \texttt{\{
 \end{tabular}
 
 \newpage
-Adicionando o pacote \texttt{\{wrapfig\}}\index{wrapfig@\texttt{\small{wrapfig}}}, o texto ganha a possibilidade de envolver a imagem carregada. Para isso usa-se o ambiente \texttt{\{wrapfigure\}}\index{wrapfigure@\texttt{\small{wrapfigure}}}. Segue uma ilustração:
+Adicionando o pacote \texttt{\{wrapfig\}}\index{wrapfig}, o texto ganha a possibilidade de envolver a imagem carregada. Para isso usa-se o ambiente \texttt{\{wrapfigure\}}\index{wrapfigure}. Segue uma ilustração:
 \begin{small}
 \begin{verbatim}
    \begin{wrapfigure}{r}{0.35\textwidth}
@@ -1940,16 +1940,16 @@ Em um exemplo de envolvimento:
 \section*{Plotagem de dados}
 \addcontentsline{toc}{section}{Plotagem de dados}
 
-Baseado no pacote PGF/TikZ existe o pacote \texttt{\{pgfplots\}}\index{pgfplots@\texttt{\small{pgfplots}}}, para construir uma plotagem de dados, de funções etc. Conta com um segundo componente, o pacote \texttt{\{pgfplotstable\}}\index{pgfplotstable@\texttt{\small{pgfplotstable}}}, que faz a formatação e o processamento de tabelas numéricas. Os ambientes de plotagem do \texttt{\{pgfplots\}} dependem do ambiente \texttt{\{tikzpicture\}}.\index{tikzpicture@\texttt{\small{tikzpicture}}}
+Baseado no pacote PGF/TikZ existe o pacote \texttt{\{pgfplots\}}\index{pgfplots}, para construir uma plotagem de dados, de funções etc. Conta com um segundo componente, o pacote \texttt{\{pgfplotstable\}}\index{pgfplotstable}, que faz a formatação e o processamento de tabelas numéricas. Os ambientes de plotagem do \texttt{\{pgfplots\}} dependem do ambiente \texttt{\{tikzpicture\}}.\index{tikzpicture}
 
 Provavelmente, o \texttt{\{pgfplots\}} é o pacote mais complexo do \LaTeX, seu manual tem quase 600 páginas, pois possui recursos tão poderosos quanto aos disponíveis nos melhores softwares matemáticos. Vale a pena a leitura do manual.
 
 \subsection*{Configuração}
 \addcontentsline{toc}{subsection}{Configuração}
 
-Antes de executar as plotagens, é interessante configurar o \texttt{pgfplots} e isto é feito pelo comando \texttt{\textbackslash pgfplotsset}\index{pgfplotsset@\texttt{\small\textbackslash pgfplotsset}}, logo no preâmbulo ou diretamente no ambiente do gráfico.
+Antes de executar as plotagens, é interessante configurar o \texttt{pgfplots} e isto é feito pelo comando \texttt{\textbackslash pgfplotsset}\index{pgfplotsset@\textbackslash pgfplotsset}, logo no preâmbulo ou diretamente no ambiente do gráfico.
 
-Um primeiro ponto é quanto a compatibilidade do pacote. O \texttt{\{pgfplots\}} é desenvolvido tendo o cuidado com as versões anteriores, com os comandos que se tornaram obsoletos ou com os comandos que a sua versão instalada ainda não suporta. Por isso, inclua o parâmetro \texttt{compat=}\index{compat@\texttt{\small{compat}}} mais o número da versão do pacote \texttt{\{pgfplots\}} que está instalado em seu sistema, ou uma versão anterior, se seu documento utiliza algum comando obsoleto.
+Um primeiro ponto é quanto a compatibilidade do pacote. O \texttt{\{pgfplots\}} é desenvolvido tendo o cuidado com as versões anteriores, com os comandos que se tornaram obsoletos ou com os comandos que a sua versão instalada ainda não suporta. Por isso, inclua o parâmetro \texttt{compat=}\index{compat} mais o número da versão do pacote \texttt{\{pgfplots\}} que está instalado em seu sistema, ou uma versão anterior, se seu documento utiliza algum comando obsoleto.
 
 O comando \texttt{\textbackslash pgfplotsset} também aceita os parâmetros de formatação do gráfico, como dimensão, estilos, fontes de caracteres etc.:
 
@@ -1958,7 +1958,7 @@ O comando \texttt{\textbackslash pgfplotsset} também aceita os parâmetros de f
 \subsection*{Ambientes}
 \addcontentsline{toc}{subsection}{Ambientes}
 
-Diversos ambientes irão estruturar uma plotagem, começando pelo ambiente gráfico \texttt{\{tikzpicture\}}\index{tikzpicture@\texttt{\small{tikzpicture}}}, que forma a imagem. Interiormente, tem-se os ambientes específicos da plotagem, em relação aos eixos de escala normal ou escala logarítmica, com os ambientes \texttt{\{axis\}}\index{axis@\texttt{\small{axis}}}, \texttt{\{semilogaxis\}}\index{semilogaxis@\texttt{\small{semilogaxis}}} ou \texttt{\{loglogaxis\}}\index{loglogaxis@\texttt{\small{loglogaxis}}}. Sintaxe básica:
+Diversos ambientes irão estruturar uma plotagem, começando pelo ambiente gráfico \texttt{\{tikzpicture\}}\index{tikzpicture}, que forma a imagem. Interiormente, tem-se os ambientes específicos da plotagem, em relação aos eixos de escala normal ou escala logarítmica, com os ambientes \texttt{\{axis\}}\index{axis}, \texttt{\{semilogaxis\}}\index{semilogaxis} ou \texttt{\{loglogaxis\}}\index{loglogaxis}. Sintaxe básica:
 \begin{small}
 \begin{verbatim}
    \begin{tikzpicture}
@@ -1985,7 +1985,7 @@ Dica: Externamente ao ambiente \texttt{\{tikzpicture\}} pode-se colocar o ambien
 \subsection*{Plotagem}
 \addcontentsline{toc}{subsection}{Plotagem}
 
-Dentro do ambiente do eixo insere-se o comando para adicionar uma plotagem, com \texttt{\textbackslash addplot}\index{addplot@\texttt{\small\textbackslash addplot}}, ou \texttt{\textbackslash addplot3}\index{addplot3@\texttt{\small\textbackslash addplot3}} para visualização em 3D. Neste comando, especifica-se a origem dos dados, se será por uma função, por coordenadas ou fornecidos por uma tabela em um arquivo externo. Também pode receber um argumento com diversos parâmetros:\index{coordinates@\texttt{\small{coordinates}}}\index{table@\texttt{\small{table}}}
+Dentro do ambiente do eixo insere-se o comando para adicionar uma plotagem, com \texttt{\textbackslash addplot}\index{addplot@\textbackslash addplot}, ou \texttt{\textbackslash addplot3}\index{addplot3@\textbackslash addplot3} para visualização em 3D. Neste comando, especifica-se a origem dos dados, se será por uma função, por coordenadas ou fornecidos por uma tabela em um arquivo externo. Também pode receber um argumento com diversos parâmetros:\index{coordinates}\index{table}
 \begin{small}
 \begin{verbatim}
    \addplot[
@@ -2297,19 +2297,19 @@ Os seguintes comandos devem ser utilizados nos parágrafos ou no modo esquerda-d
 
 Estes, somente são aceitos no modo matemático:
 
-\index{grave@\texttt{\small\textbackslash grave}}
-\index{acute@\texttt{\small\textbackslash acute}}
-\index{hat@\texttt{\small\textbackslash hat}}
-\index{widehat@\texttt{\small\textbackslash widehat}}
-\index{tilde@\texttt{\small\textbackslash tilde}}
-\index{widetilde@\texttt{\small\textbackslash widetilde}}
-\index{mathring@\texttt{\small\textbackslash mathring}}
-\index{bar@\texttt{\small\textbackslash bar}}
-\index{dot@\texttt{\small\textbackslash dot}}
-\index{ddot@\texttt{\small\textbackslash ddot}}
-\index{breve@\texttt{\small\textbackslash breve}}
-\index{check@\texttt{\small\textbackslash check}}
-\index{vec@\texttt{\small\textbackslash vec}}
+\index{grave@\textbackslash grave}
+\index{acute@\textbackslash acute}
+\index{hat@\textbackslash hat}
+\index{widehat@\textbackslash widehat}
+\index{tilde@\textbackslash tilde}
+\index{widetilde@\textbackslash widetilde}
+\index{mathring@\textbackslash mathring}
+\index{bar@\textbackslash bar}
+\index{dot@\textbackslash dot}
+\index{ddot@\textbackslash ddot}
+\index{breve@\textbackslash breve}
+\index{check@\textbackslash check}
+\index{vec@\textbackslash vec}
 
 \noindent
 \begin{minipage}[t]{0.5\linewidth}
@@ -2436,14 +2436,14 @@ $\Omega$
 
 Caracteres de agrupamento em diversos tamanhos, além dos tamanhos normais \{|[()]|\}. Estes comandos também só funcionam no modo matemático.
 
-\index{Biggl@\texttt{\small\textbackslash Biggl}}
-\index{biggl@\texttt{\small\textbackslash biggl}}
-\index{Bigl@\texttt{\small\textbackslash Bigl}}
-\index{bigl@\texttt{\small\textbackslash bigl}}
-\index{bigr@\texttt{\small\textbackslash bigr}}
-\index{Bigr@\texttt{\small\textbackslash Bigr}}
-\index{biggr@\texttt{\small\textbackslash biggr}}
-\index{Biggr@\texttt{\small\textbackslash Biggr}}
+\index{Biggl@\textbackslash Biggl}
+\index{biggl@\textbackslash biggl}
+\index{Bigl@\textbackslash Bigl}
+\index{bigl@\textbackslash bigl}
+\index{bigr@\textbackslash bigr}
+\index{Bigr@\textbackslash Bigr}
+\index{biggr@\textbackslash biggr}
+\index{Biggr@\textbackslash Biggr}
 
 \begin{tabular}{r>{\ttfamily\footnotesize}lccr>{\ttfamily\footnotesize}lccr>{\ttfamily\footnotesize}lccr>{\ttfamily\footnotesize}l}
 $\Biggl($ & \textbackslash Biggl( & & &
@@ -2490,7 +2490,7 @@ $\Biggr\}$ & \textbackslash Biggr\textbackslash \} \\
 Existem dezenas de pacotes exclusivos ao fornecimento de símbolos e ícones. Alguns serão aqui apresentados resumidamente.
 
 \subsection*{Nativos do \LaTeX\ \footnotesize{(mas alguns requerem pacote \texttt{latexsym})}}
-\addcontentsline{toc}{subsection}{Nativos do \LaTeX}\index{latexsym@\texttt{\small{latexsym}}}
+\addcontentsline{toc}{subsection}{Nativos do \LaTeX}\index{latexsym}
 
 \subsubsection{Operadores \footnotesize{(modo matemático)}}
 
@@ -2751,7 +2751,7 @@ $\spadesuit$ & \textbackslash spadesuit \\
 \textgreater & \textbackslash textgreater \\
 \textless & \textbackslash textless &
 \textordfeminine & \textbackslash textordfeminine &
-\textordmasculine & textbackslash \textordmasculine \\
+\textordmasculine & \textbackslash \textordmasculine \\
 \textparagraph & \textbackslash textparagraph &
 \textperiodcentered & \textbackslash textperiodcentered &
 \textpertenthousand & \textbackslash textpertenthousand \\
@@ -2767,7 +2767,7 @@ $\spadesuit$ & \textbackslash spadesuit \\
 \end{tabular}
 
 \subsection*{Text Companion \footnotesize{(pacote \texttt{textcomp})}}
-\addcontentsline{toc}{subsection}{Text Companion}\index{textcomp@\texttt{\small{textcomp}}}
+\addcontentsline{toc}{subsection}{Text Companion}\index{textcomp}
 
 Obs.: Estes comandos funcionam no modo texto.
 
@@ -2840,7 +2840,7 @@ Obs.: Estes comandos funcionam no modo texto.
 
 \newpage
 \subsection*{American Mathematical Society \footnotesize{(pacotes \texttt{amsmath} e \texttt{amssymb})}}
-\addcontentsline{toc}{subsection}{American Mathematical Society}\index{amsmath@\texttt{\small{amsmath}}}\index{amssymb@\texttt{\small{amssymb}}}
+\addcontentsline{toc}{subsection}{American Mathematical Society}\index{amsmath}\index{amssymb}
 
 Obs.: Estes comandos funcionam no modo matemático.
 
@@ -2971,7 +2971,7 @@ $\mathbb{C}$ & \textbackslash mathbb\{C\} \\
 Dica: O pacote \texttt{\{amsmath\}} tem comandos para formatação do texto dentro do modo matemático. O comando \texttt{\textbackslash text\{\}} aplica a formatação do ambiente externo ao modo matemático. E os comandos \texttt{\textbackslash mathrm\{\}}, \texttt{\textbackslash mathsf\{\}}, \texttt{\textbackslash mathbf\{\}}, \texttt{\textbackslash mathtt\{\}} e \texttt{\textbackslash mathit\{\}} especificam o estilo e família.
 
 \subsection*{Font Awesome \footnotesize{(pacote \texttt{fontawesome})}}
-\addcontentsline{toc}{subsection}{Font Awesome}\index{fontawesome@\texttt{\small{fontawesome}}}
+\addcontentsline{toc}{subsection}{Font Awesome}\index{fontawesome}
 
 \noindent
 \begin{tabular}{l>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}ll>{\ttfamily\footnotesize}l}
@@ -3113,7 +3113,7 @@ Dica: O pacote \texttt{\{amsmath\}} tem comandos para formatação do texto dent
 \end{tabular}
 
 \subsection*{Zapf Dingbats \footnotesize{(pacote \texttt{pifont})}}
-\addcontentsline{toc}{subsection}{Zapf Dingbats}\index{pifont@\texttt{\small{pifont}}}
+\addcontentsline{toc}{subsection}{Zapf Dingbats}\index{pifont}
 
 Obs.: Estes comandos funcionam no modo texto.
 
@@ -3211,7 +3211,7 @@ Obs.: Estes comandos funcionam no modo texto.
 \ding{254} & \textbackslash ding\{254\} \\
 \end{tabular}
 
-Dica: Este pacote \texttt{\{pifont\}} traz comandos interessantes. Dois comandos de ambiente \texttt{\{dinglist\}}\index{dinglist@\texttt{\small{dinglist}}} e \texttt{\{dingautolist\}}\index{dingautolist@\texttt{\small{dingautolist}}} que constrõem listas rotuladas com os próprios caracteres da fonte. E dois comandos para preenchimento linear \texttt{\textbackslash dingfill}\index{dingfill@\texttt{\small\textbackslash dingfill}} e \texttt{\textbackslash dingline}\index{dingline@\texttt{\small\textbackslash dingline}}. Veja exemplos:
+Dica: Este pacote \texttt{\{pifont\}} traz comandos interessantes. Dois comandos de ambiente \texttt{\{dinglist\}}\index{dinglist} e \texttt{\{dingautolist\}}\index{dingautolist} que constrõem listas rotuladas com os próprios caracteres da fonte. E dois comandos para preenchimento linear \texttt{\textbackslash dingfill}\index{dingfill@\textbackslash dingfill} e \texttt{\textbackslash dingline}\index{dingline@\textbackslash dingline}. Veja exemplos:
 
 \begin{multicols}{2}
 \begin{small}
