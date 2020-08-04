@@ -10,7 +10,7 @@ Este tutorial tem o propósito de mostrar o mínimo, o básico, para se consegui
 
 ### Versão em PDF:
 
-:orange_book: [TutorialLaTeX.pdf](doc/TutorialLaTeX.pdf)
+:orange_book: [TutorialLaTeX.pdf](doc/TutorialLaTeX.pdf?raw=true)
 
 ### Referências:
 
