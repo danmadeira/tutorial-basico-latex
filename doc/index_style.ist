@@ -1,0 +1,10 @@
+headings_flag 1
+heading_prefix "{\\Large\\ttfamily\\bfseries "
+heading_suffix "}\\nopagebreak\n"
+symhead_positive "Símbolos"
+symhead_negative "símbolos"
+numhead_positive "Números"
+numhead_negative "números"
+delim_0 " \\dotfill "
+delim_1 " \\dotfill "
+delim_2 " \\dotfill "
