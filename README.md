@@ -1,6 +1,6 @@
 ## Tutorial básico de LaTeX
 
-### Prefácio:
+### Prefácio
 
 O LaTeX é um sistema de preparação de documentos com alta qualidade para composição tipográfica. É utilizado para criar documentos dos mais variados tipos de publicação, como artigos, teses, dissertações, livros, cartas, relatórios ou qualquer outro tipo de documento. Possui um alto grau de exatidão e precisão na diagramação do conteúdo do documento e alta qualidade na formatação automática do documento. O LaTeX é uma ampliação do original sistema de tipografia TeX. Tornou-se um padrão para produção de documentos científicos.
 
@@ -8,11 +8,15 @@ O sistema LaTeX possui código aberto e é gratuito. Está disponível para qual
 
 Este tutorial tem o propósito de mostrar o mínimo, o básico, para se conseguir produzir um documento, de uma forma prática. O próprio arquivo .tex deste tutorial é um exemplo básico da codificação em LaTeX. Assim, consulte o código-fonte deste tutorial, em paralelo à sua versão em PDF. Inclusive, alguns recursos de diagramação, que ainda não estão explanados neste tutorial, foram utilizados na montagem deste documento.
 
-### Versão em PDF:
+### Versão em PDF
 
 :orange_book: [TutorialLaTeX.pdf](doc/TutorialLaTeX.pdf?raw=true)
 
-### Referências:
+#### Listagem do código-fonte em PDF
+
+:page_facing_up: [TutorialLaTeX-CodigoFonte.pdf](doc/TutorialLaTeX-CodigoFonte.pdf?raw=true)
+
+### Referências
 
 - LaTeX2ε The macro package for TeX. Disponível em: <http://www.tex.uniyar.ac.ru/doc/latex2e.pdf>
 
