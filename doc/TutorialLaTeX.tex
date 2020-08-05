@@ -29,9 +29,9 @@
 \usepackage{stmaryrd} % https://www.ctan.org/pkg/stmaryrd
 \usepackage[stable]{footmisc} % https://www.ctan.org/pkg/footmisc
 \usepackage{tikz} % https://www.ctan.org/pkg/pgf
-    \usetikzlibrary{matrix,shapes.misc,arrows,chains,trees}
+\usetikzlibrary{matrix,shapes.misc,arrows,chains,trees}
 \usepackage{pgfplots} % https://www.ctan.org/pkg/pgfplots
-    \pgfplotsset{width=6cm,compat=1.16}
+\pgfplotsset{width=6cm,compat=1.16}
 \usepackage{pgfplotstable} % https://www.ctan.org/pkg/pgfplotstable
 \usepackage[all]{genealogytree} % https://www.ctan.org/pkg/genealogytree
 \usepackage{pifont} % https://www.ctan.org/pkg/pifont
@@ -42,7 +42,7 @@
 \usepackage{multirow} % https://ctan.org/pkg/multirow
 \usepackage{ragged2e} % https://www.ctan.org/pkg/ragged2e
 \usepackage{vwcol} % https://www.ctan.org/pkg/vwcol
-    \setlength{\columnsep}{0.5cm}
+\setlength{\columnsep}{0.5cm} % comando usado pelo vwcol
 \usepackage{setspace} % https://www.ctan.org/pkg/setspace
 \usepackage{verbatim} % https://www.ctan.org/pkg/verbatim
 \usepackage{array} % https://www.ctan.org/pkg/array
@@ -56,25 +56,25 @@
 \makeindex[columns=3,title=Índice,intoc,options={-s index_style.ist}] % constrói o índice.
 \usepackage{nameref} % https://ctan.org/pkg/nameref
 \usepackage[hidelinks,unicode]{hyperref} % https://www.ctan.org/pkg/hyperref
-    \hypersetup{
-    	colorlinks=false,
-    	linkcolor=black,
-		urlcolor=black,
-		anchorcolor=black,
-		citecolor=black,
-		filecolor=black,
-		linktoc=section,
-		pdfstartview=,
-		plainpages=false,
-		pdfpagelabels=true,
-		pdftitle={Tutorial básico de \LaTeX},
-		pdfsubject={latex},
-		pdfkeywords={tutorial;latex},
-		pdfauthor={Daniel Madeira},
-		pdfcreator={LaTeX no TeXstudio}, % software que editou o código LaTeX.
-		pdfproducer={TeX Live com pdfTeX}, % software que converteu para PDF.
-		pdfdisplaydoctitle=true
-	}
+\hypersetup{
+    colorlinks=false,
+    linkcolor=black,
+    urlcolor=black,
+    anchorcolor=black,
+    citecolor=black,
+    filecolor=black,
+    linktoc=section,
+    pdfstartview=,
+    plainpages=false,
+    pdfpagelabels=true,
+    pdftitle={Tutorial básico de \LaTeX},
+    pdfsubject={latex},
+    pdfkeywords={tutorial;latex},
+    pdfauthor={Daniel Madeira},
+    pdfcreator={LaTeX no TeXstudio}, % software que editou o código LaTeX.
+    pdfproducer={TeX Live com pdfTeX}, % software que converteu para PDF.
+    pdfdisplaydoctitle=true
+}
 
 \usepackage{fancyhdr} % https://www.ctan.org/pkg/fancyhdr
     \fancyhf{}
@@ -86,11 +86,11 @@
 \renewcommand{\familydefault}{\rmdefault} % estabelece o uso da fonte roman como padrão.
 
 \newcommand*{\justificatt}{%
-	\fontdimen2\font=0.4em% interword space
-	\fontdimen3\font=0.2em% interword stretch
-	\fontdimen4\font=0.1em% interword shrink
-	\fontdimen7\font=0.1em% extra space
-	\hyphenchar\font=`\-% allowing hyphenation
+    \fontdimen2\font=0.4em% interword space
+    \fontdimen3\font=0.2em% interword stretch
+    \fontdimen4\font=0.1em% interword shrink
+    \fontdimen7\font=0.1em% extra space
+    \hyphenchar\font=`\-% allowing hyphenation
 }
 
 \newcommand{\nomeautor}{Daniel Madeira}
@@ -98,16 +98,16 @@
 
 % definição de um novo ambiente, que será usado para montar a folha de rosto.
 \newenvironment{folharosto}[1]
-	{\begin{center}
-		\vspace*{\fill}
-		{\LARGE #1}\par
-		\vspace{2cm}
+    {\begin{center}
+        \vspace*{\fill}
+        {\LARGE #1}\par
+        \vspace{2cm}
     }
     {
-		\vspace*{\fill}
-		\\\large\nomeautor\\\small\mesano
-		\thispagestyle{empty}
-		\renewcommand{\thepage}{rosto}
+        \vspace*{\fill}
+        \\\large\nomeautor\\\small\mesano
+        \thispagestyle{empty}
+        \renewcommand{\thepage}{rosto}
     \end{center}
     }
 
@@ -139,7 +139,7 @@
 \pagecolor{gray!5!yellow!5} % cor de fundo desta página em diante.
 
 \begin{folharosto}{Tutorial básico de \LaTeX}
-	Um tutorial prático com o .tex.
+Um exemplo prático do formato .tex.
 \end{folharosto}
 
 \frontmatter
@@ -209,7 +209,7 @@ Saiba a função de cada um deles:
 \index{\textbackslash \#}
 \index{\textbackslash \$}
 \index{\textbackslash \%}
-\index{textasciicircum@\textbackslash \textasciicircum}
+\index{textasciicircum@\textbackslash textasciicircum}
 \index{\textbackslash \&}
 \index{\textbackslash \_}
 \index{\textbackslash \{}
@@ -542,7 +542,7 @@ Para limpar o estilo aplicado, na página atual ou nas próximas páginas, use u
 \end{verbatim}
 \end{small}
 
-O estilo empty\index{empty} limpa tanto o cabeçalho quanto o rodapé. No estilo plain\index{@plain}, que é o padrão, o cabeçalho fica vazio e o rodapé contém o número da página no centro.
+O estilo empty\index{empty} limpa tanto o cabeçalho quanto o rodapé. No estilo plain\index{plain}, que é o padrão, o cabeçalho fica vazio e o rodapé contém o número da página no centro.
 
 \section*{Colorindo}
 \addcontentsline{toc}{section}{Colorindo}
@@ -3349,7 +3349,7 @@ Este eBook foi desenvolvido usando o sistema de preparação de documento \LaTeX
 
 As imagens da capa e da contracapa foram obtidas pelo website Pexels.com. A fotografia da capa foi obtida no endereço https:// www.pexels.com/ photo/ photo-of-clouds-during-daytime-2088205/ e a fotografia da contracapa foi obtida no endereço https:// www.pexels.com/ photo/ photo-of-airplane-with-smoke-trail-2088203/. Ambas estão creditadas a Eberhard Grossgasteiger.
 
-O código-fonte deste Tutorial foi compilado em \DTMportugesmonthname{\the\month} de \the\year.\par
+O código-fonte deste tutorial foi compilado em \DTMportugesmonthname{\the\month} de \the\year.\par
 
 \backmatter
 
