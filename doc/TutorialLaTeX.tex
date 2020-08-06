@@ -86,6 +86,8 @@
     \pagestyle{fancy}
 \usepackage[backend=biber,sorting=none,hyperref=auto,giveninits=false,isbn=false]{biblatex} % https://www.ctan.org/pkg/biblatex
 \addbibresource{bibliografia.bib}
+\DeclareFieldFormat{labelnumberwidth}{}% para não imprimir rótulo
+\setlength{\biblabelsep}{0pt} % para remover o espaço do rótulo
 
 %\renewcommand{\familydefault}{\sfdefault} % estabelece o uso da fonte sem serifa como padrão.
 \renewcommand{\familydefault}{\rmdefault} % estabelece o uso da fonte roman como padrão.
@@ -126,6 +128,17 @@
         \end{tabular}
     \end{center}
     }
+
+\newenvironment{alteramargem}[2]%
+    {\begin{list}{}%
+        {\setlength{\topsep}{0pt}%
+         \setlength{\leftmargin}{#1}%
+         \setlength{\rightmargin}{#2}%
+         \setlength{\listparindent}{\parindent}%
+         \setlength{\itemindent}{\parindent}%
+         \setlength{\parsep}{\parskip}%
+        }\item[]}%
+	{\end{list}}
 
 \title{Tutorial básico de \LaTeX} % define o título do documento.
 \author{\nomeautor} % define o autor do documento.
@@ -934,8 +947,6 @@ Estrutura básica de construção de tabela:
    11 & 12 & 13 & 14 \\
    21 & 22 & 23 & 24 \\
    31 & 32 & 33 & 34 \\
-   41 & 42 & 43 & 44 \\
-   51 & 52 & 53 & 54 \\
    \end{tabular}
 \end{verbatim}
 \end{small}
@@ -947,8 +958,6 @@ Estrutura básica de construção de tabela:
    11 \= 12 \= 13 \= 14 \\
    21 \= 22 \= 23 \= 24 \\
    31 \= 32 \= 33 \= 34 \\
-   41 \= 42 \= 43 \= 44 \\
-   51 \= 52 \= 53 \= 54 \\
    \end{tabbing}
 \end{verbatim}
 \end{small}
@@ -984,11 +993,29 @@ Separadores do\\ \texttt{\{tabbing\}}:
 \end{small}
 \end{minipage}
 
-Veja alguns exemplos de construção de tabelas com o ambiente \texttt{\{tabular\}} (veja também pelo código-fonte deste tutorial). É possível traçar linhas verticais e horizontais, perfazendo um contorno\index{contorno}. As linhas verticais são definidas com o caractere \texttt{|}\index{\textbar} entre as letras das colunas. As linhas horizontais são feitas pelo comando \texttt{\textbackslash hline} ou \texttt{\textbackslash cline\{\}}.
-
-Uso do comando \texttt{\textbackslash cline\{i-f\}}:
+Seguem alguns exemplos de construção de tabelas com o ambiente \texttt{\{tabular\}}. É possível traçar linhas verticais e horizontais, perfazendo um contorno\index{contorno}. As linhas verticais são definidas com o caractere \texttt{|}\index{\textbar} entre as letras das colunas. As linhas horizontais são feitas pelo comando \texttt{\textbackslash hline} ou \texttt{\textbackslash cline\{i-f\}}.
+\index{hline@\textbackslash hline}
 \index{cline@\textbackslash cline}
 
+\noindent
+\begin{minipage}[t]{0.5\linewidth}
+\begin{footnotesize}
+\begin{verbatim}
+    \begin{tabular}{ccccccc}
+          &   &   &   & 2 & 8 & 6 \\
+          &   & \texttimes &   & 8 & 2 & 6 \\
+        \cline{4-7}
+          &   &   & 1 & 7 & 1 & 6 \\
+        + &   &   & 5 & 7 & 2 & \\
+          & 2 & 2 & 8 & 8 \\
+        \cline{2-7}
+          & 2 & 3 & 6 & 2 & 3 & 6 \\
+    \end{tabular}
+\end{verbatim}
+\end{footnotesize}
+\end{minipage}\hspace{\fill}
+\begin{minipage}[t]{0.4\linewidth}
+\strut\vspace*{-\baselineskip}\newline
 \begin{center}
 	\scalebox{0.90} {
 	\begin{tabular}{ccccccc}
@@ -999,73 +1026,151 @@ Uso do comando \texttt{\textbackslash cline\{i-f\}}:
 		+ &   &   & 5 & 7 & 2 & \\
 		  & 2 & 2 & 8 & 8 \\
 		\cline{2-7}
-		  & 2 & 3 & 6 & 2 & 3 & 6
+		  & 2 & 3 & 6 & 2 & 3 & 6 \\
 	\end{tabular}
     }
 \end{center}
+\end{minipage}
 
 \newpage
 Apenas com o uso do caractere \texttt{|}:
 \index{\textbar}
 
+\noindent
+\begin{minipage}[t]{0.5\linewidth}
+\begin{footnotesize}
+\begin{verbatim}
+    \begin{tabular}{|l|c|c|c|}
+                   & \textbf{Grande} &
+                     \textbf{Média} &
+                     \textbf{Pequena} \\
+        Panela     & 5     & 0     & 3 \\
+        Frigideira & 2     & 3     & 3 \\
+        Chaleira   & 2     & 5     & 1 \\
+        Caçarola   & 7     & 1     & 0 \\
+        Leiteira   & 4     & 1     & 3 \\
+        Assadeira  & 4     & 4     & 0 \\
+    \end{tabular}
+\end{verbatim}
+\end{footnotesize}
+\end{minipage}\hspace{\fill}
+\begin{minipage}[t]{0.4\linewidth}
+\strut\vspace*{-\baselineskip}\newline
 \begin{center}
+	\scalebox{0.80} {
 	\begin{tabular}{|l|c|c|c|}
-		& \textbf{Grande} & \textbf{Média} & \textbf{Pequena}\\
-		Panela     & 5     & 0     & 3\\
-		Frigideira & 2     & 3     & 3\\
-		Chaleira   & 2     & 5     & 1\\
-		Caçarola   & 7     & 1     & 0\\
-		Leiteira   & 4     & 1     & 3\\
-		Assadeira  & 4     & 4     & 0
+		& \textbf{Grande} & \textbf{Média} & \textbf{Pequena} \\
+		Panela     & 5     & 0     & 3 \\
+		Frigideira & 2     & 3     & 3 \\
+		Chaleira   & 2     & 5     & 1 \\
+		Caçarola   & 7     & 1     & 0 \\
+		Leiteira   & 4     & 1     & 3 \\
+		Assadeira  & 4     & 4     & 0 \\
 	\end{tabular}
+    }
 \end{center}
+\end{minipage}
 
 Outro recurso é esticar uma célula por mais de uma coluna, com o comando \texttt{\textbackslash multicolumn\,\{ncolunas\}\,\{alinhamento\}\,\{\textit{conteúdo}\}}:
 \index{multicolumn@\textbackslash multicolumn}
 
+\begin{footnotesize}
+\begin{verbatim}
+    \begin{tabular}{|rrrrrrr|rrrrrrr|rrrrrrr|}
+        \hline
+        \multicolumn{7}{|c|}{\cellcolor{blue!20}\textbf{Julho}} &
+        \multicolumn{7}{c|}{\cellcolor{blue!20}\textbf{Agosto}} &
+        \multicolumn{7}{c|}{\cellcolor{blue!20}\textbf{Setembro}} \\
+        \hline
+    ...
+\end{verbatim}
+\end{footnotesize}
+
 \begin{samepage}
-	\begin{center}
-		\begin{tabular}{|ccc|ccc|}
-			\hline
-			\multicolumn{3}{|c|}{\cellcolor{blue!20}\textbf{Combinações dos bonés}} & \multicolumn{3}{c|}{\cellcolor{green!20}\textbf{Saberia a cor}} \\
-			\cellcolor{blue!20}\textbf{Frente}   & \cellcolor{blue!20}\textbf{Meio}     & \cellcolor{blue!20}\textbf{Último}     & \cellcolor{green!20}\textbf{Frente} & \cellcolor{green!20}\textbf{Meio}   & \cellcolor{green!20}\textbf{Último} \\
-			\hline
-			Azul     & Azul     & Azul       & Sim    & Não    & Não \\
-			Azul     & Azul     & Amarelo    & Sim    & Não    & Não \\
-			Azul     & Amarelo  & Azul       & Sim    & Não    & Não \\
-			Amarelo  & Azul     & Azul       & ---    & Sim    & Não \\
-			Azul     & Amarelo  & Amarelo    & Sim    & Não    & Não \\
-			Amarelo  & Azul     & Amarelo    & ---    & Sim    & Não \\
-			Amarelo  & Amarelo  & Azul       & ---    & ---    & Sim \\
-			\hline
-		\end{tabular}
-	\end{center}
+\begin{center}
+\scalebox{0.70} {
+\begin{tabular}{|rrrrrrr|rrrrrrr|rrrrrrr|}
+\hline
+\multicolumn{7}{|c|}{\cellcolor{blue!20}\textbf{Julho}} &
+\multicolumn{7}{c|}{\cellcolor{blue!20}\textbf{Agosto}} &
+\multicolumn{7}{c|}{\cellcolor{blue!20}\textbf{Setembro}} \\
+\hline
+\cellcolor{green!20}\textbf{do} & \cellcolor{green!20}\textbf{se} & 
+\cellcolor{green!20}\textbf{te} & \cellcolor{green!20}\textbf{qu} & 
+\cellcolor{green!20}\textbf{qu} & \cellcolor{green!20}\textbf{se} & 
+\cellcolor{green!20}\textbf{sá} & 
+\cellcolor{green!20}\textbf{do} & \cellcolor{green!20}\textbf{se} & 
+\cellcolor{green!20}\textbf{te} & \cellcolor{green!20}\textbf{qu} & 
+\cellcolor{green!20}\textbf{qu} & \cellcolor{green!20}\textbf{se} & 
+\cellcolor{green!20}\textbf{sá} & 
+\cellcolor{green!20}\textbf{do} & \cellcolor{green!20}\textbf{se} & 
+\cellcolor{green!20}\textbf{te} & \cellcolor{green!20}\textbf{qu} & 
+\cellcolor{green!20}\textbf{qu} & \cellcolor{green!20}\textbf{se} & 
+\cellcolor{green!20}\textbf{sá} \\
+\hline
+   &    &    &  1 &  2 &  3 &  4 &    &    &    &    &    &    &  1 &    &    &  1 &  2 &  3 &  4 &  5 \\
+ 5 &  6 &  7 &  8 &  9 & 10 & 11 &  2 &  3 &  4 &  5 &  6 &  7 &  8 &  6 &  7 &  8 &  9 & 10 & 11 & 12 \\
+12 & 13 & 14 & 15 & 16 & 17 & 18 &  9 & 10 & 11 & 12 & 13 & 14 & 15 & 13 & 14 & 15 & 16 & 17 & 18 & 19 \\
+19 & 20 & 21 & 22 & 23 & 24 & 25 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 20 & 21 & 22 & 23 & 24 & 25 & 26 \\
+26 & 27 & 28 & 29 & 30 & 31 &    & 23 & 24 & 25 & 26 & 27 & 28 & 29 & 27 & 28 & 29 & 30 &    &    &    \\
+   &    &    &    &    &    &    & 30 & 31 &    &    &    &    &    &    &    &    &    &    &    &    \\
+\hline
+\end{tabular}
+}
+\end{center}
 \end{samepage}
 
 Ou esticar uma célula por mais de uma linha, com o comando \texttt{\textbackslash multirow\,\{nlinhas\} \{largura\}\,\{\textit{conteúdo}\}}:
 \index{multirow@\textbackslash multirow}
 
-\begin{center}
+\noindent
+\begin{minipage}[t]{0.5\linewidth}
+\begin{footnotesize}
+\begin{verbatim}
 \begin{tabular}{|l|r|l|}
-	\hline
-	\rowcolor{yellow!40}
-	\multicolumn{3}{|c|}{\textbf{Seleção 70}} \\
-	\hline
-	Goleiro & 1 & Félix \\ \hline
-	\multirow{4}{*}{Defesa} & 4 & Carlos Alberto \\
-	& 2 & Brito \\
-	& 3 & Piazza \\
-	& 16 & Everaldo \\ \hline
-	\multirow{3}{*}{Meias} & 5 & Clodoaldo \\
-	& 8 & Gérson \\
-	& 11 & Rivellino \\
-\hline
-	\multirow{3}{*}{Ataque} & 7 & Jairzinho \\
-	& 9 & Tostão \\
-	& 10 & Pelé \\
-	\hline
+    \hline
+    \rowcolor{yellow!40}
+    \multicolumn{3}{|c|}{\textbf{Seleção 70}} \\
+    \hline
+    Goleiro & 1 & Félix \\\hline
+    \multirow{4}{*}{Defesa} & 4 & Carlos Alberto \\
+                            & 2 & Brito \\
+                            & 3 & Piazza \\
+                           & 16 & Everaldo \\\hline
+    \multirow{3}{*}{Meias} & 5 & Clodoaldo \\
+                           & 8 & Gérson \\
+                          & 11 & Rivellino \\\hline
+    \multirow{3}{*}{Ataque} & 7 & Jairzinho \\
+                            & 9 & Tostão \\
+                           & 10 & Pelé \\\hline
 \end{tabular}
+\end{verbatim}
+\end{footnotesize}
+\end{minipage}\hspace{\fill}
+\begin{minipage}[t]{0.4\linewidth}
+\strut\vspace*{-\baselineskip}\newline
+\begin{center}
+\scalebox{0.80} {
+\begin{tabular}{|l|r|l|}
+    \hline
+    \rowcolor{yellow!40}
+    \multicolumn{3}{|c|}{\textbf{Seleção 70}} \\
+    \hline
+    Goleiro & 1 & Félix \\\hline
+	\multirow{4}{*}{Defesa} & 4 & Carlos Alberto \\
+                            & 2 & Brito \\
+                            & 3 & Piazza \\
+                           & 16 & Everaldo \\\hline
+    \multirow{3}{*}{Meias} & 5 & Clodoaldo \\
+                           & 8 & Gérson \\
+                          & 11 & Rivellino \\\hline
+    \multirow{3}{*}{Ataque} & 7 & Jairzinho \\
+                            & 9 & Tostão \\
+                           & 10 & Pelé \\\hline
+\end{tabular}
+}
 \end{center}
+\end{minipage}
 
 \newpage
 Também é possível colorir\index{cor} as tabelas, colorindo linhas com o comando \texttt{\textbackslash rowcolor\{\}}, colorindo colunas com o comando \texttt{\textbackslash columncolor\{\}}\index{columncolor@\textbackslash columncolor} e colorindo células com o comando \texttt{\textbackslash cellcolor\{\}}:\index{cellcolor@\textbackslash cellcolor}
@@ -1075,16 +1180,16 @@ Também é possível colorir\index{cor} as tabelas, colorindo linhas com o coman
 \begin{footnotesize}
 \begin{verbatim}
 \begin{tabular}{|llll|}
-\hline
-\rowcolor{cyan!30}
-11 & 12 & 13 & 14\\
-\rowcolor{magenta!30}
-21 & 22 & 23 & 24\\
-\rowcolor{yellow!30}
-31 & 32 & 33 & 34\\
-\rowcolor{black!30}
-41 & 42 & 43 & 44\\
-\hline
+    \hline
+    \rowcolor{cyan!30}
+    11 & 12 & 13 & 14 \\
+    \rowcolor{magenta!30}
+    21 & 22 & 23 & 24 \\
+    \rowcolor{yellow!30}
+    31 & 32 & 33 & 34 \\
+    \rowcolor{black!30}
+    41 & 42 & 43 & 44 \\
+    \hline
 \end{tabular}
 \end{verbatim}
 \end{footnotesize}
@@ -1092,13 +1197,13 @@ Também é possível colorir\index{cor} as tabelas, colorindo linhas com o coman
 \begin{tabular}{|llll|}
 \hline
 \rowcolor{cyan!30}
-11 & 12 & 13 & 14\\
+11 & 12 & 13 & 14 \\
 \rowcolor{magenta!30}
-21 & 22 & 23 & 24\\
+21 & 22 & 23 & 24 \\
 \rowcolor{yellow!30}
-31 & 32 & 33 & 34\\
+31 & 32 & 33 & 34 \\
 \rowcolor{black!30}
-41 & 42 & 43 & 44\\
+41 & 42 & 43 & 44 \\
 \hline
 \end{tabular}
 \end{minipage}\hspace{\fill}
@@ -1109,22 +1214,22 @@ Também é possível colorir\index{cor} as tabelas, colorindo linhas com o coman
                  >{\columncolor{magenta!30}}l
                  >{\columncolor{yellow!30}}l
                  >{\columncolor{black!30}}l|}
-\hline
-11 & 12 & 13 & 14\\
-21 & 22 & 23 & 24\\
-31 & 32 & 33 & 34\\
-41 & 42 & 43 & 44\\
-\hline
+    \hline
+    11 & 12 & 13 & 14 \\
+    21 & 22 & 23 & 24 \\
+    31 & 32 & 33 & 34 \\
+    41 & 42 & 43 & 44 \\
+    \hline
 \end{tabular}
 \end{verbatim}
 \end{footnotesize}
 
 \begin{tabular}{|>{\columncolor{cyan!30}}l>{\columncolor{magenta!30}}l>{\columncolor{yellow!30}}l>{\columncolor{black!30}}l|}
 \hline
-11 & 12 & 13 & 14\\
-21 & 22 & 23 & 24\\
-31 & 32 & 33 & 34\\
-41 & 42 & 43 & 44\\
+11 & 12 & 13 & 14 \\
+21 & 22 & 23 & 24 \\
+31 & 32 & 33 & 34 \\
+41 & 42 & 43 & 44 \\
 \hline
 \end{tabular}
 \end{minipage}
@@ -1134,7 +1239,8 @@ Uma especificação por toda coluna pode ser aplicada no argumento do ambiente \
 \subsection*{Lista}
 \addcontentsline{toc}{subsection}{Lista}
 
-As listas\index{lista} são construídas com o ambiente \texttt{\{itemize\}}\index{itemize}, para listas não-ordenadas\index{naoordenado@não-ordenado}, ou com o ambiente \texttt{\{enumerate\}}\index{enumerate}, para listas ordenadas\index{ordenado}:\index{item}
+As listas\index{lista} são construídas com o ambiente \texttt{\{itemize\}}\index{itemize}, para listas não-ordenadas\index{naoordenado@não-ordenado}, ou com o ambiente \texttt{\{enumerate\}}\index{enumerate}, para listas ordenadas\index{ordenado}. Em cada item da lista, inicie-o com o comando \texttt{\textbackslash item}:
+\index{item}
 \index{item@\textbackslash item}
 \begin{multicols}{2}
 \begin{verbatim}
@@ -1252,18 +1358,17 @@ O comando do ambiente \texttt{\{itemize\}} aceita especificar um caractere para 
 \end{enumerate}
 \end{multicols}
 
-Ainda é possível inserir lista dentro de item de lista, o \LaTeX\ altera automaticamente o símbolo de indicação de item.
+Ainda é possível inserir uma sub-lista dentro de um item de lista, o \LaTeX\ altera automaticamente o símbolo de indicação de item.
 
-Outro recurso é a lista dentro de um parágrafo, na mesma linha, por exemplo:
+E mais um recurso é a lista dentro de um parágrafo, na mesma linha, por exemplo esta lista:
 \begin{inparaenum}[a)]
 	\item Primeiro
 	\item Segundo
 	\item Terceiro
 \end{inparaenum}
 
-Que foi produzida usando este comando:
-\index{inparaenum}
-
+Foi produzida usando o ambiente \texttt{\{inparaenum\}}:\index{inparaenum}
+\begin{small}
 \begin{verbatim}
    \begin{inparaenum}[a)]
       \item Primeiro
@@ -1271,9 +1376,11 @@ Que foi produzida usando este comando:
       \item Terceiro
    \end{inparaenum}
 \end{verbatim}
+\end{small}
 
-Um item pode ter também um rótulo\index{rotulo@rótulo} individual, com seu comando e o argumento para o rótulo: \texttt{\textbackslash item[rótulo]}.
-\index{item@\textbackslash item}
+Um item pode ter também um rótulo\index{rotulo@rótulo} individual, especificando o rótulo pelo argumento do comando:\index{item@\textbackslash item}
+
+\texttt{\textbackslash item[rótulo]}.
 
 \newpage
 \subsection*{Verso}
@@ -1323,11 +1430,11 @@ Veja alguns exemplos. Nos ambientes de texto fluido foi usado o comando \texttt{
 
 \begin{small}\index{multicols@\textbackslash multicols}
 \begin{verbatim}
-   \begin{multicols}{2}
-      \lipsum[66]\par
-      \columnbreak
-      \lipsum[75]
-   \end{multicols}
+    \begin{multicols}{2}
+        \lipsum[66]\par
+        \columnbreak
+        \lipsum[75]
+    \end{multicols}
 \end{verbatim}
 \end{small}
 
@@ -1339,14 +1446,14 @@ Veja alguns exemplos. Nos ambientes de texto fluido foi usado o comando \texttt{
 
 \begin{small}\index{minipage@\textbackslash minipage}
 \begin{verbatim}
-   \begin{minipage}[t]{0.55\linewidth}
-      \setlength{\parindent}{1.5em}
-      \lipsum[66]
-   \end{minipage}\hspace{\fill}
-   \begin{minipage}[t]{0.4\linewidth}
-      \setlength{\parindent}{1.5em}
-      \lipsum[75]
-   \end{minipage}
+    \begin{minipage}[t]{0.55\linewidth}
+        \setlength{\parindent}{1.5em}
+        \lipsum[66]
+    \end{minipage}\hspace{\fill}
+    \begin{minipage}[t]{0.4\linewidth}
+        \setlength{\parindent}{1.5em}
+        \lipsum[75]
+    \end{minipage}
 \end{verbatim}
 \end{small}
 
@@ -1363,17 +1470,17 @@ Veja alguns exemplos. Nos ambientes de texto fluido foi usado o comando \texttt{
 \newpage
 \begin{small}\index{tabular@\textbackslash tabular}\index{parbox@\textbackslash parbox}
 \begin{verbatim}
-   \begin{tabular}{p{0.6\linewidth}p{0.4\linewidth}}
-      \parbox{0.6\textwidth}{
-         \setlength{\parindent}{1.5em}
-         \lipsum[66]
-      }
-      &
-      \parbox{0.4\textwidth}{
-         \setlength{\parindent}{1.5em}
-         \lipsum[75]
-      }
-   \end{tabular}
+    \begin{tabular}{p{0.6\linewidth}p{0.4\linewidth}}
+        \parbox{0.6\textwidth}{
+            \setlength{\parindent}{1.5em}
+            \lipsum[66]
+        }
+        &
+        \parbox{0.4\textwidth}{
+            \setlength{\parindent}{1.5em}
+            \lipsum[75]
+        }
+    \end{tabular}
 \end{verbatim}
 \end{small}
 
@@ -1392,11 +1499,11 @@ Veja alguns exemplos. Nos ambientes de texto fluido foi usado o comando \texttt{
 
 \begin{small}\index{vwcol@\textbackslash vwcol}
 \begin{verbatim}
-   \begin{vwcol}[widths={0.6,0.4},sep=1.5em,justify=flush,rule=0pt,indent=1.5em]
-      \indent\lipsum[66]
-      \newpage
-      \lipsum[75]
-   \end{vwcol}
+    \begin{vwcol}[widths={0.6,0.4},sep=1.5em,justify=flush,rule=0pt,indent=1.5em]
+        \indent\lipsum[66]
+        \newpage
+        \lipsum[75]
+    \end{vwcol}
 \end{verbatim}
 \end{small}
 
@@ -3379,22 +3486,29 @@ Quanto aos pacotes, é muito comum ter pacotes que são aprimoramentos ou reescr
 
 \end{comment}
 
-\chapter*{Colofão}
-\addcontentsline{toc}{chapter}{Colofão}
-
-Este eBook foi desenvolvido usando o sistema de preparação de documento \LaTeXe\ e editado com o software TeXstudio no sistema operacional Linux Fedora. O documento foi convertido para o formato PDF pelo TeX Live com o pdfTeX. O corpo do texto utiliza a fonte Computer Modern, no tamanho 12pt e as páginas possuem o tamanho A4, com três centímetros nas margens superior e esquerda, e com 2,5 centímetros nas margens direita e inferior.
-
-As imagens da capa e da contracapa foram obtidas pelo website Pexels.com. A fotografia da capa foi obtida no endereço https:// www.pexels.com/ photo/ photo-of-clouds-during-daytime-2088205/ e a fotografia da contracapa foi obtida no endereço https:// www.pexels.com/ photo/ photo-of-airplane-with-smoke-trail-2088203/. Ambas estão creditadas a Eberhard Grossgasteiger.
-
-O código-fonte deste tutorial foi compilado em \DTMportugesmonthname{\the\month} de \the\year.\par
-
 \backmatter
 
 \nocite{*}
 
-\printbibliography[heading=bibintoc,title={Referência bibliográfica}] % imprime a página da bibliografia.
+\printbibliography[heading=bibintoc,title={Bibliografia}] % imprime a página da bibliografia.
 
 \printindex % imprime a página do índice.
+
+\chapter*{Colofão}
+\addcontentsline{toc}{chapter}{Colofão}
+
+Este eBook foi desenvolvido pelo próprio autor, usando o sistema de preparação de documento \LaTeXe\ através do software \TeX studio, no sistema operacional Linux Fedora. O documento foi convertido para o formato PDF pelo \TeX\ Live com a ferramenta pdfTeX. O corpo do texto utiliza a fonte Computer Modern, no tamanho 12pt, e as páginas possuem o tamanho A4, com três centímetros nas margens superior e esquerda e com dois vírgula cinco centímetros nas margens direita e inferior.
+
+As imagens da capa e da contracapa foram obtidas pelo website Pexels.com. A fotografia da capa foi obtida no endereço https:// www.pexels.com/ photo/ photo-of-clouds-during-daytime-2088205/ e a fotografia da contracapa foi obtida no endereço https:// www.pexels.com/ photo/ photo-of-airplane-with-smoke-trail-2088203/. Ambas as fotos estão creditadas a Eberhard Grossgasteiger.
+
+O código-fonte deste tutorial foi compilado em \DTMportugesmonthname{\the\month} de \the\year.\par
+
+\setlength{\parskip}{3em}
+
+\begin{alteramargem}{7cm}{0cm}
+	\say{Ciência é o que nós compreendemos bem o suficiente para explicar à um computador; Arte é além disso.} -- Donald Ervin Knuth
+	% Science is what we understand well enough to explain to a computer; art is everything else.
+\end{alteramargem}
 
 \newpage
 \nopagecolor
