@@ -15,7 +15,7 @@
 %\usepackage{stix} % https://ctan.org/pkg/stix
 %\usepackage{microtype} % https://ctan.org/pkg/microtype
 %\usepackage{soul} % https://ctan.org/pkg/soul
-\usepackage{fixltx2e} % https://www.ctan.org/pkg/fixltx2e
+%\usepackage{fixltx2e} % https://www.ctan.org/pkg/fixltx2e
 %\usepackage{arev} % https://www.tug.org/FontCatalogue/arev/
 %\usepackage{lmodern} % https://www.tug.org/FontCatalogue/latinmodernsans/
 %\usepackage{avant} % https://www.ctan.org/pkg/psnfss
@@ -84,6 +84,8 @@
     \renewcommand{\headrulewidth}{0pt}
     \cfoot{\thepage}
     \pagestyle{fancy}
+\usepackage[backend=biber,sorting=none,hyperref=auto,giveninits=false,isbn=false]{biblatex} % https://www.ctan.org/pkg/biblatex
+\addbibresource{bibliografia.bib}
 
 %\renewcommand{\familydefault}{\sfdefault} % estabelece o uso da fonte sem serifa como padrão.
 \renewcommand{\familydefault}{\rmdefault} % estabelece o uso da fonte roman como padrão.
@@ -3387,6 +3389,10 @@ As imagens da capa e da contracapa foram obtidas pelo website Pexels.com. A foto
 O código-fonte deste tutorial foi compilado em \DTMportugesmonthname{\the\month} de \the\year.\par
 
 \backmatter
+
+\nocite{*}
+
+\printbibliography[heading=bibintoc,title={Referência bibliográfica}] % imprime a página da bibliografia.
 
 \printindex % imprime a página do índice.
 
