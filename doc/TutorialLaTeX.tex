@@ -80,13 +80,14 @@
 }
 \usepackage{ellipsis} % https://ctan.org/pkg/ellipsis
 \usepackage{fancyhdr} % https://www.ctan.org/pkg/fancyhdr
-    \fancyhf{}
-    \renewcommand{\headrulewidth}{0pt}
-    \cfoot{\thepage}
-    \pagestyle{fancy}
+    \fancyhf{} % limpa todos os cabeçalhos e rodapés.
+    \renewcommand{\headrulewidth}{0pt} % zera a linha do cabeçalho.
+    \cfoot{\thepage} % insere o número da página no centro do rodapé.
+    \pagestyle{fancy} % aplica o estilo.
 \usepackage[backend=biber,sorting=none,hyperref=auto,giveninits=false,isbn=false]{biblatex} % https://www.ctan.org/pkg/biblatex
 \addbibresource{bibliografia.bib}
-\DeclareFieldFormat{labelnumberwidth}{}% para não imprimir rótulo
+\DeclareFieldFormat{labelnumberwidth}{}
+% para não imprimir rótulo
 \setlength{\biblabelsep}{0pt} % para remover o espaço do rótulo
 
 %\renewcommand{\familydefault}{\sfdefault} % estabelece o uso da fonte sem serifa como padrão.
@@ -102,6 +103,9 @@
 
 \newcommand{\nomeautor}{Daniel Madeira}
 \newcommand{\mesano}{\DTMportugesmonthname{\the\month} de \the\year}
+\newcommand{\versaomaior}{1}
+\newcommand{\versaomenor}{1}
+\newcommand{\versaodecorrecao}{0}
 
 % definição de um novo ambiente, que será usado para montar a folha de rosto.
 \newenvironment{folharosto}[1]
@@ -112,7 +116,7 @@
     }
     {
         \vspace*{\fill}
-        \\\large\nomeautor\\\small\mesano
+        \\\large\nomeautor\\\vspace{0.8cm}\small\mesano
         \thispagestyle{empty}
         \renewcommand{\thepage}{rosto}
     \end{center}
@@ -150,14 +154,14 @@
 \begin{titlepage}
     \AddToShipoutPictureBG*{\includegraphics[width=\paperwidth,height=\paperheight]{clouds.jpg}}
     \maketitle % insere o título, autor e data.
-    \thispagestyle{fancy}
     \renewcommand{\thepage}{capa} % troca o número da página pela string capa.
 \end{titlepage}
 
 \pagecolor{gray!5!yellow!5} % cor de fundo desta página em diante.
 
 \begin{folharosto}{Tutorial básico de \LaTeX}
-Um exemplo prático do formato .tex.
+Um exemplo prático do formato .tex.\par\vspace{1cm}
+Versão \versaomaior.\versaomenor.\versaodecorrecao
 \end{folharosto}
 
 \frontmatter
@@ -546,39 +550,220 @@ Uma interessante utilidade, caso queira posicionar os primeiros parágrafos no t
 
 Por exemplo, este parágrafo foi para baixo com \texttt{\textbackslash vspace\{3cm\}}. Obs.: Usando \texttt{\textbackslash vspace*} (com asterisco) o \LaTeX\ não remove o espaço vertical do fim da página (a documentação oficial também é confusa nesta explicação).
 
-\section*{Estilo}
-\addcontentsline{toc}{section}{Estilo}
+\section*{Cabeçalho e rodapé}
+\addcontentsline{toc}{section}{Cabeçalho e rodapé}
 
-Para limpar o estilo aplicado, na página atual ou nas próximas páginas, use um destes comandos com o estilo desejado:
+\subsection*{Padrão}
+\addcontentsline{toc}{subsection}{Padrão}
+
+O \LaTeX\ possui comandos nativos para aplicar alguns estilos ao cabeçalho\index{cabecalho@cabeçalho} e ao rodapé\index{rodape@rodapé}, seja da página atual em diante ou somente na página atual. Os comandos são, respectivamente:
+\index{thispagestyle@\textbackslash thispagestyle}
+\index{pagestyle@\textbackslash pagestyle}
+
+\texttt{\small\textbackslash pagestyle\{\textit{estilo}\}} e \texttt{\small\textbackslash thispagestyle\{\textit{estilo}\}}
+
+Existem algum estilos, predefinidos, para se escolher:
+\index{empty}
+\index{plain}
+\index{headings}
+\index{myheadings}
+
+\begin{tabular}{>{\ttfamily\small}l>{\small}p{11cm}}
+empty      & Ambos cabeçalho e rodapé ficam limpos. \\
+plain      & O cabeçalho é limpo e o rodapé com número da página no centro. \\
+headings   & O rodapé é limpo e o cabeçalho exibe informação da seção e o número da página no canto superior. \\
+myheadings & O número da página fica no canto superior e é possível especificar o restante do cabeçalho. \\
+\end{tabular}
+
+Dependendo da classe do documento, os estilos terão uma aparência diferente. Com a escolha do estilo \texttt{myheadings}, dois comandos podem ser usados para especificar manualmente a informação no cabeçalho: \texttt{\textbackslash markright\{\textit{info na folha direita}\}}\index{markright@\textbackslash markright} e \texttt{\textbackslash markboth\{\textit{info na folha esquerda}\}\{\textit{info na folha direita}\}}\index{markboth@\textbackslash markboth}, para documento com um lado ou dois lados de folha. Seguem dois exemplos:
+
+\begin{small}
+\begin{verbatim}
+    \markright{Tutorial \hfill LaTeX \hfill}
+    \markboth{Título}{Capítulo}
+\end{verbatim}
+\end{small}
+
+Obs.: Se o documento estiver definido com um lado (\texttt{oneside}), os números das páginas estarão no canto direito e a informação partindo do canto esquerdo da página. Com o documento definido com dois lados (\texttt{twoside}), isto se intercalará de acordo com o lado que a página estiver, na folha esquerda ou na folha direita.
+
+\subsection*{Fancy}
+\addcontentsline{toc}{subsection}{Fancy}
+
+Os comandos nativos, como visto, são um tanto limitados. Por isso, existe o pacote \texttt{\{fancyhdr\}}\index{fancyhdr}, o qual possibilita um melhor controle no cabeçalho e rodapé. Como vantagem, este pacote define três áreas de informação tanto no cabeçalho quanto no rodapé, permite linhas decorativas, larguras maiores que a linha do texto, informação em mais de uma linha e outros recursos. Para começar, adicione no preâmbulo o seguinte comando:
+
+\texttt{\small\textbackslash usepackage\{fancyhdr\}}
+
+Os mesmos comandos \texttt{\textbackslash pagestyle\{\textit{estilo}\}} e \texttt{\textbackslash thispagestyle\{\textit{estilo}\}} também funcionam sob o \texttt{\{fancyhdr\}}, que também adiciona seus próprios estilos \texttt{fancy}\index{fancy} e \texttt{fancyplain}\index{fancyplain}.
 \index{thispagestyle@\textbackslash thispagestyle}
 \index{pagestyle@\textbackslash pagestyle}
 \begin{small}
 \begin{verbatim}
-   \thispagestyle{empty}
-
-   \pagestyle{plain}
+    \pagestyle{fancy}
 \end{verbatim}
 \end{small}
 
-O estilo empty\index{empty} limpa tanto o cabeçalho quanto o rodapé. No estilo plain\index{plain}, que é o padrão, o cabeçalho fica vazio e o rodapé contém o número da página no centro.\index{cabecalho@cabeçalho}\index{rodape@rodapé}
+Para personalizar e inserir uma informação, em cada canto ou no centro do cabeçalho e rodapé, pode-se usar estes comandos abaixo, que atuam em todas as páginas, seja par ou ímpar, um para cada posição:
+\index{lhead@\textbackslash lhead}
+\index{chead@\textbackslash chead}
+\index{rhead@\textbackslash rhead}
+\index{lfoot@\textbackslash lfoot}
+\index{cfoot@\textbackslash cfoot}
+\index{rfoot@\textbackslash rfoot}
+
+\begin{tabular}{>{\ttfamily\small}l>{\small}l}
+\textbackslash lhead\{\textit{info}\} & Insere no cabeçalho esquerdo \\
+\textbackslash chead\{\textit{info}\} & Insere no cabeçalho central \\
+\textbackslash rhead\{\textit{info}\} & Insere no cabeçalho direito \\
+\textbackslash lfoot\{\textit{info}\} & Insere no rodapé esquerdo \\
+\textbackslash cfoot\{\textit{info}\} & Insere no rodapé central \\
+\textbackslash rfoot\{\textit{info}\} & Insere no rodapé direito \\
+\end{tabular}
+
+Uma outra forma de inserir a informação, é com estes próximos comandos, os quais posicionam de acordo com os seletores e ainda possibilitam diferenciar entre as páginas pares e ímpares:
+\index{fancyhead@\textbackslash fancyhead}
+\index{fancyfoot@\textbackslash fancyfoot}
+\index{fancyhf@\textbackslash fancyhf}
+
+\begin{tabular}{>{\ttfamily\small}l>{\small}l}
+\textbackslash fancyhead[\textit{seletores}]\{\textit{info}\}
+& Insere no cabeçalho \\
+\textbackslash fancyfoot[\textit{seletores}]\{\textit{info}\} & Insere no rodapé \\
+\textbackslash fancyhf[\textit{seletores}]\{\textit{info}\} & Insere no cabeçalho e rodapé \\
+\end{tabular}
+
+Os seletores podem ser mais de um, separados por vírgula. Cada seletor é composto de uma ou mais letras que indicam a posição.
+
+Uma letra especifica se será no \texttt{L} (canto esquerdo), \texttt{C} (centro) ou \texttt{R} (canto direito). Outra letra especifica se será na \texttt{E} (página par) ou \texttt{O} (página ímpar). E uma letra que especifica se será no \texttt{H} (cabeçalho) ou \texttt{F} (rodapé), caso utilize o comando \texttt{\textbackslash fancyhf}. A omissão da letra referente as páginas par e ímpar indica que é para todas. Veja exemplos:
+\begin{small}
+\begin{verbatim}
+    \fancyhead[L]{seu texto}
+    \fancyhead[RO,LE]{\textbf{seu texto}}
+    \fancyfoot[LE,RO]{seu texto}
+    \fancyfoot[C]{\textbf{seu texto}}
+    \fancyfoot[CO,CE]{seu texto}
+    \fancyhf[HL]{seu texto}
+    \fancyhf[HRE,HLO]{\today}
+\end{verbatim}
+\end{small}
+
+Todos estes comandos também servem para limpar a informação, basta utilizar com o argumento vazio. O que, inclusive, deve ser feito antes de personalizar o cabeçalho ou o rodapé:
+
+\begin{tabular}{>{\ttfamily\small}l>{\small}l}
+\textbackslash fancyhf\{\}   & Limpa tudo \\
+\textbackslash fancyhead\{\} & Limpa todos os cabeçalhos \\
+\textbackslash fancyfoot\{\} & Limpa todos os rodapés \\
+\end{tabular}
+
+E então, se desejar alguma informação dinâmica, há alguns comandos que trazem informações da página que se encontram:
+\index{thepage@\textbackslash thepage}
+\index{leftmark@\textbackslash leftmark}
+\index{rightmark@\textbackslash rightmark}
+\index{chaptername@\textbackslash chaptername}
+\index{thechapter@\textbackslash thechapter}
+\index{thesection@\textbackslash thesection}
+
+\begin{tabular}{>{\ttfamily\small}l>{\small}l}
+\textbackslash thepage     & Número da página atual\\
+\textbackslash thechapter  & Número do capítulo atual\\
+\textbackslash thesection  & Número da seção atual\\
+\textbackslash chaptername & O termo "capítulo" no idioma corrente\\
+\textbackslash leftmark    & Nome e número do capítulo atual\\
+\textbackslash rightmark   & Nome e número da seção atual\\
+\end{tabular}
+
+Mais exemplos:
+\begin{small}
+\begin{verbatim}
+    \fancyhead[LE,RO]{\textsl{\rightmark}}
+    \fancyhead[LO,RE]{\textsl{\leftmark}}
+    \fancyfoot[C]{\thepage}
+    \fancyhf[FLE,FRO]{\thepage}
+\end{verbatim}
+\end{small}
+
+Para colocar tudo isso em prática, utilize todos juntos no preâmbulo, em algo como:
+\index{thetitle@\textbackslash thetitle}
+\index{theauthor@\textbackslash theauthor}
+\index{thepage@\textbackslash thepage}
+
+\begin{small}
+\begin{verbatim}
+    \usepackage{fancyhdr}
+    \fancyhf{}
+    \lhead{\thetitle}
+    \rhead{\theauthor}
+    \rfoot{\thepage}
+    \pagestyle{fancy}
+\end{verbatim}
+\end{small}
+
+\newpage
+Também pode criar um estilo e nomeá-lo, para uso posterior, com o comando \texttt{\textbackslash fancypagestyle\{\textit{nome}\}\{\textit{especificação}\}}:
+\index{fancypagestyle@\textbackslash fancypagestyle}
+
+\begin{multicols}{2}
+\begin{small}
+\begin{verbatim}
+    \fancypagestyle{estilounico}{
+        \fancyhf{}
+        \lhead{\theauthor}
+        \rhead{\thetitle}
+        \rfoot{\thepage}
+    }
+\end{verbatim}
+\end{small}
+\columnbreak
+Na página que desejar aplicar este estilo, use:\index{thispagestyle@\textbackslash thispagestyle}
+
+\texttt{\small\textbackslash thispagestyle\{estilounico\}}
+\end{multicols}
+
+\begin{multicols}{2}
+Em tempo, os traços decorativos podem ser redefinidos, usando o comando \texttt{\textbackslash renewcommand} em \texttt{\textbackslash headrulewidth}, para o traço no cabeçalho, e em \texttt{\textbackslash footrulewidth}, para o traço no rodapé:
+\columnbreak
+\begin{small}
+\begin{verbatim}
+    \renewcommand{\headrulewidth}{2pt}
+    \renewcommand{\footrulewidth}{2pt}
+\end{verbatim}
+\end{small}
+\end{multicols}
+
+\section*{Numeração}
+\addcontentsline{toc}{section}{Numeração}
+
+Na intenção de formatar o valor numérico da paginação, caso queira forçar um tipo de numeração nas páginas, existe o comando \texttt{\textbackslash pagenumbering\{\textit{estilo}\}}. Os estilos possíveis são:
+\index{pagenumbering@\textbackslash pagenumbering}
+\index{arabic}
+\index{roman}
+\index{alph}
+
+\begin{tabular}{>{\ttfamily}ll}
+arabic & Algarismos arábicos: 1, 2, ...
+\\
+roman  & Algarismos romanos minúsculos: i, ii, ... \\
+Roman  & Algarismos romanos maiúsculos: I, II, ... \\
+alph   & Alfabeto romano minúsculo: a, b, ... (até 26) \\
+Alph   & Alfabeto romano maiúsculo: A, B, ... (até 26) \\
+\end{tabular}
+
+O comando \texttt{\textbackslash pagenumbering\{\textit{estilo}\}} pode ser usado desta forma:
+
+\begin{small}
+\begin{verbatim}
+    \begin{document}\pagenumbering{alph}
+    ...
+    \section{NomeQualquer}\pagenumbering{arabic}
+    ...
+\end{verbatim}
+\end{small}
 
 \section*{Colorindo}
 \addcontentsline{toc}{section}{Colorindo}
 
-Uma ou mais páginas podem ser coloridas com o comando \texttt{\textbackslash pagecolor\{\}}\index{pagecolor@\textbackslash pagecolor}. Este comando terá efeito da página atual em diante. Por exemplo:
-\begin{small}
-\begin{verbatim}
-   \pagecolor{gray!10!yellow!10}
-\end{verbatim}
-\end{small}
+Uma ou mais páginas podem ser coloridas com o comando \texttt{\textbackslash pagecolor\{\}}\index{pagecolor@\textbackslash pagecolor}. Este comando terá efeito da página atual em diante. Exemplo: \texttt{\textbackslash pagecolor\{gray!10!yellow!10\}}
 
-Para cancelar a definição da cor na página atual em diante, use o comando:
-\index{nopagecolor@\textbackslash nopagecolor}
-\begin{small}
-\begin{verbatim}
-   \nopagecolor
-\end{verbatim}
-\end{small}
+Para cancelar a definição na página atual em diante, use o comando: \texttt{\textbackslash nopagecolor}.\index{nopagecolor@\textbackslash nopagecolor}
 
 \chapter*{Seções no documento}
 \addcontentsline{toc}{chapter}{Seções no documento}
@@ -1409,117 +1594,148 @@ A formatação do texto para compor a estrutura de um verso\index{verso} é com 
 
 Para inserir uma nota de rodapé\footnote{Uma anotação colocada ao pé de uma página.\label{notarodape}}, use o comando \texttt{\textbackslash footnote\{\textit{nota}\}}\index{footnote@\textbackslash footnote} logo após a palavra que será comentada.\index{rodape@rodapé}\index{notaderodape@nota de rodapé}
 
+\subsection*{Literalmente}
+\addcontentsline{toc}{subsection}{Literalmente}
+
+O ambiente padrão para impressão de código-fonte no \LaTeX\ é o ambiente \texttt{\{verbatim\}}. Todo o texto localizado dentro deste ambiente é exibido literalmente e todos os comandos presentes são ignorados. Este ambiente usa, ainda, uma fonte monoespaçada e mantém todas as indentações e quebras de linhas do conteúdo original. Exemplo:
+
+\begin{multicols}{2}
+\noindent\verb|\begin{verbatim}|\\
+\verb|Um texto monoespaçado do|\\
+\verb|modo em que foi digitado.|\\
+\verb|\end{verbatim}|\\
+\columnbreak
+\begin{verbatim}
+Um texto monoespaçado do
+modo em que foi digitado.
+\end{verbatim}
+\end{multicols}
+
+Este ambiente pode ser aplicado em linha com o comando \verb|\verb|. Sua sintaxe é \texttt{\textbackslash verb|literalmente um texto|}.
+
 \subsection*{Colunas}
 \addcontentsline{toc}{subsection}{Colunas}
 
-Existem diversas soluções para formatar o texto em colunas\index{coluna}. Pode-se usar os comandos de ambiente:
-
+Existem diversas soluções para formatar o texto em colunas\index{coluna}. Pode-se usar os ambientes \texttt{\{multicols\}}, \texttt{\{vwcol\}}, \texttt{\{minipage\}} e até o \texttt{\{tabular\}}.
 \index{multicols@\textbackslash multicols}
 \index{vwcol@\textbackslash vwcol}
 \index{minipage@\textbackslash minipage}
 \index{tabular@\textbackslash tabular}
 
-\texttt{\small\textbackslash begin\{multicols\} ... \textbackslash end\{multicols\}}\\
-\indent\texttt{\small\textbackslash begin\{vwcol\} ... \textbackslash end\{vwcol\}}\\
-\indent\texttt{\small\textbackslash begin\{minipage\} ... \textbackslash end\{minipage\}}\\
-\indent\texttt{\small\textbackslash begin\{tabular\} ... \textbackslash end\{tabular\}}\\
+Os ambientes \texttt{\{multicols\}} e \texttt{\{vwcol\}} permitem uma certa fluidez do texto entre as colunas, uma mudança automática dos parágrafos entre as colunas. E sobre o ambiente \texttt{\{multicols\}}, o padrão é acontecer um equilíbrio na quantidade de texto em cada lado. Este balanço automático pode ser desligado usando o ambiente \texttt{\{multicols*\}}.
 
-Os ambientes \texttt{\{multicols\}} e \texttt{\{vwcol\}} permitem uma certa fluidez do texto entre as colunas, uma mudança automática dos parágrafos entre as colunas. Sobre o ambiente \texttt{\{multicols\}}, o padrão é acontecer um equilíbrio na quantidade de texto em cada lado. Este balanço automático pode ser desligado usando o ambiente  \texttt{\{multicols*\}}.
-
-Veja alguns exemplos. Nos ambientes de texto fluido foi usado o comando \texttt{\textbackslash columnbreak}\index{columnbreak@\textbackslash columnbreak} ou o comando \texttt{\textbackslash newpage}\index{newpage@\textbackslash newpage} para forçar a quebra de coluna:\index{quebra}
+Veja alguns exemplos abaixo. Nos ambientes de texto fluido foi usado o comando \texttt{\textbackslash columnbreak}\index{columnbreak@\textbackslash columnbreak} ou o comando \texttt{\textbackslash newpage}\index{newpage@\textbackslash newpage} para forçar a quebra de coluna:\index{quebra}
 
 \begin{small}\index{multicols@\textbackslash multicols}
 \begin{verbatim}
     \begin{multicols}{2}
-        \lipsum[66]\par
+    
+        Não deixe de experimentar o \LaTeX\ na diagramação do seu artigo ou livro,
+        sua obra apresentará um alto padrão estético.
+        
         \columnbreak
-        \lipsum[75]
+        
+        Não deixe de experimentar o \LaTeX\ na diagramação do seu artigo ou livro,
+        sua obra apresentará um alto padrão estético.
+        
     \end{multicols}
 \end{verbatim}
 \end{small}
 
 \begin{multicols}{2}
-    \lipsum[66]\par
+    Não deixe de experimentar o \LaTeX\ na diagramação do seu artigo ou livro, sua obra apresentará um alto padrão estético.
+    
     \columnbreak
-    \lipsum[75]
+    
+    Não deixe de experimentar o \LaTeX\ na diagramação do seu artigo ou livro, sua obra apresentará um alto padrão estético.
 \end{multicols}
+
+\begin{small}\index{vwcol@\textbackslash vwcol}
+\begin{verbatim}
+\begin{vwcol}[widths={0.5,0.5},sep=1.5em,justify=flush,rule=0pt,indent=1.5em]
+
+    \indent
+    Não deixe de experimentar o \LaTeX\ na diagramação do seu artigo ou livro,
+    sua obra apresentará um alto padrão estético.
+
+    \newpage
+
+    Não deixe de experimentar o \LaTeX\ na diagramação do seu artigo ou livro,
+    sua obra apresentará um alto padrão estético.
+
+\end{vwcol}
+\end{verbatim}
+\end{small}
+
+\begin{vwcol}[widths={0.5,0.5},
+	sep=1.5em,
+	justify=flush,
+	rule=0pt,
+	indent=1.5em]
+	\indent
+	Não deixe de experimentar o \LaTeX\ na diagramação do seu artigo ou livro, sua obra apresentará um alto padrão estético.
+	\newpage
+	Não deixe de experimentar o \LaTeX\ na diagramação do seu artigo ou livro, sua obra apresentará um alto padrão estético.
+\end{vwcol}
+
+\newpage
+Os próximos ambientes não são uma solução dedicada porém também servem para produzir colunas:
 
 \begin{small}\index{minipage@\textbackslash minipage}
 \begin{verbatim}
-    \begin{minipage}[t]{0.55\linewidth}
+    \begin{minipage}[t]{0.5\linewidth}
+    
         \setlength{\parindent}{1.5em}
-        \lipsum[66]
+        Não deixe de experimentar o \LaTeX\ na diagramação do seu artigo ou livro,
+        sua obra apresentará um alto padrão estético.
+        
     \end{minipage}\hspace{\fill}
-    \begin{minipage}[t]{0.4\linewidth}
+    \begin{minipage}[t]{0.5\linewidth}
+    
         \setlength{\parindent}{1.5em}
-        \lipsum[75]
+        Não deixe de experimentar o \LaTeX\ na diagramação do seu artigo ou livro,
+        sua obra apresentará um alto padrão estético.
+        
     \end{minipage}
 \end{verbatim}
 \end{small}
 
 \noindent
-\begin{minipage}[t]{0.55\linewidth}
+\begin{minipage}[t]{0.4\linewidth}
 	\setlength{\parindent}{1.5em}
-	\lipsum[66]
+	Não deixe de experimentar o \LaTeX\ na diagramação do seu artigo ou livro, sua obra apresentará um alto padrão estético.
 \end{minipage}\hspace{\fill}
 \begin{minipage}[t]{0.4\linewidth}
 	\setlength{\parindent}{1.5em}
-	\lipsum[75]
+	Não deixe de experimentar o \LaTeX\ na diagramação do seu artigo ou livro, sua obra apresentará um alto padrão estético.
 \end{minipage}
 
-\newpage
-\begin{small}\index{tabular@\textbackslash tabular}\index{parbox@\textbackslash parbox}
+\begin{small}\index{tabular@\textbackslash tabular}
 \begin{verbatim}
-    \begin{tabular}{p{0.6\linewidth}p{0.4\linewidth}}
-        \parbox{0.6\textwidth}{
-            \setlength{\parindent}{1.5em}
-            \lipsum[66]
-        }
+    \begin{tabular}{@{}p{0.5\linewidth}p{0.5\linewidth}@{}}
+    
+        \setlength{\parindent}{1.5em}
+        Não deixe de experimentar o \LaTeX\ na diagramação do seu artigo ou livro,
+        sua obra apresentará um alto padrão estético.
+        
         &
-        \parbox{0.4\textwidth}{
-            \setlength{\parindent}{1.5em}
-            \lipsum[75]
-        }
+        
+        \setlength{\parindent}{1.5em}
+        Não deixe de experimentar o \LaTeX\ na diagramação do seu artigo ou livro,
+        sua obra apresentará um alto padrão estético.
+        
     \end{tabular}
 \end{verbatim}
 \end{small}
 
 \noindent
-\begin{tabular}{p{0.6\linewidth}p{0.4\linewidth}}
-	\parbox{0.6\textwidth}{
+\begin{tabular}{@{}p{0.5\linewidth}p{0.5\linewidth}@{}}
 		\setlength{\parindent}{1.5em}
-		\lipsum[66]
-	}
+		Não deixe de experimentar o \LaTeX\ na diagramação do seu artigo ou livro, sua obra apresentará um alto padrão estético.
 	&
-	\parbox{0.4\textwidth}{
 		\setlength{\parindent}{1.5em}
-		\lipsum[75]
-	}
+		Não deixe de experimentar o \LaTeX\ na diagramação do seu artigo ou livro, sua obra apresentará um alto padrão estético.
 \end{tabular}
-
-\begin{small}\index{vwcol@\textbackslash vwcol}
-\begin{verbatim}
-    \begin{vwcol}[widths={0.6,0.4},sep=1.5em,justify=flush,rule=0pt,indent=1.5em]
-        \indent\lipsum[66]
-        \newpage
-        \lipsum[75]
-    \end{vwcol}
-\end{verbatim}
-\end{small}
-
-\noindent
-\begin{vwcol}[widths={0.6,0.4},
-              sep=1.5em,
-              justify=flush,
-              rule=0pt,
-              indent=1.5em]
-    \indent\lipsum[66]
-	\newpage
-	\parbox{0.4\textwidth}{
-    \setlength{\parindent}{1.5em}
-	\lipsum[75]
-    }
-\end{vwcol}
 
 \chapter*{Índice, referências e ligações}
 \addcontentsline{toc}{chapter}{Índice, referências e ligações}
