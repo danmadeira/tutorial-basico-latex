@@ -105,7 +105,7 @@
 \newcommand{\mesano}{\DTMportugesmonthname{\the\month} de \the\year}
 \newcommand{\versaomaior}{1}
 \newcommand{\versaomenor}{1}
-\newcommand{\versaodecorrecao}{0}
+\newcommand{\versaodecorrecao}{2}
 
 % definição de um novo ambiente, que será usado para montar a folha de rosto.
 \newenvironment{folharosto}[1]
@@ -575,7 +575,7 @@ headings   & O rodapé é limpo e o cabeçalho exibe informação da seção e o
 myheadings & O número da página fica no canto superior e é possível especificar o restante do cabeçalho. \\
 \end{tabular}
 
-Dependendo da classe do documento, os estilos terão uma aparência diferente. Com a escolha do estilo \texttt{myheadings}, dois comandos podem ser usados para especificar manualmente a informação no cabeçalho: \texttt{\textbackslash markright\{\textit{info na folha direita}\}}\index{markright@\textbackslash markright} e \texttt{\textbackslash markboth\{\textit{info na folha esquerda}\}\{\textit{info na folha direita}\}}\index{markboth@\textbackslash markboth}, para documento com um lado ou dois lados de folha. Seguem dois exemplos:
+Dependendo da classe do documento, os estilos terão uma aparência diferente. Com a escolha do estilo \texttt{myheadings}, dois comandos podem ser usados para especificar manualmente a informação no cabeçalho: \texttt{\textbackslash markright\{\textit{info na folha direita}\}}\index{markright@\textbackslash markright} e \texttt{\textbackslash markboth\{\textit{info folha esquerda}\}\{\textit{info folha direita}\}}\index{markboth@\textbackslash markboth}, para documento com um lado ou dois lados de folha. Seguem dois exemplos:
 
 \begin{small}
 \begin{verbatim}
@@ -584,7 +584,7 @@ Dependendo da classe do documento, os estilos terão uma aparência diferente. C
 \end{verbatim}
 \end{small}
 
-Obs.: Se o documento estiver definido com um lado (\texttt{oneside}), os números das páginas estarão no canto direito e a informação partindo do canto esquerdo da página. Com o documento definido com dois lados (\texttt{twoside}), isto se intercalará de acordo com o lado que a página estiver, na folha esquerda ou na folha direita.
+Obs.: Se o documento estiver definido com um lado (\texttt{oneside})\index{oneside}, os números das páginas estarão no canto direito e a informação partindo do canto esquerdo da página. Com o documento definido com dois lados (\texttt{twoside})\index{twoside}, isto se intercalará de acordo com o lado que a página estiver, na folha esquerda ou na folha direita.
 
 \subsection*{Fancy}
 \addcontentsline{toc}{subsection}{Fancy}
@@ -719,7 +719,7 @@ Na página que desejar aplicar este estilo, use:\index{thispagestyle@\textbacksl
 \end{multicols}
 
 \begin{multicols}{2}
-Em tempo, os traços decorativos podem ser redefinidos, usando o comando \texttt{\textbackslash renewcommand} em \texttt{\textbackslash headrulewidth}, para o traço no cabeçalho, e em \texttt{\textbackslash footrulewidth}, para o traço no rodapé:
+Em tempo, os traços\index{traco@traço} decorativos podem ser redefinidos, usando o comando \texttt{\textbackslash renewcommand} em \texttt{\textbackslash headrulewidth}\index{headrulewidth@\textbackslash headrulewidth}, para o traço no cabeçalho, e em \texttt{\textbackslash footrulewidth}\index{footrulewidth@\textbackslash footrulewidth}, para o traço no rodapé:
 \columnbreak
 \begin{small}
 \begin{verbatim}
@@ -737,6 +737,9 @@ Na intenção de formatar o valor numérico da paginação, caso queira forçar 
 \index{arabic}
 \index{roman}
 \index{alph}
+\index{romano}
+\index{arabico@arábico}
+\index{alfabeto}
 
 \begin{tabular}{>{\ttfamily}ll}
 arabic & Algarismos arábicos: 1, 2, ...
@@ -1597,7 +1600,7 @@ Para inserir uma nota de rodapé\footnote{Uma anotação colocada ao pé de uma 
 \subsection*{Literalmente}
 \addcontentsline{toc}{subsection}{Literalmente}
 
-O ambiente padrão para impressão de código-fonte no \LaTeX\ é o ambiente \texttt{\{verbatim\}}. Todo o texto localizado dentro deste ambiente é exibido literalmente e todos os comandos presentes são ignorados. Este ambiente usa, ainda, uma fonte monoespaçada e mantém todas as indentações e quebras de linhas do conteúdo original. Exemplo:
+O ambiente padrão para impressão de código-fonte\index{codigo-fonte@código-fonte} no \LaTeX\ é o ambiente \texttt{\{verbatim\}}\index{verbatim}. Todo o texto localizado dentro deste ambiente é exibido literalmente e todos os comandos presentes são ignorados. Este ambiente usa, ainda, uma fonte monoespaçada\index{monoespacado@monoespaçado} e mantém todas as indentações e quebras de linhas do conteúdo original. Exemplo:
 
 \begin{multicols}{2}
 \noindent\verb|\begin{verbatim}|\\
@@ -1611,7 +1614,7 @@ modo em que foi digitado.
 \end{verbatim}
 \end{multicols}
 
-Este ambiente pode ser aplicado em linha com o comando \verb|\verb|. Sua sintaxe é \texttt{\textbackslash verb|literalmente um texto|}.
+Este ambiente pode ser aplicado em linha com o comando \verb|\verb|.\index{verb@\textbackslash verb} Sua sintaxe é \texttt{\textbackslash verb|literalmente um texto|}.
 
 \subsection*{Colunas}
 \addcontentsline{toc}{subsection}{Colunas}
@@ -3328,7 +3331,7 @@ $\dotsm$ & \textbackslash dotsm &
 $\dotso$ & \textbackslash dotso \\
 \end{tabular}
 
-O pacote \texttt{\{amsmath\}} tem o comando \texttt{\textbackslash text\{\}} o qual aplica a formatação do ambiente externo, e ainda \texttt{\textbackslash mathrm\{\}}, \texttt{\textbackslash mathsf\{\}}, \texttt{\textbackslash mathbf\{\}}, \texttt{\textbackslash mathtt\{\}} e \texttt{\textbackslash mathit\{\}}.\index{romano}\index{semserifa@sem serifa}\index{negrito}\index{italico@itálico}\index{monoespacado@monoespaçado}
+O pacote \texttt{\{amsmath\}} tem o comando \texttt{\textbackslash text\{\}} o qual aplica a formatação do ambiente externo, e ainda \texttt{\textbackslash mathrm\{\}}, \texttt{\textbackslash mathsf\{\}}, \texttt{\textbackslash mathbf\{\}}, \texttt{\textbackslash mathtt\{\}} e \texttt{\textbackslash mathit\{\}}.\index{romano}\index{semserifa@sem serifa}\index{negrito}\index{teletipo}\index{teletype}\index{italico@itálico}
 
 \subsection*{Font Awesome \footnotesize{(pacote \texttt{fontawesome})}}
 \addcontentsline{toc}{subsection}{Font Awesome}\index{fontawesome}
@@ -3713,7 +3716,7 @@ Quanto aos pacotes, é muito comum ter pacotes que são aprimoramentos ou reescr
 \chapter*{Colofão}
 \addcontentsline{toc}{chapter}{Colofão}
 
-Este eBook foi desenvolvido pelo próprio autor, usando o sistema de preparação de documento \LaTeXe\ através do software \TeX studio, no sistema operacional Linux Fedora. O documento foi convertido para o formato PDF pelo \TeX\ Live com a ferramenta pdfTeX. O corpo do texto utiliza a fonte Computer Modern, no tamanho 12pt, e as páginas possuem o tamanho A4, com três centímetros nas margens superior e esquerda e com dois vírgula cinco centímetros nas margens direita e inferior.
+Este eBook foi desenvolvido pelo próprio autor, usando o sistema de preparação de documento \LaTeXe\ através do software \TeX studio, no sistema operacional Linux Fedora. O documento foi convertido para o formato PDF pelo \TeX\ Live com a ferramenta pdfTeX. O corpo do texto utiliza a fonte Computer Modern, no tamanho 12pt, e as páginas possuem o tamanho A4, com 3 centímetros nas margens superior e esquerda e com 2,5 centímetros nas margens direita e inferior.
 
 As imagens da capa e da contracapa foram obtidas pelo website Pexels.com. A fotografia da capa foi obtida no endereço https:// www.pexels.com/ photo/ photo-of-clouds-during-daytime-2088205/ e a fotografia da contracapa foi obtida no endereço https:// www.pexels.com/ photo/ photo-of-airplane-with-smoke-trail-2088203/. Ambas as fotos estão creditadas a Eberhard Grossgasteiger.
 
@@ -3722,7 +3725,7 @@ O código-fonte deste tutorial foi compilado em \DTMportugesmonthname{\the\month
 \setlength{\parskip}{3em}
 
 \begin{alteramargem}{7cm}{0cm}
-	\say{Ciência é o que nós compreendemos bem o suficiente para explicar à um computador; Arte é além disso.} -- Donald Ervin Knuth
+	\say{Ciência é o que nós compreendemos bem o suficiente para explicar a um computador; Arte é além disso.} -- Donald Ervin Knuth
 	% Science is what we understand well enough to explain to a computer; art is everything else.
 \end{alteramargem}
 
