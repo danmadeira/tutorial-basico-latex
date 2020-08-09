@@ -84,10 +84,9 @@
     \renewcommand{\headrulewidth}{0pt} % zera a linha do cabeçalho.
     \cfoot{\thepage} % insere o número da página no centro do rodapé.
     \pagestyle{fancy} % aplica o estilo.
-\usepackage[backend=biber,sorting=none,hyperref=auto,giveninits=false,isbn=false]{biblatex} % https://www.ctan.org/pkg/biblatex
+\usepackage[backend=biber,sorting=none,hyperref=auto,giveninits=false,isbn=false,giveninits]{biblatex} % https://www.ctan.org/pkg/biblatex
 \addbibresource{bibliografia.bib}
-\DeclareFieldFormat{labelnumberwidth}{}
-% para não imprimir rótulo
+\DeclareFieldFormat{labelnumberwidth}{} % para não imprimir rótulo
 \setlength{\biblabelsep}{0pt} % para remover o espaço do rótulo
 
 %\renewcommand{\familydefault}{\sfdefault} % estabelece o uso da fonte sem serifa como padrão.
@@ -104,8 +103,8 @@
 \newcommand{\nomeautor}{Daniel Madeira}
 \newcommand{\mesano}{\DTMportugesmonthname{\the\month} de \the\year}
 \newcommand{\versaomaior}{1}
-\newcommand{\versaomenor}{1}
-\newcommand{\versaodecorrecao}{2}
+\newcommand{\versaomenor}{2}
+\newcommand{\versaodecorrecao}{0}
 
 % definição de um novo ambiente, que será usado para montar a folha de rosto.
 \newenvironment{folharosto}[1]
@@ -841,6 +840,69 @@ São quatro comandos que definem estas partes:
 
 A parte em \texttt{\textbackslash frontmatter}\index{frontmatter@\textbackslash frontmatter} terá a numeração romana nas páginas e não terá os capítulos numerados. A parte em \texttt{\textbackslash mainmatter}\index{mainmatter@\textbackslash mainmatter} terá o comportamento padrão do documento e a sequencia numérica das páginas é reiniciada. A parte \texttt{\textbackslash appendix}\index{appendix@\textbackslash appendix} reinicia a numeração de capítulos, usa letras na numeração de capítulos e continua seguindo a numeração das páginas principais. A parte \texttt{\textbackslash backmatter}\index{backmatter@\textbackslash backmatter} continua seguindo a numeração das páginas principais mas volta a desativar a numeração dos capítulos.
 
+\section*{Ilustrações}
+\addcontentsline{toc}{section}{Ilustrações}
+
+Além do texto propriamente dito, há outras formas de exibir uma informação, que são as tabelas\index{tabela} e as figuras\index{figura}. Para estes componentes existem ambientes dedicados que servem para dar um corpo à informação. Entretanto, estes ambientes não são para a construção do conteúdo, das linhas e colunas ou da imagem, são apenas para formalizar o componente e então, possibilitam o controle do posicionamento na página, a adição de uma legenda ao componente e a inclusão na lista de tabelas e na lista de figuras.
+
+As tabelas podem ser acomodadas pelo ambiente \texttt{\{table\}}\index{table}. A sintaxe completa deste ambiente é:
+\begin{small}
+\begin{verbatim}
+    \begin{table}[posição]
+    ...
+    \end{table}
+\end{verbatim}
+\end{small}
+
+Semelhantemente, as figuras podem ser acomodadas pelo ambiente \texttt{\{figure\}}\index{figure}. A sintaxe completa deste ambiente é:
+\begin{small}
+\begin{verbatim}
+    \begin{figure}[posição]
+    ...
+    \end{figure}
+\end{verbatim}
+\end{small}
+
+No argumento da posição\index{posicao@posição}, coloca-se um destes parâmetros e, se necessário, junto com o sinal de exclamação:
+
+\begin{tabular}{lp{10cm}}
+	\textbf{Parâmetro} & \textbf{Posição} \\
+	\texttt{h \footnotesize{(here)}} & Posição flutuante aqui mesmo. \\
+	\texttt{t \footnotesize{(top)}} & No topo da página. \\
+	\texttt{b \footnotesize{(bottom)}} & No pé da página. \\
+	\texttt{p \footnotesize{(page)}} & Coloca na página flutuante especial. \\
+	\texttt{!\ \footnotesize{(override)}} & Sobrepõe o cálculo do \LaTeX\ para a posição flutuante. \\
+\end{tabular}
+
+Uma legenda\index{legenda} nestes componentes é adicionada pelo comando \texttt{\textbackslash caption}\index{caption@\textbackslash caption}. Se desejar que a legenda apareça na parte superior, coloque este comando antes do ambiente que constrói o conteúdo. Se desejar que apareça embaixo, coloque este comando após. Exemplo:
+\begin{small}
+\begin{verbatim}
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{|l|l|l|l|l|l|l|} 
+            \hline
+            Domingo & Segunda & Terça & Quarta & Quinta & Sexta & Sábado \\
+            \hline
+        \end{tabular}
+        \caption{Dias da semana}
+    \end{table}
+\end{verbatim}
+\end{small}
+
+Se o documento tiver duas colunas e você desejar inserir uma figura ou tabela ocupando toda largura da página, use a versão marcada com asterisco (\texttt{*}) destes ambientes:
+\begin{small}
+\begin{verbatim}
+    \begin{figure*}
+        \centering
+        \includegraphics[width=10cm]{foto.jpg}
+        \caption{Fotografia}
+        \label{fig:widescreen}
+    \end{figure*}
+\end{verbatim}
+\end{small}
+
+Obs.: As figuras e tabelas nesta versão larga (com asterisco) tem algumas limitações. Não podem ser posicionadas no pé da página e não aparecem na mesma página onde foram definidas, devem ser definidas uma página antes.
+
 \chapter*{Formatação de texto}
 \addcontentsline{toc}{chapter}{Formatação de texto}
 
@@ -1424,6 +1486,42 @@ Também é possível colorir\index{cor} as tabelas, colorindo linhas com o coman
 
 Uma especificação por toda coluna pode ser aplicada no argumento do ambiente \texttt{\{tabular\}}, usando \texttt{>\{\textbackslash comando\}}\index{<\{\}} para comandos executados antes de cada elemento da coluna e \texttt{<\{\textbackslash comando\}}\index{>\{\}} para comandos que serão executados após cada elemento da coluna, como foi usado acima com o comando \texttt{\textbackslash columncolor\{\}}.
 
+Adicionando o pacote \texttt{\{wrapfig\}}\index{wrapfig}, o texto ganha a possibilidade de envolver\index{envolver} a tabela carregada. Para isso usa-se o ambiente \texttt{\{wraptable\}}\index{wraptable} junto com os argumentos da posição e da largura do espaço.
+
+Basicamente, para a posição\index{posição} existem estes parâmetros. As versões maiúsculas permitem a figura flutuar e as versões minúsculas impõem exatamente aqui:
+
+\begin{tabular}{>{\ttfamily}l>{\ttfamily}ll}\hline
+    r & R & Lado direito do texto \\
+    l & L & Lado esquerdo do texto \\
+    i & I & Lado interno do encadernamento (em documento com dois lados) \\
+    o & O & Lado externo do encadernamento (em documento com dois lados) \\\hline
+\end{tabular}
+
+Segue uma tabela que está, a seguir, em um exemplo de envolvimento:
+\begin{small}
+\begin{verbatim}
+    \begin{wraptable}{r}{6cm}
+        \begin{tabular}{|>{\ttfamily}c|>{\ttfamily}c|>{\ttfamily}c|}\hline
+            X & O & O \\\hline
+              & X & O \\\hline
+            O & X & X \\\hline
+        \end{tabular}
+    \end{wraptable}
+\end{verbatim}
+\end{small}
+
+\begin{wraptable}{r}{6cm}
+\begin{center}
+\begin{tabular}{|>{\ttfamily\small}c|>{\ttfamily\small}c|>{\ttfamily\small}c|}\hline
+    X & O & O \\\hline
+      & X & O \\\hline
+    O & X & X \\\hline
+\end{tabular}
+\end{center}
+\end{wraptable}
+
+\textsl{O jogo da velha é um jogo popular com regras extremamente simples, que não traz grandes dificuldades para seus jogadores e é fácil de ser aprendido. A origem é desconhecida, com indicações de que pode ter começado no antigo Egito, onde foram encontrados tabuleiros esculpidos na rocha, que teriam mais de 3.500 anos. E algumas lendas urbanas contam que o jogo teria nascido em Portugal, na cidade de Almada, no ano 545. O jogo pode ser jogado sobre um tabuleiro ou mesmo sendo riscado sobre um pedaço de papel ou mesa.}
+
 \subsection*{Lista}
 \addcontentsline{toc}{subsection}{Lista}
 
@@ -1462,7 +1560,6 @@ As listas\index{lista} são construídas com o ambiente \texttt{\{itemize\}}\ind
 \end{enumerate}
 \end{multicols}
 
-\newpage
 O comando do ambiente \texttt{\{itemize\}} aceita especificar um caractere para indicar os itens da lista e com o ambiente \texttt{\{enumerate\}} também podemos definir um outro caractere de ordenação:
 \index{label}\index{rotulo@rótulo}
 \begin{multicols}{2}
@@ -1478,7 +1575,7 @@ O comando do ambiente \texttt{\{itemize\}} aceita especificar um caractere para 
 	\item Feijão;
 	\item Carne.
 \end{itemize}
-
+\columnbreak
 \begin{small}
 \begin{verbatim}
 \begin{itemize}[label=$\rightarrow$]
@@ -1491,7 +1588,9 @@ O comando do ambiente \texttt{\{itemize\}} aceita especificar um caractere para 
 	\item Feijão;
 	\item Carne.
 \end{itemize}
+\end{multicols}
 
+\begin{multicols}{2}
 \begin{small}
 \begin{verbatim}
 \begin{itemize}[label=\ding{43}]
@@ -1518,7 +1617,9 @@ O comando do ambiente \texttt{\{itemize\}} aceita especificar um caractere para 
 	\item Feijão;
 	\item Carne.
 \end{enumerate}
+\end{multicols}
 
+\begin{multicols}{2}
 \begin{small}
 \begin{verbatim}
 \begin{enumerate}[label=(\roman*)]
@@ -1531,7 +1632,7 @@ O comando do ambiente \texttt{\{itemize\}} aceita especificar um caractere para 
 	\item Feijão;
 	\item Carne.
 \end{enumerate}
-
+\columnbreak
 \begin{small}
 \begin{verbatim}
 \begin{enumerate}[label=\Alph*)]
@@ -1546,7 +1647,31 @@ O comando do ambiente \texttt{\{itemize\}} aceita especificar um caractere para 
 \end{enumerate}
 \end{multicols}
 
+Um item pode ter também um rótulo\index{rotulo@rótulo} individual, especificando o rótulo pelo argumento do comando:\index{item@\textbackslash item}
+
+\texttt{\textbackslash item[rótulo]}.
+
 Ainda é possível inserir uma sub-lista dentro de um item de lista, o \LaTeX\ altera automaticamente o símbolo de indicação de item.
+
+Outra forma de lista é com o ambiente \texttt{\{description\}}\index{description}\index{descricao@descrição}, o qual produz uma lista descritiva, na qual o rótulo de cada item deve ser especificado:
+
+\begin{multicols}{2}
+\begin{footnotesize}
+\begin{verbatim}
+\begin{description}
+    \item[.tex] Código-fonte do \LaTeX;
+    \item[.bib] Bibliografia;
+    \item[.ist] Estilo do índice.
+\end{description}
+\end{verbatim}
+\end{footnotesize}
+\columnbreak
+\begin{description}
+    \item[.tex] Código-fonte do \LaTeX;
+    \item[.bib] Referências bibliográficas;
+    \item[.ist] Estilo do índice.
+\end{description}
+\end{multicols}
 
 E mais um recurso é a lista dentro de um parágrafo, na mesma linha, por exemplo esta lista:
 \begin{inparaenum}[a)]
@@ -1565,10 +1690,6 @@ Foi produzida usando o ambiente \texttt{\{inparaenum\}}:\index{inparaenum}
    \end{inparaenum}
 \end{verbatim}
 \end{small}
-
-Um item pode ter também um rótulo\index{rotulo@rótulo} individual, especificando o rótulo pelo argumento do comando:\index{item@\textbackslash item}
-
-\texttt{\textbackslash item[rótulo]}.
 
 \newpage
 \subsection*{Verso}
@@ -1752,11 +1873,11 @@ No \LaTeX, a página do sumário é simplesmente criada automaticamente pelo com
 
 Caso não esteja usando um pacote de localização, é possível alterar o nome do sumário redefinindo o comando \texttt{\textbackslash contentsname}\index{contentsname@\textbackslash contentsname}, assim:
 
-\texttt{\small\textbackslash renewcommand*\textbackslash contentsname\{Sumário\}}
+\texttt{\small\textbackslash renewcommand\{\textbackslash contentsname\}\{Sumário\}}
 
-Todo capítulo, seção e subseção, assim como os novos que vierem à ser adicionados no documento, serão incluídos automaticamente no sumário. Simples assim.
+Todo capítulo, seção e subseção, assim como os novos que forem adicionados no documento, serão incluídos automaticamente no sumário. Simples assim.
 
-Caso não queira adicionar os capítulos, seções e subseções automaticamente, adicione o caractere \texttt{*} nos respectivos comandos. E para incluir manualmente estes capítulos, seções e subseções no sumário, use, após os comandos deles, o comando \texttt{\textbackslash addcontentsline}\index{addcontentsline@\textbackslash addcontentsline}. Exemplos para algumas divisões:
+Caso não queira adicionar os capítulos, seções e subseções automaticamente, adicione o caractere \texttt{*} nos respectivos comandos. E para incluir manualmente estes capítulos, seções e subseções no sumário, use, após os comandos deles, o comando \texttt{\textbackslash addcontentsline}\index{addcontentsline@\textbackslash addcontentsline} com o argumento \texttt{\{toc\}}\index{toc}. Exemplos para algumas divisões:
 \begin{small}
 \begin{verbatim}
     \chapter*{Nome do Capítulo}
@@ -1767,6 +1888,26 @@ Caso não queira adicionar os capítulos, seções e subseções automaticamente
 
     \subsection*{Nome da Subseção}
     \addcontentsline{toc}{subsection}{Nome da Subseção}
+\end{verbatim}
+\end{small}
+
+\section*{Lista de figuras e tabelas}
+\addcontentsline{toc}{section}{Lista de figuras e tabelas}
+
+Além do sumário, opcionalmente, a obra pode conter uma lista das figuras e uma lista das tabelas existentes. No \LaTeX, estas listas são criadas automaticamente pelos comandos \texttt{\textbackslash listoffigures}\index{listoffigures@\textbackslash listoffigures} e \texttt{\textbackslash listoftables}\index{listoftables@\textbackslash listoftables}. Caso não esteja usando um pacote de localização, é possível alterar o nome destas listas redefinindo os comandos \texttt{\textbackslash listfigurename}\index{listfigurename@\textbackslash listfigurename} e \texttt{\textbackslash listtablename}\index{listtablename@\textbackslash listtablename}, assim:
+
+\texttt{\small\textbackslash renewcommand\{\textbackslash listfigurename\}\{Lista de Figuras\}}
+
+\texttt{\small\textbackslash renewcommand\{\textbackslash listtablename\}\{Lista de Tabelas\}}
+
+Da mesma forma, todas as novas figuras e tabelas que forem adicionadas no documento, serão incluídas automaticamente nas listas. Mas agora, caso não queira adicionar automaticamente, não inclua o comando \texttt{\textbackslash caption}\index{caption@\textbackslash caption} nos respectivos ambientes das figuras ou tabelas. E, para incluir manualmente uma figura ou tabela nas listas, use, após os respectivos ambientes, o mesmo comando \texttt{\textbackslash addcontentsline}\index{addcontentsline@\textbackslash addcontentsline} com o argumento \texttt{\{lof\}}\index{lof} ou \texttt{\{lot\}}\index{lot}. Exemplos:
+\begin{small}
+\begin{verbatim}
+    \begin{figure} ... \end{figure}
+    \addcontentsline{lof}{figure}{Nome da figura}
+    
+    \begin{table} ... \end{table}
+    \addcontentsline{lot}{table}{Nome da tabela}
 \end{verbatim}
 \end{small}
 
@@ -1815,6 +1956,95 @@ Por exemplo: \texttt{\textbackslash label\{ch:introducao\}}. O que depois, será
 
 E aqui tem uma referência à nota de rodapé \ref{notarodape} do capítulo sobre formatação de texto, na página \pageref{notarodape} (veja esta parte no código-fonte).
 
+\section*{Bibliografia}
+\addcontentsline{toc}{section}{Bibliografia}
+
+Apesar do \LaTeX\ já incluir um suporte para construção da bibliografia\index{bibliografia}, recomenda-se o uso do pacote \texttt{\{biblatex\}}\index{biblatex}. Sendo este pacote bem mais sofisticado que o recurso nativo. Assim, coloque no preâmbulo o comando:
+
+\texttt{\small\textbackslash usepackage\{biblatex\}}.
+
+Geralmente a obra chega a ter dezenas de bibliografias então, fica mais prático utilizar um arquivo externo de banco de dados para o armazenamento de todas as referências bibliográficas. Este arquivo de texto plano, com a extensão \texttt{.bib}\index{bib@.bib}, é carregado, no preâmbulo, com o comando:
+
+\texttt{\textbackslash addbibresource\{bibliografia.bib\}}.\index{addbibresource@\textbackslash addbibresource}
+
+O arquivo externo de banco de dados deve seguir uma estrutura para os tipos de obras. Existem dezenas de tipos, cada um com suas referências particulares, algumas obrigatórias e outras opcionais. (Aqui é melhor consultar o manual do \texttt{\{biblatex\}} para saber tudo.) Então, algumas são:
+
+\begin{multicols}{2}
+\index{article}
+\index{manual}
+\begin{footnotesize}
+\begin{verbatim}
+@article{rótulo,
+    author        = {},
+    title         = {},
+    subtitle      = {},
+    journaltitle  = {},
+    year/date     = {yyyy}/{yyyy-mm-dd},
+    month         = {n},
+    volume        = {},
+    number        = {},
+    issue         = {},
+    pages         = {i-f},
+}
+@manual{rótulo,
+    title         = {},
+    subtitle      = {},
+    author/editor = {},
+    version       = {},
+    publisher     = {},
+    organization  = {},
+    year/date     = {yyyy}/{yyyy-mm-dd},
+}
+\end{verbatim}
+\end{footnotesize}
+\columnbreak
+\index{book}
+\index{online}
+\begin{footnotesize}
+\begin{verbatim}
+@book{rótulo,
+    title         = {},
+    subtitle      = {},
+    author        = {},
+    editor        = {},
+    volume        = {},
+    edition       = {n},
+    year/date     = {yyyy}/{yyyy-mm-dd},
+    publisher     = {},
+}
+@online{rótulo,
+    title         = {},
+    subtitle      = {},
+    author/editor = {},
+    organization  = {},
+    year/date     = {yyyy}/{yyyy-mm-dd},
+    url           = {},
+    urldate       = {yyyy-mm-dd},
+}
+\end{verbatim}
+\end{footnotesize}
+\end{multicols}
+
+Obs.: Cada vez que editar este banco de dados, execute o comando \textbf{biber}\index{biber} no seu editor de \LaTeX.
+
+No decorrer do seu documento, use o comando \texttt{\textbackslash cite\{rótulo\}}\index{cite@\textbackslash cite} para colocar as respectivas citações\index{citacao@citação}. No final do documento, use o comando \texttt{\textbackslash printbibliography}\index{printbibliography@\textbackslash printbibliography} para imprimir a bibliografia.\index{bibliografia}
+
+Isso tudo foi só o básico e provavelmente não é só isso que você precisa. O \texttt{\{biblatex\}} permite muita personalização. Começando pelo carregamento do pacote, é no argumento opcional onde se definem os estilos de citação e a ordenação\index{ordenacao@ordenação} por nome, título, ano etc. Por exemplo: \texttt{[citestyle = authoryear, bibstyle = authortitle, sorting = ynt, giveninits]}\index{citestyle}\index{bibstyle}\index{giveninits}\index{sorting} Depois, no comando de impressão da bibliografia, é no argumento opcional onde se definem a inclusão no sumário\index{sumario@sumário} e o título no sumário. Por exemplo: \texttt{[heading = bibintoc, title = \{Bibliografia\}]} Tem muitas possibilidades.
+
+Dica: Caso não vá utilizar as citações no decorrer do documento e desejar remover os rótulos na relação bibliográfica, adicione no preâmbulo estes comandos:
+\index{DeclareFieldFormat@\textbackslash DeclareFieldFormat}
+\index{labelnumberwidth}
+\index{biblabelsep@\textbackslash biblabelsep}
+\begin{small}
+\begin{verbatim}
+    \DeclareFieldFormat{labelnumberwidth}{} % para não imprimir rótulo
+    \setlength{\biblabelsep}{0pt} % para remover o espaço do rótulo
+\end{verbatim}
+\end{small}
+
+E use o comando \texttt{\textbackslash nocite\{*\}}\index{nocite@\textbackslash nocite} antes da impressão da bibliografia
+
+\newpage
 \section*{Ligações internas}
 \addcontentsline{toc}{section}{Ligações internas}
 
@@ -2227,51 +2457,54 @@ Por recomendação, a extensão do arquivo pode ser omitida, assim o \LaTeX\ ir�
 \subsection*{Posicionamento}
 \addcontentsline{toc}{subsection}{Posicionamento}
 
-O carregamento da imagem torna-se mais preciso se estiver no ambiente \texttt{\{figure\}}\index{figure}\index{figura}. Com este ambiente podemos especificar o parâmetro do posicionamento\index{posicao@posição}:
+O carregamento da imagem torna-se mais preciso se estiver no ambiente \texttt{\{figure\}}\index{figure}\index{figura}.  Pois, como já visto, com este ambiente podemos especificar o parâmetro do posicionamento\index{posicao@posição}. A imagem acima foi carregada com estas linhas de comandos:
 \begin{small}
 \begin{verbatim}
-   \begin{figure}[h!]
-      \centering
-      \includegraphics[scale=0.2]{plataforma.jpg}
-      \caption{A plataforma de pesca.}
-      \label{fig:plataforma}
-   \end{figure}
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[scale=0.15]{plataforma.jpg}
+        \caption{A plataforma de pesca.}
+        \label{fig:plataforma}
+    \end{figure}
 \end{verbatim}
 \end{small}
 
-\begin{tabular}{lp{10cm}}
-\textbf{Parâmetro} & \textbf{Posição} \\
-\texttt{h \footnotesize{(here)}} & Posição flutuante aqui mesmo. \\
-\texttt{t \footnotesize{(top)}} & No topo da página. \\
-\texttt{b \footnotesize{(bottom)}} & No pé da página. \\
-\texttt{p \footnotesize{(page)}} & Coloca na página flutuante especial. \\
-\texttt{!\ \footnotesize{(override)}} & Sobrepõe o cálculo do \LaTeX\ para a posição flutuante. \\
+Adicionando o pacote \texttt{\{wrapfig\}}\index{wrapfig}, o texto ganha a possibilidade de envolver\index{envolver} a imagem carregada. Para isso usa-se o ambiente \texttt{\{wrapfigure\}}\index{wrapfigure} junto com os argumentos da posição e da largura do espaço.
+
+Basicamente, para a posição\index{posição} existem estes parâmetros. As versões maiúsculas permitem a figura flutuar e as versões minúsculas impõem exatamente aqui:
+
+\begin{tabular}{>{\ttfamily}l>{\ttfamily}ll}\hline
+r & R & Lado direito do texto \\
+l & L & Lado esquerdo do texto \\
+i & I & Lado interno do encadernamento (em documento com dois lados) \\
+o & O & Lado externo do encadernamento (em documento com dois lados) \\\hline
 \end{tabular}
 
-\newpage
-Adicionando o pacote \texttt{\{wrapfig\}}\index{wrapfig}, o texto ganha a possibilidade de envolver\index{envolver} a imagem carregada. Para isso usa-se o ambiente \texttt{\{wrapfigure\}}\index{wrapfigure}. Segue uma ilustração:
+Segue uma ilustração que está, a seguir, em um exemplo de envolvimento:
 \begin{small}
 \begin{verbatim}
-   \begin{wrapfigure}{r}{0.35\textwidth}
-      \centering
-      \includegraphics[width=0.35\textwidth]{copacabana.jpg}
-   \end{wrapfigure}
+    \begin{wrapfigure}{R}{0.40\textwidth}
+        \centering
+        \includegraphics[width=0.35\textwidth]{copacabana.jpg}
+    \end{wrapfigure}
 \end{verbatim}
 \end{small}
 
-Em um exemplo de envolvimento:
-
-\begin{wrapfigure}{r}{0.35\textwidth}
+\begin{wrapfigure}{R}{0.40\textwidth}
 	\centering
 	\includegraphics[width=0.35\textwidth]{copacabana.jpg}
 \end{wrapfigure}
 
-\lipsum[1-2]
+\textsl{Copacabana é um bairro situado na Zona Sul do município do Rio de Janeiro, no Brasil. É considerado um dos bairros mais famosos e prestigiados do Brasil e um dos mais conhecidos do mundo. Tem o apelido de Princesinha do Mar e Coração da Zona Sul. Faz divisa com os bairros da Lagoa, Ipanema, Botafogo, Leme e Humaitá. Copacabana atrai um grande contingente de turistas para seus mais de oitenta hotéis, que ficam especialmente cheios durante as épocas do ano-novo e do carnaval. No fim de ano, a tradicional queima de fogos na Praia de Copacabana atrai uma multidão. A orla ainda é lugar de variados eventos, como shows nacionais e internacionais, durante o resto do ano. Nos fins de semana, a faixa de areia fica cheia de moradores e de turistas. A calçada em pedras portuguesas da praia, com seu famoso desenho de ondas em padrão marlargo, ladeado pela ciclovia, é uma concorrida opção de passeio.}
+
+%\lipsum[1-2]
+%\lipsum[66]
+%\lipsum[75]
 
 \section*{Plotagem de dados}
 \addcontentsline{toc}{section}{Plotagem de dados}
 
-Baseado no pacote PGF/TikZ existe o pacote \texttt{\{pgfplots\}}\index{pgfplots}, para construir uma plotagem\index{plotagem} de dados, de funções etc. Conta com um segundo componente, o pacote \texttt{\{pgfplotstable\}}\index{pgfplotstable}, que faz a formatação e o processamento de tabelas numéricas. Os ambientes de plotagem do \texttt{\{pgfplots\}} dependem do ambiente \texttt{\{tikzpicture\}}.\index{tikzpicture}\index{grafico@gráfico}
+Baseado no pacote PGF/TikZ existe o pacote \texttt{\{pgfplots\}}\index{pgfplots}, para construir uma plotagem\index{plotagem} de dados, de funções etc. Este pacote ainda conta com um segundo componente, o pacote \texttt{\{pgfplotstable\}}\index{pgfplotstable}, que faz a formatação e o processamento de tabelas numéricas. Os ambientes de plotagem do \texttt{\{pgfplots\}} dependem do ambiente \texttt{\{tikzpicture\}}.\index{tikzpicture}\index{grafico@gráfico}
 
 Provavelmente, o \texttt{\{pgfplots\}} é o pacote mais complexo do \LaTeX, seu manual tem quase 600 páginas, pois possui recursos tão poderosos quanto aos disponíveis nos melhores softwares matemáticos. Vale a pena a leitura do manual.
 
@@ -3720,7 +3953,7 @@ Este eBook foi desenvolvido pelo próprio autor, usando o sistema de preparaçã
 
 As imagens da capa e da contracapa foram obtidas pelo website Pexels.com. A fotografia da capa foi obtida no endereço https:// www.pexels.com/ photo/ photo-of-clouds-during-daytime-2088205/ e a fotografia da contracapa foi obtida no endereço https:// www.pexels.com/ photo/ photo-of-airplane-with-smoke-trail-2088203/. Ambas as fotos estão creditadas a Eberhard Grossgasteiger.
 
-O código-fonte deste tutorial foi compilado em \DTMportugesmonthname{\the\month} de \the\year.\par
+O código-fonte deste tutorial foi compilado em \today.\par
 
 \setlength{\parskip}{3em}
 
