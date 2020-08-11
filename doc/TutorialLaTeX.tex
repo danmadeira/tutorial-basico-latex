@@ -104,8 +104,8 @@
 \newcommand{\nomeautor}{Daniel Madeira}
 \newcommand{\mesano}{\DTMportugesmonthname{\the\month} de \the\year}
 \newcommand{\versaomaior}{2}
-\newcommand{\versaomenor}{0}
-\newcommand{\versaodecorrecao}{1}
+\newcommand{\versaomenor}{1}
+\newcommand{\versaodecorrecao}{0}
 
 % definição de um novo ambiente, que será usado para montar a folha de rosto.
 \newenvironment{folharosto}[1]
@@ -189,11 +189,9 @@ Este tutorial tem o propósito de mostrar o mínimo, o básico, para se consegui
 \section*{Arquivo}
 \addcontentsline{toc}{section}{Arquivo}
 
-O arquivo do código-fonte em \LaTeX\ deve conter apenas bytes que representem caracteres, sem nenhuma informação adicional. Trata-se do denominado arquivo de texto plano (txt). No sistema \LaTeX, este arquivo recebe a extensão .tex\index{tex@.tex}. A codificação recomendada para este arquivo é a codificação UTF-8 ou Latin1, dependendo do sistema operacional que está processando o \LaTeX.\index{latex@LaTeX}\index{arquivo}\index{codigo-fonte@código-fonte}\index{texto plano}\index{utf8@UTF-8}\index{latin1@Latin1}
+O arquivo do código-fonte em \LaTeX\ deve conter apenas bytes que representem caracteres, sem nenhuma informação adicional. Trata-se do denominado arquivo de texto plano (txt). No sistema \LaTeX, este arquivo recebe a extensão .tex\index{tex@.tex}. A codificação recomendada para este arquivo é a codificação UTF-8 ou Latin1, dependendo do sistema operacional que está processando o \LaTeX.\index{latex@LaTeX}\index{arquivo}\index{codigo-fonte@código-fonte}\index{texto plano}\index{utf8@UTF-8}\index{latin1@Latin1} Sabendo a codificação do arquivo, coloque esta linha de comando no preâmbulo: \texttt{\textbackslash usepackage[utf8]\{inputenc\}}.\index{inputenc}
 
-Pode-se utilizar qualquer editor\index{editor} de texto puro para produzir o arquivo .tex, entretanto, é recomendável utilizar um editor \LaTeX\ para obter uma melhor produtividade. Basicamente, precisa estar instalado no seu computador: uma distribuição \TeX, por exemplo, TeX Live\index{texlive@Tex Live} ou MikTex\index{miktex@MikTex}; e um editor \LaTeX, por exemplo, TeXstudio\index{texstudio@TeXstudio}, Texmaker\index{texmaker@Texmaker} ou TeXworks\index{texworks@TeXworks}.
-
-Mas, atente-se, editar um documento em \LaTeX\ não será WYSIWYG (\textit{What You See Is What You Get})\index{wysiwyg@WYSIWYG}. Será, literalmente, editar o código-fonte do documento, inserindo os comandos de formatação do texto, entre seu conteúdo.
+Pode-se utilizar qualquer editor\index{editor} de texto puro para produzir o arquivo .tex, entretanto, é recomendável utilizar um editor \LaTeX\ para obter uma melhor produtividade. Basicamente, precisa estar instalado no seu computador: uma distribuição \TeX, por exemplo, TeX Live\index{texlive@Tex Live} ou MikTex\index{miktex@MikTex}; e um editor \LaTeX, por exemplo, TeXstudio\index{texstudio@TeXstudio}, Texmaker\index{texmaker@Texmaker} ou TeXworks\index{texworks@TeXworks}. Mas, atente-se, editar um documento em \LaTeX\ não será WYSIWYG (\textit{What You See Is What You Get})\index{wysiwyg@WYSIWYG}. Será, literalmente, editar o código-fonte do documento, inserindo os comandos de formatação do texto, entre seu conteúdo.
 
 \section*{Estrutura do código}
 \addcontentsline{toc}{section}{Estrutura do código}
@@ -232,27 +230,32 @@ Saiba a função de cada um deles:
 \index{\textbackslash \$}
 \index{\textbackslash \%}
 \index{textasciicircum@\textbackslash textasciicircum}
+\index{\textbackslash \^{}\{\}}
+\index{hat@\textbackslash hat}
 \index{\textbackslash \&}
 \index{\textbackslash \_}
 \index{\textbackslash \{}
 \index{\textbackslash \}}
-\index{\textbackslash \~{}}
+\index{\textbackslash \~{}\{\}}
 \index{textasciitilde@\textbackslash textasciitilde}
+\index{tilde@\textbackslash tilde}
 \index{textbackslash@\textbackslash textbackslash}
+\index{backslash@\textbackslash backslash}
 
 \begin{small}
-\begin{tabular}{lll}
-	Caractere & Função & Como imprimir no PS/PDF\\
+\begin{tabular}{llll}
+    & & \multicolumn{2}{c}{\textbf{Como imprimir no PS/PDF}}\\
+	\textbf{Caractere} & \textbf{Função} & \textbf{Modo Texto} & \textbf{Modo Mat.}\\
 	\hline
-	\#    & parâmetro de macro  & \texttt{\textbackslash\#}\\
-	\$    & modo matemático & \texttt{\textbackslash \$}\\
-	\%    & linha de comentário & \texttt{\textbackslash \%}\\
-	\^{}  & sobrescrito (no modo matemático) & \texttt{\textbackslash\^{}\{\}} ou \texttt{\textbackslash textasciicircum}\\
-	\&    & separador de colunas & \texttt{\textbackslash \&}\\
-	\_    & subscrito (no modo matemático) & \texttt{\textbackslash\_}\\
-	\{ \} & bloco de processamento & \texttt{\textbackslash\{ \textbackslash\}}\\
-	\~{}  & espaço inquebrável & \texttt{\textbackslash textasciitilde} ou \texttt{\textbackslash\~{}\{\}}\\
-	\textbackslash & início de comando & \texttt{\textbackslash textbackslash} ou \texttt{\textbackslash}\\
+	\#    & parâmetro de macro  & \texttt{\textbackslash\#} & \texttt{\textbackslash\#}\\
+	\$    & modo matemático & \texttt{\textbackslash \$} & \texttt{\textbackslash \$}\\
+	\%    & linha de comentário & \texttt{\textbackslash \%} & \texttt{\textbackslash \%}\\
+	\^{}  & sobrescrito (modo mat.) & \texttt{\textbackslash\^{}\{\}} ou \texttt{\textbackslash textasciicircum} & \texttt{\textbackslash hat\{\}}\\
+	\&    & separador de colunas & \texttt{\textbackslash \&} & \texttt{\textbackslash \&}\\
+	\_    & subscrito (modo mat.) & \texttt{\textbackslash\_} & \texttt{\textbackslash\_}\\
+	\{ \} & bloco de processamento & \texttt{\textbackslash\{ \textbackslash\}} & \texttt{\textbackslash\{ \textbackslash\}}\\
+	\~{}  & espaço inquebrável & \texttt{\textbackslash\~{}\{\}} ou \texttt{\textbackslash textasciitilde} & \texttt{\textbackslash tilde\{\}}\\
+	\textbackslash & início de comando & \texttt{\textbackslash textbackslash} & \texttt{\textbackslash backslash}\\
 \end{tabular}
 \end{small}
 
@@ -264,7 +267,7 @@ Saiba a função de cada um deles:
 \columnbreak
 \begin{small}
 \begin{verbatim}
-\% comentário de uma linha.
+% comentário de uma linha.
 
 \begin{comment}
     Bloco de comentário
@@ -291,7 +294,7 @@ O \LaTeX\ é uma linguagem movida por comandos\index{comando} (ou macros) no ent
 
 Alguns comandos possuem duas versões, que são especificadas com a omissão ou o acréscimo do caractere \texttt{*}\index{*} (asterisco)\index{asterisco}. Você verá\footnote{Sempre acompanhe, em paralelo, o arquivo .tex deste tutorial.}, no decorrer deste tutorial, estas duas versões. Nota: Muitos comandos nativos são originais do \TeX\ e, para simplificar, este tutorial generaliza com o nome \LaTeX.
 
-O primeiro comando no código-fonte em \LaTeX\ é o comando \texttt{\textbackslash documentclass}\index{documentclass@\textbackslash documentclass}. Nele se define a classe do documento (ex. article\index{article}, report\index{report}, book\index{book} letter\index{letter}, beamer\index{beamer} ou memoir\index{memoir}) e os parâmetros para tamanho do papel e da fonte, lados de impressão etc.:\index{artigo}\index{livro}\index{reportagem}\index{carta}\index{apresentacao@apresentação}
+O primeiro comando no código-fonte em \LaTeX\ é o comando \texttt{\textbackslash documentclass}\index{documentclass@\textbackslash documentclass}. Nele se define a classe do documento (ex. article\index{article}, report\index{report}, book\index{book}, letter\index{letter}, beamer\index{beamer} ou memoir\index{memoir}) e os parâmetros para tamanho do papel e da fonte, lados de impressão etc.:\index{artigo}\index{livro}\index{reportagem}\index{carta}\index{apresentacao@apresentação}
 \begin{small}\index{a4paper}
 \begin{verbatim}
    \documentclass[a4paper,12pt,oneside]{book}
@@ -1058,6 +1061,154 @@ Além do alinhamento\index{alinhamento} justificado\index{justificado}, que é o
 \section*{Fontes}
 \addcontentsline{toc}{section}{Fontes}
 
+\subsection*{Tipo de letra}
+\addcontentsline{toc}{subsection}{Tipo de letra}
+
+No \LaTeX, o tipo\index{tipo} de letra padrão é a família\index{familia@família} de fonte Computer Modern\index{computermodern@Computer Modern}. Você pode alterar o tipo da letra no documento, existem diversas outras fontes disponíveis\footnote{Consulte em: \href{https://www.tug.org/FontCatalogue/}{The LaTeX Font Catalogue}}, nos diversos estilos. Mas, antes, é necessário usar o pacote \texttt{\{fontenc\}}\index{fontenc}. Este pacote permite a seleção da fonte para o documento.
+
+Inclua a seguinte linha, no preâmbulo, e defina no argumento do pacote o formato PostScript Type 1:\index{type1@Type 1}
+
+\texttt{\small\textbackslash usepackage[T1]\{fontenc\}}
+
+Com isso, basta usar o pacote da fonte escolhida (\texttt{\small\textbackslash usepackage\{...\}}), que todo o documento será impresso nesta fonte. Seguem alguns pacotes de fontes:
+
+Fontes padrões no \LaTeX:
+\index{latinmodern@Latin Modern}\index{lmodern}
+
+\begin{tabular}{llll}
+\textbf{Nome} & \textbf{Pacote} & \textbf{Código} & \textbf{Família}\\
+Computer Modern & \texttt{\small{(não precisa,}} & \texttt{\small{cmr}}, & \small{todas famílias}\\
+                & \texttt{\small{é o padrão)}}& \texttt{\small{cmss,}} & \\
+                & & \texttt{\small{cmtt}} & \\
+Latin Modern & \texttt{\small{\{lmodern\}}} & \texttt{\small{lmr}}, & \small{todas famílias}\\
+             & & \texttt{\small{lmss,}} & \\
+             & & \texttt{\small{lmtt}} & \\
+\end{tabular}
+
+\newpage
+Fontes comuns Adobe PostScript:
+\index{adobe@Adobe}
+\index{postscript@PostScript}
+\index{times@Times}\index{mathptmx}
+\index{palatino@Palatino}\index{mathpazo}
+\index{helvetica@Helvetica}\index{helvet}
+\index{avantgarde@Avant Garde}\index{avant}
+\index{courier@Courier}
+\index{zapfchancery@Zapf Chancery}\index{chancery}
+\index{bookman@Bookman}
+\index{newcentury@New Century}\index{newcent}
+\index{charter@Charter}
+\index{fourier@Fourier}
+ 
+\begin{tabular}{llll}
+\textbf{Nome} & \textbf{Pacote} & \textbf{Código} & \textbf{Família}\\
+Times & \texttt{\small{\{mathptmx\}}} & \texttt{\small{ptm}} & \small{romano}\\
+Palatino & \texttt{\small{\{mathpazo\}}} & \texttt{\small{ppl}} & \small{romano}\\
+Helvetica & \texttt{\small{\{helvet\}}} & \texttt{\small{phv}} & \small{sem serifa}\\
+Avant Garde & \texttt{\small{\{avant\}}} &  & \small{sem serifa}\\
+Courier & \texttt{\small{\{courier\}}} & \texttt{\small{pcr}} & \small{monoespaçado}\\
+Zapf Chancery & \texttt{\small{\{chancery\}}} &  & \small{romano}\\
+Bookman & \texttt{\small{\{bookman\}}} & \texttt{\small{pbk}} & \small{romano}\\
+New Century Schoolbook & \texttt{\small{\{newcent\}}} &  & \small{romano}\\
+Charter & \texttt{\small{\{charter\}}} & \texttt{\small{bch}} & \small{romano}\\
+Fourier & \texttt{\small{\{fourier\}}} & \texttt{\small{put}} & \small{romano}\\
+\end{tabular}
+
+\vspace{1.5em}
+
+Fontes inspiradas na Vera:
+\index{arev@Arev}
+\index{beraserif@Bera Serif}\index{bera}
+\index{berasans@Bera Sans}
+\index{beramono@Bera Mono}
+
+\begin{tabular}{llll}
+\textbf{Nome} & \textbf{Pacote} & \textbf{Código} & \textbf{Família}\\
+Arev & \texttt{\small{\{arev\}}} &  & \small{sem serifa}\\
+Bera Serif & \texttt{\small{\{bera\}}} &  & \small{romano}\\
+Bera Sans & \texttt{\small{[scaled]\{berasans\}}} &  & \small{sem serifa}\\
+Bera Mono & \texttt{\small{[scaled]\{beramono\}}} &  & \small{monoespaçado}\\
+\end{tabular}
+
+\vspace{1.5em}
+
+\TeX\ Gyre (baseada na família URW):
+\index{texgyre@TeX Gyre}
+\index{urw@URW}
+\index{tgadventor}
+\index{tgbonum}
+\index{tgchorus}
+\index{tgcursor}
+\index{tgheros}
+\index{tgpagella}
+\index{tgschola}
+\index{tgtermes}
+
+\begin{tabular}{llll}
+\textbf{Nome} & \textbf{Pacote} & \textbf{Código} & \textbf{Família}\\
+TeX Gyre Adventor & \texttt{\small{\{tgadventor\}}} & \texttt{\small{qag}} & \small{sem serifa}\\
+TeX Gyre Bonum & \texttt{\small{\{tgbonum\}}} & \texttt{\small{qbk}} & \small{romano}\\
+TeX Gyre Chorus & \texttt{\small{\{tgchorus\}}} & \texttt{\small{qzc}} & \small{romano}\\
+TeX Gyre Cursor & \texttt{\small{\{tgcursor\}}} & \texttt{\small{qcr}} & \small{monoespaçado}\\
+TeX Gyre Heros & \texttt{\small{\{tgheros\}}} & \texttt{\small{qhv}} & \small{sem serifa}\\
+TeX Gyre Pagella & \texttt{\small{\{tgpagella\}}} & \texttt{\small{qpl}} & \small{romano}\\
+TeX Gyre Schola & \texttt{\small{\{tgschola\}}} & \texttt{\small{qcs}} & \small{romano}\\
+TeX Gyre Termes & \texttt{\small{\{tgtermes\}}} & \texttt{\small{qtm}} & \small{romano}\\
+\end{tabular}
+
+\vspace{1.5em}
+
+Alguns pacotes de fontes não trocam a família padrão, que normalmente é romano, para imprimir a fonte. Porém, estas fontes podem ser restritamente de outra família. Então, torna-se necessário um destes comandos adicionais, no preâmbulo, de acordo com a família da fonte. E inclusive, se a fonte possuir mais de uma família e você desejar diferente do padrão:
+\index{familia@família}
+\index{familydefault@\textbackslash familydefault}
+\index{sfdefault@\textbackslash sfdefault}
+\index{rmdefault@\textbackslash rmdefault}
+\index{ttdefault@\textbackslash ttdefault}
+
+\begin{tabular}{l>{\ttfamily\small}l}
+Padrão sem serifa: & \textbackslash renewcommand\{\textbackslash familydefault\}\{\textbackslash sfdefault\}\\
+Padrão romano: & \textbackslash renewcommand\{\textbackslash familydefault\}\{\textbackslash rmdefault\}\\
+Padrão monoespaçado: & \textbackslash renewcommand\{\textbackslash familydefault\}\{\textbackslash ttdefault\}\\
+\end{tabular}
+
+\vspace{1.5em}
+
+Como visto, o uso de um pacote de fonte define o tipo da letra por todo o documento. Para selecionar, em um determinado bloco de texto, um tipo de fonte diferente, use os comandos \texttt{\textbackslash fontfamily} para especificar o tipo, \texttt{\textbackslash fontseries} para especificar a série, \texttt{\textbackslash fontshape} para especificar a forma e \texttt{\textbackslash selectfont} para confirmar a seleção. Seguindo esta sintaxe:
+\index{fontfamily@\textbackslash fontfamily}
+\index{fontseries@\textbackslash fontseries}
+\index{fontshape@\textbackslash fontshape}
+
+\noindent\texttt{\small\{\textbackslash fontfamily\{\textit{código}\}\textbackslash fontseries\{\textit{série}\}\textbackslash fontshape\{\textit{forma}\}\textbackslash selectfont \textnormal{seu texto}\}}
+
+Use os comandos que desejar e termine com o comando de confirmação. O código é o que está nas tabelas das fontes acima. As séries podem ser, resumidamente, \texttt{m} (médio) e \texttt{b} (negrito). As formas podem ser, resumidamente, \texttt{n} (normal), \texttt{it} (itálico) e \texttt{sl} (inclinado).
+
+Veja estes exemplos:
+
+{\fontfamily{ptm}\selectfont Times} 
+{\fontfamily{ppl}\selectfont Palatino} 
+{\fontfamily{phv}\selectfont Helvetica} 
+{\fontfamily{pcr}\selectfont Courier} 
+{\fontfamily{pbk}\selectfont Bookman} 
+{\fontfamily{bch}\selectfont Charter}
+
+\begin{multicols}{2}
+\begin{small}
+\begin{verbatim}
+{\fontfamily{ptm}\selectfont Times}
+{\fontfamily{ppl}\selectfont Palatino}
+{\fontfamily{phv}\selectfont Helvetica}
+\end{verbatim}
+\end{small}
+\columnbreak
+\begin{small}
+\begin{verbatim}
+{\fontfamily{pcr}\selectfont Courier}
+{\fontfamily{pbk}\selectfont Bookman}
+{\fontfamily{bch}\selectfont Charter}
+\end{verbatim}
+\end{small}
+\end{multicols}
+
 \subsection*{Tamanho}
 \addcontentsline{toc}{subsection}{Tamanho}
 
@@ -1076,7 +1227,7 @@ Existem alguns tamanhos para os caracteres da fonte\index{fonte} (e incrementado
 \index{Huge@\textbackslash Huge}
 \index{HUGE@\textbackslash HUGE}
 
-\begin{tabular}{l>{\ttfamily}r}
+\begin{tabular}{l>{\ttfamily\small}r}
 	\tiny{Texto miúdo} & \textbackslash tiny\{\}\\
 	\ssmall{Texto ppequeno} & \textbackslash ssmall\{\}\\
 	\scriptsize{Texto script} & \textbackslash scriptsize\{\}\\
@@ -1091,54 +1242,48 @@ Existem alguns tamanhos para os caracteres da fonte\index{fonte} (e incrementado
 	\HUGE{Texto IMENSO} & \textbackslash HUGE\{\}\\
 \end{tabular}
 
+\vspace{1.5em}
+
 A forma da sintaxe inline também pode ser assim: \texttt{\{\textbackslash small ... \}}.
 
-\begin{normalsize}
-Outra maneira, de definir o tamanho do texto, é em um ambiente com bloco de parágrafo. Exemplo:
+Por fim, a outra maneira de definir o tamanho do texto, é em um ambiente com bloco de parágrafo. Exemplo: \texttt{\small\textbackslash begin\{large\} ... \textbackslash end\{large\}}.
 
-\begin{small}
-\texttt{\textbackslash begin\{large\}\\
-\indent...\\
-\indent\textbackslash end\{large\}}.
-\end{small}
-\end{normalsize}
+\subsection*{Série e forma}
+\addcontentsline{toc}{subsection}{Série e forma}
 
-\subsection*{Estilo}
-\addcontentsline{toc}{subsection}{Estilo}
-
-Os diversos estilos para os caracteres são:
+As diversas séries e formas para os caracteres são:
 
 \index{textbf@\textbackslash textbf}\index{negrito}
 \index{textmd@\textbackslash textmd}
+\index{emph@\textbackslash emph}
 \index{textit@\textbackslash textit}\index{italico@itálico}
 \index{textsl@\textbackslash textsl}\index{inclinado}
 \index{underline@\textbackslash underline}\index{sublinhado}
 \index{textsuperscript@\textbackslash textsuperscript}\index{sobrescrito}
 \index{textsubscript@\textbackslash textsubscript}\index{subscrito}
 \index{text@\textbackslash text}
-\index{textnormal@\textbackslash textnormal}
 \index{textup@\textbackslash textup}\index{vertical}
 \index{textsc@\textbackslash textsc}\index{maiuscula@maiúscula}
 \index{bfseries@\textbackslash bfseries}
 \index{mdseries@\textbackslash mdseries}
+\index{em@\textbackslash em}
 \index{itshape@\textbackslash itshape}
-\index{normalfont@\textbackslash normalfont}
 \index{upshape@\textbackslash upshape}
 \index{scshape@\textbackslash scshape}
 
-\begin{tabular}{l>{\ttfamily}r>{\ttfamily}l}
-    \textbf{Texto em negrito} & \textbackslash textbf\{\} & \textbackslash bfseries\\
-    \textmd{Texto médio} & \textbackslash textmd\{\} & \textbackslash mdseries\\
-    \textit{Texto em itálico} & \textbackslash textit\{\} & \textbackslash itshape\\
-    \textbf{\textit{Texto em negrito e itálico}} & \textbackslash textbf\{\textbackslash textit\{\}\}\\
-    \textsl{Texto inclinado} & \textbackslash textsl\{\} & \textbackslash slshape\\
+\begin{tabular}{@{}l>{\ttfamily\small}r>{\ttfamily\small}l@{}}
+    \textmd{Texto médio} & \textbackslash textmd\{\} & \{\textbackslash mdseries \}\\
+    \textbf{Texto em negrito} & \textbackslash textbf\{\} & \{\textbackslash bfseries \}\\
+    \emph{Texto Enfatizado} & \textbackslash emph\{\} & \{\textbackslash em \}\\
+    \textit{Texto em itálico} & \textbackslash textit\{\} & \{\textbackslash itshape \}\\
+    \textbf{\textit{Texto em negrito e itálico}} & \textbackslash textbf\{\textbackslash textit\{\}\} & \{\textbackslash mdseries\textbackslash itshape \}\\
+    \textsl{Texto inclinado} & \textbackslash textsl\{\} & \{\textbackslash slshape \}\\
     \underline{Texto sublinhado} & \textbackslash underline\{\}\\
     \textsuperscript{Texto sobrescrito} & \textbackslash textsuperscript\{\}\\
     \textsubscript{Texto subscrito} & \textbackslash textsubscript\{\}\\
+    \textup{Texto vertical} & \textbackslash textup\{\} & \{\textbackslash upshape \}\\
+    \textsc{Texto em pequenas maiúsculas} & \textbackslash textsc\{\} & \{\textbackslash scshape \}\\
     \text{Texto normal} & \textbackslash text\{\}\\
-    \textnormal{Texto normal} & \textbackslash textnormal\{\} & \textbackslash normalfont\\
-    \textup{Texto vertical} & \textbackslash textup\{\} & \textbackslash upshape\\
-    \textsc{Texto em pequenas maiúsculas} & \textbackslash textsc\{\} & \textbackslash scshape\\
 \end{tabular}
 
 \subsection*{Família}
@@ -1146,17 +1291,20 @@ Os diversos estilos para os caracteres são:
 
 As famílias\index{familia@família} de caracteres na fonte em uso basicamente são:
 
+\index{textnormal@\textbackslash textnormal}
 \index{textrm@\textbackslash textrm}\index{romano}\index{serifado}
 \index{texttt@\textbackslash texttt}\index{monoespacado@monoespaçado}
 \index{textsf@\textbackslash textsf}\index{semserifa@sem serifa}\index{naoserifado@não serifado}
+\index{normalfont@\textbackslash normalfont}
 \index{rmfamily@\textbackslash rmfamily}
 \index{ttfamily@\textbackslash ttfamily}\index{teletype}\index{teletipo}
 \index{sffamily@\textbackslash sffamily}
 
-\begin{tabular}{l>{\ttfamily}r>{\ttfamily}l}
-	\textrm{Texto romano (serifado).} & \textbackslash textrm\{\} & \textbackslash rmfamily\\
-	\texttt{Texto de máquina (monoespaçado).} & \textbackslash texttt\{\} & \textbackslash ttfamily\\
-	\textsf{Texto sem serifa.} & \textbackslash textsf\{\} & \textbackslash sffamily\\
+\begin{tabular}{@{}l>{\ttfamily\small}r>{\ttfamily\small}l@{}}
+    \textnormal{Texto normal} & \textbackslash textnormal\{\} & \{\textbackslash normalfont \}\\
+	\textrm{Texto romano (serifado).} & \textbackslash textrm\{\} & \{\textbackslash rmfamily \}\\
+	\texttt{Texto de máquina (monoespaçado).} & \textbackslash texttt\{\} & \{\textbackslash ttfamily \}\\
+	\textsf{Texto sem serifa.} & \textbackslash textsf\{\} & \{\textbackslash sffamily \}\\
 \end{tabular}
 
 Porém, nem todas as fontes suportam esta variação de família. Por exemplo, a fonte Arev é exclusivamente do tipo sem serifa.
@@ -1753,7 +1901,7 @@ modo em que foi digitado.
 \end{verbatim}
 \end{multicols}
 
-Este ambiente pode ser aplicado em linha com o comando \verb|\verb|.\index{verb@\textbackslash verb} Sua sintaxe é \texttt{\textbackslash verb|literalmente um texto|}.\par\;
+Este ambiente pode ser aplicado em linha com o comando \verb|\verb|.\index{verb@\textbackslash verb}\index{\textbar} Sua sintaxe é \texttt{\textbackslash verb|literalmente um texto|}. Obs.: Qualquer caractere pode ser usado como delimitador, desde que não apareça no conteúdo.
 
 \section*{Colunas}
 \addcontentsline{toc}{section}{Colunas}
