@@ -105,7 +105,7 @@
 \newcommand{\mesano}{\DTMportugesmonthname{\the\month} de \the\year}
 \newcommand{\versaomaior}{2}
 \newcommand{\versaomenor}{1}
-\newcommand{\versaodecorrecao}{0}
+\newcommand{\versaodecorrecao}{1}
 
 % definição de um novo ambiente, que será usado para montar a folha de rosto.
 \newenvironment{folharosto}[1]
@@ -143,6 +143,9 @@
          \setlength{\parsep}{\parskip}%
         }\item[]}%
 	{\end{list}}
+
+\def\lcurly{\{}
+\def\rcurly{\}}
 
 \title{Tutorial básico de \LaTeX} % define o título do documento.
 \author{\nomeautor} % define o autor do documento.
@@ -234,8 +237,8 @@ Saiba a função de cada um deles:
 \index{hat@\textbackslash hat}
 \index{\textbackslash \&}
 \index{\textbackslash \_}
-\index{\textbackslash \{}
-\index{\textbackslash \}}
+\index{\textbackslash \lcurly}
+\index{\textbackslash \rcurly}
 \index{\textbackslash \~{}\{\}}
 \index{textasciitilde@\textbackslash textasciitilde}
 \index{tilde@\textbackslash tilde}
@@ -1076,17 +1079,17 @@ Fontes padrões no \LaTeX:
 \index{latinmodern@Latin Modern}\index{lmodern}
 
 \begin{tabular}{llll}
-\textbf{Nome} & \textbf{Pacote} & \textbf{Código} & \textbf{Família}\\
+\textbf{Nome} & \textbf{Pacote} & \textbf{Código} & \textbf{Família}\\\hline
 Computer Modern & \texttt{\small{(não precisa,}} & \texttt{\small{cmr}}, & \small{todas famílias}\\
                 & \texttt{\small{é o padrão)}}& \texttt{\small{cmss,}} & \\
                 & & \texttt{\small{cmtt}} & \\
-Latin Modern & \texttt{\small{\{lmodern\}}} & \texttt{\small{lmr}}, & \small{todas famílias}\\
+{\fontfamily{lmr}\selectfont Latin Modern} & \texttt{\small{\{lmodern\}}} & \texttt{\small{lmr}}, & \small{todas famílias}\\
              & & \texttt{\small{lmss,}} & \\
              & & \texttt{\small{lmtt}} & \\
 \end{tabular}
 
 \newpage
-Fontes comuns Adobe PostScript:
+Fontes Adobe PostScript comuns:
 \index{adobe@Adobe}
 \index{postscript@PostScript}
 \index{times@Times}\index{mathptmx}
@@ -1101,17 +1104,17 @@ Fontes comuns Adobe PostScript:
 \index{fourier@Fourier}
  
 \begin{tabular}{llll}
-\textbf{Nome} & \textbf{Pacote} & \textbf{Código} & \textbf{Família}\\
-Times & \texttt{\small{\{mathptmx\}}} & \texttt{\small{ptm}} & \small{romano}\\
-Palatino & \texttt{\small{\{mathpazo\}}} & \texttt{\small{ppl}} & \small{romano}\\
-Helvetica & \texttt{\small{\{helvet\}}} & \texttt{\small{phv}} & \small{sem serifa}\\
-Avant Garde & \texttt{\small{\{avant\}}} &  & \small{sem serifa}\\
-Courier & \texttt{\small{\{courier\}}} & \texttt{\small{pcr}} & \small{monoespaçado}\\
-Zapf Chancery & \texttt{\small{\{chancery\}}} &  & \small{romano}\\
-Bookman & \texttt{\small{\{bookman\}}} & \texttt{\small{pbk}} & \small{romano}\\
-New Century Schoolbook & \texttt{\small{\{newcent\}}} &  & \small{romano}\\
-Charter & \texttt{\small{\{charter\}}} & \texttt{\small{bch}} & \small{romano}\\
-Fourier & \texttt{\small{\{fourier\}}} & \texttt{\small{put}} & \small{romano}\\
+\textbf{Nome} & \textbf{Pacote} & \textbf{Código} & \textbf{Família}\\\hline
+{\fontfamily{ptm}\selectfont Times} & \texttt{\small{\{mathptmx\}}} & \texttt{\small{ptm}} & \small{romano}\\
+{\fontfamily{ppl}\selectfont Palatino} & \texttt{\small{\{mathpazo\}}} & \texttt{\small{ppl}} & \small{romano}\\
+{\fontfamily{phv}\selectfont Helvetica} & \texttt{\small{\{helvet\}}} & \texttt{\small{phv}} & \small{sem serifa}\\
+{\fontfamily{pag}\selectfont Avant Garde} & \texttt{\small{\{avant\}}} & \texttt{\small{pag}} & \small{sem serifa}\\
+{\fontfamily{pcr}\selectfont Courier} & \texttt{\small{\{courier\}}} & \texttt{\small{pcr}} & \small{monoespaçado}\\
+{\fontfamily{pzc}\selectfont Zapf Chancery} & \texttt{\small{\{chancery\}}} & \texttt{\small{pzc}} & \small{romano}\\
+{\fontfamily{pbk}\selectfont Bookman} & \texttt{\small{\{bookman\}}} & \texttt{\small{pbk}} & \small{romano}\\
+{\fontfamily{pnc}\selectfont New Century Schoolbook} & \texttt{\small{\{newcent\}}} & \texttt{\small{pnc}} & \small{romano}\\
+{\fontfamily{bch}\selectfont Charter} & \texttt{\small{\{charter\}}} & \texttt{\small{bch}} & \small{romano}\\
+{\fontfamily{put}\selectfont Fourier (Utopia)} & \texttt{\small{\{fourier\}}} & \texttt{\small{put}} & \small{romano}\\
 \end{tabular}
 
 \vspace{1.5em}
@@ -1123,11 +1126,11 @@ Fontes inspiradas na Vera:
 \index{beramono@Bera Mono}
 
 \begin{tabular}{llll}
-\textbf{Nome} & \textbf{Pacote} & \textbf{Código} & \textbf{Família}\\
-Arev & \texttt{\small{\{arev\}}} &  & \small{sem serifa}\\
-Bera Serif & \texttt{\small{\{bera\}}} &  & \small{romano}\\
-Bera Sans & \texttt{\small{[scaled]\{berasans\}}} &  & \small{sem serifa}\\
-Bera Mono & \texttt{\small{[scaled]\{beramono\}}} &  & \small{monoespaçado}\\
+\textbf{Nome} & \textbf{Pacote} & \textbf{Código} & \textbf{Família}\\\hline
+{\fontfamily{fav}\selectfont Arev} & \texttt{\small{\{arev\}}} & \texttt{\small{fav}} & \small{sem serifa}\\
+{\fontfamily{fve}\selectfont Bera Serif} & \texttt{\small{\{bera\}}} & \texttt{\small{fve}} & \small{romano}\\
+{\fontfamily{fvs}\selectfont Bera Sans} & \texttt{\small{[scaled]\{berasans\}}} & \texttt{\small{fvs}} & \small{sem serifa}\\
+{\fontfamily{fvm}\selectfont Bera Mono} & \texttt{\small{[scaled]\{beramono\}}} & \texttt{\small{fvm}} & \small{monoespaçado}\\
 \end{tabular}
 
 \vspace{1.5em}
@@ -1145,15 +1148,15 @@ Bera Mono & \texttt{\small{[scaled]\{beramono\}}} &  & \small{monoespaçado}\\
 \index{tgtermes}
 
 \begin{tabular}{llll}
-\textbf{Nome} & \textbf{Pacote} & \textbf{Código} & \textbf{Família}\\
-TeX Gyre Adventor & \texttt{\small{\{tgadventor\}}} & \texttt{\small{qag}} & \small{sem serifa}\\
-TeX Gyre Bonum & \texttt{\small{\{tgbonum\}}} & \texttt{\small{qbk}} & \small{romano}\\
-TeX Gyre Chorus & \texttt{\small{\{tgchorus\}}} & \texttt{\small{qzc}} & \small{romano}\\
-TeX Gyre Cursor & \texttt{\small{\{tgcursor\}}} & \texttt{\small{qcr}} & \small{monoespaçado}\\
-TeX Gyre Heros & \texttt{\small{\{tgheros\}}} & \texttt{\small{qhv}} & \small{sem serifa}\\
-TeX Gyre Pagella & \texttt{\small{\{tgpagella\}}} & \texttt{\small{qpl}} & \small{romano}\\
-TeX Gyre Schola & \texttt{\small{\{tgschola\}}} & \texttt{\small{qcs}} & \small{romano}\\
-TeX Gyre Termes & \texttt{\small{\{tgtermes\}}} & \texttt{\small{qtm}} & \small{romano}\\
+\textbf{Nome} & \textbf{Pacote} & \textbf{Código} & \textbf{Família}\\\hline
+{\fontfamily{qag}\selectfont TeX Gyre Adventor} & \texttt{\small{\{tgadventor\}}} & \texttt{\small{qag}} & \small{sem serifa}\\
+{\fontfamily{qbk}\selectfont TeX Gyre Bonum} & \texttt{\small{\{tgbonum\}}} & \texttt{\small{qbk}} & \small{romano}\\
+{\fontfamily{qzc}\selectfont TeX Gyre Chorus} & \texttt{\small{\{tgchorus\}}} & \texttt{\small{qzc}} & \small{romano}\\
+{\fontfamily{qcr}\selectfont TeX Gyre Cursor} & \texttt{\small{\{tgcursor\}}} & \texttt{\small{qcr}} & \small{monoespaçado}\\
+{\fontfamily{qhv}\selectfont TeX Gyre Heros} & \texttt{\small{\{tgheros\}}} & \texttt{\small{qhv}} & \small{sem serifa}\\
+{\fontfamily{qpl}\selectfont TeX Gyre Pagella} & \texttt{\small{\{tgpagella\}}} & \texttt{\small{qpl}} & \small{romano}\\
+{\fontfamily{qcs}\selectfont TeX Gyre Schola} & \texttt{\small{\{tgschola\}}} & \texttt{\small{qcs}} & \small{romano}\\
+{\fontfamily{qtm}\selectfont TeX Gyre Termes} & \texttt{\small{\{tgtermes\}}} & \texttt{\small{qtm}} & \small{romano}\\
 \end{tabular}
 
 \vspace{1.5em}
@@ -1173,22 +1176,24 @@ Padrão monoespaçado: & \textbackslash renewcommand\{\textbackslash familydefau
 
 \vspace{1.5em}
 
-Como visto, o uso de um pacote de fonte define o tipo da letra por todo o documento. Para selecionar, em um determinado bloco de texto, um tipo de fonte diferente, use os comandos \texttt{\textbackslash fontfamily} para especificar o tipo, \texttt{\textbackslash fontseries} para especificar a série, \texttt{\textbackslash fontshape} para especificar a forma e \texttt{\textbackslash selectfont} para confirmar a seleção. Seguindo esta sintaxe:
+Como visto, o uso de um pacote define o tipo por todo o documento. Mas, independente de carregar um pacote, para ter outro tipo de fonte em um bloco de texto, use o comando \texttt{\textbackslash fontfamily}. Opcionalmente, \texttt{\textbackslash fontseries} para especificar a série e \texttt{\textbackslash fontshape} para especificar a forma. E termine com \texttt{\textbackslash selectfont}. Seguindo esta sintaxe:
 \index{fontfamily@\textbackslash fontfamily}
 \index{fontseries@\textbackslash fontseries}
 \index{fontshape@\textbackslash fontshape}
 
 \noindent\texttt{\small\{\textbackslash fontfamily\{\textit{código}\}\textbackslash fontseries\{\textit{série}\}\textbackslash fontshape\{\textit{forma}\}\textbackslash selectfont \textnormal{seu texto}\}}
 
-Use os comandos que desejar e termine com o comando de confirmação. O código é o que está nas tabelas das fontes acima. As séries podem ser, resumidamente, \texttt{m} (médio) e \texttt{b} (negrito). As formas podem ser, resumidamente, \texttt{n} (normal), \texttt{it} (itálico) e \texttt{sl} (inclinado).
+Use os comandos que desejar. Os códigos das famílias estão nas tabelas das fontes acima. Resumidamente, as séries podem ser \texttt{m} (médio) e \texttt{b} (negrito) e as formas podem ser \texttt{n} (normal), \texttt{it} (itálico) e \texttt{sl} (inclinado).
 
 Veja estes exemplos:
 
-{\fontfamily{ptm}\selectfont Times} 
+\noindent{\fontfamily{ptm}\selectfont Times} 
 {\fontfamily{ppl}\selectfont Palatino} 
 {\fontfamily{phv}\selectfont Helvetica} 
+{\fontfamily{pag}\selectfont Avant Garde} 
 {\fontfamily{pcr}\selectfont Courier} 
 {\fontfamily{pbk}\selectfont Bookman} 
+{\fontfamily{pnc}\selectfont New Century} 
 {\fontfamily{bch}\selectfont Charter}
 
 \begin{multicols}{2}
@@ -1197,6 +1202,7 @@ Veja estes exemplos:
 {\fontfamily{ptm}\selectfont Times}
 {\fontfamily{ppl}\selectfont Palatino}
 {\fontfamily{phv}\selectfont Helvetica}
+{\fontfamily{pag}\selectfont Avant Garde}
 \end{verbatim}
 \end{small}
 \columnbreak
@@ -1204,6 +1210,7 @@ Veja estes exemplos:
 \begin{verbatim}
 {\fontfamily{pcr}\selectfont Courier}
 {\fontfamily{pbk}\selectfont Bookman}
+{\fontfamily{pnc}\selectfont New Century}
 {\fontfamily{bch}\selectfont Charter}
 \end{verbatim}
 \end{small}
@@ -1212,7 +1219,7 @@ Veja estes exemplos:
 \subsection*{Tamanho}
 \addcontentsline{toc}{subsection}{Tamanho}
 
-Existem alguns tamanhos para os caracteres da fonte\index{fonte} (e incrementado pelo pacote \texttt{\{moresize\}})\index{moresize}, a partir do normal definido entre 10pt\index{10pt}, 11pt\index{11pt} ou 12pt\index{12pt}, os quais são ativados por comandos com sintaxe inline ou para bloco de ambiente:
+Existem alguns tamanhos para os caracteres da fonte\index{fonte} (dois vindos do pacote \texttt{\{moresize\}})\index{moresize}, a partir do normal definido entre 10pt\index{10pt}, 11pt\index{11pt} ou 12pt\index{12pt}, os quais são ativados por comandos com sintaxe inline ou para bloco de ambiente:
 
 \index{tiny@\textbackslash tiny}
 \index{ssmall@\textbackslash ssmall}
@@ -1251,7 +1258,7 @@ Por fim, a outra maneira de definir o tamanho do texto, é em um ambiente com bl
 \subsection*{Série e forma}
 \addcontentsline{toc}{subsection}{Série e forma}
 
-As diversas séries e formas para os caracteres são:
+Sob o mesmo tipo de fonte, estes comandos alteram para as diversas séries e formas:
 
 \index{textbf@\textbackslash textbf}\index{negrito}
 \index{textmd@\textbackslash textmd}
@@ -1273,10 +1280,10 @@ As diversas séries e formas para os caracteres são:
 
 \begin{tabular}{@{}l>{\ttfamily\small}r>{\ttfamily\small}l@{}}
     \textmd{Texto médio} & \textbackslash textmd\{\} & \{\textbackslash mdseries \}\\
-    \textbf{Texto em negrito} & \textbackslash textbf\{\} & \{\textbackslash bfseries \}\\
-    \emph{Texto Enfatizado} & \textbackslash emph\{\} & \{\textbackslash em \}\\
-    \textit{Texto em itálico} & \textbackslash textit\{\} & \{\textbackslash itshape \}\\
-    \textbf{\textit{Texto em negrito e itálico}} & \textbackslash textbf\{\textbackslash textit\{\}\} & \{\textbackslash mdseries\textbackslash itshape \}\\
+    \textbf{Texto negrito} & \textbackslash textbf\{\} & \{\textbackslash bfseries \}\\
+    \emph{Texto enfatizado} & \textbackslash emph\{\} & \{\textbackslash em \}\\
+    \textit{Texto itálico} & \textbackslash textit\{\} & \{\textbackslash itshape \}\\
+    \textbf{\textit{Texto negrito e itálico}} & \textbackslash textbf\{\textbackslash textit\{\}\} & \{\textbackslash mdseries\textbackslash itshape \}\\
     \textsl{Texto inclinado} & \textbackslash textsl\{\} & \{\textbackslash slshape \}\\
     \underline{Texto sublinhado} & \textbackslash underline\{\}\\
     \textsuperscript{Texto sobrescrito} & \textbackslash textsuperscript\{\}\\
@@ -1289,7 +1296,7 @@ As diversas séries e formas para os caracteres são:
 \subsection*{Família}
 \addcontentsline{toc}{subsection}{Família}
 
-As famílias\index{familia@família} de caracteres na fonte em uso basicamente são:
+As famílias\index{familia@família} de caracteres na fonte em uso são alteradas por estes comandos:
 
 \index{textnormal@\textbackslash textnormal}
 \index{textrm@\textbackslash textrm}\index{romano}\index{serifado}
@@ -1312,17 +1319,14 @@ Porém, nem todas as fontes suportam esta variação de família. Por exemplo, a
 \subsection*{Colorindo}
 \addcontentsline{toc}{subsection}{Colorindo}
 
-Para colorir um texto, usa-se o comando \texttt{\textbackslash textcolor\{\textit{cor}\}\{...\}}\index{textcolor@\textbackslash textcolor} ou \texttt{\{\textbackslash color\{\textit{cor}\} ...\}}\index{color@\textbackslash color}. Ou, pode-se definir uma cor diretamente no comando. Exemplos:\index{cor}
+Para colorir o texto, use o comando \texttt{\textbackslash textcolor\{\textit{cor}\}\{ \}}\index{textcolor@\textbackslash textcolor} ou \texttt{\{\textbackslash color\{\textit{cor}\} \}}\index{color@\textbackslash color} e também pode definir uma cor diretamente no comando. Exemplos:\index{cor}
 
-\texttt{\small\textbackslash textcolor\{brown!70!black\}\{\textcolor{brown!70!black}{seu texto}\}}
+\texttt{\small\textbackslash textcolor\{brown!70!black\}\{\textcolor{brown!70!black}{seu texto}\}}\\
+\indent\texttt{\{\small\textbackslash color\{brown!70!black\} {\color{brown!70!black} seu texto}\}}\\
+\indent\texttt{\small\textbackslash textcolor[RGB]\{190,85,0\}\{\textcolor[RGB]{190,85,0}{seu texto}\}}\\
+\indent\texttt{\{\small\textbackslash color[RGB]\{190,85,0\} {\color[RGB]{190,85,0} seu texto}\}}
 
-\texttt{\{\small\textbackslash color\{brown!70!black\} {\color{brown!70!black} seu texto}\}}
-
-\texttt{\small\textbackslash textcolor[RGB]\{190,85,0\}\{\textcolor[RGB]{190,85,0}{seu texto}\}}
-
-\texttt{\{\small\textbackslash color[RGB]\{190,85,0\} {\color[RGB]{190,85,0} seu texto}\}}
-
-Para o fundo do texto, usa-se o comando \texttt{\textbackslash colorbox\{\textit{cor}\}\{...\}}\index{colorbox@\textbackslash colorbox}:
+Para o fundo do texto, use o comando \texttt{\textbackslash colorbox\{\textit{cor}\}\{...\}}\index{colorbox@\textbackslash colorbox}:
 
 \texttt{\small\textbackslash colorbox\{Sepia!10\}\{\colorbox{Sepia!10}{seu texto}\}}
 
@@ -1666,9 +1670,9 @@ Segue uma tabela que está, a seguir, em um exemplo de envolvimento:
 \end{verbatim}
 \end{small}
 
-\begin{wraptable}{r}{4cm}
+\begin{wraptable}{r}{6cm}
 \begin{center}
-\begin{tabular}{>{\ttfamily\small}c|>{\ttfamily\small}c|>{\ttfamily\small}c}
+\begin{tabular}{>{\ttfamily\large}c|>{\ttfamily\large}c|>{\ttfamily\large}c}
     X & O & O \\\hline
       & X & O \\\hline
     O & X & X \\
@@ -2084,9 +2088,9 @@ O índice\index{indice@índice}, também chamado de índice analítico ou índic
 
 No \LaTeX, o índice pode ser criado com os comandos do pacote \texttt{\{imakeidx\}}\index{imakeidx}, então, coloque no preâmbulo o comando: \texttt{\small\textbackslash usepackage\{imakeidx\}}
 
-Ainda no preâmbulo, coloque o comando abaixo para disparar a criação do índice. Estes parâmetros são autoexplicativos:\index{makeindex@\textbackslash makeindex}
+Ainda no preâmbulo, coloque o comando abaixo para disparar a criação do índice. Estes parâmetros são autoexplicativos:\index{makeindex@\textbackslash makeindex}\index{ist@.ist}\index{indexstyle@index style}
 
-\texttt{\small\textbackslash makeindex[columns=3, title=Índice, intoc]}
+\texttt{\small\textbackslash makeindex[columns=3, title=Índice, intoc, options=\lcurly-s index\_style.ist\rcurly]}
 
 Para cada termo no documento, que desejar incluir no índice, use próximo ao termo o comando \texttt{\textbackslash index\{termo\}}\index{index@\textbackslash index}. É possível incluir um apelido alternativo, específico para o critério de ordenação, usando a sintaxe \texttt{\{apelido@termo\}}.
 
