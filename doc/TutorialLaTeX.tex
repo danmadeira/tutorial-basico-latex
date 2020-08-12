@@ -34,7 +34,7 @@
 \usepackage{tikz} % https://www.ctan.org/pkg/pgf
 \usetikzlibrary{matrix,shapes.misc,arrows,chains,trees}
 \usepackage{pgfplots} % https://www.ctan.org/pkg/pgfplots
-\pgfplotsset{width=6cm,compat=1.16}
+\pgfplotsset{width=6cm,compat=1.16} % largura das plotagens.
 \usepackage{pgfplotstable} % https://www.ctan.org/pkg/pgfplotstable
 \usepackage[all]{genealogytree} % https://www.ctan.org/pkg/genealogytree
 \usepackage{pifont} % https://www.ctan.org/pkg/pifont
@@ -91,7 +91,7 @@
 \setlength{\biblabelsep}{0pt} % para remover o espaço do rótulo
 
 %\renewcommand{\familydefault}{\sfdefault} % estabelece o uso da fonte sem serifa como padrão.
-\renewcommand{\familydefault}{\rmdefault} % estabelece o uso da fonte roman como padrão.
+%\renewcommand{\familydefault}{\rmdefault} % estabelece o uso da fonte roman como padrão.
 
 \newcommand*{\justificatt}{%
     \fontdimen2\font=0.4em% interword space
@@ -105,7 +105,7 @@
 \newcommand{\mesano}{\DTMportugesmonthname{\the\month} de \the\year}
 \newcommand{\versaomaior}{2}
 \newcommand{\versaomenor}{1}
-\newcommand{\versaodecorrecao}{1}
+\newcommand{\versaodecorrecao}{2}
 
 % definição de um novo ambiente, que será usado para montar a folha de rosto.
 \newenvironment{folharosto}[1]
