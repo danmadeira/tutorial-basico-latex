@@ -3,7 +3,7 @@
 %%% Início do preâmbulo %%%
 \usepackage[paper=a4paper,top=3cm,bottom=2.5cm,right=2.5cm,left=3cm]{geometry} % https://www.ctan.org/pkg/geometry
 \usepackage[brazil]{babel} % https://www.ctan.org/pkg/babel
-\usepackage[T1]{fontenc} % https://www.ctan.org/pkg/fontenc
+\usepackage[B1,T1]{fontenc} % https://www.ctan.org/pkg/fontenc
 \usepackage[utf8]{inputenc} % https://www.ctan.org/pkg/inputenc (usar no Linux)
 %\usepackage[latin1]{inputenc} % (usar no MS Windows ou Mac OS X)
 %\usepackage[applemac]{inputenc} % (usar no Macintosh)
@@ -104,8 +104,8 @@
 \newcommand{\nomeautor}{Daniel Madeira}
 \newcommand{\mesano}{\DTMportugesmonthname{\the\month} de \the\year}
 \newcommand{\versaomaior}{2}
-\newcommand{\versaomenor}{1}
-\newcommand{\versaodecorrecao}{3}
+\newcommand{\versaomenor}{2}
+\newcommand{\versaodecorrecao}{0}
 
 % definição de um novo ambiente, que será usado para montar a folha de rosto.
 \newenvironment{folharosto}[1]
@@ -1067,9 +1067,9 @@ Além do alinhamento\index{alinhamento} justificado\index{justificado}, que é o
 \subsection*{Tipo de letra}
 \addcontentsline{toc}{subsection}{Tipo de letra}
 
-No \LaTeX, o tipo\index{tipo} de letra padrão é a família\index{familia@família} de fonte Computer Modern\index{computermodern@Computer Modern}. Você pode alterar o tipo da letra no documento, existem diversas outras fontes disponíveis\footnote{Consulte em: \href{https://www.tug.org/FontCatalogue/}{The LaTeX Font Catalogue}}, nos diversos estilos. Mas, antes, é necessário usar o pacote \texttt{\{fontenc\}}\index{fontenc}. Este pacote permite a seleção da fonte para o documento.
+No \LaTeX, o tipo\index{tipo} de letra padrão é a família\index{familia@família} de fonte Computer Modern\index{computermodern@Computer Modern}. Você pode alterar o tipo da letra no documento, existem diversas outras fontes disponíveis\footnote{Consulte em: \href{https://www.tug.org/FontCatalogue/}{The LaTeX Font Catalogue}}, nos diversos estilos. Mas, antes, é necessário usar o pacote \texttt{\{fontenc\}}\index{fontenc}, que trata da codificação\index{codificacao@codificação} da fonte de saída. Este pacote permite a seleção da fonte para o documento.
 
-Inclua a seguinte linha, no preâmbulo, e defina no argumento do pacote o formato PostScript Type 1:\index{type1@Type 1}
+Inclua a seguinte linha, no preâmbulo, e defina no argumento do pacote o formato PostScript Type 1 para a codificação:\index{type1@Type 1}\index{t1@T1}
 
 \texttt{\small\textbackslash usepackage[T1]\{fontenc\}}
 
@@ -1115,11 +1115,19 @@ Fontes Adobe PostScript comuns:
 {\fontfamily{pnc}\selectfont New Century Schoolbook} & \texttt{\small{\{newcent\}}} & \texttt{\small{pnc}} & \small{romano}\\
 {\fontfamily{bch}\selectfont Charter} & \texttt{\small{\{charter\}}} & \texttt{\small{bch}} & \small{romano}\\
 {\fontfamily{put}\selectfont Fourier (Utopia)} & \texttt{\small{\{fourier\}}} & \texttt{\small{put}} & \small{romano}\\
+%{\fontfamily{pop}\selectfont Optima} & \texttt{\small{\{mathptmx\}}} & \texttt{\small{pop}} & \small{romano}\\
+%{\fontfamily{psv}\selectfont Souvenir} & \texttt{\small{\{mathptmx\}}} & \texttt{\small{psv}} & \small{romano}\\
+%{\fontfamily{pgm}\selectfont Garamond} & \texttt{\small{\{mathptmx\}}} & \texttt{\small{pgm}} & \small{romano}\\
+%{\fontfamily{pbd}\selectfont Bodoni} & \texttt{\small{\{mathptmx\}}} & \texttt{\small{pbd}} & \small{romano}\\
+%{\fontfamily{ptf}\selectfont Tiffany} & \texttt{\small{\{mathptmx\}}} & \texttt{\small{ptf}} & \small{romano}\\
+%{\fontfamily{plc}\selectfont Lucida} & \texttt{\small{\{mathptmx\}}} & \texttt{\small{plc}} & \small{romano}\\
+%{\fontfamily{pfu}\selectfont Futura} & \texttt{\small{\{mathptmx\}}} & \texttt{\small{pfu}} & \small{romano}\\
 \end{tabular}
 
 \vspace{1.5em}
 
 Fontes inspiradas na Vera:
+\index{vera@Vera}
 \index{arev@Arev}
 \index{beraserif@Bera Serif}\index{bera}
 \index{berasans@Bera Sans}
@@ -1131,6 +1139,11 @@ Fontes inspiradas na Vera:
 {\fontfamily{fve}\selectfont Bera Serif} & \texttt{\small{\{bera\}}} & \texttt{\small{fve}} & \small{romano}\\
 {\fontfamily{fvs}\selectfont Bera Sans} & \texttt{\small{[scaled]\{berasans\}}} & \texttt{\small{fvs}} & \small{sem serifa}\\
 {\fontfamily{fvm}\selectfont Bera Mono} & \texttt{\small{[scaled]\{beramono\}}} & \texttt{\small{fvm}} & \small{monoespaçado}\\
+%{\fontfamily{DejaVuSerif-TLF}\selectfont DejaVu Serif} & \texttt{\small{\{DejaVuSerif\}}} & \texttt{\small{}} & \small{romano}\\
+%{\fontfamily{DejaVuSerifCondensed-TLF}\selectfont DejaVu Serif Condensed} & \texttt{\small{\{DejaVuSerifCondensed\}}} & \texttt{\small{}} & \small{romano}\\
+%{\fontfamily{DejaVuSans-TLF}\selectfont DejaVu Sans} & \texttt{\small{\{DejaVuSans\}}} & \texttt{\small{}} & \small{sem serifa}\\
+%{\fontfamily{DejaVuSansCondensed-TLF}\selectfont DejaVu Sans Condensed} & \texttt{\small{\{DejaVuSansCondensed\}}} & \texttt{\small{}} & \small{sem serifa}\\
+%{\fontfamily{DejaVuSansMono-TLF}\selectfont DejaVu Sans Mono} & \texttt{\small{\{DejaVuSansMono\}}} & \texttt{\small{}} & \small{monoespaçado}\\
 \end{tabular}
 
 \vspace{1.5em}
@@ -1161,7 +1174,29 @@ Fontes inspiradas na Vera:
 
 \vspace{1.5em}
 
-Alguns pacotes de fontes não trocam a família padrão, que normalmente é romano, para imprimir a fonte. Porém, estas fontes podem ser restritamente de outra família. Então, torna-se necessário um destes comandos adicionais, no preâmbulo, de acordo com a família da fonte. E inclusive, se a fonte possuir mais de uma família e você desejar diferente do padrão:
+Algumas outras fontes\footnote{A fonte Artificial Uncial exige também a codificação B1}:
+\index{antiqua@Antiqua}\index{urw-antiqua}
+\index{grotesk@Grotesk}\index{urw-grotesq}
+\index{augie@Augie}
+\index{concrete@Concrete}
+\index{inconsolata@Inconsolata}\index{zi4}
+\index{librebodoni@Libre Bodoni}
+\index{artificialuncial@Artificial Uncial}\index{auncial-new}
+
+\begin{tabular}{llll}
+\textbf{Nome} & \textbf{Pacote} & \textbf{Código} & \textbf{Família}\\\hline
+{\fontfamily{uaq}\selectfont URW Antiqua} & \texttt{\small{\{urw-antiqua\}}} & \texttt{\small{uaq}} & \small{romano}\\
+{\fontfamily{ugq}\selectfont URW Grotesk} & \texttt{\small{\{urw-grotesq\}}} & \texttt{\small{ugq}} & \small{sem serifa}\\
+{\fontfamily{augie}\selectfont Augie} & \texttt{\small{\{augie\}}} & \texttt{\small{augie}} & \small{sem serifa}\\
+{\fontfamily{ccr}\selectfont Concrete} & \texttt{\small{\{concrete\}}} & \texttt{\small{ccr}} & \small{romano}\\
+{\fontfamily{zi4}\selectfont Inconsolata} & \texttt{\small{\{zi4\}}} & \texttt{\small{zi4}} & \small{monoespaçado}\\
+{\fontfamily{LibreBodoni-TLF}\selectfont Libre Bodoni} & \texttt{\small{\{LibreBodoni\}}} & \texttt{\small{}} & \small{romano}\\
+{\fontfamily{auncl}\selectfont Artificial Uncial} & \texttt{\small{\{auncial-new\}}} & \texttt{\small{auncl}} & \small{romano}\\
+\end{tabular}
+
+\vspace{1.5em}
+
+Um detalhe, alguns pacotes de fontes não trocam a família padrão, que normalmente é romano, para imprimir a fonte. Porém, estas fontes podem ser restritamente de outra família. Então, torna-se necessário um destes comandos adicionais, no preâmbulo, de acordo com a família da fonte. E inclusive, se a fonte possuir mais de uma família e você desejar diferente do padrão:
 \index{familia@família}
 \index{familydefault@\textbackslash familydefault}
 \index{sfdefault@\textbackslash sfdefault}
@@ -1174,18 +1209,32 @@ Padrão romano: & \textbackslash renewcommand\{\textbackslash familydefault\}\{\
 Padrão monoespaçado: & \textbackslash renewcommand\{\textbackslash familydefault\}\{\textbackslash ttdefault\}\\
 \end{tabular}
 
-\vspace{1.5em}
+\subsection*{Limitando ao bloco}
+\addcontentsline{toc}{subsection}{Limitando ao bloco}
 
-Como visto, o uso de um pacote define o tipo por todo o documento. Mas, independente de carregar um pacote, para ter outro tipo de fonte em um bloco de texto, use o comando \texttt{\textbackslash fontfamily}. Opcionalmente, \texttt{\textbackslash fontseries} para especificar a série e \texttt{\textbackslash fontshape} para especificar a forma. E termine com \texttt{\textbackslash selectfont}. Seguindo esta sintaxe:
+Como visto, o uso de um pacote define o tipo por todo o documento. Mas, independente de carregar um pacote, há dois modos para ter outro tipo de fonte em um bloco de texto: use o comando \texttt{\textbackslash fontfamily} ou o comando \texttt{\textbackslash usefont}.
 \index{fontfamily@\textbackslash fontfamily}
+\index{usefont@\textbackslash usefont}
+
+Toda fonte de texto no \LaTeX\ possui cinco atributos: codificação, família, série, forma e tamanho. Existem comandos para especificar particularmente cada atributo no decorrer do documento.
+
+Com relação ao tipo, se optar pelo comando \texttt{\textbackslash fontfamily}, junto ao comando use, opcionalmente, \texttt{\textbackslash fontseries} para especificar a série, \texttt{\textbackslash fontshape} para especificar a forma e \texttt{\textbackslash fontsize} para especificar o tamanho. Termine com o comando \texttt{\textbackslash selectfont}, seguindo esta sintaxe:
 \index{fontseries@\textbackslash fontseries}
 \index{fontshape@\textbackslash fontshape}
+\index{fontsize@\textbackslash fontsize}
+\index{selectfont@\textbackslash selectfont}
 
 \noindent\texttt{\small\{\textbackslash fontfamily\{\textit{código}\}\textbackslash fontseries\{\textit{série}\}\textbackslash fontshape\{\textit{forma}\}\textbackslash selectfont \textnormal{seu texto}\}}
 
-Use os comandos que desejar. Os códigos das famílias estão nas tabelas das fontes acima. Resumidamente, as séries podem ser \texttt{m} (médio) e \texttt{b} (negrito) e as formas podem ser \texttt{n} (normal), \texttt{it} (itálico) e \texttt{sl} (inclinado).
+Use os comandos que desejar. Os códigos das famílias estão nas tabelas das fontes acima. Resumidamente, as séries podem ser \texttt{m} (médio), \texttt{b} (negrito) e \texttt{c} (condensado), as formas podem ser \texttt{n} (normal), \texttt{it} (itálico) e \texttt{sl} (inclinado).
 
-Veja estes exemplos:
+Se optar pelo comando \texttt{\textbackslash usefont}, siga esta sintaxe:
+
+\noindent\texttt{\small\{\textbackslash usefont\{\textit{codificação}\}\{\textit{código}\}\{\textit{série}\}\{\textit{forma}\}\textnormal{seu texto}\}}
+
+Os mesmos valores se aplicam para o código, a série e a forma. Com relação à codificação, especifica-se a mesma que foi definida no argumento do pacote \texttt{\{fontenc\}} (por exemplo \texttt{T1}).
+
+Veja estes exemplos com o comando \texttt{\textbackslash fontfamily}:
 
 \noindent{\fontfamily{ptm}\selectfont Times} 
 {\fontfamily{ppl}\selectfont Palatino} 
@@ -1212,6 +1261,33 @@ Veja estes exemplos:
 {\fontfamily{pbk}\selectfont Bookman}
 {\fontfamily{pnc}\selectfont New Century}
 {\fontfamily{bch}\selectfont Charter}
+\end{verbatim}
+\end{small}
+\end{multicols}
+
+E com o comando \texttt{\textbackslash usefont}:
+
+\noindent{\usefont{T1}{fav}{m}{n}Arev}
+{\usefont{T1}{qzc}{m}{n}TeX Gyre Chorus}
+{\usefont{T1}{uaq}{m}{n}URW Antiqua}
+{\usefont{T1}{ugq}{m}{n}URW Grotesk}
+{\usefont{T1}{augie}{m}{n}Augie}
+{\usefont{T1}{fve}{m}{n}Bera Serif}
+
+\begin{multicols}{2}
+\begin{small}
+\begin{verbatim}
+{\usefont{T1}{fav}{m}{n}Arev}
+{\usefont{T1}{qzc}{m}{n}TeX Gyre Chorus}
+{\usefont{T1}{uaq}{m}{n}URW Antiqua}
+\end{verbatim}
+\end{small}
+\columnbreak
+\begin{small}
+\begin{verbatim}
+{\usefont{T1}{ugq}{m}{n}URW Grotesk}
+{\usefont{T1}{augie}{m}{n}Augie}
+{\usefont{T1}{fve}{m}{n}Bera Serif}
 \end{verbatim}
 \end{small}
 \end{multicols}
@@ -1251,10 +1327,22 @@ Existem alguns tamanhos para os caracteres da fonte\index{fonte} (dois vindos do
 
 \vspace{1.5em}
 
-A forma da sintaxe inline também pode ser assim: \texttt{\{\textbackslash small ... \}}.
+A forma da sintaxe inline também pode ser assim:
 
-Por fim, a outra maneira de definir o tamanho do texto, é em um ambiente com bloco de parágrafo. Exemplo: \texttt{\small\textbackslash begin\{large\} ... \textbackslash end\{large\}}.
+\texttt{\small{\{\textbackslash small ... \}}}
 
+Por fim, a outra maneira de definir o tamanho do texto, é em um ambiente com bloco de parágrafo. Exemplo:
+\begin{small}
+\begin{verbatim}
+    \begin{large}
+    
+    ...
+    
+    \end{large}
+\end{verbatim}
+\end{small}
+
+\newpage
 \subsection*{Série e forma}
 \addcontentsline{toc}{subsection}{Série e forma}
 
