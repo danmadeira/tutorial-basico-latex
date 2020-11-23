@@ -104,7 +104,7 @@
 \newcommand{\nomeautor}{Daniel Madeira}
 \newcommand{\mesano}{\DTMportugesmonthname{\the\month} de \the\year}
 \newcommand{\versaomaior}{2}
-\newcommand{\versaomenor}{2}
+\newcommand{\versaomenor}{3}
 \newcommand{\versaodecorrecao}{0}
 
 % definição de um novo ambiente, que será usado para montar a folha de rosto.
@@ -184,7 +184,7 @@ O \LaTeX\ é um sistema de preparação de documentos com alta qualidade para co
 
 O sistema \LaTeX\ possui código aberto e é gratuito. Está disponível para qualquer sistema operacional, produzindo o mesmo resultado em qualquer sistema. Cria arquivos pequenos e com resultados de alta qualidade. Ainda, incluem-se ferramentas de exportação do documento para outros formatos, como PostScript e PDF.
 
-Este tutorial tem o propósito de mostrar o mínimo, o básico, para se conseguir produzir um documento, de uma forma prática. O próprio arquivo .tex deste tutorial é um exemplo básico da codificação em \LaTeX. Assim, consulte o código-fonte deste tutorial, em paralelo à sua versão em PDF. Inclusive, alguns recursos de diagramação, que ainda não estão explanados neste tutorial, foram utilizados na montagem deste documento.
+Este tutorial tem o propósito de mostrar o mínimo, o básico, para se conseguir produzir um documento, de uma forma prática. O próprio arquivo .tex deste tutorial é um exemplo básico da codificação em \LaTeX. Assim, consulte o código-fonte\footnote{Consulte em: \href{https://www.dm.eti.br/ebooks/TutorialLaTeX.tex}{https://www.dm.eti.br/ebooks/TutorialLaTeX.tex}} deste tutorial, em paralelo à sua versão em PDF. Inclusive, alguns recursos de diagramação, que ainda não estão explanados neste tutorial, foram utilizados na montagem deste documento.
 
 \chapter*{Linguagem \LaTeX}
 \addcontentsline{toc}{chapter}{Linguagem \LaTeX}
@@ -472,7 +472,7 @@ Um exemplo de comando que usa uma cor:
 \section*{Margens}
 \addcontentsline{toc}{section}{Margens}
 
-O pacote \texttt{\{geometry\}}\index{geometry} proporciona um meio de configurar a disposição da página\index{pagina@página}. Por exemplo, esta página está com a margem de 4,5cm e sem o espaço do cabeçalho (veja o código-fonte deste tutorial).\index{margem}
+O pacote \texttt{\{geometry\}}\index{geometry} proporciona um meio de configurar a disposição da página\index{pagina@página}. Por exemplo, esta página está com a margem de 4,5cm e sem o espaço do cabeçalho (veja o código-fonte\footnote{Consulte em: \href{https://www.dm.eti.br/ebooks/TutorialLaTeX.tex}{https://www.dm.eti.br/ebooks/TutorialLaTeX.tex}} deste tutorial).\index{margem}
 \begin{small}
 \begin{verbatim}
    \newgeometry{margin=4.5cm,nohead}
@@ -2212,7 +2212,7 @@ subsec: & subseção & lst:    & lista de código \\
 
 Por exemplo: \texttt{\textbackslash label\{ch:introducao\}}. O que depois, será referenciado com: \texttt{\textbackslash ref\{ch:introducao\}}.
 
-E aqui tem uma referência à nota de rodapé \ref{notarodape} do capítulo sobre formatação de texto, na página \pageref{notarodape} (veja esta parte no código-fonte).
+E aqui tem uma referência à nota de rodapé \ref{notarodape} do capítulo sobre formatação de texto, na página \pageref{notarodape} (veja esta parte no código-fonte\footnote{Consulte em: \href{https://www.dm.eti.br/ebooks/TutorialLaTeX.tex}{https://www.dm.eti.br/ebooks/TutorialLaTeX.tex}}).
 
 \section*{Bibliografia}
 \addcontentsline{toc}{section}{Bibliografia}
@@ -2312,7 +2312,7 @@ O uso do pacote \texttt{\{hyperref\}}\index{hyperref} transforma automaticamente
 
 Aproveitando o rótulo\index{rotulo@rótulo} da marcação (\texttt{\textbackslash label\{marcador\}})\index{label@\textbackslash label}, para criar uma ligação interna, usa-se o comando \texttt{\textbackslash hyperref[marcador]\{texto\}}.\index{hyperref@\textbackslash hyperref}
 
-Por exemplo, esta é uma ligação para a \hyperref[notarodape]{nota de rodapé} do capítulo sobre formatação de texto (veja esta parte no código-fonte).
+Por exemplo, esta é uma ligação para a \hyperref[notarodape]{nota de rodapé} do capítulo sobre formatação de texto (veja esta parte no código-fonte\footnote{Consulte em: \href{https://www.dm.eti.br/ebooks/TutorialLaTeX.tex}{https://www.dm.eti.br/ebooks/TutorialLaTeX.tex}}).
 
 O pacote \texttt{\{hyperref\}} possui uma extensa possibilidade de configuração. Veja o código-fonte deste tutorial para ver o comando \texttt{\textbackslash hypersetup\{\}}\index{hypersetup@\textbackslash hypersetup}, logo no preâmbulo. Este pacote também formata muitas coisas para o PDF\index{pdf@PDF} exportado.
 
